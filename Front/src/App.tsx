@@ -1,13 +1,28 @@
-import { useState } from 'react'
-import './App.css'
+import Navbar from './Components/Navbar/Navbar'
+import Favoritos from './Components/Favoritos/Favoritos'
+import MiPerfil from './Components/MiPerfil/MiPerfil'
+import MisCompras from './Components/MisCompras/Navbar'
+import Notificaciones from './Components/Notificaciones/Notificaciones'
+import CarritoDeCompras from './Components/CarritoDeCompras/CarritoDeCompras'
+import Home from './Components/Home/Home'
+//routes
+import {Routes, Route } from 'react-router-dom'
+
 
 function App() {
 
   return (
-    <>
-      <h1 className="display-1">Funcionando</h1> {/* Utiliza una clase de Bootstrap para el estilo del título */}
-      <button className="btn btn-primary">Botón</button> {/* Utiliza clases de Bootstrap para el estilo del botón */}
-    </>
+    <div>
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/Favoritos" element={<Favoritos/>}/>
+        <Route path="/MiPerfil" element={<MiPerfil/>}/>
+        <Route path="/MisCompras" element={<MisCompras/>}/>
+        <Route path='Notificaciones' element={<Notificaciones/>}/>
+        <Route path="CarritoDeCompras" element={<CarritoDeCompras/>}/>
+      </Routes>
+    </div>
   )
 }
 
