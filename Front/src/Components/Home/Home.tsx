@@ -1,10 +1,14 @@
 import { setArticles } from "../../Redux/Slices/ArticlesSlice"
 import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Redux/index';
+import Card from '../Card/card'
 
 function Home () {
     const articles = [
         {
             id: 1,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "First Article",
             content: "This is the first article.",
             price: 90,
@@ -21,6 +25,7 @@ function Home () {
         },
         {
             id: 2,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "Second Article",
             content: "This is the second article.",
             price: 230,
@@ -37,6 +42,7 @@ function Home () {
         },
         {
             id: 3,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "Third Article",
             content: "This is the third article.",
             price: 120,
@@ -53,6 +59,7 @@ function Home () {
         },
         {
             id: 4,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "Fourth Article",
             content: "This is the fourth article.",
             price: 150,
@@ -69,6 +76,7 @@ function Home () {
         },
         {
             id: 5,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "Fifth Article",
             content: "This is the fifth article.",
             price: 180,
@@ -85,6 +93,7 @@ function Home () {
         },
         {
             id: 6,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "Sixth Article",
             content: "This is the sixth article.",
             price: 200,
@@ -101,6 +110,7 @@ function Home () {
         },
         {
             id: 7,
+            img: "https://tiendadiggit.com.ar/web/image/product.product/16003/image_128",
             title: "Seventh Article",
             content: "This is the seventh article.",
             price: 300,
@@ -121,9 +131,21 @@ function Home () {
 
     dispatch(setArticles(articles));
 
+    const article = useSelector((state: RootState) => state.articles.list);
+
     return (
         <div>
-            <h1>Home</h1>
+            {articles.map((article) => (
+                <Card
+                    key={article.id}
+                    id={article.id}
+                    img={article.img}
+                    title={article.title}
+                    content={article.content}
+                    price={article.price}
+                    ratings={article.ratings}
+                />
+            ))}
         </div>   
     );
 }
