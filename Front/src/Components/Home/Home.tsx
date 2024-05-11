@@ -134,7 +134,7 @@ function Home () {
     const article = useSelector((state: RootState) => state.articles.list);
 
     return (
-        <div>
+        <div >
             {articles.map((article) => (
                 <Card
                     key={article.id}

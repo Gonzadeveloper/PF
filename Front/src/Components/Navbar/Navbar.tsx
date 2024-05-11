@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaShoppingCart, FaBell } from 'react-icons/fa';
+import { FaShoppingCart, FaBell, FaSearch } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -10,6 +10,9 @@ const Navbar = () => {
                     <a className="navbar-brand" href="/">E-Comerce</a>
                     <div className="d-flex">
                         <input type="text" className="form-control me-2" placeholder="Buscar..." />
+                        <Link to='Search'>
+                            <FaSearch />
+                        </Link>
                     </div>
                 </div>
             </div>
