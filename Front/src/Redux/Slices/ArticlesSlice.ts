@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface Article {
   id: number;
   title: string;
   content: string;
   price: number;
+  img: string;
 }
 
 interface ArticlesState {
@@ -16,7 +17,7 @@ const initialState: ArticlesState = {
 };
 
 const articlesSlice = createSlice({
-  name: 'articles',
+  name: "articles",
   initialState,
   reducers: {
     setArticles(state, action: PayloadAction<Article[]>) {
