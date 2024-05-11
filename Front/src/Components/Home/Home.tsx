@@ -2,7 +2,7 @@ import { setArticles } from "../../Redux/Slices/ArticlesSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/index";
-import Card from "../Card/Card";
+import Card from "../Card/card";
 
 function Home() {
   const articles = [
