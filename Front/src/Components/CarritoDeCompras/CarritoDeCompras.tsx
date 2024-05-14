@@ -1,6 +1,6 @@
 function CarritoDeCompras () {
     return (
-        <div>
+        <div className="container">
             <h1>CarritoDeCompras</h1>
         </div>   
     );
