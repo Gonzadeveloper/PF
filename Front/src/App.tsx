@@ -5,6 +5,7 @@ import MisCompras from './Components/MisCompras/Navbar'
 import Notificaciones from './Components/Notificaciones/Notificaciones'
 import CarritoDeCompras from './Components/CarritoDeCompras/CarritoDeCompras'
 import Home from './Components/Home/Home'
+import Search from './Components/Search/Search'
 // routes
 import { Routes, Route } from 'react-router-dom'
 // Redux
@@ -24,6 +25,7 @@ function App() {
         <Route path="/MisCompras" element={<MisCompras/>}/>
         <Route path='Notificaciones' element={<Notificaciones/>}/>
         <Route path="CarritoDeCompras" element={<CarritoDeCompras/>}/>
+        <Route path='Search' element={<Search/>}/>
       </Routes>
       </Provider>
     </div>
