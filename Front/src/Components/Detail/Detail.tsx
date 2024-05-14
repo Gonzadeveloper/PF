@@ -1,6 +1,6 @@
 function Detail () {
     return (
-        <div>
+        <div className="container">
             <h1>Detail</h1>
         </div>   
     );

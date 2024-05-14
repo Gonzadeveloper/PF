@@ -1,7 +1,7 @@
 import Navbar from './Components/Navbar/Navbar'
 import Favoritos from './Components/Favoritos/Favoritos'
 import MiPerfil from './Components/MiPerfil/MiPerfil'
-import MisCompras from './Components/MisCompras/Navbar'
+import MisCompras from './Components/MisCompras/MisCompras'
 import Notificaciones from './Components/Notificaciones/Notificaciones'
 import CarritoDeCompras from './Components/CarritoDeCompras/CarritoDeCompras'
 import Home from './Components/Home/Home'
@@ -15,7 +15,7 @@ import store  from './Redux'
 function App() {
 
   return (
-    <div>
+    <div >
       <Provider store={store}>
       <Navbar/>
       <Routes>

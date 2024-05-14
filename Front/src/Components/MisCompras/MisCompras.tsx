@@ -1,6 +1,6 @@
 function MisCompras () {
     return (
-        <div>
+        <div className="container">
             <h1>MisCompras</h1>
         </div>   
     );
