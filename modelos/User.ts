@@ -1,6 +1,12 @@
 import { Table, Column, Model, DataType, HasOne, HasMany, BelongsTo, ForeignKey } from 'sequelize-typescript';
 import { Sequelize } from 'sequelize-typescript';
 import { Reputation } from './Reputation';
+import { Cart } from './Cart';
+import { Order } from './Order';
+import { Address } from './Address';
+import { Review } from './Review';
+import { Product } from './Product';
+
 
 @Table({ modelName: 'User' })
 export class User extends Model<User> {
