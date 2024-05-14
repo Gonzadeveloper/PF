@@ -3,7 +3,6 @@ function Card ({id, img, title, content, price, ratings}: {id: number, img: stri
     return (
         <div className="container mt-4">
           <div className="row">
-            {
                 <div className="col-md-3 mb-4">
                   <div className="card">
                     <img src={img} alt="avatar" />
@@ -14,7 +13,6 @@ function Card ({id, img, title, content, price, ratings}: {id: number, img: stri
                     </div>
                   </div>
                 </div>   
-            }
           </div>
         </div>
       );
