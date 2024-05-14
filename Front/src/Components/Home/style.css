@@ -1,0 +1,17 @@
+@media screen  and (min-width:576px) {
+    .carousel_inner{
+        display: flex;
+    }
+    .carousel-item{
+        display: block;
+        margin-right: 0;
+        flex: 0 0 calc(100%/3);
+    }  
+}
+
+.carousel_inner{
+    padding: 1em;
+}
+.card{
+    margin: 0.5em;
+}
