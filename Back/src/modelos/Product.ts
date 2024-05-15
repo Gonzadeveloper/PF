@@ -1,5 +1,4 @@
-import { Table, Column, Model, DataType, HasOne, HasMany, BelongsTo, ForeignKey } from 'sequelize-typescript';
-import { Sequelize } from 'sequelize-typescript';
+import { Table, Column, Model, HasMany, BelongsTo } from 'sequelize-typescript';
 import { User } from './User';
 import { Category } from './Category';
 import { Review } from './Review';
@@ -7,7 +6,9 @@ import { Review } from './Review';
 
 @Table({ modelName: 'Product' })
 export class Product extends Model<Product> {
-  @Column({ allowNull: false })
+  @Column({ 
+  allowNull: false 
+})
   categoryId!: number;
 
   @Column({ allowNull: false })
