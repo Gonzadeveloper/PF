@@ -2,7 +2,6 @@ import { setArticles } from "../../Redux/Slices/ArticlesSlice"
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 import { RootState } from '../../Redux/index';
-import Footer from '../Footer/Footer'
 import './style.css'
 
 function Home() {
@@ -185,7 +184,6 @@ function Home() {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <Footer />
     </div>
 
   );

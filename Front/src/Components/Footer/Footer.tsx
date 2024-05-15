@@ -1,32 +1,22 @@
-import "./Footer.css";
-
 const Footer = () => {
     return (
-        <div className="footer">
-            <div className="container my-5">
-                <footer className="text-center text-lg-start" style={{ backgroundColor: '#212529' }}>
-                    <div className="container d-flex justify-content-center py-5">
-                        <button type="button" className="btn btn-primary btn-lg btn-floating mx-2" style={{ backgroundColor: '#212529' }}>
-                            <i className="fab fa-facebook-f"></i>
-                        </button>
-                        <button type="button" className="btn btn-primary btn-lg btn-floating mx-2" style={{ backgroundColor: '#212529' }}>
-                            <i className="fab fa-youtube"></i>
-                        </button>
-                        <button type="button" className="btn btn-primary btn-lg btn-floating mx-2" style={{ backgroundColor: '#212529' }}>
-                            <i className="fab fa-instagram"></i>
-                        </button>
-                        <button type="button" className="btn btn-primary btn-lg btn-floating mx-2" style={{ backgroundColor: '#212529' }}>
-                            <i className="fab fa-twitter"></i>
-                        </button>
+        <footer className="bg-dark text-white py-3" style={{ backgroundColor: '#212529' }}>
+            <div className="container-fluid">
+                <div className="row align-items-center justify-content-between">
+                    <div className="col-md-6">
+                        <p className="mb-0">© 2024 Todos los derechos reservados, Electro Emporium</p>
                     </div>
-
-                    <div className="text-center text-white p-3" style={{ backgroundColor: '#212529' }}>
-                        © 2024 Todos los derechos reservados:
-                        <a className="text-white" href="https://github.com/Gonzadeveloper/PF/tree/desarrollo" target="_blank"> Electro Emporium</a>
+                    <div className="col-md-6 d-flex justify-content-end">
+                        <ul className="list-inline mb-0 d-flex align-items-center">
+                            <li className="list-inline-item me-2"><a className="text-body-secondary" href="https://github.com/Gonzadeveloper/PF/tree/desarrollo" target="_blank"><img src="https://static-00.iconduck.com/assets.00/social-github-icon-256x250-yv67pnv6.png" alt="Github" style={{ width: '40px' }} /></a></li>
+                            <li className="list-inline-item me-2"><a className="text-body-secondary" href="https://es.react.dev/" target="_blank"><img src="https://img.icons8.com/?size=80&id=wPohyHO_qO1a&format=png" alt="React" style={{ width: '40px' }} /></a></li>
+                            <li className="list-inline-item me-2"><a className="text-body-secondary" href="https://redux.js.org/" target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/redux.svg" alt="Redux" style={{ width: '40px' }} /></a></li>
+                            <li className="list-inline-item"><a className="text-body-secondary" href="https://www.typescriptlang.org/" target="_blank"><img src="https://www.svgrepo.com/show/374144/typescript.svg" alt="TypeScript" style={{ width: '40px' }} /></a></li>
+                        </ul>
                     </div>
-                </footer>
+                </div>
             </div>
-        </div>
+        </footer>
     );
 };
 
