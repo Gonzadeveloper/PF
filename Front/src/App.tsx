@@ -25,7 +25,7 @@ function App() {
         <Route path="/MisCompras" element={<MisCompras/>}/>
         <Route path='Notificaciones' element={<Notificaciones/>}/>
         <Route path="CarritoDeCompras" element={<CarritoDeCompras/>}/>
-        <Route path='Search' element={<Search/>}/>
+        <Route path="Search" element={<Search/>}/>
       </Routes>
       </Provider>
     </div>
