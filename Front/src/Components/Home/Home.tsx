@@ -140,7 +140,7 @@ function Home () {
                         <div className="carousel-item active">
                             <div className="card">
                                 <div className="img-wrapper">
-                                    <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
+                                    <img src="https://mariacarolinachapellin.com/wp-content/uploads/2020/05/celulares-hjj-1.jpg" className="card-img-top" alt="..." />
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">Card title 1</h5>
@@ -152,7 +152,7 @@ function Home () {
                         <div className="carousel-item">
                             <div className="card">
                                 <div className="img-wrapper">
-                                    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.lg.com%2Fcl%2Flg-telefonos-moviles%2Fsmartphones%2Fa270%2F&psig=AOvVaw0KzPc8mavUJa0x86stZ5T0&ust=1715788029827000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOjw3NO-jYYDFQAAAAAdAAAAABAX" className="card-img-top" alt="..." />
+                                    <img src="https://resizer.iproimg.com/unsafe/1280x/filters:format(webp)/https://assets.iprofesional.com/assets/jpeg/2023/09/560535.jpeg" className="card-img-top" alt="..." />
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">Card title 2</h5>
@@ -164,7 +164,7 @@ function Home () {
                         <div className="carousel-item">
                             <div className="card">
                                 <div className="img-wrapper">
-                                    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Far.celulares.com%2Fnokia%2F6610&psig=AOvVaw0KzPc8mavUJa0x86stZ5T0&ust=1715788029827000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOjw3NO-jYYDFQAAAAAdAAAAABAf" className="card-img-top" alt="..." />
+                                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpucKm2t9I8_IDEQP3cFbQj5V11739w7cY6wYgnD4UjqTHAeM8_Umpp4UvBge_Q9OG1f0ehHYXwBD3SCOm3aErsHwV5OfkFTbzEFN_LfDr6sVFAsyy5k1HmV1QoCIcNtPqvNpD7iRGfdxydNHO2SFz3fXa1oHUNCETI00AJi857JaJw5WqU8jtZ3tg/s1584/imagen_2023-03-23_203445988.png" className="card-img-top" alt="..." />
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">Card title 3</h5>
@@ -183,6 +183,48 @@ function Home () {
                         <span className="visually-hidden">Next</span>
                     </button>
                 </div>
+            <div className="container">
+                <h1> 🔥Encontra lo que buscas 🔥</h1>
+
+                <div className="row row-cols-1 row-cols-md-2 g-4">
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://www.cronista.com/files/image/419/419139/61d3378d218ac.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Celulares</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://www.rentadvisor.com.co/wp-content/uploads/images-2-500x281.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Computadoras</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://cdn-us0.puzzlegarage.com/img/puzzle/5/645_preview.v2.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Auriculares</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://vibes.okdiario.com/wp-content/uploads/2023/11/Television.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Televisores</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
         </div>
        
     );
