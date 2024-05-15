@@ -9,6 +9,7 @@ import Notificaciones from './Components/Notificaciones/Notificaciones';
 import CarritoDeCompras from './Components/CarritoDeCompras/CarritoDeCompras';
 import Home from './Components/Home/Home';
 import Search from './Components/Search/Search';
+import Help from './Components/Help/Help'
 import { Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './Redux';
@@ -26,6 +27,7 @@ function App() {
             <Route path="/MisCompras" element={<MisCompras />} />
             <Route path='/Notificaciones' element={<Notificaciones />} />
             <Route path="/CarritoDeCompras" element={<CarritoDeCompras />} />
+            <Route path="/Help" element={<Help />} />
             <Route path="/Search" element={<Search />} />
           </Routes>
         </div>
