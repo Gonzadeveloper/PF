@@ -1,0 +1,11 @@
+.footer {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Establecer la anchura al 100% */
+    height: auto;
+    /* Ajustar la altura automáticamente */
+    background-color: #212529;
+    display: flex;
+    flex-flow: column nowrap;
+}
