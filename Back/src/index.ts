@@ -7,8 +7,13 @@ app.use(express.json()) // middleware que transforma la req.body a un json
 
 const PORT = 3000
 
-app.use ('/products', getAllProducts);
-app.use ('/products/:name', getProductByName);
+app.get ('/products', getAllProducts);
+app.get ('/products/:name', getProductByName);
+
+app.get('/ping', (_req, res) => {
+    console.log('someone pinged here!!');
+    res.send('pong');
+});
 
 
 app.listen(PORT, () => {
