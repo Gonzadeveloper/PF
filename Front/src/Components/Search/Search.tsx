@@ -1,4 +1,4 @@
-import Card from "../Card/card";
+import Card from "../Card/Card";
 import React from "react";
 import { useSelector } from "react-redux";
 import { CardProps } from "../Card/Card";
