@@ -134,128 +134,99 @@ function Home () {
     const article = useSelector((state: RootState) => state.articles.list);
 
     return (
-        <div className="container">
-    <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-        <div className="carousel-inner">
-            <div className="carousel-item active">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
+            <div className="container">
+                <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+                    <div className="carousel-inner">
+                        <div className="carousel-item active">
+                            <div className="card">
+                                <div className="img-wrapper">
+                                    <img src="https://mariacarolinachapellin.com/wp-content/uploads/2020/05/celulares-hjj-1.jpg" className="card-img-top" alt="..." />
+                                </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">Card title 1</h5>
+                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="carousel-item">
+                            <div className="card">
+                                <div className="img-wrapper">
+                                    <img src="https://resizer.iproimg.com/unsafe/1280x/filters:format(webp)/https://assets.iprofesional.com/assets/jpeg/2023/09/560535.jpeg" className="card-img-top" alt="..." />
+                                </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">Card title 2</h5>
+                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="carousel-item">
+                            <div className="card">
+                                <div className="img-wrapper">
+                                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpucKm2t9I8_IDEQP3cFbQj5V11739w7cY6wYgnD4UjqTHAeM8_Umpp4UvBge_Q9OG1f0ehHYXwBD3SCOm3aErsHwV5OfkFTbzEFN_LfDr6sVFAsyy5k1HmV1QoCIcNtPqvNpD7iRGfdxydNHO2SFz3fXa1oHUNCETI00AJi857JaJw5WqU8jtZ3tg/s1584/imagen_2023-03-23_203445988.png" className="card-img-top" alt="..." />
+                                </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">Card title 3</h5>
+                                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 1</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
+                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="visually-hidden">Previous</span>
+                    </button>
+                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="visually-hidden">Next</span>
+                    </button>
                 </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
+            <div className="container">
+                <h1> 🔥Encontra lo que buscas 🔥</h1>
+
+                <div className="row row-cols-1 row-cols-md-2 g-4">
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://www.cronista.com/files/image/419/419139/61d3378d218ac.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Celulares</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 2</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://www.rentadvisor.com.co/wp-content/uploads/images-2-500x281.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Computadoras</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://cdn-us0.puzzlegarage.com/img/puzzle/5/645_preview.v2.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Auriculares</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 3</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
+                    <div className="col">
+                        <div className="card">
+                        <img src="https://vibes.okdiario.com/wp-content/uploads/2023/11/Television.jpg" className="card-img-top" alt="..."/>
+                        <div className="card-body">
+                            <h5 className="card-title">Televisores</h5>
+                            <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
                     </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 4</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 5</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 6</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 7</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 8</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div className="carousel-item">
-                <div className="card">
-                    <div className="img-wrapper">
-                        <img src="https://tiendadiggit.com.ar/web/image/product.product/16003/image_128" className="card-img-top" alt="..." />
-                    </div>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title 9</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
             </div>
         </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-        </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
+       
     );
 }
 

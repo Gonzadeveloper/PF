@@ -1,6 +1,6 @@
 function MiPerfil () {
     return (
-        <div className="container">
+        <div className="container"> 
             <h1>MiPerfil</h1>
         </div>   
     );

@@ -26,6 +26,11 @@ const Navbar = () => {
       </div>
       <div className="container d-flex justify-content-end">
         <div className="d-flex align-items-center">
+
+          <Link to="Search">
+            <button className="btn btn-outline-light me-2">Compra</button>
+          </Link>
+
           <Link to="Favoritos">
             <button className="btn btn-outline-light me-2">Favoritos</button>
           </Link>
@@ -36,6 +41,10 @@ const Navbar = () => {
 
           <Link to="MisCompras">
             <button className="btn btn-outline-light me-2">Mis compras</button>
+          </Link>
+          
+          <Link to="Help">
+            <button className="btn btn-outline-light me-2">Help</button>
           </Link>
 
           <Link to="Notificaciones">
