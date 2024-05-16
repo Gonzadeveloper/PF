@@ -1,0 +1,42 @@
+.card-detail {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.mb-3,
+.mb-2 {
+  margin-bottom: 1rem !important;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.badge {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Nuevos estilos para el div de descripción */
+.description-container {
+  margin-top: 20px; /* Espacio superior */
+}
+
+.description-container .card {
+  border: none; /* Quita los bordes */
+  box-shadow: none; /* Quita la sombra */
+}
+.heart-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.half-height {
+  height: 50%; /* Establece la altura de la imagen al 50% */
+}
