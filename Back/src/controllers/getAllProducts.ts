@@ -5,14 +5,19 @@ import path from 'path';
 
 const dataPath = path.resolve(__dirname, '../local/product.json');
 
-// Función para obtener todos los productos desde el archivo JSON
-export function getAllProducts() {
-    try {
-        const jsonData = fs.readFileSync(dataPath, 'utf-8');
-        const products = JSON.parse(jsonData);
-        return products;
-    } catch (error) {
-        console.error('Error al leer el archivo product.json:', error);
-        return [];
-    }
+if (!fs.existsSync(dataPath)) {
+    console.error(`El archivo ${dataPath} no existe.`);
+    // Maneja el error adecuadamente, por ejemplo, lanzando una excepción o enviando una respuesta al cliente.
 }
+
+export const getAllProducts = async () => {
+    
+    try {
+        const data = await fs.promises.readFile(dataPath, 'utf8');
+        const productData = JSON.parse(data);
+        return productData;
+    } catch (err) {
+        console.error('Error al leer el archivo:', err);
+        throw new Error('Error al leer el archivo'); 
+    }
+};
