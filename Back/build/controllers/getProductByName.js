@@ -1,22 +1,47 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProductByName = void 0;
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const dataPath = path_1.default.resolve(__dirname, '../local/product.json');
-function getProductByName(name) {
-    try {
-        const jsonData = fs_1.default.readFileSync(dataPath, 'utf-8');
-        const products = JSON.parse(jsonData);
-        const product = products.find((p) => p.name.toLowerCase().includes(name.toLowerCase()));
-        return product || null;
-    }
-    catch (error) {
-        console.error('Error al buscar el producto por nombre:', error);
-        return null;
-    }
-}
+const fs = __importStar(require("fs"));
+const productsFilePath = '../back/src/local/product.json';
+const getProductByName = (req, res) => {
+    const productName = req.params.name;
+    fs.readFile(productsFilePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        try {
+            const products = JSON.parse(data);
+            const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(productName.toLowerCase()));
+            return res.json(filteredProducts);
+        }
+        catch (parseError) {
+            console.error('Error parsing products JSON:', parseError);
+            return res.status(500).json({ error: 'Error parsing products JSON' });
+        }
+    });
+};
 exports.getProductByName = getProductByName;
