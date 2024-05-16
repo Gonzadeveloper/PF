@@ -2,12 +2,22 @@ import { Table, Column, Model, DataType, HasOne, HasMany, BelongsTo, ForeignKey 
 import { Product } from './Product';
 
 
-@Table({ modelName: 'Category' })
+@Table({ 
+  modelName: 'Category', 
+  tableName: 'Products',
+})
 export class Category extends Model<Category> {
-  @Column({ primaryKey: true, autoIncrement: true })
+  @Column({ 
+  type: DataType.NUMBER,  
+  primaryKey: true, 
+  autoIncrement: true 
+})
   id!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false
+})
   name!: string;
 
   @HasMany(() => Product)
