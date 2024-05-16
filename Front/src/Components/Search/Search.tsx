@@ -1,42 +1,35 @@
-import Card from "../Card/card";
-import React from "react";
-import { connect } from "react-redux";
-import { RootState } from "../../Redux/index";
-import { Article } from "../../Redux/Slices/ArticlesSlice";
+import Card from "../Card/Card";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { CardProps } from '../Card/Card';
+import { RootState } from '../../Redux/index';
 
-interface Props {
-  articles: Article[];
-}
+function Search() {
+  const products = useSelector((state: RootState) => state.products.products);
 
-const Search: React.FC<Props> = ({ articles }) => {
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-2">
-          <h4>Filtros</h4>
-        </div>
-        <div className="col-md-10">
-          <div className="row">
-            {articles.map((card) => (
-              <Card
-                key={card.id}
-                id={card.id}
-                img={card.img}
-                title={card.title}
-                content={card.content}
-                price={card.price}
-                ratings={card.ratings}
-              />
-            ))}
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-2">
+            <h4>Filtros</h4>
+          </div>
+          <div className="col-md-10">
+            <div className="row">
+              {products.map((card) => (
+                <Card
+                  key={card.id}
+                  id={card.id}
+                  image={card.image}
+                  name={card.name}
+                  description={card.description}
+                  price={card.price}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  articles: state.articles.list, // Suponiendo que tienes un slice llamado articles en tu store
-});
-
-export default connect(mapStateToProps)(Search);
+export default Search;

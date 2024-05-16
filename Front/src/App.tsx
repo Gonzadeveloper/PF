@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Favoritos from './Components/Favoritos/Favoritos';
@@ -10,14 +10,29 @@ import Home from './Components/Home/Home';
 import Search from './Components/Search/Search';
 import Help from './Components/Help/Help'
 import { Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './Redux';
+import { useDispatch } from 'react-redux';
+import { setProducts } from './Redux/Slices/ProductsSlice'
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch("http://localhost:3000/products")
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(setProducts(data.products));
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, [dispatch]);
+
+
+
   return (
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
-      <Provider store={store}>
         <Navbar />
         <div className="flex-grow-1"> {/* Este div asegura que el contenido ocupe todo el espacio restante */}
           <Routes>
@@ -32,7 +47,6 @@ function App() {
           </Routes>
         </div>
         <Footer />
-      </Provider>
     </div>
   )
 }
