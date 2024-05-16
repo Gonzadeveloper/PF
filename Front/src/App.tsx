@@ -10,6 +10,7 @@ import { Routes, Route } from 'react-router-dom'
 // Redux
 import { Provider } from 'react-redux'
 import store  from './Redux'
+import NewProduct from './Components/NewProduct/NewProduct'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/MisCompras" element={<MisCompras/>}/>
         <Route path='Notificaciones' element={<Notificaciones/>}/>
         <Route path="CarritoDeCompras" element={<CarritoDeCompras/>}/>
+        <Route path='/newproduct' element={<NewProduct/>}/>
       </Routes>
       </Provider>
     </div>
