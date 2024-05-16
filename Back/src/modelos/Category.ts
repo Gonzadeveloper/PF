@@ -1,10 +1,10 @@
-import { Table, Column, Model, HasMany} from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany} from 'sequelize-typescript';
 import { Product } from './Product';
 
 
 @Table({ 
   modelName: 'Category', 
-  tableName: 'Products',
+  tableName: 'Categorys',
 })
 export class Category extends Model<Category> {
   @Column({ 
