@@ -7,4 +7,3 @@ const router = express.Router();
 router.get('/products/:id', getProductById);
 
 export default router;
-
