@@ -1,7 +1,7 @@
 import React from "react";
-import { GoogleLogin } from "react-google-login";
+
 import { Button, Form } from "react-bootstrap";
-import "./MiPerfil.css"; // Archivo CSS para estilos personalizados
+import "./MiPerfil.css";
 
 const MiPerfil: React.FC = () => {
   /* const responseGoogle = (response: any) => {
@@ -37,14 +37,6 @@ const MiPerfil: React.FC = () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h3>Iniciar sesión con Google</h3>
-              <GoogleLogin
-                clientId="TU_ID_DE_CLIENTE_DE_GOOGLE"
-                buttonText="Iniciar sesión con Google"
-                /* onSuccess={responseGoogle}
-                onFailure={responseGoogle} */
-                cookiePolicy={"single_host_origin"}
-              />
               <hr />
               <Button variant="primary" /* onClick={handleCreateAccount} */>
                 Crear cuenta
