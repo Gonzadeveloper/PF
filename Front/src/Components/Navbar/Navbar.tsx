@@ -42,7 +42,7 @@ const Navbar = () => {
           <Link to="MisCompras">
             <button className="btn btn-outline-light me-2">Mis compras</button>
           </Link>
-          
+
           <Link to="Help">
             <button className="btn btn-outline-light me-2">Help</button>
           </Link>

@@ -18,6 +18,11 @@ export interface ProductsState {
   products: Product[];
 }
 
+export interface FavoritesState {
+  favorites: Product[];
+}
+
 export type RootState = {
   products: ProductsState;
+  favorites: FavoritesState;
 };

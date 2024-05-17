@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../../types";
 
-export interface CardProps extends Product {}
+export interface CardProps extends Product {
+  isFavorite: boolean;
+  onToggleFavorite: () => void;
+}
 
 const Card: React.FC<CardProps> = ({
   id,
@@ -10,10 +13,14 @@ const Card: React.FC<CardProps> = ({
   name,
   description,
   price,
-  stock,
-  category,
-  reviews,
+  isFavorite,
+  onToggleFavorite,
 }) => {
+  const handleClick = () => {
+    console.log('Botón clickeado');
+    onToggleFavorite();
+  };
+
   return (
     <div className="col-2">
       <Link to={`/products/${id}`} className="card-link">
@@ -26,6 +33,14 @@ const Card: React.FC<CardProps> = ({
           </div>
         </div>
       </Link>
+      <div className="card-footer">
+        <button
+          onClick={handleClick}
+          className={isFavorite ? "btn btn-danger" : "btn btn-primary"}
+        >
+          {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+        </button>
+      </div>
     </div>
   );
 };
