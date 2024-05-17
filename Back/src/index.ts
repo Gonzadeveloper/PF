@@ -3,6 +3,8 @@ import getAllProducts  from './routes/getAllProducts' ;
 import  getProductByName from "./routes/getProductByName";
 import getProductById from "./routes/getProductById";
 
+
+
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 

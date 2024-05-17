@@ -22,12 +22,12 @@ export const getProductByName = async(name: string): Promise<Product[] | undefin
             const data = await fs.promises.readFile(dataPath, 'utf8');
             const productData = JSON.parse(data);
             
-           if (!Array.isArray(productData.products)) {
+           if (!Array.isArray(productData)) {
             console.error('El archivo JSON no contiene una lista de productos válida.');
             return undefined;
         } 
 
-            const filteredProducts = productData.products.filter((product: Product) =>
+            const filteredProducts = productData.filter((product: Product) =>
                 product.name.toLowerCase().includes(productName)
             
             
