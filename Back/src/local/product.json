@@ -189,6 +189,120 @@
             "comment": "Buena impresora 3D, pero el software de modelado podría ser mejor."
           }
         ]
+      },
+      {
+        "id": 11,
+        "name": "Cámara Canon EOS R5",
+        "description": "Cámara profesional con sensor CMOS de 45MP, grabación de video 8K y estabilización de imagen.",
+        "price": 3900.00,
+        "stock": 8,
+        "category": "Cámaras",
+        "image": "https://cdn.mos.cms.futurecdn.net/6uE68J53KzeR3dW7P4gxmA-1200-80.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor cámara que he usado, las fotos y videos son de una calidad impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente cámara, pero es bastante cara."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Smartwatch Apple Watch Series 6",
+        "description": "Smartwatch con monitor de oxígeno en sangre, ECG y múltiples aplicaciones de fitness.",
+        "price": 400.00,
+        "stock": 25,
+        "category": "Wearables",
+        "image": "https://cdn.shopify.com/s/files/1/0275/5426/5691/products/Apple-Watch-6_1200x1200.jpg?v=1600748847",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor smartwatch que he tenido, muy útil para monitorear la salud."
+          },
+          {
+            "rating": 4,
+            "comment": "Gran reloj, pero la batería podría durar más."
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Consola PlayStation 5",
+        "description": "Consola de videojuegos de última generación con gráficos 4K y alta capacidad de almacenamiento.",
+        "price": 500.00,
+        "stock": 10,
+        "category": "Consolas",
+        "image": "https://cdn.shopify.com/s/files/1/0260/7291/0508/products/PS5_Console_Hero__1_800x.jpg?v=1635879345",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor consola de juegos del mercado, los gráficos son increíbles."
+          },
+          {
+            "rating": 4,
+            "comment": "Gran consola, pero el precio es un poco alto."
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Smart TV Samsung QLED 55\"",
+        "description": "Televisor inteligente con pantalla QLED de 55 pulgadas, resolución 4K y múltiples aplicaciones de streaming.",
+        "price": 900.00,
+        "stock": 12,
+        "category": "Televisores",
+        "image": "https://images.samsung.com/is/image/samsung/p6pim/latin/qa55q60aagxpr/gallery/latin-qled-q60a-qa55q60aagxpr-431474558?$720_576_PNG$",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Excelente televisor, la calidad de imagen es espectacular."
+          },
+          {
+            "rating": 4,
+            "comment": "Gran TV, pero el sonido podría ser mejor."
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "TV Samsung QLED 65",
+        "description": "Televisor inteligente con pantalla QLED de 65 pulgadas, resolución 4K y múltiples aplicaciones de streaming.",
+        "price": 1200.00,
+        "stock": 10,
+        "category": "Televisores",
+        "image": "https://images.samsung.com/is/image/samsung/latin-qled-q60a-qa55q60aagxpr-431474558?$720_576_PNG$",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Increíble calidad de imagen, vale la pena cada centavo."
+          },
+          {
+            "rating": 4,
+            "comment": "Gran televisor, pero el control remoto podría ser más intuitivo."
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "iPhone 13",
+        "description": "Smartphone de última generación con pantalla Super Retina XDR de 6.1 pulgadas, chip A15 Bionic y sistema de cámaras avanzado.",
+        "price": 799.00,
+        "stock": 15,
+        "category": "Smartphones",
+        "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone13_09142021_big.jpg.og.jpg?202409082020",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Rápido, eficiente y la cámara es impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Gran calidad de construcción, pero la duración de la batería podría ser mejor."
+          }
+        ]
       }
     ]
   }

@@ -19,7 +19,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("http://localhost:3000/products")
+    fetch(`${import.meta.env.VITE_ENDPOINT}/products`)
       .then((response) => response.json())
       .then((data) => {
         dispatch(setProducts(data.products));
