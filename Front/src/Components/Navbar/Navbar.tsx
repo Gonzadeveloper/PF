@@ -27,6 +27,10 @@ const Navbar = () => {
       <div className="container d-flex justify-content-end">
         <div className="d-flex align-items-center">
 
+          <Link to="newproduct">
+            <button className="btn btn-outline-light me-2">Vende</button>
+          </Link>
+
           <Link to="Search">
             <button className="btn btn-outline-light me-2">Compra</button>
           </Link>
