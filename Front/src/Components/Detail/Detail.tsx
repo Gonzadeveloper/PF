@@ -35,7 +35,7 @@ const ProductDetail: React.FC = () => {
         <div className="col-md-6">
           <div className="card card-detail">
             <div className="card-body">
-              <div className="heart-icon" /* onClick={handleAddToFavorites} */>
+              <div className="heart-icon">
                 <FontAwesomeIcon icon={faHeart} />
               </div>
               <h1 className="mb-3">{product.name}</h1>
@@ -46,10 +46,7 @@ const ProductDetail: React.FC = () => {
               <p>
                 <strong>Cantidad en Stock:</strong> {product.stock}
               </p>
-              <button
-                /* onClick={handleBuyNow} */ className="btn btn-primary mr-2">
-                Comprar
-              </button>
+              <button className="btn btn-primary mr-2">Comprar</button>
               <hr />
               <h2 className="mt-4">Reseñas</h2>
               <ul className="list-unstyled">

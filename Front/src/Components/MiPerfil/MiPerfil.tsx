@@ -1,47 +1,59 @@
 import React from "react";
-
-import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./MiPerfil.css";
 
 const MiPerfil: React.FC = () => {
-  /* const responseGoogle = (response: any) => {
-    // Lógica de inicio de sesión con Google
-  };
+  const navigate = useNavigate();
 
-  const handleCreateAccount = () => {
-    // Lógica para crear cuenta
-    console.log("Crear cuenta");
-  }; */
+  const handleRegister = () => {
+    navigate("/registrar");
+  };
 
   return (
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-6">
-          <h2>Ingresa tu e-mail o usuario de Electro Emporium</h2>
-          <Form>
-            <Form.Group controlId="formBasicEmail" className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Ingresa tu email" />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicPassword" className="mb-3">
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control type="password" placeholder="Contraseña" />
-            </Form.Group>
-
-            <Button variant="primary" type="submit" className="mb-3">
-              Iniciar sesión
-            </Button>
-          </Form>
+          <h2>Iniciar Sesión</h2>
+          <form>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Correo Electrónico
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder="Ingresa tu correo electrónico"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Contraseña
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Ingresa tu contraseña"
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Iniciar Sesión
+            </button>
+          </form>
         </div>
         <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
-              <hr />
-              <Button variant="primary" /* onClick={handleCreateAccount} */>
-                Crear cuenta
-              </Button>
-            </div>
+          <h2>Autenticación con Google</h2>
+          <button type="button" className="btn btn-secondary btn-google">
+            Iniciar Sesión con Google
+          </button>
+          <div className="mt-3">
+            <button
+              type="button"
+              className="btn btn-link"
+              onClick={handleRegister}>
+              Crear Cuenta
+            </button>
           </div>
         </div>
       </div>

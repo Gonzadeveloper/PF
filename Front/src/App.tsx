@@ -13,6 +13,7 @@ import ProductDetail from "./Components/Detail/Detail";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProducts } from "./Redux/Slices/ProductsSlice";
+import Registrar from "./Components/Registrar/Registrar";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ function App() {
       <Navbar />
       <div className="flex-grow-1">
         {" "}
-        {/* Este div asegura que el contenido ocupe todo el espacio restante */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Favoritos" element={<Favoritos />} />
@@ -44,6 +44,7 @@ function App() {
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/registrar" element={<Registrar />} />
         </Routes>
       </div>
       <Footer />
