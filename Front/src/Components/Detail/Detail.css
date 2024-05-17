@@ -22,14 +22,13 @@
   color: white;
 }
 
-/* Nuevos estilos para el div de descripción */
 .description-container {
-  margin-top: 20px; /* Espacio superior */
+  margin-top: 20px;
 }
 
 .description-container .card {
-  border: none; /* Quita los bordes */
-  box-shadow: none; /* Quita la sombra */
+  border: none;
+  box-shadow: none;
 }
 .heart-icon {
   position: absolute;
@@ -38,5 +37,8 @@
   cursor: pointer;
 }
 .half-height {
-  height: 50%; /* Establece la altura de la imagen al 50% */
+  height: 50%;
+}
+.card {
+  margin-bottom: 30px;
 }
