@@ -14,6 +14,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProducts } from "./Redux/Slices/ProductsSlice";
 import Registrar from "./Components/Registrar/Registrar";
+import NewProduct from './Components/NewProduct/NewProduct'
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,6 @@ function App() {
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
       <div className="flex-grow-1">
-        {" "}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Favoritos" element={<Favoritos />} />
@@ -45,6 +45,7 @@ function App() {
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/registrar" element={<Registrar />} />
+          <Route path='/newproduct' element={<NewProduct/>}/>
         </Routes>
       </div>
       <Footer />
