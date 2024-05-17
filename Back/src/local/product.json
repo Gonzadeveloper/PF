@@ -1,5 +1,4 @@
-{
-    "productos": [
+ [
       {
         "id": 1,
         "name": "Laptop Gamer Asus ROG Strix Scar",
@@ -191,4 +190,4 @@
         ]
       }
     ]
-  }
+  

@@ -1,5 +1,4 @@
-import { Table, Column, Model, DataType, HasOne, HasMany, BelongsTo, ForeignKey } from 'sequelize-typescript';
-import { Sequelize } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasOne, HasMany } from 'sequelize-typescript';
 import { Reputation } from './Reputation';
 import { Cart } from './Cart';
 import { Order } from './Order';
@@ -8,18 +7,34 @@ import { Review } from './Review';
 import { Product } from './Product';
 
 
-@Table({ modelName: 'User' })
+@Table({ 
+  modelName: 'User', 
+  tableName: 'Users',
+})
 export class User extends Model<User> {
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false 
+})
   name!: string;
 
-  @Column({ allowNull: false, unique: true })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false, 
+  unique: true 
+})
   email!: string;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false 
+})
   password!: string;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false 
+})
   role!: string;
 
   @HasOne(() => Cart)

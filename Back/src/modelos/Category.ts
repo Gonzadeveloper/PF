@@ -1,14 +1,23 @@
-import { Table, Column, Model, DataType, HasOne, HasMany, BelongsTo, ForeignKey } from 'sequelize-typescript';
-import { Sequelize } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany} from 'sequelize-typescript';
 import { Product } from './Product';
 
 
-@Table({ modelName: 'Category' })
+@Table({ 
+  modelName: 'Category', 
+  tableName: 'Categorys',
+})
 export class Category extends Model<Category> {
-  @Column({ primaryKey: true, autoIncrement: true })
+  @Column({ 
+  type: DataType.NUMBER,  
+  primaryKey: true, 
+  autoIncrement: true 
+})
   id!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false
+})
   name!: string;
 
   @HasMany(() => Product)
