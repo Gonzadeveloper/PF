@@ -11,26 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const User_1 = require("./User");
 const Category_1 = require("./Category");
-const Review_1 = require("./Review");
 let Product = class Product extends sequelize_typescript_1.Model {
 };
 exports.Product = Product;
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.NUMBER,
-        allowNull: false
-    }),
-    __metadata("design:type", Number)
-], Product.prototype, "categoryId", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.NUMBER,
-        allowNull: false
-    }),
-    __metadata("design:type", Number)
-], Product.prototype, "userId", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
@@ -47,18 +31,18 @@ __decorate([
 ], Product.prototype, "description", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.NUMBER,
+        type: sequelize_typescript_1.DataType.FLOAT, // Usamos FLOAT para representar precios
         allowNull: false
     }),
     __metadata("design:type", Number)
 ], Product.prototype, "price", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.NUMBER,
+        type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
         allowNull: false
     }),
     __metadata("design:type", Number)
-], Product.prototype, "stockQuantity", void 0);
+], Product.prototype, "stock", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
@@ -67,20 +51,56 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "condition", void 0);
 __decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false
+    }),
+    __metadata("design:type", String)
+], Product.prototype, "image", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
+        allowNull: false
+    }),
+    __metadata("design:type", Number)
+], Product.prototype, "userId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => Category_1.Category),
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Product.prototype, "categoryId", void 0);
+__decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => Category_1.Category),
     __metadata("design:type", Category_1.Category)
 ], Product.prototype, "category", void 0);
-__decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
-    __metadata("design:type", User_1.User)
-], Product.prototype, "user", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => Review_1.Review),
-    __metadata("design:type", Array)
-], Product.prototype, "reviews", void 0);
 exports.Product = Product = __decorate([
-    (0, sequelize_typescript_1.Table)({
-        modelName: 'Product',
-        tableName: 'Products',
-    })
+    sequelize_typescript_1.Table
 ], Product);
+// @Table
+// export class Product extends Model<Product> {
+//   @Column({ 
+//     type: DataType.STRING,
+//     allowNull: false })
+//     name!: string;
+//   @Column ({ 
+//     type: DataType.STRING,
+//     allowNull: false })
+//     description!: string;
+//   @Column({ 
+//     type: DataType.INTEGER,
+//     allowNull: false })
+//     price!: number;
+//   @Column({ 
+//     type: DataType.INTEGER,
+//     allowNull: false })
+//     stock!: number;
+//   @Column ({         
+//     type: DataType.STRING,
+//     allowNull: false })
+//     condition!: string;  
+//   @ForeignKey(() => Category)
+//   @Column
+//   categoryId!: number;
+//   @BelongsTo(() => Category)
+//   category!: Category;
+// }

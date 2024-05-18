@@ -16,18 +16,7 @@ let Category = class Category extends sequelize_typescript_1.Model {
 };
 exports.Category = Category;
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.NUMBER,
-        primaryKey: true,
-        autoIncrement: true
-    }),
-    __metadata("design:type", Number)
-], Category.prototype, "id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
-    }),
+    sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], Category.prototype, "name", void 0);
 __decorate([
@@ -35,8 +24,5 @@ __decorate([
     __metadata("design:type", Array)
 ], Category.prototype, "products", void 0);
 exports.Category = Category = __decorate([
-    (0, sequelize_typescript_1.Table)({
-        modelName: 'Category',
-        tableName: 'Categorys',
-    })
+    sequelize_typescript_1.Table
 ], Category);

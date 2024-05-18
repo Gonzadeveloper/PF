@@ -1,43 +1,44 @@
 import { Request, Response } from 'express';
-import * as fs from 'fs';
+//import * as fs from 'fs';
+//import { getAllProductDb } from '../controllers/getAllProductDb';
+import { sequelize } from '../config/database';
+import { Product } from '../models/Product';
+import { Category } from '../models/Category';
+//const productsFilePath = '../back/src/local/product.json';
 
-const productsFilePath = '../back/src/local/product.json';
-
-export const getProductById = (req: Request, res: Response) => {
+export const getProductById = async (req: Request, res: Response) => {
     const productIdStr = req.params.id;
     const productId = parseInt(productIdStr);
-
-   // console.log(productId);
-    
-
-   // console.log(`Producto buscado: ${productIdStr}, ID convertido: ${productId}`);
-
-    fs.readFile(productsFilePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Internal Server Error: Error reading products data' });
-        }
-
-        try {
-            const products = JSON.parse(data);
-             
-            if (!Array.isArray(products)) {
-                throw new Error('Products data is not an array');
-            }
-           // console.log(products);
+ 
+    try {
+        // Conectar a la base de datos
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.'); 
+       
+        // Leer productos
+        const product = await Product.findOne({
+            where: {
+              id: productId // Filtra por el ID del producto
+            },
+            include: [{
+              model: Category,
+              attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+            }],
+            attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
+          });
+      
+          if (!product) {
+            res.status(404).send(`Product with ID ${productId} not found.`);
             
-            const product = products.find((p: any) => p.id === productId);
+            return null;
+          }
+    
+        console.log('CRUD operations completed successfully.');
+        return res.status(200).json(product) 
+      } catch (error) {
+        console.error('Unable to perform CRUD operations:', error);
+      }
+      return 
 
-            //console.log(`Producto encontrado: ${JSON.stringify(product)}`);
-
-            if (!product) {
-                return res.status(404).json({ error: 'Product not found' });
-            }
-
-            return res.json(product);
-        } catch (error) {
-            console.error('Error parsing products JSON:', error);
-            return res.status(500).json({ error: 'Internal Server Error: Error parsing products data' });
-        }
-    });
+   
 };

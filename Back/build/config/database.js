@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.sequelize = void 0;
+const sequelize_typescript_1 = require("sequelize-typescript");
+const Product_1 = require("../models/Product");
+const Category_1 = require("../models/Category");
+const sequelize = new sequelize_typescript_1.Sequelize({
+    database: 'electroemporium',
+    dialect: 'postgres',
+    username: 'postgres',
+    password: '1234',
+    models: [Product_1.Product, Category_1.Category],
+});
+exports.sequelize = sequelize;

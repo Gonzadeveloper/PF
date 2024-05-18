@@ -9,41 +9,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProductById = void 0;
-//import * as fs from 'fs';
-//import { getAllProductDb } from '../controllers/getAllProductDb';
+exports.getAllProductDb = void 0;
 const database_1 = require("../config/database");
 const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
-//const productsFilePath = '../back/src/local/product.json';
-const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const productIdStr = req.params.id;
-    const productId = parseInt(productIdStr);
+//import { Request, Response } from 'express';
+const getAllProductDb = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Conectar a la base de datos
         yield database_1.sequelize.authenticate();
         console.log('Connection has been established successfully.');
         // Leer productos
-        const product = yield Product_1.Product.findOne({
-            where: {
-                id: productId // Filtra por el ID del producto
-            },
+        const products = yield Product_1.Product.findAll({
             include: [{
                     model: Category_1.Category,
                     attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
                 }],
             attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
         });
-        if (!product) {
-            res.status(404).send(`Product with ID ${productId} not found.`);
-            return null;
-        }
         console.log('CRUD operations completed successfully.');
-        return res.status(200).json(product);
+        return products;
     }
     catch (error) {
         console.error('Unable to perform CRUD operations:', error);
     }
     return;
 });
-exports.getProductById = getProductById;
+exports.getAllProductDb = getAllProductDb;
