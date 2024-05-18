@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const path_1 = __importDefault(require("path"));
 const { URL } = process.env;
+// URL debe tener la siguiente forma: postgres://usuario:contraseña@host:puerto/nombre_base_de_datos
 if (!URL) {
     throw new Error("La variable de entorno URL no está definida en el archivo .env");
 }
