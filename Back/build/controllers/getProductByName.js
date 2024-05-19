@@ -15,7 +15,6 @@ const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
 const sequelize_1 = require("sequelize");
 const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(name);
     try {
         // Conectar a la base de datos
         yield database_1.sequelize.authenticate();
@@ -33,7 +32,6 @@ const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* (
                 }],
             attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
         });
-        console.log(product);
         if (!product) {
             console.log(`Product with name ${name} not found.`);
             return undefined;
