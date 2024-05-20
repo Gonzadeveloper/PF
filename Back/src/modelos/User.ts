@@ -13,6 +13,12 @@ import { Product } from './Product';
 })
 export class User extends Model<User> {
   @Column({ 
+    type: DataType.UUID,
+    allowNull: false 
+  })
+    id!: number;
+  
+  @Column({ 
   type: DataType.STRING,
   allowNull: false 
 })
@@ -43,8 +49,8 @@ export class User extends Model<User> {
   @HasMany(() => Order)
   orders?: Order[];
 
-  @HasMany(() => Address)
-  addresses?: Address[];
+  @HasOne(() => Address)
+  address?: Address[];
 
   @HasMany(() => Review)
   reviews?: Review[];

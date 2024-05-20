@@ -1,22 +1,33 @@
-import { Table, Column, Model, BelongsTo } from 'sequelize-typescript';
+import { Table, Column, Model, BelongsTo, DataType } from 'sequelize-typescript';
 import { Product } from './Product';
 import { User } from './User';
 
 @Table({ modelName: 'Review' })
 export class Review extends Model<Review> {
-  @Column({ primaryKey: true, autoIncrement: true })
+  @Column({ 
+  type: DataType.NUMBER,
+  primaryKey: true, 
+  autoIncrement: true })
   id!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.NUMBER,
+  allowNull: false })
   productId!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.NUMBER,
+  allowNull: false })
   userId!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.NUMBER,
+  allowNull: false })
   rating!: number;
 
-  @Column ({ allowNull: false })
+  @Column ({ 
+  type: DataType.STRING,
+  allowNull: false })
   comment!: string;
 
   @BelongsTo(() => Product)

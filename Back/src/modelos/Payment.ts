@@ -3,19 +3,30 @@ import { Order } from './Order';
 
 @Table({ modelName: 'Payment' })
 export class Payment extends Model<Payment> {
-  @Column({ primaryKey: true, autoIncrement: true })
+  @Column({ 
+  type: DataType.NUMBER,
+  primaryKey: true, 
+  autoIncrement: true })
   id!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.NUMBER,
+  allowNull: false })
   orderId!: number;
 
-  @Column({ allowNull: false, type: DataType.DATE })
+  @Column({ 
+  type: DataType.DATE,
+  allowNull: false  })
   paymentDate!: Date;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.NUMBER,
+  allowNull: false })
   amount!: number;
 
-  @Column({ allowNull: false })
+  @Column({ 
+  type: DataType.STRING,
+  allowNull: false })
   paymentMethod!: string;
 
   @BelongsTo(() => Order)
