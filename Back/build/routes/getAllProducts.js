@@ -14,14 +14,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const getAllProducts_1 = require("../controllers/getAllProducts");
 const indexRoutes_1 = __importDefault(require("./indexRoutes"));
-indexRoutes_1.default.get('/products', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getProductByName_1 = require("../controllers/getProductByName");
+indexRoutes_1.default.get('/products', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.query.name);
     try {
-        const products = yield (0, getAllProducts_1.getAllProducts)();
-        res.status(200).json(products);
+        if (req.query.name) {
+            const productName = req.query.name.toString();
+            const productt = yield (0, getProductByName_1.getProductByName)(productName);
+            // console.log(productt);
+            if (!productt) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+            return res.json(productt);
+        }
+        else {
+            const products = yield (0, getAllProducts_1.getAllProducts)();
+            return res.json(products);
+        }
     }
     catch (error) {
         console.error('Error al obtener los productos:', error);
         res.status(500).json({ message: 'Error interno del servidor.' });
     }
+    return res.status(500).send('Error interno del servidor');
 }));
 exports.default = indexRoutes_1.default;

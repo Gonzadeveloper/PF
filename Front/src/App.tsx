@@ -15,19 +15,13 @@ import { useDispatch } from "react-redux";
 import { setProducts } from "./Redux/Slices/ProductsSlice";
 import Registrar from "./Components/Registrar/Registrar";
 import NewProduct from './Components/NewProduct/NewProduct'
+import { getAllProds } from "./Redux/Actions/productActions";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_ENDPOINT}/products`)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch(setProducts(data.products));
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
+    dispatch(getAllProds())
   }, [dispatch]);
 
   return (

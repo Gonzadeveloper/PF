@@ -42,7 +42,10 @@ exports.Category = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Product_1 = require("./Product");
 let Category = (() => {
-    let _classDecorators = [(0, sequelize_typescript_1.Table)({ modelName: 'Category' })];
+    let _classDecorators = [(0, sequelize_typescript_1.Table)({
+            modelName: 'Category',
+            tableName: 'Categorys',
+        })];
     let _classDescriptor;
     let _classExtraInitializers = [];
     let _classThis;
@@ -69,8 +72,15 @@ let Category = (() => {
     (() => {
         var _a;
         const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create((_a = _classSuper[Symbol.metadata]) !== null && _a !== void 0 ? _a : null) : void 0;
-        _id_decorators = [(0, sequelize_typescript_1.Column)({ primaryKey: true, autoIncrement: true })];
-        _name_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
+        _id_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.NUMBER,
+                primaryKey: true,
+                autoIncrement: true
+            })];
+        _name_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
         _products_decorators = [(0, sequelize_typescript_1.HasMany)(() => Product_1.Product)];
         __esDecorate(null, null, _id_decorators, { kind: "field", name: "id", static: false, private: false, access: { has: obj => "id" in obj, get: obj => obj.id, set: (obj, value) => { obj.id = value; } }, metadata: _metadata }, _id_initializers, _id_extraInitializers);
         __esDecorate(null, null, _name_decorators, { kind: "field", name: "name", static: false, private: false, access: { has: obj => "name" in obj, get: obj => obj.name, set: (obj, value) => { obj.name = value; } }, metadata: _metadata }, _name_initializers, _name_extraInitializers);

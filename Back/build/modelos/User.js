@@ -47,7 +47,10 @@ const Address_1 = require("./Address");
 const Review_1 = require("./Review");
 const Product_1 = require("./Product");
 let User = (() => {
-    let _classDecorators = [(0, sequelize_typescript_1.Table)({ modelName: 'User' })];
+    let _classDecorators = [(0, sequelize_typescript_1.Table)({
+            modelName: 'User',
+            tableName: 'Users',
+        })];
     let _classDescriptor;
     let _classExtraInitializers = [];
     let _classThis;
@@ -106,10 +109,23 @@ let User = (() => {
     (() => {
         var _a;
         const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create((_a = _classSuper[Symbol.metadata]) !== null && _a !== void 0 ? _a : null) : void 0;
-        _name_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _email_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false, unique: true })];
-        _password_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _role_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
+        _name_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
+        _email_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false,
+                unique: true
+            })];
+        _password_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
+        _role_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
         _cart_decorators = [(0, sequelize_typescript_1.HasOne)(() => Cart_1.Cart)];
         _orders_decorators = [(0, sequelize_typescript_1.HasMany)(() => Order_1.Order)];
         _addresses_decorators = [(0, sequelize_typescript_1.HasMany)(() => Address_1.Address)];
