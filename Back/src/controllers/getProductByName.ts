@@ -13,7 +13,7 @@ export const getProductByName = (req: Request, res: Response) => {
 
         try {
             const products = JSON.parse(data);
-            const filteredProducts = products.filter((product: any) =>
+            const filteredProducts = products.products.filter((product: any) =>
                 product.name.toLowerCase().includes(productName.toLowerCase())
             );
             return res.json(filteredProducts);

@@ -35,7 +35,7 @@ const getProductByName = (req, res) => {
         }
         try {
             const products = JSON.parse(data);
-            const filteredProducts = products.filter((product) => product.name.toLowerCase().includes(productName.toLowerCase()));
+            const filteredProducts = products.products.filter((product) => product.name.toLowerCase().includes(productName.toLowerCase()));
             return res.json(filteredProducts);
         }
         catch (parseError) {
