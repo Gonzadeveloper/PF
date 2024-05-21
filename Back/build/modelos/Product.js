@@ -44,7 +44,10 @@ const User_1 = require("./User");
 const Category_1 = require("./Category");
 const Review_1 = require("./Review");
 let Product = (() => {
-    let _classDecorators = [(0, sequelize_typescript_1.Table)({ modelName: 'Product' })];
+    let _classDecorators = [(0, sequelize_typescript_1.Table)({
+            modelName: 'Product',
+            tableName: 'Products',
+        })];
     let _classDescriptor;
     let _classExtraInitializers = [];
     let _classThis;
@@ -97,17 +100,35 @@ let Product = (() => {
     };
     __setFunctionName(_classThis, "Product");
     (() => {
-        var _a;
-        const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create((_a = _classSuper[Symbol.metadata]) !== null && _a !== void 0 ? _a : null) : void 0;
+        const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(_classSuper[Symbol.metadata] ?? null) : void 0;
         _categoryId_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.NUMBER,
                 allowNull: false
             })];
-        _userId_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _name_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _description_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _price_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _stockQuantity_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
-        _condition_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
+        _userId_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.NUMBER,
+                allowNull: false
+            })];
+        _name_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
+        _description_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
+        _price_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.NUMBER,
+                allowNull: false
+            })];
+        _stockQuantity_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.NUMBER,
+                allowNull: false
+            })];
+        _condition_decorators = [(0, sequelize_typescript_1.Column)({
+                type: sequelize_typescript_1.DataType.STRING,
+                allowNull: false
+            })];
         _category_decorators = [(0, sequelize_typescript_1.BelongsTo)(() => Category_1.Category)];
         _user_decorators = [(0, sequelize_typescript_1.BelongsTo)(() => User_1.User)];
         _reviews_decorators = [(0, sequelize_typescript_1.HasMany)(() => Review_1.Review)];

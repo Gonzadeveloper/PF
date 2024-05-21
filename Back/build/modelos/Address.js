@@ -71,8 +71,7 @@ let Address = (() => {
     };
     __setFunctionName(_classThis, "Address");
     (() => {
-        var _a;
-        const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create((_a = _classSuper[Symbol.metadata]) !== null && _a !== void 0 ? _a : null) : void 0;
+        const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(_classSuper[Symbol.metadata] ?? null) : void 0;
         _id_decorators = [(0, sequelize_typescript_1.Column)({ primaryKey: true, autoIncrement: true })];
         _userId_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
         _address_decorators = [(0, sequelize_typescript_1.Column)({ allowNull: false })];
