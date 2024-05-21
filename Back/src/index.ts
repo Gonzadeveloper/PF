@@ -10,6 +10,7 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
   }));
+app.options('*', cors());
 
   app.use((_req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'https://pf-back2-git-main-gonzadevelopers-projects.vercel.app'); // update to match the domain you will make the request from
