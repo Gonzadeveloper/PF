@@ -6,13 +6,13 @@ import  getProductByName from "./routes/getProductByName";
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 app.use(cors({
-    origin: 'https://pf-vrse-m7h47rkpe-gonzadevelopers-projects.vercel.app', // Origen específico que permites
+    origin: 'https://pf-back2-git-main-gonzadevelopers-projects.vercel.app', // Origen específico que permites
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
   }));
 
   app.use((_req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://pf-vrse-m7h47rkpe-gonzadevelopers-projects.vercel.app'); // update to match the domain you will make the request from
+    res.header('Access-Control-Allow-Origin', 'https://pf-back2-git-main-gonzadevelopers-projects.vercel.app'); // update to match the domain you will make the request from
     res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
