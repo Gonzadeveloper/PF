@@ -1,42 +1,56 @@
-// import { Table, Column, Model, ForeignKey, BelongsTo, DataType } from 'sequelize-typescript';
-// import { Adress } from './Adress';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Address } from './Address';
+import { Product } from './Product';
+import { IsEmail } from 'class-validator';
 
-// @Table
-// export class User extends Model<User> {
-//   @Column({ 
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   name!: string;
+@Table
+export class User extends Model<User> {
+  @Column({ 
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true, // No permite valores vacíos
+      len: [3, 50],   // Longitud entre 3 y 50 caracteres
+    }
+  })
+  name!: string;
 
-//   @Column({ 
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   email!: string;
+  @IsEmail({}, { message: 'Invalid email address' })
+  @Column({ 
+    type: DataType.STRING,
+    allowNull: false,
+    unique: true, // No permite valores duplicados
+    validate: {
+      notEmpty: true, // No permite valores vacíos
+      len: [3, 50],
+      isEmail: true   // Longitud entre 3 y 50 caracteres y debe ser un email válido
+    }
+  }) 
+  email!: string;
       
-//   @Column({         
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   password!: string;  
+  @Column({         
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true, // No permite valores vacíos
+      len: [6, 20],  // Longitud entre 6 y 20 caracteres
+    }
+  })
+  password!: string;  
 
-//   @Column({         
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   typeuser!: string; 
+  @Column({         
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,            // No permite valores vacíos
+      isIn: [['ADMIN', 'USER']] // Debe ser 'ADMIN' o 'USER'
+    }
+  })
+  typeuser!: string; 
 
-//   @Column({ 
-//     type: DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
-//     allowNull: false
-//   })
-//   userId!: number;
-    
-//   @ForeignKey(() => Adress)
-//   @Column
-//   categoryId!: number;
+  @HasMany(() => Address)
+  addresses!: Address[];
 
-//   @BelongsTo(() => Adress)
-//   adress!: Adress;
-// }
+  @HasMany(() => Product)
+  products!: Product[];
+}

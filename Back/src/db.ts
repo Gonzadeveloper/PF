@@ -1,6 +1,8 @@
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
 import { Category } from './models/Category';
+import { User } from './models/User';
+import { Address } from './models/Address';
 
 const init = async () => {
   try {
@@ -13,4 +15,4 @@ const init = async () => {
 
 init();
 
-export { Product, Category };
+export { init, Product, Category, User, Address };

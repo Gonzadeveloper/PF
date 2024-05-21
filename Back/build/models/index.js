@@ -9,12 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = exports.Product = void 0;
+exports.Address = exports.User = exports.Category = exports.Product = void 0;
 const database_1 = require("../config/database");
 const Product_1 = require("./Product");
 Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
 const Category_1 = require("./Category");
 Object.defineProperty(exports, "Category", { enumerable: true, get: function () { return Category_1.Category; } });
+const User_1 = require("./User");
+Object.defineProperty(exports, "User", { enumerable: true, get: function () { return User_1.User; } });
+const Address_1 = require("./Address");
+Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield database_1.sequelize.sync({ force: false });

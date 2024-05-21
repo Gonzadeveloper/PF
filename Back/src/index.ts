@@ -3,10 +3,14 @@ import getAllProducts  from './routes/getAllProducts' ;
 import  getProductByName from "./routes/getProductByName";
 import getProductById from "./routes/getProductById";
 import postProduct  from "./routes/postProduct";
+//import  {init } from "./db";
 
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
 import { Category } from './models/Category';
+import { User } from './models/User';
+import { Address } from './models/Address';
+import  postUser  from "./routes/postUser";
 
 
 
@@ -20,6 +24,8 @@ app.get ('/products', getAllProducts);
 app.get ('/products/:name', getProductByName);
 app.get ('/products/:id', getProductById);
 app.post ('/products/product/', postProduct);
+app.post ('/user/', postUser);
+
 
 
 
@@ -39,4 +45,14 @@ const init = async () => {
   
   init();
   
-  export { Product, Category };
+  export { Product, Category, User, Address };
+
+//   const server = require('./src/app.js');
+// const { conn } = require('./src/db.js');
+
+// // Syncing all the models at once.
+// conn.sync({ force: false }).then(() => {
+//   server.listen(3001, () => {
+//     console.log('%s listening at 3001'); // eslint-disable-line no-console
+//   });
+// });

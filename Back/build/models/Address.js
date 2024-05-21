@@ -9,14 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Address = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const Address_1 = require("./Address");
-const Product_1 = require("./Product");
-const class_validator_1 = require("class-validator");
-let User = class User extends sequelize_typescript_1.Model {
+const User_1 = require("./User");
+let Address = class Address extends sequelize_typescript_1.Model {
 };
-exports.User = User;
+exports.Address = Address;
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
@@ -27,51 +25,63 @@ __decorate([
         }
     }),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
-__decorate([
-    (0, class_validator_1.IsEmail)({}, { message: 'Invalid email address' }),
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false,
-        unique: true, // No permite valores duplicados
-        validate: {
-            notEmpty: true, // No permite valores vacíos
-            len: [3, 50],
-            isEmail: true // Longitud entre 3 y 50 caracteres y debe ser un email válido
-        }
-    }),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], Address.prototype, "address", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
         validate: {
             notEmpty: true, // No permite valores vacíos
-            len: [6, 20], // Longitud entre 6 y 20 caracteres
+            len: [3, 50], // Longitud entre 3 y 50 caracteres
         }
     }),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], Address.prototype, "city", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
         allowNull: false,
         validate: {
             notEmpty: true, // No permite valores vacíos
-            isIn: [['ADMIN', 'USER']] // Debe ser 'ADMIN' o 'USER'
+            len: [3, 50], // Longitud entre 3 y 50 caracteres
         }
     }),
     __metadata("design:type", String)
-], User.prototype, "typeuser", void 0);
+], Address.prototype, "state", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => Address_1.Address),
-    __metadata("design:type", Array)
-], User.prototype, "addresses", void 0);
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true, // No permite valores vacíos
+            len: [3, 10], // Longitud entre 3 y 10 caracteres
+        }
+    }),
+    __metadata("design:type", String)
+], Address.prototype, "postalcode", void 0);
 __decorate([
-    (0, sequelize_typescript_1.HasMany)(() => Product_1.Product),
-    __metadata("design:type", Array)
-], User.prototype, "products", void 0);
-exports.User = User = __decorate([
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true, // No permite valores vacíos
+            len: [3, 50], // Longitud entre 3 y 50 caracteres
+        }
+    }),
+    __metadata("design:type", String)
+], Address.prototype, "country", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
+        allowNull: false
+    }),
+    __metadata("design:type", Number)
+], Address.prototype, "userId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
+    __metadata("design:type", User_1.User)
+], Address.prototype, "user", void 0);
+exports.Address = Address = __decorate([
     sequelize_typescript_1.Table
-], User);
+], Address);
