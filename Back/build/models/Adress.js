@@ -38,19 +38,11 @@ __decorate([
 ], Adress.prototype, "state", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-<<<<<<< HEAD
         type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
         allowNull: false
     }),
     __metadata("design:type", Number)
 ], Adress.prototype, "codep", void 0);
-=======
-        type: sequelize_typescript_1.DataType.INTEGER,
-        allowNull: false
-    }),
-    __metadata("design:type", Number)
-], Adress.prototype, "codepos", void 0);
->>>>>>> origin/Camilo
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,

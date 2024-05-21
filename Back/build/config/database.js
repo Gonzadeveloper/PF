@@ -11,6 +11,6 @@ const sequelize = new sequelize_typescript_1.Sequelize({
     dialect: 'postgres',
     username: 'postgres',
     password: 'tiburcio1',
-    models: [Product_1.Product, Category_1.Category],
+    models: [Product_1.Product, Category_1.Category, User_1.User, Address_1.Address],
 });
 exports.sequelize = sequelize;

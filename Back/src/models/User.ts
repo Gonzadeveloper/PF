@@ -1,7 +1,7 @@
 import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
 import { Address } from './Address';
 import { Product } from './Product';
-import { IsEmail } from 'class-validator';
+//import { IsEmail } from 'class-validator';
 
 @Table
 export class User extends Model<User> {
@@ -15,7 +15,7 @@ export class User extends Model<User> {
   })
   name!: string;
 
-  @IsEmail({}, { message: 'Invalid email address' })
+  //@IsEmail({}, { message: 'Invalid email address' })
   @Column({ 
     type: DataType.STRING,
     allowNull: false,

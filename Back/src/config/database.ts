@@ -9,7 +9,7 @@ const sequelize = new Sequelize({
   dialect: 'postgres',
   username: 'postgres',
   password: 'tiburcio1',
-  models: [Product, Category],
+  models: [Product, Category, User, Address],
 });
 
 export { sequelize };
