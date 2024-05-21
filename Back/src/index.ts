@@ -5,7 +5,11 @@ import  getProductByName from "./routes/getProductByName";
 
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
-app.use(cors()); // habilitar CORS
+app.use(cors({
+    origin: 'https://pf-vrse-m7h47rkpe-gonzadevelopers-projects.vercel.app', // Origen específico que permites
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
+  }));
 
 const PORT = 3000
 
