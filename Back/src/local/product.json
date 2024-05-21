@@ -6,7 +6,8 @@
         "description": "Laptop para juegos con gráficos de alta definición, 16GB de RAM, 1TB de almacenamiento SSD y procesador de última generación.",
         "price": 2500.00,
         "stock": 15,
-        "category": "Laptops",
+        "category": "Notebooks",
+        "condition": "Nuevo", 
         "image": "https://resources.claroshop.com/medios-plazavip/s2/10252/1145258/5d13a10bac9b0-laptop-gamer-asus-rog-strix-scar-ii-i7-16gb-512gb-rtx-2070-1600x1600.jpg?scale=500&qlty=75",
         "reviews": [
           {
@@ -25,7 +26,8 @@
         "description": "Smartphone con pantalla OLED de 6.5 pulgadas, cámara de 48MP, 128GB de almacenamiento y batería de larga duración.",
         "price": 800.00,
         "stock": 30,
-        "category": "Smartphones",
+        "category": "Celulares",
+        "condition": "Nuevo",
         "image": "https://i.gadgets360cdn.com/large/Redmi_Note_13_Pro_plus_xiaomi_1694767582456.jpg?downsize=950:*",
         "reviews": [
           {
@@ -45,6 +47,7 @@
         "price": 300.00,
         "stock": 20,
         "category": "Tablets",
+        "condition": "Nuevo",
         "image": "https://i5.walmartimages.com/asr/70b6357e-4c4a-49d5-89e6-98afb7864ac5.011e97d0826acd0c6a6f0d099b532105.jpeg",
         "reviews": [
           {
@@ -64,6 +67,7 @@
         "price": 600.00,
         "stock": 10,
         "category": "Monitores",
+        "condition": "Nuevo",
         "image": "https://cdn.mwave.com.au/images/400/qsm_q35cfb120wqhd_35_120hz_uwqhd_hdr_frameless_curved_va_gaming_monitor_ac49057.jpg",
         "reviews": [
           {
@@ -83,6 +87,7 @@
         "price": 150.00,
         "stock": 50,
         "category": "Audio",
+        "condition": "Nuevo",
         "image": "https://tvguru.co.ke/wp-content/uploads/2021/10/JBL-Tune-500BT-Powerful-Bass-Wireless-Headphones.jpg",
         "reviews": [
           {
@@ -102,6 +107,7 @@
         "price": 120.00,
         "stock": 25,
         "category": "Accesorios",
+        "condition": "Nuevo",
         "image": "https://http2.mlstatic.com/D_NQ_NP_915964-MLC50267218323_062022-F.jpg",
         "reviews": [
           {
@@ -121,6 +127,7 @@
         "price": 70.00,
         "stock": 30,
         "category": "Accesorios",
+        "condition": "Nuevo",
         "image": "https://pcgame.ma/wp-content/uploads/2021/02/Logitech-G502-Lightspeed-Wireless-Gaming-Mouse-2.jpg",
         "reviews": [
           {
@@ -140,6 +147,7 @@
         "price": 80.00,
         "stock": 20,
         "category": "Almacenamiento",
+        "condition": "Nuevo",
         "image": "https://www.discoazul.com/uploads/media/images/disco-duro-externo-hp-ssd-p500-250-gb-negro-1.jpg",
         "reviews": [
           {
@@ -159,6 +167,7 @@
         "price": 100.00,
         "stock": 15,
         "category": "Redes",
+        "condition": "Usado",
         "image": "https://www.digitaloutlet.co.za/wp-content/uploads/2019/08/TP-Link-AC750.jpg",
         "reviews": [
           {
@@ -177,7 +186,8 @@
         "description": "Impresora 3D con alta precisión y compatibilidad con varios tipos de filamento.",
         "price": 700.00,
         "stock": 5,
-        "category": "Impresoras 3D",
+        "category": "Impresoras",
+        "condition": "Nuevo",
         "image": "https://cdn.shopify.com/s/files/1/0029/6838/7619/products/71keLzRdw3L._SL1500_1024x1024.jpg?v=1604568996",
         "reviews": [
           {
@@ -197,6 +207,7 @@
         "price": 3900.00,
         "stock": 8,
         "category": "Cámaras",
+        "condition": "Usado",
         "image": "https://cdn.mos.cms.futurecdn.net/6uE68J53KzeR3dW7P4gxmA-1200-80.jpg",
         "reviews": [
           {
@@ -215,7 +226,8 @@
         "description": "Smartwatch con monitor de oxígeno en sangre, ECG y múltiples aplicaciones de fitness.",
         "price": 400.00,
         "stock": 25,
-        "category": "Wearables",
+        "category": "Accesorios",
+        "condition": "Nuevo",
         "image": "https://cdn.shopify.com/s/files/1/0275/5426/5691/products/Apple-Watch-6_1200x1200.jpg?v=1600748847",
         "reviews": [
           {
@@ -235,6 +247,7 @@
         "price": 500.00,
         "stock": 10,
         "category": "Consolas",
+        "condition": "Usado",
         "image": "https://cdn.shopify.com/s/files/1/0260/7291/0508/products/PS5_Console_Hero__1_800x.jpg?v=1635879345",
         "reviews": [
           {
@@ -254,6 +267,7 @@
         "price": 900.00,
         "stock": 12,
         "category": "Televisores",
+        "condition": "Nuevo",
         "image": "https://images.samsung.com/is/image/samsung/p6pim/latin/qa55q60aagxpr/gallery/latin-qled-q60a-qa55q60aagxpr-431474558?$720_576_PNG$",
         "reviews": [
           {
@@ -273,6 +287,7 @@
         "price": 1200.00,
         "stock": 10,
         "category": "Televisores",
+        "condition": "Nuevo",
         "image": "https://images.samsung.com/is/image/samsung/latin-qled-q60a-qa55q60aagxpr-431474558?$720_576_PNG$",
         "reviews": [
           {
@@ -291,7 +306,8 @@
         "description": "Smartphone de última generación con pantalla Super Retina XDR de 6.1 pulgadas, chip A15 Bionic y sistema de cámaras avanzado.",
         "price": 799.00,
         "stock": 15,
-        "category": "Smartphones",
+        "category": "Celulares",
+        "condition": "Nuevo",
         "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone13_09142021_big.jpg.og.jpg?202409082020",
         "reviews": [
           {
