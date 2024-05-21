@@ -1,5 +1,6 @@
 import { Table, Column, Model, ForeignKey, BelongsTo, DataType } from 'sequelize-typescript';
 import { Category } from './Category';
+import { User } from './User';
 
 @Table
 export class Product extends Model<Product> {
@@ -39,11 +40,12 @@ export class Product extends Model<Product> {
   })
   image!: string; 
 
-  @Column({ 
-    type: DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
-    allowNull: false
-  })
+  @ForeignKey(() => User)
+  @Column
   userId!: number;
+
+  @BelongsTo(() => User)
+  user!: User;
     
   @ForeignKey(() => Category)
   @Column
@@ -52,7 +54,6 @@ export class Product extends Model<Product> {
   @BelongsTo(() => Category)
   category!: Category;
 }
-
 
 // @Table
 // export class Product extends Model<Product> {

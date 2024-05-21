@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Category_1 = require("./Category");
+const User_1 = require("./User");
 let Product = class Product extends sequelize_typescript_1.Model {
 };
 exports.Product = Product;
@@ -58,12 +59,14 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "image", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
-        allowNull: false
-    }),
+    (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
+    sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], Product.prototype, "userId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
+    __metadata("design:type", User_1.User)
+], Product.prototype, "user", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => Category_1.Category),
     sequelize_typescript_1.Column,

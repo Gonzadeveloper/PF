@@ -4,6 +4,8 @@ exports.sequelize = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
+const User_1 = require("../models/User");
+const Address_1 = require("../models/Address");
 const sequelize = new sequelize_typescript_1.Sequelize({
     database: 'electroemporium',
     dialect: 'postgres',
