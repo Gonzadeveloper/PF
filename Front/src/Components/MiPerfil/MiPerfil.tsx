@@ -1,12 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./MiPerfil.css";
 
 const MiPerfil: React.FC = () => {
   const navigate = useNavigate();
+  const { loginWithRedirect, loginWithPopup } = useAuth0();
 
   const handleRegister = () => {
     navigate("/registrar");
+  };
+
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    loginWithRedirect();
+  };
+
+  const handleGoogleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    loginWithPopup({
+      authorizationParams: {
+        connection: "google-oauth2",
+      },
+    });
   };
 
   return (
@@ -37,14 +53,20 @@ const MiPerfil: React.FC = () => {
                 placeholder="Ingresa tu contraseña"
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleLogin}>
               Iniciar Sesión
             </button>
           </form>
         </div>
         <div className="col-md-6">
           <h2>Autenticación con Google</h2>
-          <button type="button" className="btn btn-secondary btn-google">
+          <button
+            type="button"
+            className="btn btn-secondary btn-google"
+            onClick={handleGoogleLogin}>
             Iniciar Sesión con Google
           </button>
           <div className="mt-3">
