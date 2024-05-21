@@ -67,7 +67,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Address_1.Address),
     __metadata("design:type", Array)
-], User.prototype, "addresses", void 0);
+], User.prototype, "address", void 0);
 __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Product_1.Product),
     __metadata("design:type", Array)

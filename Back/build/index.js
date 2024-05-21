@@ -29,6 +29,8 @@ Object.defineProperty(exports, "User", { enumerable: true, get: function () { re
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 const postUser_1 = __importDefault(require("./routes/postUser"));
+const getUser_1 = __importDefault(require("./routes/getUser"));
+//import { getUser } from "./services/getUser";
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 const PORT = 3000;
@@ -37,6 +39,7 @@ app.get('/products/:name', getProductByName_1.default);
 app.get('/products/:id', getProductById_1.default);
 app.post('/products/product/', postProduct_1.default);
 app.post('/user/', postUser_1.default);
+app.get('/user/', getUser_1.default);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

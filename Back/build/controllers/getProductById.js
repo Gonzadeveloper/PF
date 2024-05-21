@@ -15,6 +15,7 @@ exports.getProductById = void 0;
 const database_1 = require("../config/database");
 const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
+const User_1 = require("../models/User");
 //const productsFilePath = '../back/src/local/product.json';
 const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const productIdStr = req.params.id;
@@ -31,6 +32,10 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
             include: [{
                     model: Category_1.Category,
                     attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+                },
+                {
+                    model: User_1.User,
+                    attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de User
                 }],
             attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
         });

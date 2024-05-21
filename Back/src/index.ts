@@ -11,6 +11,8 @@ import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
 import  postUser  from "./routes/postUser";
+import  getUser  from "./routes/getUser";
+//import { getUser } from "./services/getUser";
 
 
 
@@ -25,6 +27,7 @@ app.get ('/products/:name', getProductByName);
 app.get ('/products/:id', getProductById);
 app.post ('/products/product/', postProduct);
 app.post ('/user/', postUser);
+app.get ('/user/', getUser);
 
 
 

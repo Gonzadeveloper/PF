@@ -3,6 +3,7 @@ import { sequelize } from '../config/database';
 import { Product } from '../models/Product';
 import { Category } from '../models/Category';
 import { Op } from 'sequelize';
+import { User } from '../models/User';
 
 
 export const getProductByName = async(name: string): Promise<Product | undefined> => {
@@ -23,6 +24,10 @@ export const getProductByName = async(name: string): Promise<Product | undefined
             include: [{
               model: Category,
               attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+            },
+            {
+              model: User,
+              attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de User
             }],
             attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
           });

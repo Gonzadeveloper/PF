@@ -49,7 +49,7 @@ export class User extends Model<User> {
   typeuser!: string; 
 
   @HasMany(() => Address)
-  addresses!: Address[];
+  address!: Address[];
 
   @HasMany(() => Product)
   products!: Product[];
