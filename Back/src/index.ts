@@ -6,9 +6,7 @@ import  getProductByName from "./routes/getProductByName";
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 app.use(cors({
-    origin: 'https://pf-back2-git-main-gonzadevelopers-projects.vercel.app', // Origen específico que permites
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'] // Encabezados permitidos
+    origin: ['http://localhost:3000', 'https://pf-back2-git-main-gonzadevelopers-projects.vercel.app']
   }));
 app.options('*', cors());
 
