@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postProduct = void 0;
 const database_1 = require("../config/database");
 const Product_1 = require("../models/Product");
-const Category_1 = require("../models/Category");
 //import { getAllProductDb } from '../controllers/getAllProductDb';
 const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const product = req.body;
@@ -22,7 +21,7 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         yield database_1.sequelize.authenticate();
         console.log('Connection has been established successfully.');
         // Crear una nueva categoría
-        const newCategory = yield Category_1.Category.create({ name: 'Phone' });
+        // const newCategory = await Category.create({ name: 'Phone' } as any); 
         // Crear un nuevo producto en la categoría creada
         const newProduct = yield Product_1.Product.create({
             name: product.name,
@@ -36,7 +35,7 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             //categoryId: newCategory.id,
         });
         console.log(newProduct);
-        console.log(newCategory);
+        // console.log(newCategory);
         // Leer productos
         // const products = await Product.findAll({
         //   include: [Category],

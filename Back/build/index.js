@@ -18,6 +18,7 @@ const getAllProducts_1 = __importDefault(require("./routes/getAllProducts"));
 const getProductByName_1 = __importDefault(require("./routes/getProductByName"));
 const getProductById_1 = __importDefault(require("./routes/getProductById"));
 const postProduct_1 = __importDefault(require("./routes/postProduct"));
+const putProduct_1 = __importDefault(require("./routes/putProduct"));
 const database_1 = require("./config/database");
 const Product_1 = require("./models/Product");
 Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
@@ -30,6 +31,7 @@ app.get('/products', getAllProducts_1.default);
 app.get('/products/:name', getProductByName_1.default);
 app.get('/products/:id', getProductById_1.default);
 app.post('/products/product/', postProduct_1.default);
+app.put('/products/:id', putProduct_1.default);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
