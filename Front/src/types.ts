@@ -11,13 +11,27 @@ export interface Product {
   stock: number;
   description: string;
   image: string;
+  condition: string;
   reviews: Review[];
 }
 
 export interface ProductsState {
   products: Product[];
+  filters: Filters;
 }
 
 export type RootState = {
   products: ProductsState;
 };
+
+export type Filters = {
+  name: string;
+  maxPrice: number,
+  minPrice: number;
+  category: string;
+  condition: string;
+  minStock: number;
+  maxStock: number;
+};
+
+

@@ -1,4 +1,4 @@
-function MisCompras () {
+function MyShopping () {
     return (
         <div className="container">
             <h1>MisCompras</h1>
@@ -6,4 +6,4 @@ function MisCompras () {
     );
 }
 
-export default MisCompras;
+export default MyShopping;

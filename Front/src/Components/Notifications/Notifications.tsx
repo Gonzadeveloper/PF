@@ -1,4 +1,4 @@
-function Notificaciones () {
+function Notifications () {
     return (
         <div className="container">
             <h1>Notificaciones</h1>
@@ -6,4 +6,4 @@ function Notificaciones () {
     );
 }
 
-export default Notificaciones;
+export default Notifications;

@@ -1,10 +1,20 @@
 import React from "react";
 import { FaShoppingCart, FaBell, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setFilters } from "../../Redux/Slices/ProductsSlice";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
+
+  const dispatch = useDispatch();
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newName = event.target.value;
+    dispatch(setFilters({ name: newName }));
+  };
+
   return (
     <nav className="navbar navbar-dark bg-dark">
       <div className="container">
@@ -16,7 +26,9 @@ const Navbar = () => {
             <input
               type="text"
               className="form-control me-2"
-              placeholder="Buscar..."
+              placeholder="Buscar por nombre" 
+              aria-label="Buscar por nombre" 
+              onChange={handleNameChange}
             />
             <Link to="Search">
               <FaSearch />

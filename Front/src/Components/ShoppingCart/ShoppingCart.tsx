@@ -1,4 +1,4 @@
-function CarritoDeCompras () {
+function ShoppingCart () {
     return (
         <div className="container">
             <h1>CarritoDeCompras</h1>
@@ -6,4 +6,4 @@ function CarritoDeCompras () {
     );
 }
 
-export default CarritoDeCompras;
+export default ShoppingCart;

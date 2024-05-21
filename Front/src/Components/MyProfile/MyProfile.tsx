@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./MiPerfil.css";
+import "./MyProfile.css";
 
 const MiPerfil: React.FC = () => {
   const navigate = useNavigate();
