@@ -20,6 +20,10 @@
   },
   "dependencies": {
     "@types/node": "^20.12.12",
+<<<<<<< HEAD
+=======
+    "cors": "^2.8.5",
+>>>>>>> 861ec39cdd3f4948a622d76d8ce4fb31ef9b50c7
     "express": "^4.19.2",
     "pg": "^8.11.5",
     "sequelize-typescript": "^2.1.6"

@@ -1,14 +1,37 @@
-import Card from "../Card/card";
-import React from "react";
-import { connect } from "react-redux";
-import { RootState } from "../../Redux/index";
-import { Article } from "../../Redux/Slices/ArticlesSlice";
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Card from '../Card/Card';
+import { RootState } from '../../Redux/index';
 
-interface Props {
-  articles: Article[];
-}
 
-const Search: React.FC<Props> = ({ articles }) => {
+function Search() {
+  const products = useSelector((state: RootState) => state.products.products);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12; 
+
+  // Calcula los productos que se mostrarán en la página actual
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  const handleClick = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -17,26 +40,42 @@ const Search: React.FC<Props> = ({ articles }) => {
         </div>
         <div className="col-md-10">
           <div className="row">
-            {articles.map((card) => (
+            {currentProducts.map((card) => (
               <Card
                 key={card.id}
                 id={card.id}
-                img={card.img}
-                title={card.title}
-                content={card.content}
+                image={card.image}
+                name={card.name}
+                description={card.description}
                 price={card.price}
-                ratings={card.ratings}
               />
             ))}
           </div>
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={handlePrevious}>
+                  &laquo;
+                </button>
+              </li>
+              {Array.from({ length: totalPages }, (_, index) => (
+                <li key={index + 1} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                  <button className="page-link" onClick={() => handleClick(index + 1)}>
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+              <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                <button className="page-link" onClick={handleNext}>
+                  &raquo;
+                </button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
   );
-};
+}
 
-const mapStateToProps = (state: RootState) => ({
-  articles: state.articles.list, // Suponiendo que tienes un slice llamado articles en tu store
-});
-
-export default connect(mapStateToProps)(Search);
+export default Search;

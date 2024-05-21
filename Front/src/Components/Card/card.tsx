@@ -1,25 +1,31 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Product } from "../../types";
 
-interface CardProps {
-  id: number;
-  img: string;
-  title: string;
-  content: string;
-  price: number;
-  ratings: any[];
-}
+export interface CardProps extends Product {}
 
-const Card: React.FC<CardProps> = ({ id, img, title, content, price, ratings }) => {
+const Card: React.FC<CardProps> = ({
+  id,
+  image,
+  name,
+  description,
+  price,
+  stock,
+  category,
+  reviews,
+}) => {
   return (
     <div className="col-2">
-      <div className="card">
-        <img src={img} className="card-img-top" alt="avatar" />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">Price: {price}</p>
-          <p className="card-text">Descripción: {content}</p>
+      <Link to={`/products/${id}`} className="card-link">
+        <div className="card">
+          <img src={image} className="card-img-top" alt="avatar" />
+          <div className="card-body">
+            <h5 className="card-title">{name}</h5>
+            <p className="card-text">Price: {price}</p>
+            <p className="card-text">Descripción: {description}</p>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };
