@@ -12,14 +12,6 @@ app.use(cors({
   }));
 app.options('*', cors());
 
-  app.use((_req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://pf-back2-git-main-gonzadevelopers-projects.vercel.app'); // update to match the domain you will make the request from
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    next();
-  });
-
 const PORT = 3000
 
 app.get ('/products', getAllProducts);
