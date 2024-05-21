@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Redux/index';
 import { Product } from '../../types';
-import Card from '../Card/card';
+import Card from '../Card/Card';
 import { removeFavorite } from '../../Redux/Slices/FavoritesSlice';
 
 const FavoritesList: React.FC = () => {
@@ -15,11 +15,9 @@ const FavoritesList: React.FC = () => {
     ));
 
     const handleToggleFavorite = (product: Product) => {
+        console.log("Botón de favoritos clickeado en FavoritosList.tsx"); // Nuevo console.log para depuración
         if (favorites.some(fav => fav.id === product.id)) {
-            dispatch(removeFavorite(product.id)); // <- Aquí podría estar el problema
-        } else {
-            // Si el producto no está en favoritos, lo agregamos
-            // No necesitamos dispatch aquí ya que removeFavorite solo se usa para eliminar
+            dispatch(removeFavorite(product));
         }
     };
 
@@ -31,6 +29,7 @@ const FavoritesList: React.FC = () => {
                     {...product}
                     isFavorite={true}
                     onToggleFavorite={() => handleToggleFavorite(product)}
+                    isSearchPage={false} // Nueva prop
                 />
             ))}
         </div>

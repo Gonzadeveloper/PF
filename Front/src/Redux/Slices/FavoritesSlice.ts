@@ -17,10 +17,10 @@ const favoritesSlice = createSlice({
             // Agregamos el producto completo a la lista de favoritos
             state.favorites.push(action.payload);
         },
-        removeFavorite: (state, action: PayloadAction<number>) => {
-            // Removemos el producto de favoritos por su ID
-            state.favorites = state.favorites.filter(product => product.id !== action.payload);
+        removeFavorite: (state, action: PayloadAction<Product>) => {
+            state.favorites = state.favorites.filter(product => product.id !== action.payload.id);
         },
+
     },
 });
 

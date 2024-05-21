@@ -5,6 +5,7 @@ import { Product } from "../../types";
 export interface CardProps extends Product {
   isFavorite: boolean;
   onToggleFavorite: () => void;
+  isSearchPage: boolean; // Nueva prop
 }
 
 const Card: React.FC<CardProps> = ({
@@ -15,6 +16,7 @@ const Card: React.FC<CardProps> = ({
   price,
   isFavorite,
   onToggleFavorite,
+  isSearchPage // Nueva prop
 }) => {
   const handleClick = () => {
     console.log('Botón clickeado');
@@ -34,12 +36,21 @@ const Card: React.FC<CardProps> = ({
         </div>
       </Link>
       <div className="card-footer">
-        <button
-          onClick={handleClick}
-          className={isFavorite ? "btn btn-danger" : "btn btn-primary"}
-        >
-          {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
-        </button>
+        {isSearchPage ? (
+          <button
+            onClick={handleClick}
+            className={isFavorite ? "btn btn-danger" : "btn btn-primary"}
+          >
+            {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+          </button>
+        ) : (
+          <button
+            onClick={handleClick}
+            className="btn btn-danger"
+          >
+            Quitar de favoritos
+          </button>
+        )}
       </div>
     </div>
   );

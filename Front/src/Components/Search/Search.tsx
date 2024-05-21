@@ -1,27 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../Redux/index";
-import Card from "../Card/card";
+import Card from "../Card/Card";
 import { addFavorite, removeFavorite } from "../../Redux/Slices/FavoritesSlice";
 import { Product } from "../../types";
 
 function Search() {
   const products = useSelector((state: RootState) => state.products.products);
+  const favorites = useSelector((state: RootState) => state.favorites.favorites);
   const dispatch = useDispatch();
 
-  // Estado local para los productos favoritos
-  const [favorites, setFavorites] = useState<Product[]>([]);
-
-  // Función para agregar o eliminar un producto de favoritos
   const handleToggleFavorite = (product: Product) => {
     if (favorites.some((fav) => fav.id === product.id)) {
-      // Si el producto ya está en favoritos, lo eliminamos
-      setFavorites(favorites.filter((fav) => fav.id !== product.id));
-      dispatch(removeFavorite(product)); // Pasamos el objeto completo del producto
+      console.log("Removiendo producto de favoritos:", product); // Agregamos un console.log para verificar que el producto se está eliminando correctamente
+      dispatch(removeFavorite(product));
     } else {
-      // Si el producto no está en favoritos, lo agregamos
-      setFavorites([...favorites, product]);
-      dispatch(addFavorite(product)); // Pasamos el objeto completo del producto
+      console.log("Agregando producto a favoritos:", product); // Agregamos un console.log para verificar que el producto se está agregando correctamente
+      dispatch(addFavorite(product));
     }
   };
 
@@ -39,6 +34,7 @@ function Search() {
                 {...product}
                 isFavorite={favorites.some((fav) => fav.id === product.id)}
                 onToggleFavorite={() => handleToggleFavorite(product)}
+                isSearchPage={true} // Nueva prop
               />
             ))}
           </div>
