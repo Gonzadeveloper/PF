@@ -12,9 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const getAllProducts_1 = require("../controllers/getAllProducts");
+//import { getAllProducts } from '../controllers/getAllProducts';
 const indexRoutes_1 = __importDefault(require("./indexRoutes"));
 const getProductByName_1 = require("../controllers/getProductByName");
+//import { getProductByName } from '../controllers/getProductByName';
+const getAllProductDb_1 = require("../controllers/getAllProductDb");
 indexRoutes_1.default.get('/products', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.query.name);
     try {
@@ -28,7 +30,7 @@ indexRoutes_1.default.get('/products', (req, res) => __awaiter(void 0, void 0, v
             return res.json(productt);
         }
         else {
-            const products = yield (0, getAllProducts_1.getAllProducts)();
+            const products = yield (0, getAllProductDb_1.getAllProductDb)();
             return res.json(products);
         }
     }
