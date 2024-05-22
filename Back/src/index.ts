@@ -12,6 +12,9 @@ import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
 import  postUser  from "./routes/postUser";
+import { getAllCategories } from "./controllers/getAllCategories";
+import { postCategories } from "./controllers/postCategories";
+import { deleteCategories } from "./controllers/deleteCategories";
 
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
@@ -23,8 +26,10 @@ app.get ('/products/:name', getProductByName);
 app.get ('/products/:id', getProductById);
 app.post ('/products/product/', postProduct);
 app.post ('/user/', postUser);
-
 app.put ('/products/:id', putProduct);
+app.get ('/categories', getAllCategories);
+app.post ('/categories/', postCategories);
+app.delete ('/categories/:id', deleteCategories);
 
 
 app.listen(PORT, () => {
@@ -33,7 +38,7 @@ app.listen(PORT, () => {
 
 const init = async () => {
     try {
-      await sequelize.sync({ force: false });
+      await sequelize.sync({ force: true });
       console.log('Database & tables created!');
     } catch (error) {
       console.error('Unable to connect to the database:', error);

@@ -30,6 +30,9 @@ Object.defineProperty(exports, "User", { enumerable: true, get: function () { re
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 const postUser_1 = __importDefault(require("./routes/postUser"));
+const getAllCategories_1 = require("./controllers/getAllCategories");
+const postCategories_1 = require("./controllers/postCategories");
+const deleteCategories_1 = require("./controllers/deleteCategories");
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 const PORT = 3000;
@@ -39,12 +42,15 @@ app.get('/products/:id', getProductById_1.default);
 app.post('/products/product/', postProduct_1.default);
 app.post('/user/', postUser_1.default);
 app.put('/products/:id', putProduct_1.default);
+app.get('/categories', getAllCategories_1.getAllCategories);
+app.post('/categories/', postCategories_1.postCategories);
+app.delete('/categories/:id', deleteCategories_1.deleteCategories);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield database_1.sequelize.sync({ force: false });
+        yield database_1.sequelize.sync({ force: true });
         console.log('Database & tables created!');
     }
     catch (error) {
