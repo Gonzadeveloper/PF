@@ -22,15 +22,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -44,11 +35,11 @@ if (!fs.existsSync(dataPath)) {
     console.error(`El archivo ${dataPath} no existe.`);
     // Maneja el error adecuadamente, por ejemplo, lanzando una excepción o enviando una respuesta al cliente.
 }
-const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
+const getProductByName = async (name) => {
     const productName = name.toLowerCase();
     //console.log(productName);
     try {
-        const data = yield fs.promises.readFile(dataPath, 'utf8');
+        const data = await fs.promises.readFile(dataPath, 'utf8');
         const productData = JSON.parse(data);
         if (!Array.isArray(productData)) {
             console.error('El archivo JSON no contiene una lista de productos válida.');
@@ -69,7 +60,7 @@ const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* (
         return undefined;
     }
     // });
-});
+};
 exports.getProductByName = getProductByName;
 // fs.readFile(productsFilePath, 'utf8', (err, data) => {
 //     if (err) {
