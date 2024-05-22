@@ -10,12 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.4",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.1",
-    "@reduxjs/toolkit": "^2.2.4",
+    "@reduxjs/toolkit": "^2.2.5",
     "@types/axios": "^0.14.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.1",
     "bootstrap": "^5.3.3",
     "install": "^0.13.0",
     "npm": "^10.7.0",
@@ -27,10 +28,12 @@
     "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
