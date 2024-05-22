@@ -5,7 +5,8 @@ import "./MiPerfil.css";
 
 const MiPerfil: React.FC = () => {
   const navigate = useNavigate();
-  const { loginWithRedirect, loginWithPopup } = useAuth0();
+  const { loginWithRedirect, loginWithPopup, logout, isAuthenticated, user } =
+    useAuth0();
 
   const handleRegister = () => {
     navigate("/registrar");
@@ -24,6 +25,28 @@ const MiPerfil: React.FC = () => {
       },
     });
   };
+
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin,
+      },
+    });
+  };
+
+  if (isAuthenticated) {
+    return (
+      <div>
+        <h2>Perfil de Usuario</h2>
+        <div>
+          <p>Bienvenido, {user?.name}</p>
+          {user && user.picture && <img src={user.picture} alt="Avatar" />}
+          <p>Tipo de usuario: {user?.["http://localhost:3000/typeuser"]}</p>
+        </div>
+        <button onClick={handleLogout}>Cerrar Sesión</button>
+      </div>
+    );
+  }
 
   return (
     <div className="container mt-5">

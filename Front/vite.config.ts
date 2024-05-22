@@ -1,7 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig, ServerOptions } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
+interface MyServerOptions extends ServerOptions {
+  rewrite: (path: string) => string;
+}
+
 export default defineConfig({
   plugins: [react()],
-})
+  server: {
+    rewrite: (path: string) =>
+      path === "/" || path === "/404" ? "/index.html" : "/404",
+  } as MyServerOptions,
+});
