@@ -5,6 +5,8 @@ import getProductById from "./routes/getProductById";
 import postProduct  from "./routes/postProduct";
 //import  {init } from "./db";
 import putProduct from "./routes/putProduct";
+const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
@@ -16,6 +18,15 @@ import  postUser  from "./routes/postUser";
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: 'auG6_Kf52jXOk8dSNcEtDifshjHgVDm4D7y8DH8wQqOvIjpNuzT1Vm8JpdnS4BhX',
+    baseURL: 'http://localhost:3000',
+    clientID: 'Xqv1NfgoqHqhwJjYdMASLNl4lPIjOawK',
+    issuerBaseURL: 'https://dev-pywymllismpo3klw.us.auth0.com'
+  };
+
 const PORT = 3000
 
 app.get ('/products', getAllProducts);
@@ -26,6 +37,15 @@ app.post ('/user/', postUser);
 
 app.put ('/products/:id', putProduct);
 
+app.use(auth(config));
+
+app.get('/', (req: any, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+
+app.get('/profile', requiresAuth(), (req: any, res) => {
+    res.send(JSON.stringify(req.oidc.user));
+  });
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

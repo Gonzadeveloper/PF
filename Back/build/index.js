@@ -20,6 +20,8 @@ const getProductById_1 = __importDefault(require("./routes/getProductById"));
 const postProduct_1 = __importDefault(require("./routes/postProduct"));
 //import  {init } from "./db";
 const putProduct_1 = __importDefault(require("./routes/putProduct"));
+const { auth } = require('express-openid-connect');
+const { requiresAuth } = require('express-openid-connect');
 const database_1 = require("./config/database");
 const Product_1 = require("./models/Product");
 Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
@@ -32,6 +34,14 @@ Object.defineProperty(exports, "Address", { enumerable: true, get: function () {
 const postUser_1 = __importDefault(require("./routes/postUser"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
+const config = {
+    authRequired: false,
+    auth0Logout: true,
+    secret: 'auG6_Kf52jXOk8dSNcEtDifshjHgVDm4D7y8DH8wQqOvIjpNuzT1Vm8JpdnS4BhX',
+    baseURL: 'http://localhost:3000',
+    clientID: 'Xqv1NfgoqHqhwJjYdMASLNl4lPIjOawK',
+    issuerBaseURL: 'https://dev-pywymllismpo3klw.us.auth0.com'
+};
 const PORT = 3000;
 app.get('/products', getAllProducts_1.default);
 app.get('/products/:name', getProductByName_1.default);
@@ -39,6 +49,13 @@ app.get('/products/:id', getProductById_1.default);
 app.post('/products/product/', postProduct_1.default);
 app.post('/user/', postUser_1.default);
 app.put('/products/:id', putProduct_1.default);
+app.use(auth(config));
+app.get('/', (req, res) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
+app.get('/profile', requiresAuth(), (req, res) => {
+    res.send(JSON.stringify(req.oidc.user));
+});
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
