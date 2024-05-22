@@ -14,3 +14,16 @@ const sequelize = new sequelize_typescript_1.Sequelize({
     models: [Product_1.Product, Category_1.Category, User_1.User, Address_1.Address],
 });
 exports.sequelize = sequelize;
+// import { Sequelize } from 'sequelize-typescript';
+// import { Product } from '../models/Product';
+// import { Category } from '../models/Category';
+// import { User } from '../models/User';
+// import { Address } from '../models/Address';
+// const sequelize = new Sequelize({
+//   database: 'electroemporium',
+//   dialect: 'postgres',
+//   username: 'postgres',
+//   password: 'tiburcio1',
+//   models: [Product, Category, User, Address],
+// });
+// export { sequelize };
