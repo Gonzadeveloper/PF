@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Product } from "../../types";
 
-export interface CardProps extends Product {}
+export interface CardProps {
+  id?: Product['id'];
+  image?: Product['image'];
+  name?: Product['name'];
+  description?: Product['description'];
+  price?: Product['price'];
+  condition?: Product['condition'];
+  stock?: Product['stock'];
+  category?: Product['category'];
+  reviews?: Product['reviews'];
+}
 
 const Card: React.FC<CardProps> = ({
   id,
@@ -10,6 +20,7 @@ const Card: React.FC<CardProps> = ({
   name,
   description,
   price,
+  condition,
   stock,
   category,
   reviews,

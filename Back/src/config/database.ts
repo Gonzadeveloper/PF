@@ -8,7 +8,7 @@ const sequelize = new Sequelize({
   database: 'electroemporium',
   dialect: 'postgres',
   username: 'postgres',
-  password: 'gonza123',
+  password: 'basededatos',
   models: [Product, Category, User, Address],
 });
 

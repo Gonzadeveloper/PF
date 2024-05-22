@@ -14,9 +14,12 @@ import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
 import  postUser  from "./routes/postUser";
+import cors from 'cors'
+
 
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
+app.use(cors())
 
 const config = {
     authRequired: false,
