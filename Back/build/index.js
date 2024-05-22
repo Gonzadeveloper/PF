@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Address = exports.User = exports.Category = exports.Product = void 0;
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const getAllProducts_1 = __importDefault(require("./routes/getAllProducts"));
 const getProductByName_1 = __importDefault(require("./routes/getProductByName"));
 const getProductById_1 = __importDefault(require("./routes/getProductById"));
@@ -32,9 +33,11 @@ const postUser_1 = __importDefault(require("./routes/postUser"));
 const getUser_1 = __importDefault(require("./routes/getUser"));
 const deleteUser_1 = __importDefault(require("./routes/deleteUser"));
 const deleteProduct_1 = __importDefault(require("./routes/deleteProduct"));
+const putProduct_1 = __importDefault(require("./routes/putProduct"));
 //import { getUser } from "./services/getUser";
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
+app.use((0, cors_1.default)());
 const PORT = 3000;
 app.get('/products', getAllProducts_1.default);
 app.get('/products/:name', getProductByName_1.default);
@@ -44,6 +47,7 @@ app.post('/user/', postUser_1.default);
 app.get('/user/', getUser_1.default);
 app.delete('/user/:id', deleteUser_1.default);
 app.delete('/products/:id', deleteProduct_1.default);
+app.put('/products/:id', putProduct_1.default);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

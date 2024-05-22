@@ -3,8 +3,10 @@ import { Product } from '../models/Product';
 import { Category } from '../models/Category';
 import { User } from '../models/User';
 import { Address } from '../models/Address';
+require('dotenv').config();
+const { PG_URL } = process.env;
 
-const databaseUrl = 'postgres://postuser:oo3s0SfEKfGhvXY1eca7u5K9bBrxOH9p@dpg-cp6d7lgl6cac738j5660-a.oregon-postgres.render.com/electroemporium';
+const databaseUrl = `${PG_URL}`;
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',

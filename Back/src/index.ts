@@ -1,4 +1,6 @@
 import express from "express"
+import cors from 'cors';
+
 import getAllProducts  from './routes/getAllProducts' ;
 import  getProductByName from "./routes/getProductByName";
 import getProductById from "./routes/getProductById";
@@ -14,6 +16,7 @@ import  postUser  from "./routes/postUser";
 import  getUser  from "./routes/getUser";
 import deleteUser from "./routes/deleteUser";
 import deleteProduct from "./routes/deleteProduct";
+import putProduct  from "./routes/putProduct";
 //import { getUser } from "./services/getUser";
 
 
@@ -21,6 +24,8 @@ import deleteProduct from "./routes/deleteProduct";
 
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
+
+app.use(cors())
 
 const PORT = 3000
 
@@ -32,6 +37,7 @@ app.post ('/user/', postUser);
 app.get ('/user/', getUser);
 app.delete('/user/:id', deleteUser);
 app.delete('/products/:id', deleteProduct);
+app.put('/products/:id', putProduct);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

@@ -15,7 +15,9 @@ const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
 const User_1 = require("../models/User");
 const Address_1 = require("../models/Address");
-const databaseUrl = 'postgres://postuser:oo3s0SfEKfGhvXY1eca7u5K9bBrxOH9p@dpg-cp6d7lgl6cac738j5660-a.oregon-postgres.render.com/electroemporium';
+require('dotenv').config();
+const { PG_URL } = process.env;
+const databaseUrl = `${PG_URL}`;
 const sequelize = new sequelize_typescript_1.Sequelize(databaseUrl, {
     dialect: 'postgres',
     models: [Product_1.Product, Category_1.Category, User_1.User, Address_1.Address],
