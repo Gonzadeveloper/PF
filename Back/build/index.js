@@ -32,8 +32,10 @@ Object.defineProperty(exports, "User", { enumerable: true, get: function () { re
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 const postUser_1 = __importDefault(require("./routes/postUser"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
+app.use((0, cors_1.default)());
 const config = {
     authRequired: false,
     auth0Logout: true,

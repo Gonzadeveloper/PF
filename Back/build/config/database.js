@@ -10,7 +10,7 @@ const sequelize = new sequelize_typescript_1.Sequelize({
     database: 'electroemporium',
     dialect: 'postgres',
     username: 'postgres',
-    password: 'gonza123',
+    password: 'basededatos',
     models: [Product_1.Product, Category_1.Category, User_1.User, Address_1.Address],
 });
 exports.sequelize = sequelize;
