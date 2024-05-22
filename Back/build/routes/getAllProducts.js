@@ -3,10 +3,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const getAllProducts_1 = require("../controllers/getAllProducts");
+//import { getAllProducts } from '../controllers/getAllProducts';
 const indexRoutes_1 = __importDefault(require("./indexRoutes"));
 const getProductByName_1 = require("../controllers/getProductByName");
+<<<<<<< HEAD
 indexRoutes_1.default.get('/products', async (req, res) => {
+=======
+//import { getProductByName } from '../controllers/getProductByName';
+const getAllProductDb_1 = require("../controllers/getAllProductDb");
+indexRoutes_1.default.get('/products', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+>>>>>>> 813319aa93483857abc613aee470c874d90cc2e6
     console.log(req.query.name);
     try {
         if (req.query.name) {
@@ -19,7 +25,11 @@ indexRoutes_1.default.get('/products', async (req, res) => {
             return res.json(productt);
         }
         else {
+<<<<<<< HEAD
             const products = await (0, getAllProducts_1.getAllProducts)();
+=======
+            const products = yield (0, getAllProductDb_1.getAllProductDb)();
+>>>>>>> 813319aa93483857abc613aee470c874d90cc2e6
             return res.json(products);
         }
     }

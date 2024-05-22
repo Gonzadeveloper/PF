@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
@@ -108,3 +109,26 @@
   },
   
 }
+=======
+    "target": "es6",       
+    "module": "commonjs",  
+    "outDir": "./build",  
+    "baseUrl": "./",
+    "esModuleInterop": true, 
+    "forceConsistentCasingInFileNames": true, 
+    "strict": true,  
+    "noUnusedLocals": true,    
+    "noUnusedParameters": true,  
+    "noImplicitReturns": true,        
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,  
+    "paths": {
+        "@models/*": ["src/models/*"]
+     }                              
+    },
+    "include": ["src/**/*.ts" ],
+    "exclude": ["node_modules"]
+  }
+>>>>>>> 813319aa93483857abc613aee470c874d90cc2e6

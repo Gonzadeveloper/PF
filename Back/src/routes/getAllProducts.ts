@@ -1,8 +1,10 @@
 
 import { Request, Response } from 'express';
-import { getAllProducts } from '../controllers/getAllProducts';
+//import { getAllProducts } from '../controllers/getAllProducts';
 import  router  from './indexRoutes';
 import { getProductByName } from '../controllers/getProductByName';
+//import { getProductByName } from '../controllers/getProductByName';
+import { getAllProductDb } from '../controllers/getAllProductDb';
 
 router.get('/products', async (req: Request, res: Response) => {
     
@@ -18,7 +20,7 @@ router.get('/products', async (req: Request, res: Response) => {
            }
             return res.json(productt);
         }else{
-            const products = await getAllProducts(); 
+            const products = await getAllProductDb();
             return res.json(products);
 
         }

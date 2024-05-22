@@ -1,55 +1,43 @@
-//import { Request, Response } from 'express';
-import * as fs from 'fs';
-import path from 'path';
 
-interface Product {
-    name: string;
-    // Otras propiedades de un producto
-}
+import { sequelize } from '../config/database';
+import { Product } from '../models/Product';
+import { Category } from '../models/Category';
+import { Op } from 'sequelize';
 
-const dataPath = path.resolve(__dirname, '../local/product.json');
 
-if (!fs.existsSync(dataPath)) {
-    console.error(`El archivo ${dataPath} no existe.`);
-    // Maneja el error adecuadamente, por ejemplo, lanzando una excepción o enviando una respuesta al cliente.
-}
-
-export const getProductByName = async(name: string): Promise<Product[] | undefined> => {
-    const productName = name.toLowerCase();
-    //console.log(productName);
+export const getProductByName = async(name: string): Promise<Product | undefined> => {
+    
    
-        try {
-            const data = await fs.promises.readFile(dataPath, 'utf8');
-            const productData = JSON.parse(data);
-            
-           if (!Array.isArray(productData)) {
-            console.error('El archivo JSON no contiene una lista de productos válida.');
+    try {
+        // Conectar a la base de datos
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.'); 
+       
+        // Leer productos
+        const product = await Product.findOne({
+            where: {
+                name: {
+                    [Op.iLike]: `%${name}%` // Utiliza el operador iLike para búsqueda insensible a mayúsculas y minúsculas en PostgreSQL
+                  }
+            },
+            include: [{
+              model: Category,
+              attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+            }],
+            attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
+          });
+          
+          
+          if (!product) {
+            console.log(`Product with name ${name} not found.`);
             return undefined;
-        } 
+          }
+      
+          console.log('CRUD operations completed successfully.');
+          return product;
+      } catch (error) {
+        console.error('Unable to perform CRUD operations:', error);
+      }
+      return 
 
-            const filteredProducts = productData.filter((product: Product) =>
-                product.name.toLowerCase().includes(productName)
-            
-            
-            );
-
-            if (filteredProducts.length === 0) {
-                return undefined;
-            } else {
-                return filteredProducts; 
-            }
-           // console.log(productName);
-            //return filteredProducts;
-        } catch (error) {
-            console.error('Error parsing products JSON:', error);
-            return undefined
-        }
-   // });
 };
- 
-    // fs.readFile(productsFilePath, 'utf8', (err, data) => {
-    //     if (err) {
-    //         console.error(err);
-    //         return 'undefined'
-    //     }
-         
