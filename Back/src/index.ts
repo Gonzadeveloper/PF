@@ -12,6 +12,8 @@ import { User } from './models/User';
 import { Address } from './models/Address';
 import  postUser  from "./routes/postUser";
 import  getUser  from "./routes/getUser";
+import deleteUser from "./routes/deleteUser";
+import deleteProduct from "./routes/deleteProduct";
 //import { getUser } from "./services/getUser";
 
 
@@ -28,9 +30,8 @@ app.get ('/products/:id', getProductById);
 app.post ('/products/product/', postProduct);
 app.post ('/user/', postUser);
 app.get ('/user/', getUser);
-
-
-
+app.delete('/user/:id', deleteUser);
+app.delete('/products/:id', deleteProduct);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

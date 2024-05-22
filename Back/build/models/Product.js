@@ -1,4 +1,7 @@
 "use strict";
+// import { Table, Column, Model, ForeignKey, BelongsTo, DataType } from 'sequelize-typescript';
+// import { Category } from './Category';
+// import { User } from './User';
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,6 +13,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
+// @Table
+// export class Product extends Model<Product> {
+//   @Column({ 
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   name!: string;
+//   @Column({ 
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   description!: string;
+//   @Column({ 
+//     type: DataType.FLOAT, // Usamos FLOAT para representar precios
+//     allowNull: false
+//   })
+//   price!: number;
+//   @Column({ 
+//     type: DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
+//     allowNull: false
+//   })
+//   stock!: number;
+//   @Column({         
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   condition!: string;  
+//   @Column({         
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   image!: string; 
+//   @ForeignKey(() => User)
+//   @Column
+//   userId!: number;
+//   @BelongsTo(() => User)
+//   user!: User;
+//   @ForeignKey(() => Category)
+//   @Column
+//   categoryId!: number;
+//   @BelongsTo(() => Category)
+//   category!: Category;
+// }
+///////////////////////////////////////
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Category_1 = require("./Category");
 const User_1 = require("./User");
@@ -76,34 +123,16 @@ __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => Category_1.Category),
     __metadata("design:type", Category_1.Category)
 ], Product.prototype, "category", void 0);
+__decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+    __metadata("design:type", Object)
+], Product.prototype, "deletedAt", void 0);
 exports.Product = Product = __decorate([
-    sequelize_typescript_1.Table
+    (0, sequelize_typescript_1.DefaultScope)(() => ({
+        where: { deletedAt: null },
+    })),
+    (0, sequelize_typescript_1.Table)({
+        paranoid: true, // Habilita el borrado lógico
+        timestamps: true, // Habilita createdAt y updatedAt
+    })
 ], Product);
-// @Table
-// export class Product extends Model<Product> {
-//   @Column({ 
-//     type: DataType.STRING,
-//     allowNull: false })
-//     name!: string;
-//   @Column ({ 
-//     type: DataType.STRING,
-//     allowNull: false })
-//     description!: string;
-//   @Column({ 
-//     type: DataType.INTEGER,
-//     allowNull: false })
-//     price!: number;
-//   @Column({ 
-//     type: DataType.INTEGER,
-//     allowNull: false })
-//     stock!: number;
-//   @Column ({         
-//     type: DataType.STRING,
-//     allowNull: false })
-//     condition!: string;  
-//   @ForeignKey(() => Category)
-//   @Column
-//   categoryId!: number;
-//   @BelongsTo(() => Category)
-//   category!: Category;
-// }
