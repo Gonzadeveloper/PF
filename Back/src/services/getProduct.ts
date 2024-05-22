@@ -4,7 +4,7 @@ import { Category } from '../models/Category';
 import { User } from '../models/User';
 //import { Request, Response } from 'express';
 
-const getAllProductDb = async ()  => {  
+export const getProduct = async ()  => {  
   try {
     // Conectar a la base de datos
     await sequelize.authenticate();
@@ -30,4 +30,3 @@ const getAllProductDb = async ()  => {
   }
   return 
 };
-export { getAllProductDb };
