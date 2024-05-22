@@ -17,12 +17,6 @@ const express_1 = __importDefault(require("express"));
 const getAllProducts_1 = __importDefault(require("./routes/getAllProducts"));
 const getProductByName_1 = __importDefault(require("./routes/getProductByName"));
 const getProductById_1 = __importDefault(require("./routes/getProductById"));
-<<<<<<< HEAD
-const session = require('express-session');
-const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
-require('dotenv').config();
-=======
 const postProduct_1 = __importDefault(require("./routes/postProduct"));
 //import  {init } from "./db";
 const putProduct_1 = __importDefault(require("./routes/putProduct"));
@@ -38,41 +32,7 @@ Object.defineProperty(exports, "User", { enumerable: true, get: function () { re
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 const postUser_1 = __importDefault(require("./routes/postUser"));
->>>>>>> 813319aa93483857abc613aee470c874d90cc2e6
 const app = (0, express_1.default)();
-// Configuración de la sesión
-app.use(session({
-    secret: 'your-secret',
-    resave: false,
-    saveUninitialized: true,
-}));
-// Inicializar Passport y Auth0
-const strategy = new Auth0Strategy({
-    domain: process.env.AUTH0_DOMAIN,
-    clientID: process.env.AUTH0_CLIENT_ID,
-    clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/MiPerfil'
-}, function (profile, done) {
-    // accessToken: string, refreshToken: string, extraParams: any,
-    return done(null, profile);
-});
-app.use(passport.initialize());
-app.use(passport.session());
-// Configurar Passport para usar la estrategia de Auth0
-passport.use(strategy);
-// Guardar el perfil de usuario en la sesión
-passport.serializeUser(function (user, done) {
-    done(null, user);
-});
-passport.deserializeUser(function (user, done) {
-    done(null, user);
-});
-// Rutas de inicio de sesión y cierre de sesión
-app.get('/login', passport.authenticate('auth0'));
-app.get('/callback', passport.authenticate('auth0', { failureRedirect: '/login' }), function (_req, res) {
-    // Redirigir al usuario después de iniciar sesión exitosamente
-    res.redirect('/');
-});
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 const config = {
     authRequired: false,
