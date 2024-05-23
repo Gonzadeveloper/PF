@@ -14,7 +14,6 @@ export const getAllProds = () => {
       const res = await axios.get<Product[]>(
         `${import.meta.env.VITE_ENDPOINT}/product`
       );
-      console.log(res.data)
       dispatch(setProducts(res.data));
     } catch (error) {
       console.error("Error fetching products:", error);
