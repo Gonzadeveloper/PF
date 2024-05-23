@@ -1,18 +1,45 @@
-import { Sequelize } from 'sequelize-typescript';
+ import { Sequelize } from 'sequelize-typescript';
 import { Product } from '../models/Product';
 import { Category } from '../models/Category';
 import { User } from '../models/User';
 import { Address } from '../models/Address';
+require('dotenv').config();
+const { PG_URL } = process.env;
 
-const sequelize = new Sequelize({
-  database: 'electroemporium',
+const databaseUrl = `${PG_URL}`;
+
+const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',
-  username: 'postgres',
-  password: 'tiburcio1',
   models: [Product, Category, User, Address],
+  logging: false,
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+  dialectOptions: {
+    ssl: {
+      require: true, // Si tu base de datos requiere SSL
+      rejectUnauthorized: false // Solo si tu certificado no está verificado
+    }
+  }
 });
 
 export { sequelize };
+
+const authenticateDatabase = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+};
+
+authenticateDatabase();
+
+
 
 // import { Sequelize } from 'sequelize-typescript';
 // import { Product } from '../models/Product';
@@ -20,11 +47,13 @@ export { sequelize };
 // import { User } from '../models/User';
 // import { Address } from '../models/Address';
 
+// //postgres://postuser:oo3s0SfEKfGhvXY1eca7u5K9bBrxOH9p@dpg-cp6d7lgl6cac738j5660-a.oregon-postgres.render.com/electroemporium
+
 // const sequelize = new Sequelize({
 //   database: 'electroemporium',
 //   dialect: 'postgres',
 //   username: 'postgres',
-//   password: 'tiburcio1',
+//   password: '1234',
 //   models: [Product, Category, User, Address],
 // });
 

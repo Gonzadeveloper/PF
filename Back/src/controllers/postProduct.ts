@@ -1,6 +1,6 @@
 import { sequelize } from '../config/database';
 import { Product } from '../models/Product';
-// import { Category } from '../models/Category';
+import { Category } from '../models/Category';
 import { Request, Response } from 'express';
 //import { getAllProductDb } from '../controllers/getAllProductDb';
 
@@ -13,9 +13,13 @@ const postProduct = async (req: Request, res: Response) : Promise<void> => {
     // Conectar a la base de datos
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
-
+    // Validar la entrada
+    if (!product.name || !product.description || !product.price || !product.stock || !product.condition || !product.image || !product.userId || product.categoryId) {
+      res.status(400).json({ message: 'Todos los campos son obligatorios' });
+      return;
+    }
     // Crear una nueva categoría
-    // const newCategory = await Category.create({ name: 'Phone' } as any); 
+    const newCategory = await Category.create({ name: 'Phone' } as any);
 
     // Crear un nuevo producto en la categoría creada
     const newProduct = await Product.create({ 
@@ -30,7 +34,7 @@ const postProduct = async (req: Request, res: Response) : Promise<void> => {
       //categoryId: newCategory.id,
     } as any);
    console.log(newProduct);
-   // console.log(newCategory);
+   console.log(newCategory);
    
     // Leer productos
     // const products = await Product.findAll({
@@ -60,4 +64,3 @@ const postProduct = async (req: Request, res: Response) : Promise<void> => {
   }
 };
 export { postProduct };
-//run();

@@ -14,12 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Address = exports.User = exports.Category = exports.Product = void 0;
 const express_1 = __importDefault(require("express"));
-const getAllProducts_1 = __importDefault(require("./routes/getAllProducts"));
-const getProductByName_1 = __importDefault(require("./routes/getProductByName"));
-const getProductById_1 = __importDefault(require("./routes/getProductById"));
-const postProduct_1 = __importDefault(require("./routes/postProduct"));
-//import  {init } from "./db";
-const putProduct_1 = __importDefault(require("./routes/putProduct"));
+const cors_1 = __importDefault(require("cors"));
 const database_1 = require("./config/database");
 const Product_1 = require("./models/Product");
 Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
@@ -29,28 +24,18 @@ const User_1 = require("./models/User");
 Object.defineProperty(exports, "User", { enumerable: true, get: function () { return User_1.User; } });
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
-const postUser_1 = __importDefault(require("./routes/postUser"));
-const getAllCategories_1 = require("./controllers/getAllCategories");
-const postCategories_1 = require("./controllers/postCategories");
-const deleteCategories_1 = require("./controllers/deleteCategories");
+const index_1 = __importDefault(require("./routes/index"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
+app.use((0, cors_1.default)());
+app.use('/', index_1.default);
 const PORT = 3000;
-app.get('/products', getAllProducts_1.default);
-app.get('/products/:name', getProductByName_1.default);
-app.get('/products/:id', getProductById_1.default);
-app.post('/products/product/', postProduct_1.default);
-app.post('/user/', postUser_1.default);
-app.put('/products/:id', putProduct_1.default);
-app.get('/categories', getAllCategories_1.getAllCategories);
-app.post('/categories/', postCategories_1.postCategories);
-app.delete('/categories/:id', deleteCategories_1.deleteCategories);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield database_1.sequelize.sync({ force: true });
+        yield database_1.sequelize.sync({ force: false });
         console.log('Database & tables created!');
     }
     catch (error) {
