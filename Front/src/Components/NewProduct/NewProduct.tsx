@@ -1,8 +1,12 @@
 import { useState } from "react"
 import { uploadImage } from "./Cloudinary"
+import { useDispatch } from "react-redux"
+import { newProduct } from "../../Redux/Actions/productActions"
 
 
 function NewProduct() {
+
+    const dispatch = useDispatch()
 
     type ValidationMsg = {
         name?: string,
@@ -28,7 +32,8 @@ function NewProduct() {
         description: "",
         quantity: "",
         condition: "",
-        image: ""
+        image: "",
+        userId:3
     })
 
     const [error, setError] = useState<ValidationMsg>({
@@ -85,6 +90,8 @@ function NewProduct() {
         e.preventDefault()
         if (!error.name && !error.price && !error.description && !error.condition && !error.quantity && !error.image) {
             //dispatch al back
+            
+            dispatch(newProduct(product))
 
             setProduct({
                 name: "",
@@ -92,7 +99,8 @@ function NewProduct() {
                 description: "",
                 quantity: "",
                 condition: "",
-                image: ""
+                image: "",
+                userId: 3
             })
             setError({
                 name: "Please select a name for the product",

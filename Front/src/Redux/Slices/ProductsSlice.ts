@@ -22,7 +22,7 @@ const productsSlice = createSlice({
     setProducts(state, action: PayloadAction<Product[]>) {
       state.products = action.payload;
     },
-    getProductByName(state, action: PayloadAction<Product[]>) {
+    getProductByName(state, action: PayloadAction<Product>) {
       state.products = [action.payload];
     },
     setFilters(state, action: PayloadAction<Partial<Filters>>) {
@@ -34,10 +34,16 @@ const productsSlice = createSlice({
     setProductDetails(state, action: PayloadAction<Product | null>) {
       state.selectedProduct = action.payload;
     },
+    postProduct(state, action: PayloadAction<Product>){
+      state.products = [
+        ...state.products,
+        action.payload
+      ]
+    }
   },
 });
 
-export const { setProducts, getProductByName, setFilters, setProductDetails } =
+export const { setProducts, getProductByName, setFilters, setProductDetails, postProduct } =
   productsSlice.actions;
 
 export default productsSlice.reducer;
