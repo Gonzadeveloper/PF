@@ -1,7 +1,5 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState, Product } from "../../types";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCreditCard,
@@ -11,15 +9,32 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
+import { getProductById } from "../../Redux/Actions/productActions";
+import { selectSelectedProduct } from "../../Redux/Selector";
+import { AnyAction } from "@reduxjs/toolkit";
+import { useParams } from "react-router-dom";
 
-const ProductDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const product: Product | undefined = useSelector((state: RootState) =>
-    state.products.products.find((product) => product.id.toString() === id)
-  );
+interface Props {
+  productId: number;
+}
+
+const ProductDetail: React.FC<Props> = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const product = useSelector(selectSelectedProduct);
+
+  useEffect(() => {
+    const productId = Number(id);
+    if (isNaN(productId)) {
+      console.error("Invalid product ID");
+      return;
+    }
+
+    dispatch(getProductById(productId) as unknown as AnyAction);
+  }, [dispatch, id]);
 
   if (!product) {
-    return <div>Product not found</div>;
+    return <div>Loading...</div>;
   }
 
   return (
@@ -39,7 +54,9 @@ const ProductDetail: React.FC = () => {
                 <FontAwesomeIcon icon={faHeart} />
               </div>
               <h1 className="mb-3">{product.name}</h1>
-              <p className="text-muted mb-2">{product.category}</p>
+              <p className="text-muted mb-2">
+                Categoría: {product.category?.name ?? "Sin categoría"}
+              </p>
               <p>
                 <strong>Precio:</strong> ${product.price.toFixed(2)}
               </p>
@@ -49,14 +66,6 @@ const ProductDetail: React.FC = () => {
               <button className="btn btn-primary mr-2">Comprar</button>
               <hr />
               <h2 className="mt-4">Reseñas</h2>
-              <ul className="list-unstyled">
-                {product.reviews.map((review, index) => (
-                  <li key={index}>
-                    <span className="badge">{review.rating}/5</span> -{" "}
-                    {review.comment}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
