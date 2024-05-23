@@ -1,0 +1,387 @@
+ [
+      {
+        "id": 1,
+        "name": "Laptop Gamer Asus ROG Strix Scar",
+        "description": "Laptop para juegos con gráficos de alta definición, 16GB de RAM, 1TB de almacenamiento SSD y procesador de última generación.",
+        "price": 2500.00,
+        "stock": 15,
+        "category": 1,
+        "image": "https://resources.claroshop.com/medios-plazavip/s2/10252/1145258/5d13a10bac9b0-laptop-gamer-asus-rog-strix-scar-ii-i7-16gb-512gb-rtx-2070-1600x1600.jpg?scale=500&qlty=75",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Esta laptop tiene un rendimiento increíble para juegos, definitivamente la recomendaría."
+          },
+          {
+            "rating": 4,
+            "comment": "Buena laptop para juegos, pero la batería podría durar un poco más."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Redmi Note 13 Pro",
+        "description": "Smartphone con pantalla OLED de 6.5 pulgadas, cámara de 48MP, 128GB de almacenamiento y batería de larga duración.",
+        "price": 800.00,
+        "stock": 30,
+        "category": 2,
+        "image": "https://i.gadgets360cdn.com/large/Redmi_Note_13_Pro_plus_xiaomi_1694767582456.jpg?downsize=950:*",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor smartphone que he tenido, la batería dura todo el día y las fotos salen geniales."
+          },
+          {
+            "rating": 3,
+            "comment": "Buen smartphone en general, pero la cámara podría ser mejor."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Tablet Lenovo Tab M10 FHD Plus",
+        "description": "Tablet de 10 pulgadas con 64GB de almacenamiento, ideal para trabajo y entretenimiento.",
+        "price": 300.00,
+        "stock": 20,
+        "category": 3,
+        "image": "https://i5.walmartimages.com/asr/70b6357e-4c4a-49d5-89e6-98afb7864ac5.011e97d0826acd0c6a6f0d099b532105.jpeg",
+        "reviews": [
+          {
+            "rating": 4,
+            "comment": "Muy útil para el trabajo y el entretenimiento, y la batería dura mucho."
+          },
+          {
+            "rating": 4,
+            "comment": "Buena tablet, pero el almacenamiento podría ser mayor."
+          }
+        ]
+      },      
+      {
+        "id": 4,
+        "name": "Monitor 4K GHI",
+        "description": "Monitor 4K de 27 pulgadas con tiempo de respuesta de 1ms, ideal para diseño gráfico y juegos.",
+        "price": 600.00,
+        "stock": 10,
+        "category": 4,
+        "image": "https://cdn.mwave.com.au/images/400/qsm_q35cfb120wqhd_35_120hz_uwqhd_hdr_frameless_curved_va_gaming_monitor_ac49057.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Excelente monitor, los colores son vibrantes y el tiempo de respuesta es increíble."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buen monitor, pero el soporte podría ser más robusto."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "JBL AURICULARES BLUETOOTH MOD. BT500",
+        "description": "Auriculares Bluetooth con cancelación de ruido y hasta 20 horas de duración de la batería.",
+        "price": 150.00,
+        "stock": 50,
+        "category": 5,
+        "image": "https://tvguru.co.ke/wp-content/uploads/2021/10/JBL-Tune-500BT-Powerful-Bass-Wireless-Headphones.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Los mejores auriculares que he tenido, la cancelación de ruido es impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Buenos auriculares, pero podrían ser un poco más cómodos."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Teclado Mecánico Gamer Monster",
+        "description": "Teclado mecánico con retroiluminación RGB y teclas programables, ideal para programación y juegos.",
+        "price": 120.00,
+        "stock": 25,
+        "category": 6,
+        "image": "https://http2.mlstatic.com/D_NQ_NP_915964-MLC50267218323_062022-F.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Gran teclado, las teclas son muy cómodas y la retroiluminación es genial."
+          },
+          {
+            "rating": 4,
+            "comment": "Buen teclado, pero el software de configuración podría ser más intuitivo."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Mouse Gamer Logitech G502 ",
+        "description": "Mouse gamer con alta precisión y varios botones programables.",
+        "price": 70.00,
+        "stock": 30,
+        "category": 6,
+        "image": "https://pcgame.ma/wp-content/uploads/2021/02/Logitech-G502-Lightspeed-Wireless-Gaming-Mouse-2.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor mouse para juegos que he usado, la precisión es increíble."
+          },
+          {
+            "rating": 4,
+            "comment": "Buen mouse, pero los botones laterales podrían estar mejor ubicados."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "name": " Disco Duro Externo HP",
+        "description": "Disco duro externo de 2TB, USB 3.0, compacto y portátil.",
+        "price": 80.00,
+        "stock": 20,
+        "category": 4,
+        "image": "https://www.discoazul.com/uploads/media/images/disco-duro-externo-hp-ssd-p500-250-gb-negro-1.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Excelente disco duro, la transferencia de datos es muy rápida."
+          },
+          {
+            "rating": 4,
+            "comment": "Buen disco duro, pero el cable podría ser más largo."
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Router WiFi TP-Link AC750",
+        "description": "Router WiFi de doble banda con soporte para múltiples dispositivos y fácil configuración.",
+        "price": 100.00,
+        "stock": 15,
+        "category": 8,
+        "image": "https://www.digitaloutlet.co.za/wp-content/uploads/2019/08/TP-Link-AC750.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Gran router, la señal es fuerte en toda mi casa."
+          },
+          {
+            "rating": 4,
+            "comment": "Buen router, pero la interfaz de configuración podría ser más amigable."
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Impresora 3D Creality Ender 3 V2",
+        "description": "Impresora 3D con alta precisión y compatibilidad con varios tipos de filamento.",
+        "price": 700.00,
+        "stock": 5,
+        "category": 9,
+        "image": "https://cdn.shopify.com/s/files/1/0029/6838/7619/products/71keLzRdw3L._SL1500_1024x1024.jpg?v=1604568996",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Impresora 3D increíble, la calidad de las impresiones es excelente."
+          },
+          {
+            "rating": 4,
+            "comment": "Buena impresora 3D, pero el software de modelado podría ser mejor."
+          }
+        ]
+      },
+
+      {
+        "id": 11,
+        "name": "Apple iPhone 13 Pro",
+        "description": "Smartphone de alta gama con pantalla Super Retina XDR de 6.1 pulgadas, 256GB de almacenamiento y cámara triple de 12MP.",
+        "price": 1200.00,
+        "stock": 20,
+        "category": 2,
+        "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-sierra-blue-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346275",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor iPhone hasta ahora, la cámara es espectacular."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente teléfono, pero un poco caro."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Samsung Galaxy Tab S7",
+        "description": "Tablet de 11 pulgadas con pantalla LCD, 128GB de almacenamiento y S Pen incluido.",
+        "price": 650.00,
+        "stock": 10,
+        "category": 3,
+        "image": "https://image.samsung.com/us/tablets/galaxy-tab-s7/images/galaxy-tab-s7_highlights_kv_m.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor tablet para productividad y entretenimiento."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buena, pero el S Pen podría tener mejor precisión."
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Sony WH-1000XM4",
+        "description": "Auriculares inalámbricos con cancelación de ruido y hasta 30 horas de duración de la batería.",
+        "price": 350.00,
+        "stock": 40,
+        "category": 5,
+        "image": "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor cancelación de ruido que he experimentado."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buenos auriculares, pero un poco caros."
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Dell XPS 13",
+        "description": "Laptop ultrabook con pantalla de 13.4 pulgadas, 16GB de RAM, 512GB SSD y procesador Intel Core i7.",
+        "price": 1400.00,
+        "stock": 15,
+        "category": 1,
+        "image": "https://i.dell.com/sites/imagecontent/products/PublishingImages/xps-13-9300-laptop-white-silver.png",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor laptop para profesionales en movimiento."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente rendimiento, pero podría tener más puertos."
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Canon EOS R5",
+        "description": "Cámara sin espejo con sensor de 45MP, grabación de video 8K y estabilización de imagen.",
+        "price": 3900.00,
+        "stock": 5,
+        "category": 7,
+        "image": "https://store.canon.com.au/media/catalog/product/cache/67b3a1f1d7a37b9b11660f642919e2e2/e/o/eos-r5-side-back_1.png",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor cámara que he usado, las fotos y videos son de altísima calidad."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente cámara, pero el precio es muy alto."
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "GoPro HERO9 Black",
+        "description": "Cámara de acción con grabación de video 5K, estabilización HyperSmooth 3.0 y pantalla frontal.",
+        "price": 500.00,
+        "stock": 25,
+        "category": 7,
+        "image": "https://gopro.com/content/dam/gopro/us/en/products/hero9-black/gopro-hero9-black-9.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Perfecta para deportes extremos, la calidad de video es impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buena cámara de acción, pero la batería podría durar más."
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "Logitech MX Master 3",
+        "description": "Mouse inalámbrico con scroll electromagnético y diseño ergonómico, ideal para trabajo y productividad.",
+        "price": 100.00,
+        "stock": 30,
+        "category": 6,
+        "image": "https://resource.logitech.com/content/dam/logitech/en/products/mice/mx-master-3/mx-master-3-sub-navigation-graphite.png",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor mouse para productividad que he usado."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy cómodo, pero el precio es algo elevado."
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "Apple MacBook Pro M1",
+        "description": "Laptop con pantalla Retina de 13 pulgadas, chip M1, 16GB de RAM y 1TB SSD.",
+        "price": 1800.00,
+        "stock": 10,
+        "category": 1,
+        "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp13touch-silver-select-202011_GEO_EMEA_LANG_FR?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1603406895000",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor MacBook hasta ahora, el rendimiento del chip M1 es increíble."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente laptop, pero el precio es bastante alto."
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "Asus ROG Swift PG27UQ",
+        "description": "Monitor gaming 4K de 27 pulgadas con 144Hz y G-Sync.",
+        "price": 2000.00,
+        "stock": 8,
+        "category": 4,
+        "image": "https://dlcdnwebimgs.asus.com/gain/F4604B1E-0169-4805-9F8C-73E5C69DAA64",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor monitor para gaming, los gráficos son impresionantes."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente monitor, pero el precio es muy alto."
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "Nintendo Switch OLED",
+        "description": "Consola de videojuegos con pantalla OLED de 7 pulgadas, 64GB de almacenamiento interno y soporte para juegos portátiles y de sobremesa.",
+        "price": 350.00,
+        "stock": 50,
+        "category": 9,
+        "image": "https://m.media-amazon.com/images/I/61-PblYntsL._AC_SL1500_.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor versión de la Switch, la pantalla OLED es impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente consola, pero la duración de la batería podría ser mejor."
+          }
+        ]
+      }
+
+
+
+    ]
+  
