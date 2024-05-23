@@ -14,7 +14,7 @@ const postProduct = async (req: Request, res: Response) : Promise<void> => {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
     // Validar la entrada
-    if (!product.name || !product.description || !product.price || !product.stock || !product.condition || !product.image || !product.userId || product.categoryId) {
+    if (!product.name || !product.description || !product.price || !product.stock || !product.condition || !product.image || !product.userId || !product.categoryId) {
       res.status(400).json({ message: 'Todos los campos son obligatorios' });
       return;
     }
