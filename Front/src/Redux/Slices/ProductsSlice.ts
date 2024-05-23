@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductsState, Product, Filters } from "../../types";
 
-
 const initialState: ProductsState = {
   products: [],
   filters: {
-    name: '',
-    category: { id: 0, name: 'Todos' },
-    condition: 'Todos',
+    name: "",
+    category: { id: 0, name: "Todos" },
+    condition: "Todos",
     minPrice: 0,
     maxPrice: Infinity,
     minStock: 0,
     maxStock: Infinity,
   },
+  selectedProduct: null,
 };
 
 const productsSlice = createSlice({
@@ -31,9 +31,13 @@ const productsSlice = createSlice({
         ...action.payload,
       };
     },
+    setProductDetails(state, action: PayloadAction<Product | null>) {
+      state.selectedProduct = action.payload;
+    },
   },
 });
 
-export const { setProducts, getProductByName, setFilters  } = productsSlice.actions;
+export const { setProducts, getProductByName, setFilters, setProductDetails } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

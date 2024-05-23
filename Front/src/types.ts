@@ -18,6 +18,7 @@ export interface Product {
 export interface ProductsState {
   products: Product[];
   filters: Filters;
+  selectedProduct: Product | null;
 }
 
 export type RootState = {
@@ -31,7 +32,7 @@ export type Category = {
 
 export type Filters = {
   name: string;
-  maxPrice: number,
+  maxPrice: number;
   minPrice: number;
   category: Category;
   condition: string;
