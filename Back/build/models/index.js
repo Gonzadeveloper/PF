@@ -1,31 +1,56 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Address = exports.User = exports.Category = exports.Product = void 0;
-const database_1 = require("../config/database");
-const Product_1 = require("./Product");
-Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
-const Category_1 = require("./Category");
-Object.defineProperty(exports, "Category", { enumerable: true, get: function () { return Category_1.Category; } });
-const User_1 = require("./User");
-Object.defineProperty(exports, "User", { enumerable: true, get: function () { return User_1.User; } });
-const Address_1 = require("./Address");
-Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
-const init = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield database_1.sequelize.sync({ force: false });
-        console.log('Database & tables created!');
-    }
-    catch (error) {
-        console.error('Unable to connect to the database:', error);
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+const sequelize_1 = require("sequelize");
+const process_1 = __importDefault(require("process"));
+//import { SequelizeOptions } from 'sequelize-typescript';
+const basename = path_1.default.basename(__filename);
+const env = process_1.default.env.NODE_ENV || 'development';
+const config = require(__dirname + '/../config/config.ts')[env];
+const db = {};
+let sequelize;
+if (config.use_env_variable) {
+    sequelize = new sequelize_1.Sequelize(process_1.default.env[config.use_env_variable], config);
+}
+else {
+    sequelize = new sequelize_1.Sequelize(config.database, config.username, config.password, config);
+}
+fs_1.default
+    .readdirSync(__dirname)
+    .filter((file) => {
+    return (file.indexOf('.') !== 0 &&
+        file !== basename &&
+        file.slice(-3) === '.ts' &&
+        file.indexOf('.test.ts') === -1);
+})
+    .forEach((file) => {
+    const model = require(path_1.default.join(__dirname, file)).default(sequelize, sequelize_1.DataTypes);
+    db[model.name] = model;
+});
+Object.keys(db).forEach((modelName) => {
+    if (db[modelName].associate) {
+        db[modelName].associate(db);
     }
 });
-init();
+db.sequelize = sequelize;
+db.Sequelize = sequelize_1.Sequelize;
+exports.default = db;
+// import { sequelize } from '../config/database';
+// import { Product } from './Product';
+// import { Category } from './Category';
+// import { User } from './User';
+// import { Address } from './Address';
+// const init = async () => {
+//   try {
+//     await sequelize.sync({ force: false });
+//     console.log('Database & tables created!');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// };
+// init();
+// export { Product, Category, User, Address };

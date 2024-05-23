@@ -9,12 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUser = void 0;
-const getUser_1 = require("../services/getUser");
-const getAllUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getAllCategory = void 0;
+//import { getUser } from '../services/getUser';
+const getCategory_1 = require("../services/getCategory");
+const getAllCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.query.name) {
-            const users = yield (0, getUser_1.getUser)();
+            const users = yield (0, getCategory_1.getCategory)();
             res.status(200).json(users);
         }
         else {
@@ -28,4 +29,4 @@ const getAllUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(500).json({ error: 'Ocurrió un error', details: error.message });
     }
 });
-exports.getAllUser = getAllUser;
+exports.getAllCategory = getAllCategory;

@@ -9,23 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUser = void 0;
-const getUser_1 = require("../services/getUser");
-const getAllUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.postCategory = void 0;
+const Category_1 = require("../models/Category");
+const postCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = req.body;
+    if (!name) {
+        res.status(400).json({ error: 'Name is required' });
+        return;
+    }
     try {
-        if (!req.query.name) {
-            const users = yield (0, getUser_1.getUser)();
-            res.status(200).json(users);
-        }
-        else {
-            // Puedes manejar la lógica cuando `name` está presente, por ejemplo, filtrando usuarios por nombre
-            // const usersByName = await getUserByName(req.query.name as string);
-            // res.status(200).json(usersByName);
-            res.status(400).json({ message: "Query parameter 'name' is not supported in this endpoint" });
-        }
+        const newCategory = yield Category_1.Category.create({ name });
+        res.status(201).json(newCategory);
     }
     catch (error) {
-        res.status(500).json({ error: 'Ocurrió un error', details: error.message });
+        console.error('Error creating category:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
-exports.getAllUser = getAllUser;
+exports.postCategory = postCategory;
