@@ -14,7 +14,7 @@ export const getUser = async () => {
       include: [
         {
           model: Address,
-          attributes: ['id', 'address'] // Ajusta las propiedades según tu modelo Address
+          attributes: ['id', 'address', 'country'] // Ajusta las propiedades según tu modelo Address
         }
       ] 
     });

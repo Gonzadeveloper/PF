@@ -1,25 +1,13 @@
 import express from "express"
 import cors from 'cors';
 
-import getAllProducts  from './routes/getAllProducts' ;
-import  getProductByName from "./routes/getProductByName";
-import getProductById from "./routes/getProductById";
-import postProduct  from "./routes/postProduct";
-//import  {init } from "./db";
-
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
 import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
-import  postUser  from "./routes/postUser";
-import  getUser  from "./routes/getUser";
-import deleteUser from "./routes/deleteUser";
-import deleteProduct from "./routes/deleteProduct";
-import putProduct  from "./routes/putProduct";
 //import { getUser } from "./services/getUser";
-
-
+import routessRaiz from './routes/index';
 
 
 const app = express()
@@ -29,15 +17,7 @@ app.use(cors())
 
 const PORT = 3000
 
-app.get ('/products', getAllProducts);
-app.get ('/products/:name', getProductByName);
-app.get ('/products/:id', getProductById);
-app.post ('/products/product/', postProduct);
-app.post ('/user/', postUser);
-app.get ('/user/', getUser);
-app.delete('/user/:id', deleteUser);
-app.delete('/products/:id', deleteProduct);
-app.put('/products/:id', putProduct);
+app.use('/', routessRaiz);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

@@ -9,31 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = void 0;
-const Address_1 = require("../models/Address");
+exports.getCategory = void 0;
 const database_1 = require("../config/database");
-const User_1 = require("../models/User");
-const getUser = () => __awaiter(void 0, void 0, void 0, function* () {
+const Category_1 = require("../models/Category");
+//import { Product } from '../models/Product'; 
+const getCategory = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Conectar a la base de datos
         yield database_1.sequelize.authenticate();
         console.log('Connection has been established successfully.');
-        // Leer Usuarios
-        const users = yield User_1.User.findAll({
-            attributes: ['id', 'name', 'email', 'password', 'typeuser'],
-            include: [
-                {
-                    model: Address_1.Address,
-                    attributes: ['id', 'address', 'country'] // Ajusta las propiedades según tu modelo Address
-                }
-            ]
+        // Leer categorías
+        const categories = yield Category_1.Category.findAll({
+            attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+            //   include: [{
+            //     model: Product,
+            //     attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'], // Especifica los atributos que deseas incluir de Product
+            //   }],
         });
-        console.log('CRUD operations completed successfully.');
-        return users;
+        console.log('Operation completed successfully.');
+        return categories;
     }
     catch (error) {
-        console.error('Unable to perform CRUD operations:', error);
+        console.error('Unable to perform operation:', error);
+        return;
     }
-    return [];
 });
-exports.getUser = getUser;
+exports.getCategory = getCategory;
