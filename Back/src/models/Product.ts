@@ -56,10 +56,11 @@
 // }
 ///////////////////////////////////////
 
-import { Table, Column, Model, ForeignKey, BelongsTo, DataType, DefaultScope } from 'sequelize-typescript'; // importar HasMany
+import { Table, Column, Model, ForeignKey, BelongsTo, DataType, DefaultScope, HasMany } from 'sequelize-typescript'; // importar HasMany
 import { Category } from './Category';
 import { User } from './User';
-// import { OrderProduct } from './OrderProduct';
+import { CartProduct } from './CartProduct';
+import { ProductOrder } from './ProductOrder';
 
 @DefaultScope(() => ({
   where: { deletedAt: null },
@@ -119,8 +120,11 @@ export class Product extends Model<Product> {
   @BelongsTo(() => Category)
   category!: Category;
 
-  // @HasMany(() => OrderProduct)
-  // orderProducts!: OrderProduct[];      todo lo comentado hasta aquí, es por y para la relación con Order
+  @HasMany(() => CartProduct)
+  cartproduct!: CartProduct[];
+
+  @HasMany(() => ProductOrder)
+  productorder!: ProductOrder[];  
 
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico

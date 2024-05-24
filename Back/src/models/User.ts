@@ -58,11 +58,12 @@
 
 //////////////////////////////////////////////
 
-import { Table, Column, Model, DataType, HasMany, DefaultScope } from 'sequelize-typescript'; //importar HasOne
+import { Table, Column, Model, DataType, HasMany, DefaultScope, HasOne } from 'sequelize-typescript'; //importar HasOne
 import { Address } from './Address';
 import { Product } from './Product';
-// import { Order } from './Order';
-// import { Payment } from './Payment';
+import { Order } from './Order';
+import { Payment } from './Payment';
+import { Cart } from './Cart';
 
 
 @DefaultScope(() => ({
@@ -121,12 +122,17 @@ export class User extends Model<User> {
   @HasMany(() => Product)
   products!: Product[];
 
-  // @HasMany(() => Order)
-  // orders!: Order[];
+  @HasMany(() => Order)
+  orders!: Order[];
 
-  // @HasOne(() => Payment)
-  // payment!: Payment;                 todo lo comentado es nuevo para relación con órden
+  @HasOne(() => Payment)
+  payment!: Payment;  
+
+  @HasOne(() => Cart)
+  cart!: Cart; 
 
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
 }
+
+ // todo lo comentado es nuevo para relación con órden

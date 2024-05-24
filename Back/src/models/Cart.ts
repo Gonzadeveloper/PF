@@ -30,6 +30,9 @@ export class Cart extends Model<Cart> {
   @HasMany(() => CartProduct)
   cartProducts!: CartProduct[];
 
+  @HasMany(() => CartProduct)
+  orderProducts!: CartProduct[];
+
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
 }
