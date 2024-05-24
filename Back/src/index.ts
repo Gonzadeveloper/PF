@@ -1,23 +1,25 @@
 import express from "express";
-import cors from "cors";
-
-import { sequelize } from "./config/database";
-import { Product } from "./models/Product";
-import { Category } from "./models/Category";
-import { User } from "./models/User";
-import { Address } from "./models/Address";
-import routessRaiz from "./routes/index";
-import { Review } from "./models/Review";
-import { Order } from "./models/Order";
-import { ProductOrder } from "./models/ProductOrder";
-import { Payment } from "./models/Payment";
+import cors from 'cors';
+import { sequelize } from './config/database';
+import { Product } from './models/Product';
+import { Category } from './models/Category';
+import { User } from './models/User';
+import { Address } from './models/Address';
+import routessRaiz  from './routes/index';
+import { Review } from './models/Review';
+import { Order } from './models/Order';
+import { ProductOrder } from './models/ProductOrder';
+import { Payment } from './models/Payment';
 //import { getUser } from "./services/getUser";
-const session = require("./Auth/config/session");
-import { passport } from "./Auth/config/auth";
-const authRoutes = require("./Auth/config/routeAuth");
+const session = require('./Auth/config/session');
+import {passport} from './Auth/config/auth';
+const authRoutes = require('./Auth/config/routeAuth');
+require('dotenv').config();
+
 
 const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
