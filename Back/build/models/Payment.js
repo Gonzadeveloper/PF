@@ -53,7 +53,7 @@ __decorate([
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.ENUM,
-        values: ['Tarjeta de crédito', 'PayPal', 'Transferencia bancaria'],
+        values: ['Tarjeta de crédito', 'Mercadopago', 'Transferencia bancaria'],
         allowNull: false,
     }),
     __metadata("design:type", String)
