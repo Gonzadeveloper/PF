@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import "./MiPerfil.css";
+import styles from "./Miperfil.module.css"; // Importa los estilos del módulo CSS
 
 const MiPerfil: React.FC = () => {
   const navigate = useNavigate();
@@ -35,15 +35,33 @@ const MiPerfil: React.FC = () => {
   };
 
   if (isAuthenticated) {
+    console.log("Información del usuario:", user);
     return (
-      <div>
-        <h2>Perfil de Usuario</h2>
-        <div>
-          <p>Bienvenido, {user?.name}</p>
-          {user && user.picture && <img src={user.picture} alt="Avatar" />}
-          <p>Tipo de usuario: {user?.["http://localhost:3000/typeuser"]}</p>
+      <div
+        className={`${styles.container} mt-5 d-flex justify-content-center align-items-center`}>
+        <div className={styles.card}>
+          <div className={styles["card-body"]}>
+            <h2 className={styles["card-title"]}>Perfil de Usuario</h2>
+            <div className="text-center">
+              {user && user.picture && (
+                <img
+                  src={user.picture}
+                  className={styles.avatar}
+                  alt="Avatar"
+                />
+              )}
+              <p className={styles["card-text"]}>Bienvenido, {user?.name}</p>
+              <p className={styles["card-text"]}>Email: {user?.email}</p>
+              <p className={styles["card-text"]}>Apodo: {user?.nickname}</p>
+              <p className={styles["card-text"]}>Idioma: {user?.locale}</p>
+            </div>
+            <button
+              className={`btn btn-primary ${styles["btn-primary"]}`}
+              onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
+          </div>
         </div>
-        <button onClick={handleLogout}>Cerrar Sesión</button>
       </div>
     );
   }
@@ -78,7 +96,7 @@ const MiPerfil: React.FC = () => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary"
+              className={`btn btn-primary ${styles["btn-primary"]}`}
               onClick={handleLogin}>
               Iniciar Sesión
             </button>
@@ -88,14 +106,14 @@ const MiPerfil: React.FC = () => {
           <h2>Autenticación con Google</h2>
           <button
             type="button"
-            className="btn btn-secondary btn-google"
+            className={`btn btn-secondary btn-google ${styles["btn-google"]}`}
             onClick={handleGoogleLogin}>
             Iniciar Sesión con Google
           </button>
           <div className="mt-3">
             <button
               type="button"
-              className="btn btn-link"
+              className={`btn btn-link ${styles["btn-link"]}`}
               onClick={handleRegister}>
               Crear Cuenta
             </button>
