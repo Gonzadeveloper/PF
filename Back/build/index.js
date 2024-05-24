@@ -26,10 +26,17 @@ const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 //import { getUser } from "./services/getUser";
 const index_1 = __importDefault(require("./routes/index"));
+const session = require('./Auth/config/session');
+const auth_1 = require("./Auth/config/auth");
+const authRoutes = require('./Auth/config/routeAuth');
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 app.use((0, cors_1.default)());
 const PORT = 3000;
+app.use(session);
+app.use(auth_1.passport.initialize());
+app.use(auth_1.passport.session());
+app.use('/', authRoutes);
 app.use('/', index_1.default);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
