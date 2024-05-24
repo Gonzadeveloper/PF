@@ -1,5 +1,4 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo, DefaultScope } from 'sequelize-typescript';
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo, DefaultScope } from 'sequelize-typescript';
 import { Order } from './Order';
 
 @DefaultScope(() => ({
@@ -10,27 +9,17 @@ import { Order } from './Order';
   timestamps: true, // Habilita createdAt y updatedAt
   paranoid: true,
 })
-@DefaultScope(() => ({
-  where: { deletedAt: null },
-}))
-
-@Table({
-  timestamps: true, // Habilita createdAt y updatedAt
-  paranoid: true,
-})
 export class Payment extends Model<Payment> {
+
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+
   })
   id!: number;
 
   @ForeignKey(() => Order)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
@@ -45,17 +34,8 @@ export class Payment extends Model<Payment> {
     allowNull: false,
     defaultValue: DataType.NOW,
   })
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: DataType.NOW,
-  })
   paymentDate!: Date;
 
-  @Column({
-    type: DataType.DECIMAL(10, 2),
-    allowNull: false,
-  })
   @Column({
     type: DataType.DECIMAL(10, 2),
     allowNull: false,
@@ -67,15 +47,7 @@ export class Payment extends Model<Payment> {
     values: ['Tarjeta de crédito', 'PayPal', 'Transferencia bancaria'],
     allowNull: false,
   })
-  @Column({
-    type: DataType.ENUM,
-    values: ['Tarjeta de crédito', 'PayPal', 'Transferencia bancaria'],
-    allowNull: false,
-  })
   paymentMethod!: string;
-
-  @Column({ type: DataType.DATE })
-  deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
 
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico

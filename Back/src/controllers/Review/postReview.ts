@@ -1,5 +1,6 @@
-import { sequelize } from '../config/database';
-import { Product } from '../models/Product';
+import { sequelize } from '../../config/database';
+import { Product } from '../../models/Product';
+//import { Review } from '../../models/Review';
 import { Request, Response } from 'express';
 //import { getAllProductDb } from '../controllers/getAllProductDb';
 

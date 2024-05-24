@@ -10,8 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postProduct = void 0;
-const database_1 = require("../config/database");
-const Product_1 = require("../models/Product");
+const database_1 = require("../../config/database");
+const Product_1 = require("../../models/Product");
 //import { getAllProductDb } from '../controllers/getAllProductDb';
 const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const product = req.body;

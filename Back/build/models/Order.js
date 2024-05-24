@@ -75,3 +75,12 @@ exports.Order = Order = __decorate([
         paranoid: true, // Habilita el borrado lógico
     })
 ], Order);
+// @HasMany(() => ProductOrder)
+// products!: Product[];
+// @HasOne(() => Payment)
+// payment!: Payment;
+// lo comentado es para que deje de darme errores typescript. los import y los hasmany y hasone
+// @Table({
+//   paranoid: true, // Habilita el borrado lógico
+//   timestamps: true, // Habilita createdAt y updatedAt
+// })

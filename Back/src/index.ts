@@ -12,9 +12,9 @@ import { Order } from './models/Order';
 import { ProductOrder } from './models/ProductOrder';
 import { Payment } from './models/Payment';
 //import { getUser } from "./services/getUser";
-const session = require('./Auth/config/session');
-import {passport} from './Auth/config/auth';
-const authRoutes = require('./Auth/config/routeAuth');
+// const session = require('./Auth/config/session');
+// import {passport} from './Auth/config/auth';
+// const authRoutes = require('./Auth/config/routeAuth');
 
 
 
@@ -27,10 +27,10 @@ app.use('/',routessRaiz)
 
 const PORT = 3000
 
-app.use(session);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use('/', authRoutes);
+// app.use(session);
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use('/', authRoutes);
 
 
 app.listen(PORT, () => {
@@ -50,12 +50,3 @@ const init = async () => {
   
   export { Product, Category, User, Address, Review, Order, ProductOrder, Payment };
 
-//   const server = require('./src/app.js');
-// const { conn } = require('./src/db.js');
-
-// // Syncing all the models at once.
-// conn.sync({ force: false }).then(() => {
-//   server.listen(3001, () => {
-//     console.log('%s listening at 3001'); // eslint-disable-line no-console
-//   });
-// });
