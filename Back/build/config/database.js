@@ -15,12 +15,16 @@ const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
 const User_1 = require("../models/User");
 const Address_1 = require("../models/Address");
+const Review_1 = require("../models/Review");
+const Order_1 = require("../models/Order");
+const ProductOrder_1 = require("../models/ProductOrder");
+const Payment_1 = require("../models/Payment");
 require('dotenv').config();
 const { PG_URL } = process.env;
 const databaseUrl = `${PG_URL}`;
 const sequelize = new sequelize_typescript_1.Sequelize(databaseUrl, {
     dialect: 'postgres',
-    models: [Product_1.Product, Category_1.Category, User_1.User, Address_1.Address],
+    models: [Product_1.Product, Category_1.Category, User_1.User, Address_1.Address, Review_1.Review, Order_1.Order, ProductOrder_1.ProductOrder, Payment_1.Payment],
     logging: false,
     pool: {
         max: 5,

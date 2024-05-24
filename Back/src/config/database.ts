@@ -3,6 +3,11 @@ import { Product } from '../models/Product';
 import { Category } from '../models/Category';
 import { User } from '../models/User';
 import { Address } from '../models/Address';
+import { Review } from '../models/Review';
+import { Order } from '../models/Order';
+import { ProductOrder } from '../models/ProductOrder';
+import { Payment } from '../models/Payment';
+
 require('dotenv').config();
 const { PG_URL } = process.env;
 
@@ -10,7 +15,7 @@ const databaseUrl = `${PG_URL}`;
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',
-  models: [Product, Category, User, Address],
+  models: [Product, Category, User, Address, Review, Order, ProductOrder, Payment],
   logging: false,
   pool: {
     max: 5,
