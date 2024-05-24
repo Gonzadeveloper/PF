@@ -61,9 +61,11 @@ exports.User = void 0;
 //   products!: Product[];
 // }
 //////////////////////////////////////////////
-const sequelize_typescript_1 = require("sequelize-typescript");
+const sequelize_typescript_1 = require("sequelize-typescript"); //importar HasOne
 const Address_1 = require("./Address");
 const Product_1 = require("./Product");
+// import { Order } from './Order';
+// import { Payment } from './Payment';
 let User = class User extends sequelize_typescript_1.Model {
 };
 exports.User = User;

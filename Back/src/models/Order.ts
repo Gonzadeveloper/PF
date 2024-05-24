@@ -3,62 +3,53 @@ import { User } from './User';
 import { ProductOrder } from './ProductOrder';
 import { Payment } from './Payment';
 
-@DefaultScope(() => ({
-  where: { deletedAt: null },
-}))
+   @DefaultScope(() => ({
+     where: { deletedAt: null },
+   }))
 
-@Table({
-  paranoid: true, // Habilita el borrado lógico
-  timestamps: true, // Habilita createdAt y updatedAt
-})
-export class Order extends Model<Order> {
-  @Column({ 
-    type: DataType.INTEGER,
-    primaryKey: true, 
-    autoIncrement: true 
-  })
-  id!: number;
-
-  @ForeignKey(() => User)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  userId!: number;
-
-  @BelongsTo(() => User)
-  user!: User;
-
-  @Column({ 
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: DataType.NOW,
+   @Table({
+     timestamps: true, // Habilita createdAt y updatedAt
+     paranoid: true, // Habilita el borrado lógico
    })
-  orderDate!: Date;
+   export class Order extends Model<Order> {
+       @Column({
+         type: DataType.INTEGER,
+         autoIncrement: true,
+         primaryKey: true,
+       })
+       id!: number;
 
-  @Column({ 
-    type: DataType.ENUM,
-    values: ['Pendiente', 'Enviado', 'Entregado'],
-    allowNull: false,
-    defaultValue: 'Pendiente'
-  })
-  status!: string;
+       @ForeignKey(() => User)
+       @Column({
+         type: DataType.INTEGER,
+         allowNull: false,
+       })
+       userId!: number;
+     
+       @BelongsTo(() => User)
+       user!: User;
+     
+       @Column({
+         type: DataType.DATE,
+         allowNull: false,
+         defaultValue: DataType.NOW,
+       })
+       orderDate!: Date;
+     
+       @Column({
+         type: DataType.ENUM,
+         values: ['Pendiente', 'Enviado', 'Entregado'],
+         allowNull: false,
+         defaultValue: 'Pendiente'
+       })
+       orderStatus!: string;
+     
+       @HasMany(() => ProductOrder)
+       productOrder!: ProductOrder[];
 
-  @Column({ 
-    type: DataType.INTEGER,
-    allowNull: false,
-    defaultValue: 0
-  })
-  productCount!: number;
-
-  @HasMany(() => ProductOrder)
-  productOrder!: ProductOrder[];
-
-  @HasOne(() => Payment)
-  payment!: Payment;
-
-  @Column({ type: DataType.DATE })
+       @HasOne(() => Payment)
+       payment!: Payment;
+     
+       @Column({ type: DataType.DATE })
        deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico        
   }
-
-// lo comentado es para que deje de darme errores typescript. los import y los hasmany y hasone

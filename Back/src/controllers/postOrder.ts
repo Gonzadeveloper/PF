@@ -6,7 +6,7 @@ const postOrder = async (req: Request, res: Response): Promise<void> => {
 
   try {
     // Validar los datos de entrada
-    if (!orderData.userId || !orderData.orderDate || !orderData.status) {
+    if (!orderData.userId || !orderData.orderDate || !orderData.orderStatus ) {
       res.status(400).json({ message: 'Todos los campos son obligatorios' });
       return;
     }

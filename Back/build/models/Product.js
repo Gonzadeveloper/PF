@@ -57,9 +57,10 @@ exports.Product = void 0;
 //   category!: Category;
 // }
 ///////////////////////////////////////
-const sequelize_typescript_1 = require("sequelize-typescript");
+const sequelize_typescript_1 = require("sequelize-typescript"); // importar HasMany
 const Category_1 = require("./Category");
 const User_1 = require("./User");
+// import { OrderProduct } from './OrderProduct';
 let Product = class Product extends sequelize_typescript_1.Model {
 };
 exports.Product = Product;

@@ -7,6 +7,10 @@ import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
 import routessRaiz  from './routes/index';
+import { Review } from './models/Review';
+import { Order } from './models/Order';
+import { ProductOrder } from './models/ProductOrder';
+import { Payment } from './models/Payment';
 
 
 
@@ -40,7 +44,7 @@ const init = async () => {
   
   init();
   
-  export { Product, Category, User, Address };
+  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment };
 
 //   const server = require('./src/app.js');
 // const { conn } = require('./src/db.js');
