@@ -20,7 +20,7 @@ const Registrar: React.FC = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post(`${import.meta.env.VITE_ENDPOINT}/api/User/`, {
+      await axios.post(`${import.meta.env.VITE_ENDPOINT}/user/`, {
         name,
         email,
         password,
