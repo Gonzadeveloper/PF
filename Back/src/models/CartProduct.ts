@@ -1,25 +1,24 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo, DefaultScope } from 'sequelize-typescript';
-import { Order } from './Order';
+import { Cart } from './Cart';
 import { Product } from './Product';
 
 @DefaultScope(() => ({
   where: { deletedAt: null },
 }))
-
 @Table({
-  timestamps: false,
-  paranoid: true,
+  timestamps: false, // Deshabilita createdAt y updatedAt
+  paranoid: true, // Habilita el borrado lógico
 })
-export class ProductOrder extends Model<ProductOrder> {
-  @ForeignKey(() => Order)
+export class CartProduct extends Model<CartProduct> {
+  @ForeignKey(() => Cart)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  orderId!: number;
+  cartId!: number;
 
-  @BelongsTo(() => Order)
-  order!: Order;
+  @BelongsTo(() => Cart)
+  cart!: Cart;
 
   @ForeignKey(() => Product)
   @Column({
@@ -37,13 +36,6 @@ export class ProductOrder extends Model<ProductOrder> {
   })
   quantity!: number;
 
-  @Column({
-    type: DataType.DECIMAL(10, 2),
-    allowNull: false,
-  })
-  unitPrice!: number;
-
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
-
 }
