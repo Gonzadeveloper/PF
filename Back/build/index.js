@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Address = exports.User = exports.Category = exports.Product = void 0;
+exports.Payment = exports.ProductOrder = exports.Order = exports.Review = exports.Address = exports.User = exports.Category = exports.Product = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const database_1 = require("./config/database");
@@ -25,6 +25,14 @@ Object.defineProperty(exports, "User", { enumerable: true, get: function () { re
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
 const index_1 = __importDefault(require("./routes/index"));
+const Review_1 = require("./models/Review");
+Object.defineProperty(exports, "Review", { enumerable: true, get: function () { return Review_1.Review; } });
+const Order_1 = require("./models/Order");
+Object.defineProperty(exports, "Order", { enumerable: true, get: function () { return Order_1.Order; } });
+const ProductOrder_1 = require("./models/ProductOrder");
+Object.defineProperty(exports, "ProductOrder", { enumerable: true, get: function () { return ProductOrder_1.ProductOrder; } });
+const Payment_1 = require("./models/Payment");
+Object.defineProperty(exports, "Payment", { enumerable: true, get: function () { return Payment_1.Payment; } });
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 app.use((0, cors_1.default)());

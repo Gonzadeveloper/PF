@@ -2,6 +2,7 @@ import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, DataType, Default
 import { Category } from './Category';
 import { User } from './User';
 import { Review } from './Review';
+import { ProductOrder } from './ProductOrder';
 
 @DefaultScope(() => ({
   where: { deletedAt: null },
@@ -65,6 +66,9 @@ export class Product extends Model<Product> {
 
   @HasMany(() => Review)
   review!: Review[];
+
+  @HasMany(() => ProductOrder)
+  productOrder!: ProductOrder[];
 
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico

@@ -9,88 +9,50 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
+exports.Review = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const Category_1 = require("./Category");
+const Product_1 = require("./Product");
 const User_1 = require("./User");
-const Review_1 = require("./Review");
-const ProductOrder_1 = require("./ProductOrder");
-let Product = class Product extends sequelize_typescript_1.Model {
+let Review = class Review extends sequelize_typescript_1.Model {
 };
-exports.Product = Product;
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
-    }),
-    __metadata("design:type", String)
-], Product.prototype, "name", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
-    }),
-    __metadata("design:type", String)
-], Product.prototype, "description", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.FLOAT, // Usamos FLOAT para representar precios
-        allowNull: false
-    }),
-    __metadata("design:type", Number)
-], Product.prototype, "price", void 0);
+exports.Review = Review;
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
         allowNull: false
     }),
     __metadata("design:type", Number)
-], Product.prototype, "stock", void 0);
+], Review.prototype, "rating", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
         allowNull: false
     }),
     __metadata("design:type", String)
-], Product.prototype, "condition", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
-    }),
-    __metadata("design:type", String)
-], Product.prototype, "image", void 0);
+], Review.prototype, "comment", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], Product.prototype, "userId", void 0);
+], Review.prototype, "userId", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
     __metadata("design:type", User_1.User)
-], Product.prototype, "user", void 0);
+], Review.prototype, "user", void 0);
 __decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => Category_1.Category),
+    (0, sequelize_typescript_1.ForeignKey)(() => Product_1.Product),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
-], Product.prototype, "categoryId", void 0);
+], Review.prototype, "productId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => Category_1.Category),
-    __metadata("design:type", Category_1.Category)
-], Product.prototype, "category", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => Review_1.Review),
-    __metadata("design:type", Array)
-], Product.prototype, "review", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => ProductOrder_1.ProductOrder),
-    __metadata("design:type", Array)
-], Product.prototype, "productOrder", void 0);
+    (0, sequelize_typescript_1.BelongsTo)(() => Product_1.Product),
+    __metadata("design:type", Product_1.Product)
+], Review.prototype, "product", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)
-], Product.prototype, "deletedAt", void 0);
-exports.Product = Product = __decorate([
+], Review.prototype, "deletedAt", void 0);
+exports.Review = Review = __decorate([
     (0, sequelize_typescript_1.DefaultScope)(() => ({
         where: { deletedAt: null },
     })),
@@ -98,4 +60,4 @@ exports.Product = Product = __decorate([
         paranoid: true, // Habilita el borrado lógico
         timestamps: true, // Habilita createdAt y updatedAt
     })
-], Product);
+], Review);
