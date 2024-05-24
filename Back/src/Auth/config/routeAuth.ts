@@ -1,6 +1,6 @@
 const express = require('express');
 import {passport} from './auth';
-const User = require('../models/User');
+const User = require('../../models/User');
 const axios = require('axios');
 require('dotenv').config();
 

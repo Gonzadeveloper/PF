@@ -10,7 +10,9 @@ passport.use(new Auth0Strategy({
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
     callbackURL: process.env.AUTH0_CALLBACK_URL,
-}, (_accessToken, _refreshToken, _extraParams, profile, done) => {
+}, (accessToken, refreshToken, _extraParams, profile, done) => {
+    profile.accessToken = accessToken;
+    profile.refreshToken = refreshToken;
     return done(null, profile);
 }));
 passport.serializeUser((user, done) => {
