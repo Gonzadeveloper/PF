@@ -188,6 +188,200 @@
             "comment": "Buena impresora 3D, pero el software de modelado podría ser mejor."
           }
         ]
+      },
+
+      {
+        "id": 11,
+        "name": "Apple iPhone 13 Pro",
+        "description": "Smartphone de alta gama con pantalla Super Retina XDR de 6.1 pulgadas, 256GB de almacenamiento y cámara triple de 12MP.",
+        "price": 1200.00,
+        "stock": 20,
+        "category": 2,
+        "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-pro-max-sierra-blue-select?wid=940&hei=1112&fmt=png-alpha&.v=1645552346275",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor iPhone hasta ahora, la cámara es espectacular."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente teléfono, pero un poco caro."
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "name": "Samsung Galaxy Tab S7",
+        "description": "Tablet de 11 pulgadas con pantalla LCD, 128GB de almacenamiento y S Pen incluido.",
+        "price": 650.00,
+        "stock": 10,
+        "category": 3,
+        "image": "https://image.samsung.com/us/tablets/galaxy-tab-s7/images/galaxy-tab-s7_highlights_kv_m.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor tablet para productividad y entretenimiento."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buena, pero el S Pen podría tener mejor precisión."
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "name": "Sony WH-1000XM4",
+        "description": "Auriculares inalámbricos con cancelación de ruido y hasta 30 horas de duración de la batería.",
+        "price": 350.00,
+        "stock": 40,
+        "category": 5,
+        "image": "https://m.media-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor cancelación de ruido que he experimentado."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buenos auriculares, pero un poco caros."
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "name": "Dell XPS 13",
+        "description": "Laptop ultrabook con pantalla de 13.4 pulgadas, 16GB de RAM, 512GB SSD y procesador Intel Core i7.",
+        "price": 1400.00,
+        "stock": 15,
+        "category": 1,
+        "image": "https://i.dell.com/sites/imagecontent/products/PublishingImages/xps-13-9300-laptop-white-silver.png",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor laptop para profesionales en movimiento."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente rendimiento, pero podría tener más puertos."
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "name": "Canon EOS R5",
+        "description": "Cámara sin espejo con sensor de 45MP, grabación de video 8K y estabilización de imagen.",
+        "price": 3900.00,
+        "stock": 5,
+        "category": 7,
+        "image": "https://store.canon.com.au/media/catalog/product/cache/67b3a1f1d7a37b9b11660f642919e2e2/e/o/eos-r5-side-back_1.png",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor cámara que he usado, las fotos y videos son de altísima calidad."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente cámara, pero el precio es muy alto."
+          }
+        ]
+      },
+      {
+        "id": 16,
+        "name": "GoPro HERO9 Black",
+        "description": "Cámara de acción con grabación de video 5K, estabilización HyperSmooth 3.0 y pantalla frontal.",
+        "price": 500.00,
+        "stock": 25,
+        "category": 7,
+        "image": "https://gopro.com/content/dam/gopro/us/en/products/hero9-black/gopro-hero9-black-9.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "Perfecta para deportes extremos, la calidad de video es impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy buena cámara de acción, pero la batería podría durar más."
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "name": "Logitech MX Master 3",
+        "description": "Mouse inalámbrico con scroll electromagnético y diseño ergonómico, ideal para trabajo y productividad.",
+        "price": 100.00,
+        "stock": 30,
+        "category": 6,
+        "image": "https://resource.logitech.com/content/dam/logitech/en/products/mice/mx-master-3/mx-master-3-sub-navigation-graphite.png",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor mouse para productividad que he usado."
+          },
+          {
+            "rating": 4,
+            "comment": "Muy cómodo, pero el precio es algo elevado."
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "name": "Apple MacBook Pro M1",
+        "description": "Laptop con pantalla Retina de 13 pulgadas, chip M1, 16GB de RAM y 1TB SSD.",
+        "price": 1800.00,
+        "stock": 10,
+        "category": 1,
+        "image": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp13touch-silver-select-202011_GEO_EMEA_LANG_FR?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1603406895000",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor MacBook hasta ahora, el rendimiento del chip M1 es increíble."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente laptop, pero el precio es bastante alto."
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "name": "Asus ROG Swift PG27UQ",
+        "description": "Monitor gaming 4K de 27 pulgadas con 144Hz y G-Sync.",
+        "price": 2000.00,
+        "stock": 8,
+        "category": 4,
+        "image": "https://dlcdnwebimgs.asus.com/gain/F4604B1E-0169-4805-9F8C-73E5C69DAA64",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "El mejor monitor para gaming, los gráficos son impresionantes."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente monitor, pero el precio es muy alto."
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "name": "Nintendo Switch OLED",
+        "description": "Consola de videojuegos con pantalla OLED de 7 pulgadas, 64GB de almacenamiento interno y soporte para juegos portátiles y de sobremesa.",
+        "price": 350.00,
+        "stock": 50,
+        "category": 9,
+        "image": "https://m.media-amazon.com/images/I/61-PblYntsL._AC_SL1500_.jpg",
+        "reviews": [
+          {
+            "rating": 5,
+            "comment": "La mejor versión de la Switch, la pantalla OLED es impresionante."
+          },
+          {
+            "rating": 4,
+            "comment": "Excelente consola, pero la duración de la batería podría ser mejor."
+          }
+        ]
       }
+
+
+
     ]
   

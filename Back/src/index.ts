@@ -1,51 +1,36 @@
-import express from "express"
-import getAllProducts  from './routes/getAllProducts' ;
-import getProductByName from "./routes/getProductByName";
-import getProductById from "./routes/getProductById";
-import postProduct  from "./routes/postProduct";
-//import  {init } from "./db";
-import putProduct from "./routes/putProduct";
-const { auth } = require('express-openid-connect');
-const { requiresAuth } = require('express-openid-connect');
+import express from "express";
+import cors from 'cors';
 
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
 import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
-import  postUser  from "./routes/postUser";
+import routessRaiz  from './routes/index';
+import { Review } from './models/Review';
+import { Order } from './models/Order';
+import { ProductOrder } from './models/ProductOrder';
+import { Payment } from './models/Payment';
+//import { getUser } from "./services/getUser";
+const session = require('./Auth/config/session');
+import {passport} from './Auth/config/auth';
+const authRoutes = require('./Auth/config/routeAuth');
+
 
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: 'auG6_Kf52jXOk8dSNcEtDifshjHgVDm4D7y8DH8wQqOvIjpNuzT1Vm8JpdnS4BhX',
-    baseURL: 'http://localhost:3000',
-    clientID: 'Xqv1NfgoqHqhwJjYdMASLNl4lPIjOawK',
-    issuerBaseURL: 'https://dev-pywymllismpo3klw.us.auth0.com'
-  };
+app.use(cors())
+
+app.use('/',routessRaiz)
 
 const PORT = 3000
 
-app.get ('/products', getAllProducts);
-app.get ('/products/:name', getProductByName);
-app.get ('/products/:id', getProductById);
-app.post ('/products/product/', postProduct);
-app.post ('/user/', postUser);
+app.use(session);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/', authRoutes);
 
-app.put ('/products/:id', putProduct);
-
-app.use(auth(config));
-
-app.get('/', (req: any, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-
-app.get('/profile', requiresAuth(), (req: any, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-  });
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
@@ -62,7 +47,7 @@ const init = async () => {
   
   init();
   
-  export { Product, Category, User, Address };
+  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment };
 
 //   const server = require('./src/app.js');
 // const { conn } = require('./src/db.js');

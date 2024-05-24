@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { sequelize } from '../config/database';
 import { Product } from '../models/Product';
 import { Category } from '../models/Category';
-import { User } from '../models/User'
+import { User } from '../models/User';
 //const productsFilePath = '../back/src/local/product.json';
 
 export const getProductById = async (req: Request, res: Response) => {

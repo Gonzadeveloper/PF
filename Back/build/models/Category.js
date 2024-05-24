@@ -20,9 +20,34 @@ __decorate([
     __metadata("design:type", String)
 ], Category.prototype, "name", void 0);
 __decorate([
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+    __metadata("design:type", Object)
+], Category.prototype, "deletedAt", void 0);
+__decorate([
     (0, sequelize_typescript_1.HasMany)(() => Product_1.Product),
     __metadata("design:type", Array)
 ], Category.prototype, "products", void 0);
 exports.Category = Category = __decorate([
-    sequelize_typescript_1.Table
+    (0, sequelize_typescript_1.DefaultScope)(() => ({
+        where: { deletedAt: null },
+    })),
+    (0, sequelize_typescript_1.Table)({
+        paranoid: true, // Habilita el borrado lógico
+        timestamps: true, // Habilita createdAt y updatedAt
+    })
 ], Category);
+//import { sequelize } from '../config/database';
+// import { Product } from './Product';
+// import { Category } from './Category';
+// import { User } from './User';
+// import { Address } from './Address';
+// const init = async () => {
+//   try {
+//     await sequelize.sync({ force: false });
+//     console.log('Database & tables created!');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// };
+// init();
+// export { Product, Category, User, Address };
