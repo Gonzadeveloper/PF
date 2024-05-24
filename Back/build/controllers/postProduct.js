@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postProduct = void 0;
 const database_1 = require("../config/database");
 const Product_1 = require("../models/Product");
+const Category_1 = require("../models/Category");
 //import { getAllProductDb } from '../controllers/getAllProductDb';
 const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const product = req.body;
@@ -26,7 +27,7 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             return;
         }
         // Crear una nueva categoría
-        // const newCategory = await Category.create({ name: 'Tecnologia' } as any);
+        const newCategory = yield Category_1.Category.create({ name: 'Phone' });
         // Crear un nuevo producto en la categoría creada
         const newProduct = yield Product_1.Product.create({
             name: product.name,
@@ -40,7 +41,24 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             //categoryId: newCategory.id,
         });
         console.log(newProduct);
-        //console.log(newCategory);
+        console.log(newCategory);
+        // Leer productos
+        // const products = await Product.findAll({
+        //   include: [Category],
+        // });
+        // console.log('All products:', JSON.stringify(products, null, 2));
+        //Actualizar un producto
+        // const [updatedCount] = await Product.update(
+        //   { price: 1999 },
+        //   { where: { id: newProduct.id } }
+        // );
+        // console.log(`Updated ${updatedCount} product(s)`);
+        // // Eliminar un producto
+        // const deletedProduct = await Product.destroy({ where: { id: newProduct.id } });
+        // console.log(`Deleted product with id: ${newProduct.id}`);
+        // // Eliminar una categoría
+        // const deletedCategory = await Category.destroy({ where: { id: newCategory.id } });
+        // console.log(`Deleted category with id: ${newCategory.id}`);
         console.log('CRUD operations completed successfully.');
         res.status(200).json(product);
     }

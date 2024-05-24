@@ -24,13 +24,12 @@ const User_1 = require("./models/User");
 Object.defineProperty(exports, "User", { enumerable: true, get: function () { return User_1.User; } });
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
-//import { getUser } from "./services/getUser";
 const index_1 = __importDefault(require("./routes/index"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 app.use((0, cors_1.default)());
-const PORT = 3000;
 app.use('/', index_1.default);
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

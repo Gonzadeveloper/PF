@@ -6,8 +6,9 @@ import { Product } from './models/Product';
 import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
-//import { getUser } from "./services/getUser";
-import routessRaiz from './routes/index';
+import routessRaiz  from './routes/index';
+
+
 
 
 const app = express()
@@ -15,14 +16,18 @@ app.use(express.json()) // middleware que transforma la req.body a un json
 
 app.use(cors())
 
+app.use('/',routessRaiz)
+
 const PORT = 3000
 
-app.use('/', routessRaiz);
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
-
 
 const init = async () => {
     try {
