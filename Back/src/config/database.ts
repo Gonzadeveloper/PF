@@ -1,4 +1,4 @@
- import { Sequelize } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize-typescript';
 import { Product } from '../models/Product';
 import { Category } from '../models/Category';
 import { User } from '../models/User';

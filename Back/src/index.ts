@@ -14,6 +14,7 @@ import { Payment } from './models/Payment';
 
 
 
+
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 

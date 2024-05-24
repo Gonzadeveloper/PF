@@ -9,69 +9,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Order = void 0;
+exports.CartProduct = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
-const User_1 = require("./User");
-const ProductOrder_1 = require("./ProductOrder");
-const Payment_1 = require("./Payment");
-let Order = class Order extends sequelize_typescript_1.Model {
+const Cart_1 = require("./Cart");
+const Product_1 = require("./Product");
+let CartProduct = class CartProduct extends sequelize_typescript_1.Model {
 };
-exports.Order = Order;
+exports.CartProduct = CartProduct;
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    }),
-    __metadata("design:type", Number)
-], Order.prototype, "id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
+    (0, sequelize_typescript_1.ForeignKey)(() => Cart_1.Cart),
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.INTEGER,
         allowNull: false,
     }),
     __metadata("design:type", Number)
-], Order.prototype, "userId", void 0);
+], CartProduct.prototype, "cartId", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
-    __metadata("design:type", User_1.User)
-], Order.prototype, "user", void 0);
+    (0, sequelize_typescript_1.BelongsTo)(() => Cart_1.Cart),
+    __metadata("design:type", Cart_1.Cart)
+], CartProduct.prototype, "cart", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => Product_1.Product),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER,
+        allowNull: false,
+    }),
+    __metadata("design:type", Number)
+], CartProduct.prototype, "productId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => Product_1.Product),
+    __metadata("design:type", Product_1.Product)
+], CartProduct.prototype, "product", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.DATE,
+        type: sequelize_typescript_1.DataType.INTEGER,
         allowNull: false,
-        defaultValue: sequelize_typescript_1.DataType.NOW,
     }),
-    __metadata("design:type", Date)
-], Order.prototype, "orderDate", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.ENUM,
-        values: ['Pendiente', 'Enviado', 'Entregado'],
-        allowNull: false,
-        defaultValue: 'Pendiente'
-    }),
-    __metadata("design:type", String)
-], Order.prototype, "orderStatus", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => ProductOrder_1.ProductOrder),
-    __metadata("design:type", Array)
-], Order.prototype, "productOrder", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasOne)(() => Payment_1.Payment),
-    __metadata("design:type", Payment_1.Payment)
-], Order.prototype, "payment", void 0);
+    __metadata("design:type", Number)
+], CartProduct.prototype, "quantity", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)
-], Order.prototype, "deletedAt", void 0);
-exports.Order = Order = __decorate([
+], CartProduct.prototype, "deletedAt", void 0);
+exports.CartProduct = CartProduct = __decorate([
     (0, sequelize_typescript_1.DefaultScope)(() => ({
         where: { deletedAt: null },
     })),
     (0, sequelize_typescript_1.Table)({
-        timestamps: true, // Habilita createdAt y updatedAt
+        timestamps: false, // Deshabilita createdAt y updatedAt
         paranoid: true, // Habilita el borrado lógico
     })
-], Order);
+], CartProduct);

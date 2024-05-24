@@ -1,4 +1,5 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo, HasMany, DefaultScope, HasOne } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, BelongsTo, HasMany, DefaultScope, HasOne } from 'sequelize-typescript';
 import { User } from './User';
 import { ProductOrder } from './ProductOrder';
 import { Payment } from './Payment';
@@ -6,7 +7,24 @@ import { Payment } from './Payment';
    @DefaultScope(() => ({
      where: { deletedAt: null },
    }))
+import { ProductOrder } from './ProductOrder';
+import { Payment } from './Payment';
 
+   @DefaultScope(() => ({
+     where: { deletedAt: null },
+   }))
+
+   @Table({
+     timestamps: true, // Habilita createdAt y updatedAt
+     paranoid: true, // Habilita el borrado lógico
+   })
+   export class Order extends Model<Order> {
+       @Column({
+         type: DataType.INTEGER,
+         autoIncrement: true,
+         primaryKey: true,
+       })
+       id!: number;
    @Table({
      timestamps: true, // Habilita createdAt y updatedAt
      paranoid: true, // Habilita el borrado lógico
