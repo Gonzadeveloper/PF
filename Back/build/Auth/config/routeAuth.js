@@ -4,5 +4,5 @@ const express = require('express');
 const authController = require('./verificacionToken');
 const verificacionToken_1 = require("./verificacionToken");
 const router = express.Router();
-router.post('/authenticate', verificacionToken_1.checkJwt, authController.authenticateUser);
+router.post('/', verificacionToken_1.checkJwt, authController.authenticateUser);
 module.exports = router;

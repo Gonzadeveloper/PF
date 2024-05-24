@@ -4,6 +4,6 @@ import {checkJwt} from './verificacionToken';
 
 const router = express.Router();
 
-router.post('/authenticate', checkJwt, authController.authenticateUser);
+router.post('/', checkJwt, authController.authenticateUser);
 
 module.exports = router;
