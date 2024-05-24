@@ -10,11 +10,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
-const sequelize_typescript_1 = require("sequelize-typescript");
+// @Table
+// export class Product extends Model<Product> {
+//   @Column({ 
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   name!: string;
+//   @Column({ 
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   description!: string;
+//   @Column({ 
+//     type: DataType.FLOAT, // Usamos FLOAT para representar precios
+//     allowNull: false
+//   })
+//   price!: number;
+//   @Column({ 
+//     type: DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
+//     allowNull: false
+//   })
+//   stock!: number;
+//   @Column({         
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   condition!: string;  
+//   @Column({         
+//     type: DataType.STRING,
+//     allowNull: false
+//   })
+//   image!: string; 
+//   @ForeignKey(() => User)
+//   @Column
+//   userId!: number;
+//   @BelongsTo(() => User)
+//   user!: User;
+//   @ForeignKey(() => Category)
+//   @Column
+//   categoryId!: number;
+//   @BelongsTo(() => Category)
+//   category!: Category;
+// }
+///////////////////////////////////////
+const sequelize_typescript_1 = require("sequelize-typescript"); // importar HasMany
 const Category_1 = require("./Category");
 const User_1 = require("./User");
-const Review_1 = require("./Review");
-const ProductOrder_1 = require("./ProductOrder");
+// import { OrderProduct } from './OrderProduct';
 let Product = class Product extends sequelize_typescript_1.Model {
 };
 exports.Product = Product;

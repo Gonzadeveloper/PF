@@ -17,6 +17,7 @@ import {passport} from './Auth/config/auth';
 const authRoutes = require('./Auth/config/routeAuth');
 
 
+
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 

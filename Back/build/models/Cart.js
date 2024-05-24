@@ -9,14 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Order = void 0;
+exports.Cart = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = require("./User");
-const ProductOrder_1 = require("./ProductOrder");
-const Payment_1 = require("./Payment");
-let Order = class Order extends sequelize_typescript_1.Model {
+const CartProduct_1 = require("./CartProduct");
+let Cart = class Cart extends sequelize_typescript_1.Model {
 };
-exports.Order = Order;
+exports.Cart = Cart;
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.INTEGER,
@@ -24,7 +23,7 @@ __decorate([
         primaryKey: true,
     }),
     __metadata("design:type", Number)
-], Order.prototype, "id", void 0);
+], Cart.prototype, "id", void 0);
 __decorate([
     (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
     (0, sequelize_typescript_1.Column)({
@@ -32,41 +31,20 @@ __decorate([
         allowNull: false,
     }),
     __metadata("design:type", Number)
-], Order.prototype, "userId", void 0);
+], Cart.prototype, "userId", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
     __metadata("design:type", User_1.User)
-], Order.prototype, "user", void 0);
+], Cart.prototype, "user", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.DATE,
-        allowNull: false,
-        defaultValue: sequelize_typescript_1.DataType.NOW,
-    }),
-    __metadata("design:type", Date)
-], Order.prototype, "orderDate", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.ENUM,
-        values: ['Pendiente', 'Enviado', 'Entregado'],
-        allowNull: false,
-        defaultValue: 'Pendiente'
-    }),
-    __metadata("design:type", String)
-], Order.prototype, "orderStatus", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => ProductOrder_1.ProductOrder),
+    (0, sequelize_typescript_1.HasMany)(() => CartProduct_1.CartProduct),
     __metadata("design:type", Array)
-], Order.prototype, "productOrder", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasOne)(() => Payment_1.Payment),
-    __metadata("design:type", Payment_1.Payment)
-], Order.prototype, "payment", void 0);
+], Cart.prototype, "cartProducts", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)
-], Order.prototype, "deletedAt", void 0);
-exports.Order = Order = __decorate([
+], Cart.prototype, "deletedAt", void 0);
+exports.Cart = Cart = __decorate([
     (0, sequelize_typescript_1.DefaultScope)(() => ({
         where: { deletedAt: null },
     })),
@@ -74,4 +52,4 @@ exports.Order = Order = __decorate([
         timestamps: true, // Habilita createdAt y updatedAt
         paranoid: true, // Habilita el borrado lógico
     })
-], Order);
+], Cart);
