@@ -1,6 +1,6 @@
 //////////////////////////////////////////////
 
-import { Table, Column, Model, DataType, HasMany, DefaultScope } from 'sequelize-typescript'; //importar HasOne
+import { Table, Column, Model, DataType, HasMany, DefaultScope, HasOne } from 'sequelize-typescript'; //importar HasOne
 import { Address } from './Address';
 import { Product } from './Product';
 import { Review } from './Review';
@@ -74,3 +74,5 @@ export class User extends Model<User> {
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
 }
+
+ // todo lo comentado es nuevo para relación con órden
