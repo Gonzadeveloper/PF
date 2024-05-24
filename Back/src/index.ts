@@ -6,8 +6,12 @@ import { Product } from './models/Product';
 import { Category } from './models/Category';
 import { User } from './models/User';
 import { Address } from './models/Address';
+import routessRaiz  from './routes/index';
+import { Review } from './models/Review';
+import { Order } from './models/Order';
+import { ProductOrder } from './models/ProductOrder';
+import { Payment } from './models/Payment';
 //import { getUser } from "./services/getUser";
-import routessRaiz from './routes/index';
 const session = require('./Auth/config/session');
 import {passport} from './Auth/config/auth';
 const authRoutes = require('./Auth/config/routeAuth');
@@ -18,6 +22,8 @@ app.use(express.json()) // middleware que transforma la req.body a un json
 
 app.use(cors())
 
+app.use('/',routessRaiz)
+
 const PORT = 3000
 
 app.use(session);
@@ -25,12 +31,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/', authRoutes);
 
-app.use('/', routessRaiz);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
-
 
 const init = async () => {
     try {
@@ -43,7 +47,7 @@ const init = async () => {
   
   init();
   
-  export { Product, Category, User, Address };
+  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment };
 
 //   const server = require('./src/app.js');
 // const { conn } = require('./src/db.js');

@@ -17,33 +17,47 @@ let Review = class Review extends sequelize_typescript_1.Model {
 };
 exports.Review = Review;
 __decorate([
-    (0, sequelize_typescript_1.Column)({ primaryKey: true, autoIncrement: true }),
-    __metadata("design:type", Number)
-], Review.prototype, "id", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({ allowNull: false }),
-    __metadata("design:type", Number)
-], Review.prototype, "productId", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({ allowNull: false }),
-    __metadata("design:type", Number)
-], Review.prototype, "userId", void 0);
-__decorate([
-    (0, sequelize_typescript_1.Column)({ allowNull: false }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
+        allowNull: false
+    }),
     __metadata("design:type", Number)
 ], Review.prototype, "rating", void 0);
 __decorate([
-    (0, sequelize_typescript_1.Column)({ allowNull: false }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.STRING,
+        allowNull: false
+    }),
     __metadata("design:type", String)
 ], Review.prototype, "comment", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => User_1.User),
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Review.prototype, "userId", void 0);
+__decorate([
+    (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
+    __metadata("design:type", User_1.User)
+], Review.prototype, "user", void 0);
+__decorate([
+    (0, sequelize_typescript_1.ForeignKey)(() => Product_1.Product),
+    sequelize_typescript_1.Column,
+    __metadata("design:type", Number)
+], Review.prototype, "productId", void 0);
 __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => Product_1.Product),
     __metadata("design:type", Product_1.Product)
 ], Review.prototype, "product", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsTo)(() => User_1.User),
-    __metadata("design:type", User_1.User)
-], Review.prototype, "user", void 0);
+    (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
+    __metadata("design:type", Object)
+], Review.prototype, "deletedAt", void 0);
 exports.Review = Review = __decorate([
-    (0, sequelize_typescript_1.Table)({ modelName: 'Review' })
+    (0, sequelize_typescript_1.DefaultScope)(() => ({
+        where: { deletedAt: null },
+    })),
+    (0, sequelize_typescript_1.Table)({
+        paranoid: true, // Habilita el borrado lógico
+        timestamps: true, // Habilita createdAt y updatedAt
+    })
 ], Review);
