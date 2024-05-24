@@ -210,13 +210,18 @@ function NewProduct() {
                         className={`form-select ${error.categoryId ? 'is-invalid' : ''}`}
                     >
                         <option value="">-</option>
-                        <option value="1">Celular</option>
-                        <option value="2">Laptop</option>
-                        <option value="3">Monitor</option>
-                        <option value="4">Auricular</option>
-                        <option value="5">Keyboard</option>
-                        <option value="6">Mouse</option>
-                        <option value="7">Storage</option>
+                        <option value="1">Celulares</option>
+                        <option value="2">Notebooks</option>
+                        <option value="3">Impresoras</option>
+                        <option value="4">Redes</option>
+                        <option value="5">Componentes PC</option>
+                        <option value="6">Tablets</option>
+                        <option value="7">Camaras</option>
+                        <option value="8">Sonido</option>
+                        <option value="9">Almacenamiento</option>
+                        <option value="10">Smartwatch</option>
+                        <option value="11">Monitores</option>
+                        <option value="12">Consolas</option>
                     </select>
                     <div className="invalid-feedback">{error.categoryId}</div>
                 </div>
