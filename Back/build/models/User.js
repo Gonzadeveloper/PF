@@ -26,7 +26,7 @@ __decorate([
         validate: {
             notEmpty: true,
             len: [3, 50],
-        }
+        },
     }),
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);
@@ -38,8 +38,8 @@ __decorate([
         validate: {
             notEmpty: true,
             len: [3, 50],
-            isEmail: true
-        }
+            isEmail: true,
+        },
     }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
@@ -50,7 +50,7 @@ __decorate([
         validate: {
             notEmpty: true,
             len: [6, 20],
-        }
+        },
     }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
@@ -60,8 +60,8 @@ __decorate([
         allowNull: false,
         validate: {
             notEmpty: true,
-            isIn: [['ADMIN', 'USER']]
-        }
+            isIn: [["ADMIN", "USER"]],
+        },
     }),
     __metadata("design:type", String)
 ], User.prototype, "typeuser", void 0);

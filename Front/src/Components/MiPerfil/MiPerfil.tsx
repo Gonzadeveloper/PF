@@ -1,29 +1,38 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import styles from "./Miperfil.module.css"; // Importa los estilos del módulo CSS
+import axios from "axios";
+import styles from "./Miperfil.module.css";
 
 const MiPerfil: React.FC = () => {
-  const navigate = useNavigate();
-  const { loginWithRedirect, loginWithPopup, logout, isAuthenticated, user } =
-    useAuth0();
+  const {
+    loginWithRedirect,
+    logout,
+    isAuthenticated,
+    user,
+    getAccessTokenSilently,
+  } = useAuth0();
+  const [formData, setFormData] = useState({
+    password: "",
+    typeuser: "USER",
+    address: "",
+    country: "",
+    city: "",
+    state: "",
+    postalcode: "",
+  });
+  const [showForm, setShowForm] = useState(false);
 
-  const handleRegister = () => {
-    navigate("/registrar");
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
   };
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     loginWithRedirect();
-  };
-
-  const handleGoogleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    loginWithPopup({
-      authorizationParams: {
-        connection: "google-oauth2",
-      },
-    });
   };
 
   const handleLogout = () => {
@@ -34,8 +43,30 @@ const MiPerfil: React.FC = () => {
     });
   };
 
+  const handleProfileSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await axios.post(
+        `${import.meta.env.VITE_ENDPOINT}/user`,
+        {
+          ...formData,
+          name: user?.name,
+          email: user?.email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Datos enviados:", response.data);
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
+  };
+
   if (isAuthenticated) {
-    console.log("Información del usuario:", user);
     return (
       <div
         className={`${styles.container} mt-5 d-flex justify-content-center align-items-center`}>
@@ -52,14 +83,98 @@ const MiPerfil: React.FC = () => {
               )}
               <p className={styles["card-text"]}>Bienvenido, {user?.name}</p>
               <p className={styles["card-text"]}>Email: {user?.email}</p>
-              <p className={styles["card-text"]}>Apodo: {user?.nickname}</p>
-              <p className={styles["card-text"]}>Idioma: {user?.locale}</p>
+              <button
+                className={`btn btn-secondary mt-3 ${styles["btn-primary"]}`}
+                onClick={() => setShowForm(!showForm)}>
+                {showForm ? "Cancelar" : "Modificar Información"}
+              </button>
+              {showForm && (
+                <form onSubmit={handleProfileSubmit} className="mt-3">
+                  <div className="mb-3">
+                    <label htmlFor="password" className="form-label">
+                      Contraseña
+                    </label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      id="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="address" className="form-label">
+                      Dirección
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address"
+                      value={formData.address}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="country" className="form-label">
+                      País
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="country"
+                      value={formData.country}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="city" className="form-label">
+                      Ciudad
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="city"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="state" className="form-label">
+                      Estado
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="state"
+                      value={formData.state}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="postalcode" className="form-label">
+                      Código Postal
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="postalcode"
+                      value={formData.postalcode}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className={`btn btn-primary ${styles["btn-primary"]}`}>
+                    Guardar Información
+                  </button>
+                </form>
+              )}
+              <button
+                className={`btn btn-primary mt-3 ${styles["btn-primary"]}`}
+                onClick={handleLogout}>
+                Cerrar Sesión
+              </button>
             </div>
-            <button
-              className={`btn btn-primary ${styles["btn-primary"]}`}
-              onClick={handleLogout}>
-              Cerrar Sesión
-            </button>
           </div>
         </div>
       </div>
@@ -71,54 +186,14 @@ const MiPerfil: React.FC = () => {
       <div className="row">
         <div className="col-md-6">
           <h2>Iniciar Sesión</h2>
-          <form>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Correo Electrónico
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="Ingresa tu correo electrónico"
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                placeholder="Ingresa tu contraseña"
-              />
-            </div>
-            <button
-              type="submit"
-              className={`btn btn-primary ${styles["btn-primary"]}`}
-              onClick={handleLogin}>
-              Iniciar Sesión
-            </button>
-          </form>
-        </div>
-        <div className="col-md-6">
-          <h2>Autenticación con Google</h2>
           <button
-            type="button"
-            className={`btn btn-secondary btn-google ${styles["btn-google"]}`}
-            onClick={handleGoogleLogin}>
-            Iniciar Sesión con Google
+            type="submit"
+            className={`btn btn-primary ${styles["btn-primary"]}`}
+            onClick={handleLogin}>
+            Iniciar Sesión
           </button>
-          <div className="mt-3">
-            <button
-              type="button"
-              className={`btn btn-link ${styles["btn-link"]}`}
-              onClick={handleRegister}>
-              Crear Cuenta
-            </button>
-          </div>
         </div>
+        <div className="col-md-6"></div>
       </div>
     </div>
   );

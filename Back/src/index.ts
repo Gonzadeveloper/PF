@@ -21,34 +21,42 @@ const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors())
+app.use(cors());
 
-app.use('/',routessRaiz)
+app.use("/", routessRaiz);
 
 const PORT = 3000;
 
 app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/', authRoutes);
-
+app.use("/", authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
 const init = async () => {
-    try {
-      await sequelize.sync({ force: false });
-      console.log('Database & tables created!');
-    } catch (error) {
-      console.error('Unable to connect to the database:', error);
-    }
-  };
-  
-  init();
-  
-  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment };
+  try {
+    await sequelize.sync({ force: false });
+    console.log("Database & tables created!");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
+
+init();
+
+export {
+  Product,
+  Category,
+  User,
+  Address,
+  Review,
+  Order,
+  ProductOrder,
+  Payment,
+};
 
 //   const server = require('./src/app.js');
 // const { conn } = require('./src/db.js');

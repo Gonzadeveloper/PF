@@ -42,22 +42,22 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
-app.use('/', index_1.default);
+app.use("/", index_1.default);
 const PORT = 3000;
 app.use(session);
 app.use(auth_1.passport.initialize());
 app.use(auth_1.passport.session());
-app.use('/', authRoutes);
+app.use("/", authRoutes);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield database_1.sequelize.sync({ force: false });
-        console.log('Database & tables created!');
+        console.log("Database & tables created!");
     }
     catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error("Unable to connect to the database:", error);
     }
 });
 init();

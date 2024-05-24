@@ -1,19 +1,78 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/card";
+import NoResultsModal from "./NoResult/NoResult";
 import { RootState } from "../../Redux/index";
+import { setFilters } from "../../Redux/Slices/ProductsSlice";
+import { selectFilteredProducts } from "../../Redux/Selector";
 
 function Search() {
-  const products = useSelector((state: RootState) => state.products.products);
+  const dispatch = useDispatch();
+  const filteredProducts = useSelector((state: RootState) =>
+    selectFilteredProducts(state)
+  );
+  const filters = useSelector((state: RootState) => state.products.filters);
+  const [showNoResultsModal, setShowNoResultsModal] = useState(false);
+
+  useEffect(() => {
+    if (filteredProducts.length === 0) {
+      setShowNoResultsModal(true);
+    } else {
+      setShowNoResultsModal(false);
+    }
+  }, [filteredProducts]);
+
+  const handleFilterChange = (name: string, value: string | number) => {
+    let newValue;
+    if (typeof value === "string") {
+      if (value === "") {
+        newValue = name.startsWith("min") ? 0 : Infinity;
+      } else {
+        newValue = value === "Todos" ? "Todos" : value;
+      }
+    } else if (typeof value === "number") {
+      newValue = isNaN(value) ? (name.startsWith("min") ? 0 : Infinity) : value;
+    }
+
+    if (name === "category") {
+      dispatch(
+        setFilters({
+          ...filters,
+          category: { id: 0, name: newValue as string }, // Assuming category id is always 0
+        })
+      );
+    } else {
+      dispatch(
+        setFilters({
+          ...filters,
+          [name]: newValue,
+        })
+      );
+    }
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    handleFilterChange(name, value);
+  };
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    handleFilterChange(name, value);
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
   // Calcula los productos que se mostrarán en la página actual
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const handleClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);
@@ -36,6 +95,83 @@ function Search() {
       <div className="row">
         <div className="col-md-2">
           <h4>Filtros</h4>
+
+          <div className="row">
+            <h3>Precio </h3>
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Min"
+                aria-label="Precio minimo"
+                name="minPrice"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Max"
+                aria-label="Precio maximo"
+                name="maxPrice"
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <h3>Stock </h3>
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Min"
+                aria-label="Stock minimo"
+                name="minStock"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Max"
+                aria-label="Stock maximo"
+                name="maxStock"
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+
+          <h4>Condición</h4>
+          <select
+            className="form-select form-select-sm"
+            aria-label="Small select example"
+            name="condition"
+            onChange={handleSelectChange}>
+            <option value="Todos">Todos</option>
+            <option value="NUEVO">Nuevo</option>
+            <option value="USADO">Usado</option>
+          </select>
+
+          <h4>Categoria</h4>
+          <select
+            className="form-select form-select-sm"
+            aria-label="Small select example"
+            name="category"
+            onChange={handleSelectChange}>
+            <option value="Todos">Todos</option>
+            <option value="Laptop">Notebooks</option>
+            <option value="Phone">Celulares</option>
+            <option value="Headphones">Auriculares</option>
+            <option value="Keyboard">Teclados</option>
+            <option value="Mouse">Mouse</option>
+            <option value="Storage">Almacenamiento</option>
+            <option value="Connection">Redes</option>
+            <option value="Printer">Impresoras</option>
+            <option value="Monitor">Monitores</option>
+          </select>
         </div>
         <div className="col-md-10">
           <div className="row">
@@ -83,6 +219,10 @@ function Search() {
           </nav>
         </div>
       </div>
+      <NoResultsModal
+        show={showNoResultsModal}
+        handleClose={() => setShowNoResultsModal(false)}
+      />
     </div>
   );
 }

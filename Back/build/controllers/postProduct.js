@@ -20,14 +20,21 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         // Conectar a la base de datos
         yield database_1.sequelize.authenticate();
-        console.log('Connection has been established successfully.');
+        console.log("Connection has been established successfully.");
         // Validar la entrada
-        if (!product.name || !product.description || !product.price || !product.stock || !product.condition || !product.image || !product.userId || !product.categoryId) {
-            res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        if (!product.name ||
+            !product.description ||
+            !product.price ||
+            !product.stock ||
+            !product.condition ||
+            !product.image ||
+            !product.userId ||
+            !product.categoryId) {
+            res.status(400).json({ message: "Todos los campos son obligatorios" });
             return;
         }
         // Crear una nueva categoría
-        const newCategory = yield Category_1.Category.create({ name: 'Phone' });
+        const newCategory = yield Category_1.Category.create({ name: "Phone" });
         // Crear un nuevo producto en la categoría creada
         const newProduct = yield Product_1.Product.create({
             name: product.name,
@@ -59,11 +66,11 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         // // Eliminar una categoría
         // const deletedCategory = await Category.destroy({ where: { id: newCategory.id } });
         // console.log(`Deleted category with id: ${newCategory.id}`);
-        console.log('CRUD operations completed successfully.');
+        console.log("CRUD operations completed successfully.");
         res.status(200).json(product);
     }
     catch (error) {
-        console.error('Unable to perform CRUD operations:', error);
+        console.error("Unable to perform CRUD operations:", error);
     }
 });
 exports.postProduct = postProduct;
