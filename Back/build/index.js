@@ -37,8 +37,10 @@ Object.defineProperty(exports, "Payment", { enumerable: true, get: function () {
 const session = require('./Auth/config/session');
 const auth_1 = require("./Auth/config/auth");
 const authRoutes = require('./Auth/config/routeAuth');
+require('dotenv').config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
 app.use('/', index_1.default);
 const PORT = 3000;

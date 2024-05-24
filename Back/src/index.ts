@@ -1,6 +1,5 @@
 import express from "express";
 import cors from 'cors';
-
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
 import { Category } from './models/Category';
@@ -15,10 +14,12 @@ import { Payment } from './models/Payment';
 const session = require('./Auth/config/session');
 import {passport} from './Auth/config/auth';
 const authRoutes = require('./Auth/config/routeAuth');
+require('dotenv').config();
 
 
 const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors())
 
