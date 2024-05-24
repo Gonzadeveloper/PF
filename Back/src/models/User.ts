@@ -1,6 +1,6 @@
 //////////////////////////////////////////////
 
-import { Table, Column, Model, DataType, HasMany, DefaultScope } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany, DefaultScope } from 'sequelize-typescript'; //importar HasOne
 import { Address } from './Address';
 import { Product } from './Product';
 import { Review } from './Review';
