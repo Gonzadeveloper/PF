@@ -19,14 +19,19 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         // Conectar a la base de datos
         yield database_1.sequelize.authenticate();
-        console.log('Connection has been established successfully.');
+        console.log("Connection has been established successfully.");
         // Validar la entrada
-        if (!product.name || !product.description || !product.price || !product.stock || !product.condition || !product.image || !product.userId || !product.categoryId) {
-            res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        if (!product.name ||
+            !product.description ||
+            !product.price ||
+            !product.stock ||
+            !product.condition ||
+            !product.image ||
+            !product.userId ||
+            !product.categoryId) {
+            res.status(400).json({ message: "Todos los campos son obligatorios" });
             return;
         }
-        // Crear una nueva categoría
-        // const newCategory = await Category.create({ name: 'Tecnologia' } as any);
         // Crear un nuevo producto en la categoría creada
         const newProduct = yield Product_1.Product.create({
             name: product.name,
@@ -40,12 +45,11 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             //categoryId: newCategory.id,
         });
         console.log(newProduct);
-        //console.log(newCategory);
-        console.log('CRUD operations completed successfully.');
+        console.log("CRUD operations completed successfully.");
         res.status(200).json(product);
     }
     catch (error) {
-        console.error('Unable to perform CRUD operations:', error);
+        console.error("Unable to perform CRUD operations:", error);
     }
 });
 exports.postProduct = postProduct;

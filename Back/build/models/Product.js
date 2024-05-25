@@ -1,7 +1,4 @@
 "use strict";
-// import { Table, Column, Model, ForeignKey, BelongsTo, DataType } from 'sequelize-typescript';
-// import { Category } from './Category';
-// import { User } from './User';
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,95 +10,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
-// @Table
-// export class Product extends Model<Product> {
-//   @Column({ 
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   name!: string;
-//   @Column({ 
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   description!: string;
-//   @Column({ 
-//     type: DataType.FLOAT, // Usamos FLOAT para representar precios
-//     allowNull: false
-//   })
-//   price!: number;
-//   @Column({ 
-//     type: DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
-//     allowNull: false
-//   })
-//   stock!: number;
-//   @Column({         
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   condition!: string;  
-//   @Column({         
-//     type: DataType.STRING,
-//     allowNull: false
-//   })
-//   image!: string; 
-//   @ForeignKey(() => User)
-//   @Column
-//   userId!: number;
-//   @BelongsTo(() => User)
-//   user!: User;
-//   @ForeignKey(() => Category)
-//   @Column
-//   categoryId!: number;
-//   @BelongsTo(() => Category)
-//   category!: Category;
-// }
-///////////////////////////////////////
 const sequelize_typescript_1 = require("sequelize-typescript");
 const Category_1 = require("./Category");
 const User_1 = require("./User");
+const Review_1 = require("./Review");
+const ProductOrder_1 = require("./ProductOrder");
 let Product = class Product extends sequelize_typescript_1.Model {
 };
 exports.Product = Product;
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Product.prototype, "name", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Product.prototype, "description", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.FLOAT, // Usamos FLOAT para representar precios
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", Number)
 ], Product.prototype, "price", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", Number)
 ], Product.prototype, "stock", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Product.prototype, "condition", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
         type: sequelize_typescript_1.DataType.STRING,
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", String)
 ], Product.prototype, "image", void 0);
@@ -123,6 +78,14 @@ __decorate([
     (0, sequelize_typescript_1.BelongsTo)(() => Category_1.Category),
     __metadata("design:type", Category_1.Category)
 ], Product.prototype, "category", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => Review_1.Review),
+    __metadata("design:type", Array)
+], Product.prototype, "review", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasMany)(() => ProductOrder_1.ProductOrder),
+    __metadata("design:type", Array)
+], Product.prototype, "productOrder", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)

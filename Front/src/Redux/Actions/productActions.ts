@@ -5,7 +5,7 @@ import {
   setProductDetails,
   postProduct,
 } from "../Slices/ProductsSlice";
-import { AppDispatch } from "..";
+import { AppDispatch } from "../index";
 import { Product } from "../../types";
 
 export const getAllProds = () => {
@@ -40,11 +40,15 @@ export const getProductById = (id: number) => async (dispatch: AppDispatch) => {
   }
 };
 
-export const newProduct = (newProd: Product) => async (dispatch:AppDispatch)=>{
-  try {
-    const res = await axios.post<Product>(`${import.meta.env.VITE_ENDPOINT}/product`, newProd)
-    dispatch(postProduct(res.data))
-  } catch (error) {
-    console.error("Error posting new product:", error)
-  }
-}
+export const newProduct =
+  (newProd: Product) => async (dispatch: AppDispatch) => {
+    try {
+      const res = await axios.post<Product>(
+        `${import.meta.env.VITE_ENDPOINT}/product`,
+        newProd
+      );
+      dispatch(postProduct(res.data));
+    } catch (error) {
+      console.error("Error posting new product:", error);
+    }
+  };

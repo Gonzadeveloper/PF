@@ -21,13 +21,15 @@ export interface ProductsState {
   selectedProduct: Product | null;
 }
 
-export interface FavoritesState {  // Asegúrate de que esta interfaz esté correctamente definida
+export interface FavoritesState {
+  // Asegúrate de que esta interfaz esté correctamente definida
   favorites: Product[];
 }
 
 export type RootState = {
   products: ProductsState;
-  favorites: FavoritesState;  // Incluimos FavoritesState en RootState
+  favorites: FavoritesState;
+  userProfile: UserProfile | null;
 };
 
 export type Category = {
@@ -44,3 +46,22 @@ export type Filters = {
   minStock: number;
   maxStock: number;
 };
+export interface BasicUserInfo {
+  id: number;
+  name: string;
+  email: string;
+  typeuser: string;
+}
+export interface UserAddress {
+  id: number;
+  address: string;
+  city: string;
+  state: string;
+  postalcode: string;
+  country: string;
+  userId: number;
+}
+export interface UserProfile {
+  user: BasicUserInfo;
+  address: UserAddress;
+}
