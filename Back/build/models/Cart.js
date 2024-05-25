@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cart = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const User_1 = require("./User");
+//import { CartProduct } from './CartProduct';
 const CartProduct_1 = require("./CartProduct");
 let Cart = class Cart extends sequelize_typescript_1.Model {
 };
@@ -40,10 +41,6 @@ __decorate([
     (0, sequelize_typescript_1.HasMany)(() => CartProduct_1.CartProduct),
     __metadata("design:type", Array)
 ], Cart.prototype, "cartProducts", void 0);
-__decorate([
-    (0, sequelize_typescript_1.HasMany)(() => CartProduct_1.CartProduct),
-    __metadata("design:type", Array)
-], Cart.prototype, "orderProducts", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)

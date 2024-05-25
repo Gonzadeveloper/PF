@@ -16,6 +16,7 @@ const Address_1 = require("./Address");
 const Product_1 = require("./Product");
 const Review_1 = require("./Review");
 const Order_1 = require("./Order");
+const Cart_1 = require("./Cart");
 let User = class User extends sequelize_typescript_1.Model {
 };
 exports.User = User;
@@ -81,6 +82,10 @@ __decorate([
     (0, sequelize_typescript_1.HasMany)(() => Order_1.Order),
     __metadata("design:type", Array)
 ], User.prototype, "order", void 0);
+__decorate([
+    (0, sequelize_typescript_1.HasOne)(() => Cart_1.Cart),
+    __metadata("design:type", Array)
+], User.prototype, "cart", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)

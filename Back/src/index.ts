@@ -11,6 +11,8 @@ import { Review } from './models/Review';
 import { Order } from './models/Order';
 import { ProductOrder } from './models/ProductOrder';
 import { Payment } from './models/Payment';
+import { Cart } from './models/Cart';
+import { CartProduct } from './models/CartProduct';
 //import { getUser } from "./services/getUser";
 // const session = require('./Auth/config/session');
 // import {passport} from './Auth/config/auth';
@@ -48,5 +50,5 @@ const init = async () => {
   
   init();
   
-  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment };
+  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
 

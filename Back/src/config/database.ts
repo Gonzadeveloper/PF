@@ -7,6 +7,8 @@ import { Review } from '../models/Review';
 import { Order } from '../models/Order';
 import { ProductOrder } from '../models/ProductOrder';
 import { Payment } from '../models/Payment';
+import { Cart } from '../models/Cart';
+import { CartProduct } from '../models/CartProduct';
 
 require('dotenv').config();
 const { PG_URL } = process.env;
@@ -15,7 +17,7 @@ const databaseUrl = `${PG_URL}`;
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',
-  models: [Product, Category, User, Address, Review, Order, ProductOrder, Payment],
+  models: [Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct],
   logging: false,
   pool: {
     max: 5,

@@ -1,8 +1,6 @@
 import { sequelize } from '../../config/database';
 import { Review } from '../../models/Review';
-//import { Review } from '../../models/Review';
 import { Request, Response } from 'express';
-//import { getAllProductDb } from '../controllers/getAllProductDb';
 
 const postReview = async (req: Request, res: Response) : Promise<void> => {
   const review= req.body
