@@ -1,11 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import productsreducers from './Slices/ProductsSlice';
-import favoritesReducer from './Slices/FavoritesSlice';  // Importamos el slice de favoritos
+import { configureStore } from "@reduxjs/toolkit";
+import productsreducers from "./Slices/ProductsSlice";
+import favoritesReducer from "./Slices/FavoritesSlice";
 
 const store = configureStore({
   reducer: {
     products: productsreducers,
-    favorites: favoritesReducer,  // Incluimos el slice de favoritos en el store
+    favorites: favoritesReducer,
+    // Incluimos el slice de favoritos en el store
   },
 });
 

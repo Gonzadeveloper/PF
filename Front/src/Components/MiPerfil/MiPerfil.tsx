@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import styles from "./MiPerfil.module.css";
+import styles from "./Miperfil.module.css";
 
 const MiPerfil: React.FC = () => {
   const {

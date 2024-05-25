@@ -10,8 +10,9 @@ import {
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
 import { getProductById } from "../../Redux/Actions/productActions";
+import { setProductDetails } from "../../Redux/Slices/ProductsSlice";
+
 import { selectSelectedProduct } from "../../Redux/Selector";
-import { AnyAction } from "@reduxjs/toolkit";
 import { useParams } from "react-router-dom";
 
 interface Props {
@@ -30,7 +31,11 @@ const ProductDetail: React.FC<Props> = () => {
       return;
     }
 
-    dispatch(getProductById(productId) as unknown as AnyAction);
+    dispatch(getProductById(productId));
+
+    return () => {
+      dispatch(setProductDetails(null));
+    };
   }, [dispatch, id]);
 
   if (!product) {
@@ -42,8 +47,8 @@ const ProductDetail: React.FC<Props> = () => {
       <div className="row">
         <div className="col-md-6">
           <img
-            src={product.image}
-            alt={product.name}
+            src={product?.image}
+            alt={product?.name}
             className="img-fluid rounded half-height"
           />
         </div>
@@ -53,15 +58,19 @@ const ProductDetail: React.FC<Props> = () => {
               <div className="heart-icon">
                 <FontAwesomeIcon icon={faHeart} />
               </div>
-              <h1 className="mb-3">{product.name}</h1>
-              <p className="text-muted mb-2">
-                Categoría: {product.category?.name ?? "Sin categoría"}
+              <h1 className="mb-3">{product?.name}</h1>
+              <p>
+                <strong> Categoría:</strong>{" "}
+                {product?.category?.name ?? "Sin categoría"}
               </p>
               <p>
-                <strong>Precio:</strong> ${product.price.toFixed(2)}
+                <strong>Precio:</strong> ${product?.price?.toFixed(2)}
               </p>
               <p>
-                <strong>Cantidad en Stock:</strong> {product.stock}
+                <strong>Cantidad en Stock:</strong> {product?.stock}
+              </p>
+              <p>
+                <strong>Condicion:</strong> {product?.condition}
               </p>
               <button className="btn btn-primary mr-2">Comprar</button>
               <hr />
@@ -74,7 +83,7 @@ const ProductDetail: React.FC<Props> = () => {
         <div className="col-md-6">
           <div className="card-body">
             <h2>Descripción</h2>
-            <p>{product.description}</p>
+            <p>{product?.description}</p>
           </div>
         </div>
         <div className="col-md-6">
