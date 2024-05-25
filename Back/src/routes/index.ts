@@ -1,12 +1,13 @@
 import express from "express"
-import routesProduct  from './routesProduct';
-import routesUser  from './routesUser';
-import routesCategory  from './routesCategory';
-import routesOrder from './routesOrder'
-import routesProductOrder from './routesProductOrder'
-import routesPayment from './routesPayment'
-import routesCart from './routesCart'
-import routesCartProduct from './routesCartProduct'
+import routesProduct  from '../Product/routes/routesProduct';
+import routesUser  from '../User/routes/routesUser';
+import routesCategory  from '../Category/routes/routesCategory';
+import routesOrder from '../Order/routes/routesOrder'
+import routesProductOrder from '../Order/routes/routesProductOrder'
+import routesPayment from '../Payment/routes/routesPayment'
+import routesCart from '../Cart/routes/routesCart'
+import routesCartProduct from '../Cart/routes/routesCartProduct'
+import routesReview from '../Review/routes/routesReview'
 
 const router = express.Router()
 
@@ -19,6 +20,7 @@ router.use('/productorder', routesProductOrder)
 router.use('/payment', routesPayment)
 router.use('/cart', routesCart)
 router.use('/cartproduct', routesCartProduct)
+router.use('/review', routesReview)
 
 
 export default router;

@@ -94,3 +94,4 @@ exports.User = User = __decorate([
         timestamps: true, // Habilita createdAt y updatedAt
     })
 ], User);
+// todo lo comentado es nuevo para relación con órden

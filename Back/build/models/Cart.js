@@ -41,6 +41,10 @@ __decorate([
     __metadata("design:type", Array)
 ], Cart.prototype, "cartProducts", void 0);
 __decorate([
+    (0, sequelize_typescript_1.HasMany)(() => CartProduct_1.CartProduct),
+    __metadata("design:type", Array)
+], Cart.prototype, "orderProducts", void 0);
+__decorate([
     (0, sequelize_typescript_1.Column)({ type: sequelize_typescript_1.DataType.DATE }),
     __metadata("design:type", Object)
 ], Cart.prototype, "deletedAt", void 0);
