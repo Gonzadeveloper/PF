@@ -21,8 +21,13 @@ export interface ProductsState {
   selectedProduct: Product | null;
 }
 
+export interface FavoritesState {  // Asegúrate de que esta interfaz esté correctamente definida
+  favorites: Product[];
+}
+
 export type RootState = {
   products: ProductsState;
+  favorites: FavoritesState;  // Incluimos FavoritesState en RootState
 };
 
 export type Category = {

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../Card/card";
+import Card from "../Card/Card";
 import NoResultsModal from "./NoResult/NoResult";
 import { RootState } from "../../Redux/index";
 import { setFilters } from "../../Redux/Slices/ProductsSlice";
+import { addFavorite, removeFavorite } from '../../Redux/Slices/FavoritesSlice';
 import { selectFilteredProducts } from "../../Redux/Selector";
+import { Product } from "../../types";
 
 function Search() {
   const dispatch = useDispatch();
   const filteredProducts = useSelector((state: RootState) =>
     selectFilteredProducts(state)
   );
+  const favorites = useSelector((state: RootState) => state.favorites.favorites);
   const filters = useSelector((state: RootState) => state.products.filters);
   const [showNoResultsModal, setShowNoResultsModal] = useState(false);
 
@@ -59,6 +62,14 @@ function Search() {
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
     handleFilterChange(name, value);
+  };
+
+  const handleToggleFavorite = (product: Product) => {
+    if (favorites.some(fav => fav.id === product.id)) {
+      dispatch(removeFavorite(product));
+    } else {
+      dispatch(addFavorite(product));
+    }
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -183,6 +194,9 @@ function Search() {
                 name={card.name}
                 description={card.description}
                 price={card.price}
+                isFavorite={favorites.some(fav => fav.id === card.id)}
+                isSearchPage={true}
+                onToggleFavorite={() => handleToggleFavorite(card)}
               />
             ))}
           </div>
@@ -197,9 +211,8 @@ function Search() {
               {Array.from({ length: totalPages }, (_, index) => (
                 <li
                   key={index + 1}
-                  className={`page-item ${
-                    currentPage === index + 1 ? "active" : ""
-                  }`}>
+                  className={`page-item ${currentPage === index + 1 ? "active" : ""
+                    }`}>
                   <button
                     className="page-link"
                     onClick={() => handleClick(index + 1)}>
@@ -208,9 +221,8 @@ function Search() {
                 </li>
               ))}
               <li
-                className={`page-item ${
-                  currentPage === totalPages ? "disabled" : ""
-                }`}>
+                className={`page-item ${currentPage === totalPages ? "disabled" : ""
+                  }`}>
                 <button className="page-link" onClick={handleNext}>
                   &raquo;
                 </button>

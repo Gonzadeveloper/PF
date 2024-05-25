@@ -12,6 +12,10 @@ export interface CardProps {
   stock?: Product['stock'];
   category?: Product['category'];
   reviews?: Product['reviews'];
+  isFavorite?: boolean;
+  isSearchPage?: boolean,
+  onToggleFavorite?: () => void;
+
 }
 
 const Card: React.FC<CardProps> = ({
@@ -24,7 +28,18 @@ const Card: React.FC<CardProps> = ({
   stock,
   category,
   reviews,
+  isFavorite,
+  isSearchPage,
+  onToggleFavorite,
 }) => {
+
+  const handleToggleFavorite = () => {
+    if (onToggleFavorite) {
+      onToggleFavorite();
+    }
+  };
+
+
   return (
     <div className="col-2">
       <Link to={`/products/${id}`} className="card-link">
@@ -37,6 +52,14 @@ const Card: React.FC<CardProps> = ({
           </div>
         </div>
       </Link>
+      <div className="card-footer">
+        <button
+          onClick={handleToggleFavorite}
+          className={`btn ${isFavorite ? 'btn-danger' : 'btn-primary'}`}
+        >
+          {isSearchPage ? (isFavorite ? "Quitar de favoritos" : "Agregar a favoritos") : (isFavorite ? "Quitar de favoritos" : "Quitar de favoritos")}
+        </button>
+      </div>
     </div>
   );
 };
