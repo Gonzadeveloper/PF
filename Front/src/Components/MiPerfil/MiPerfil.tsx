@@ -11,6 +11,7 @@ const MiPerfil: React.FC = () => {
     user,
     getAccessTokenSilently,
   } = useAuth0();
+
   const [formData, setFormData] = useState({
     password: "",
     typeuser: "USER",
@@ -21,22 +22,17 @@ const MiPerfil: React.FC = () => {
     postalcode: "",
   });
   const [showForm, setShowForm] = useState(false);
+  const [userCreated, setUserCreated] = useState(false);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      const getToken = async () => {
-        const token = await getAccessTokenSilently();
-        console.log("Token de acceso:", token); // Imprime el token en la consola
-      };
-      getToken();
-    }
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    if (isAuthenticated && !formData.address) {
-      getUserProfile();
-    }
-  }, [isAuthenticated]);
+  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    loginWithRedirect({
+      appState: {
+        scope: "openid profile email",
+        redirect_uri: window.location.origin,
+      },
+    });
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -44,11 +40,6 @@ const MiPerfil: React.FC = () => {
       ...prevState,
       [id]: value,
     }));
-  };
-
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    loginWithRedirect();
   };
 
   const handleLogout = () => {
@@ -59,6 +50,65 @@ const MiPerfil: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    const checkUserExists = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        const response = await axios.get(
+          `${import.meta.env.VITE_ENDPOINT}/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        // Si el usuario no existe en la base de datos, entonces crea el usuario
+        if (!response.data) {
+          await createUser();
+        } else {
+          // Si el usuario ya existe, puedes actualizar el estado aquí si es necesario
+          setUserCreated(true);
+        }
+      } catch (error) {
+        console.error("Error al verificar si el usuario existe:", error);
+      }
+    };
+
+    if (isAuthenticated) {
+      checkUserExists();
+    }
+  }, [isAuthenticated, getAccessTokenSilently]);
+
+  const createUser = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await axios.post(
+        `${import.meta.env.VITE_ENDPOINT}/user`,
+        {
+          name: user?.name,
+          email: user?.email,
+          password: "default_password",
+          typeuser: "USER",
+          address: formData?.address || "default_address",
+          country: formData?.country || "default_country",
+          city: formData?.city || "default_city",
+          state: formData?.state || "default_state",
+          postalcode: formData?.postalcode || "00000",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Usuario creado:", response.data);
+      setUserCreated(true);
+    } catch (error) {
+      console.error("Error al crear el usuario:", error);
+    }
+  };
+
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -66,9 +116,18 @@ const MiPerfil: React.FC = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_ENDPOINT}/user`,
         {
-          ...formData,
-          name: user?.name,
-          email: user?.email,
+          user: {
+            name: user?.name,
+            email: user?.email,
+            password: user?.password,
+            typeuser: "USER",
+            address: [
+              {
+                address: formData.address,
+                country: formData.country,
+              },
+            ],
+          },
         },
         {
           headers: {
@@ -80,31 +139,6 @@ const MiPerfil: React.FC = () => {
       console.log("Token enviado:", token);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
-    }
-  };
-
-  const getUserProfile = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-      const response = await axios.get(
-        `${import.meta.env.VITE_ENDPOINT}/user`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      const userProfileData = response.data;
-      setFormData((prevState) => ({
-        ...prevState,
-        address: userProfileData.address || "",
-        country: userProfileData.country || "",
-        city: userProfileData.city || "",
-        state: userProfileData.state || "",
-        postalcode: userProfileData.postalcode || "",
-      }));
-    } catch (error) {
-      console.error("Error al obtener los datos del perfil:", error);
     }
   };
 
@@ -222,7 +256,6 @@ const MiPerfil: React.FC = () => {
       </div>
     );
   }
-
   return (
     <div className="container mt-5">
       <div className="row">
