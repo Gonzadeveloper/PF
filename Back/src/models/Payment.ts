@@ -10,10 +10,12 @@ import { Order } from './Order';
   paranoid: true,
 })
 export class Payment extends Model<Payment> {
+
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
     primaryKey: true,
+
   })
   id!: number;
 

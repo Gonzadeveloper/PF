@@ -1,8 +1,9 @@
+
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo, HasMany, DefaultScope, HasOne } from 'sequelize-typescript';
 import { User } from './User';
 import { ProductOrder } from './ProductOrder';
 import { Payment } from './Payment';
-
+  
    @DefaultScope(() => ({
      where: { deletedAt: null },
    }))
