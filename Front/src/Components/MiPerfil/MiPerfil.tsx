@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
-import styles from "./Miperfil.module.css";
+import styles from "./MiPerfil.module.css";
 
 const MiPerfil: React.FC = () => {
   const {
@@ -21,6 +21,22 @@ const MiPerfil: React.FC = () => {
     postalcode: "",
   });
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const getToken = async () => {
+        const token = await getAccessTokenSilently();
+        console.log("Token de acceso:", token); // Imprime el token en la consola
+      };
+      getToken();
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    if (isAuthenticated && !formData.address) {
+      getUserProfile();
+    }
+  }, [isAuthenticated]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -60,9 +76,35 @@ const MiPerfil: React.FC = () => {
           },
         }
       );
-      console.log("Datos enviados:", response.data);
+      console.log("Respuesta del servidor:", response.data);
+      console.log("Token enviado:", token);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
+    }
+  };
+
+  const getUserProfile = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await axios.get(
+        `${import.meta.env.VITE_ENDPOINT}/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const userProfileData = response.data;
+      setFormData((prevState) => ({
+        ...prevState,
+        address: userProfileData.address || "",
+        country: userProfileData.country || "",
+        city: userProfileData.city || "",
+        state: userProfileData.state || "",
+        postalcode: userProfileData.postalcode || "",
+      }));
+    } catch (error) {
+      console.error("Error al obtener los datos del perfil:", error);
     }
   };
 
