@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
@@ -22,6 +22,7 @@ const MiPerfil: React.FC = () => {
     user,
     getAccessTokenSilently,
     logout,
+    userData,
   } = useAuth();
 
   const [formData, setFormData] = useState<FormData>({
@@ -36,6 +37,20 @@ const MiPerfil: React.FC = () => {
 
   const [showForm, setShowForm] = useState(false);
 
+  useEffect(() => {
+    if (userData) {
+      setFormData({
+        password: "",
+        typeuser: userData.typeuser || "USER",
+        address: userData.address || "",
+        country: userData.country || "",
+        city: userData.city || "",
+        state: userData.state || "",
+        postalcode: userData.postalcode || "",
+      });
+    }
+  }, [userData]);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData((prevState: FormData) => ({
@@ -48,13 +63,19 @@ const MiPerfil: React.FC = () => {
     e.preventDefault();
     try {
       const token = await getAccessTokenSilently();
+
+      if (!userData?.id) {
+        console.error("El ID del usuario es undefined");
+        return;
+      }
+
       const response = await axios.put(
-        `${import.meta.env.VITE_ENDPOINT}/user/${user?.id}`,
+        `${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`,
         {
           name: user?.name,
           email: user?.email,
           password: formData.password,
-          typeuser: "USER",
+          typeuser: formData.typeuser,
           address: formData.address,
           country: formData.country,
           city: formData.city,
@@ -73,6 +94,16 @@ const MiPerfil: React.FC = () => {
       console.error("Error al enviar los datos:", error);
     }
   };
+
+  const handleLoginClick = async () => {
+    await loginWithRedirect();
+  };
+
+  useEffect(() => {
+    if (user) {
+      console.log("User:", user);
+    }
+  }, [user]);
 
   if (isAuthenticated) {
     return (
@@ -98,24 +129,15 @@ const MiPerfil: React.FC = () => {
         </div>
       </div>
     );
-  }
-
-  return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-6">
-          <h2>Iniciar Sesión</h2>
-          <button
-            type="submit"
-            className={`btn btn-primary ${styles["btn-primary"]}`}
-            onClick={() => loginWithRedirect()}>
-            Iniciar Sesión
-          </button>
-        </div>
-        <div className="col-md-6"></div>
+  } else {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <button onClick={handleLoginClick} className="btn btn-primary">
+          Iniciar sesión
+        </button>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default MiPerfil;
