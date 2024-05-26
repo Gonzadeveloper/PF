@@ -4,16 +4,7 @@ import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
 import ProfileInfo from "./components/ProfileInfo";
 import axios from "axios";
-
-interface FormData {
-  password: string;
-  typeuser: string;
-  address: string;
-  country: string;
-  city: string;
-  state: string;
-  postalcode: string;
-}
+import { FormData } from "../../types"; // Importamos la interfaz FormData desde types.ts
 
 const MiPerfil: React.FC = () => {
   const {
@@ -36,20 +27,6 @@ const MiPerfil: React.FC = () => {
   });
 
   const [showForm, setShowForm] = useState(false);
-
-  useEffect(() => {
-    if (userData) {
-      setFormData({
-        password: "",
-        typeuser: userData.typeuser || "USER",
-        address: userData.address || "",
-        country: userData.country || "",
-        city: userData.city || "",
-        state: userData.state || "",
-        postalcode: userData.postalcode || "",
-      });
-    }
-  }, [userData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -95,10 +72,6 @@ const MiPerfil: React.FC = () => {
     }
   };
 
-  const handleLoginClick = async () => {
-    await loginWithRedirect();
-  };
-
   useEffect(() => {
     if (user) {
       console.log("User:", user);
@@ -131,10 +104,19 @@ const MiPerfil: React.FC = () => {
     );
   } else {
     return (
-      <div className="d-flex justify-content-center align-items-center">
-        <button onClick={handleLoginClick} className="btn btn-primary">
-          Iniciar sesión
-        </button>
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-6">
+            <h2>Iniciar Sesión</h2>
+            <button
+              type="submit"
+              className={`btn btn-primary ${styles["btn-primary"]}`}
+              onClick={() => loginWithRedirect()}>
+              Iniciar Sesión
+            </button>
+          </div>
+          <div className="col-md-6"></div>
+        </div>
       </div>
     );
   }
