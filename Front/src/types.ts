@@ -1,3 +1,28 @@
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  typeuser: string;
+  address: string;
+  country: string;
+  city: string;
+  state: string;
+  postalcode: string;
+}
+
+export interface UserState {
+  user: User | null;
+}
+export interface FormData {
+  password: string;
+  typeuser: string;
+  address: string;
+  country: string;
+  city: string;
+  state: string;
+  postalcode: string;
+}
+
 export interface Review {
   rating: number;
   comment: string;
@@ -22,22 +47,20 @@ export interface ProductsState {
 }
 
 export interface FavoritesState {
-  // Asegúrate de que esta interfaz esté correctamente definida
   favorites: Product[];
 }
 
 export type RootState = {
   products: ProductsState;
   favorites: FavoritesState;
-  userProfile: UserProfile | null;
 };
 
-export type Category = {
+export interface Category {
   id: number;
   name: string;
-};
+}
 
-export type Filters = {
+export interface Filters {
   name: string;
   maxPrice: number;
   minPrice: number;
@@ -45,23 +68,4 @@ export type Filters = {
   condition: string;
   minStock: number;
   maxStock: number;
-};
-export interface BasicUserInfo {
-  id: number;
-  name: string;
-  email: string;
-  typeuser: string;
-}
-export interface UserAddress {
-  id: number;
-  address: string;
-  city: string;
-  state: string;
-  postalcode: string;
-  country: string;
-  userId: number;
-}
-export interface UserProfile {
-  user: BasicUserInfo;
-  address: UserAddress;
 }
