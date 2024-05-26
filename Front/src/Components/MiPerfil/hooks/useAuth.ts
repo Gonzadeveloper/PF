@@ -1,8 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../../Redux/Slices/UserSlice";
+import { RootState } from "../../../Redux/index";
 
 export const useAuth = () => {
   const {
@@ -15,6 +16,7 @@ export const useAuth = () => {
   const dispatch = useDispatch();
 
   const [userCreated, setUserCreated] = useState(false);
+  const userData = useSelector((state: RootState) => state.user.user);
 
   const checkAndCreateUser = async () => {
     try {
@@ -54,7 +56,33 @@ export const useAuth = () => {
           }
         );
         console.log("Usuario creado:", createUserResponse.data);
-        dispatch(setUser(createUserResponse.data));
+        dispatch(
+          setUser({
+            id: createUserResponse.data.user.id,
+            name: createUserResponse.data.user.name,
+            email: createUserResponse.data.user.email,
+            typeuser: createUserResponse.data.user.typeuser,
+            address: createUserResponse.data.user.address,
+            country: createUserResponse.data.user.country,
+            city: createUserResponse.data.user.city,
+            state: createUserResponse.data.user.state,
+            postalcode: createUserResponse.data.user.postalcode,
+          })
+        );
+      } else {
+        dispatch(
+          setUser({
+            id: existingUser.id,
+            name: existingUser.name,
+            email: existingUser.email,
+            typeuser: existingUser.typeuser,
+            address: existingUser.address,
+            country: existingUser.country,
+            city: existingUser.city,
+            state: existingUser.state,
+            postalcode: existingUser.postalcode,
+          })
+        );
       }
 
       setUserCreated(true);
@@ -79,6 +107,7 @@ export const useAuth = () => {
     user,
     userCreated,
     getAccessTokenSilently,
+    userData,
   };
 };
 
