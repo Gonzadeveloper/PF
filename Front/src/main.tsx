@@ -17,7 +17,7 @@ const auth0Config = {
   clientId,
   audience,
   authorizationParams: {
-    redirect_uri: window.location.origin,
+    redirect_uri: `${window.location.origin}/MiPerfil`,
   },
 };
 

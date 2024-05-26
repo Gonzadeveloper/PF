@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const useAuth = () => {
+export const useAuth = () => {
   const {
     loginWithRedirect,
     logout,
@@ -13,33 +13,25 @@ const useAuth = () => {
 
   const [userCreated, setUserCreated] = useState(false);
 
-  useEffect(() => {
-    const checkUserExists = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        const response = await axios.get(
-          `${import.meta.env.VITE_ENDPOINT}/user`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+  const checkAndCreateUser = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      console.log("Token obtenido:", token);
 
-        if (!response.data) {
-          await createUser();
-        } else {
-          setUserCreated(true);
+      const response = await axios.get(
+        `${import.meta.env.VITE_ENDPOINT}/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      } catch (error) {
-        console.error("Error al verificar si el usuario existe:", error);
-      }
-    };
+      );
 
-    const createUser = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        const response = await axios.post(
+      const existingUser = response.data.find(
+        (u: any) => u.email === user?.email
+      );
+      if (!existingUser) {
+        const createUserResponse = await axios.post(
           `${import.meta.env.VITE_ENDPOINT}/user`,
           {
             name: user?.name,
@@ -58,17 +50,23 @@ const useAuth = () => {
             },
           }
         );
-        console.log("Usuario creado:", response.data);
-        setUserCreated(true);
-      } catch (error) {
-        console.error("Error al crear el usuario:", error);
+        console.log("Usuario creado:", createUserResponse.data);
       }
-    };
 
-    if (isAuthenticated) {
-      checkUserExists();
+      setUserCreated(true);
+    } catch (error) {
+      console.error("Error al verificar o crear el usuario:", error);
     }
-  }, [isAuthenticated, getAccessTokenSilently]);
+  };
+
+  useEffect(() => {
+    if (isAuthenticated && !userCreated) {
+      console.log(
+        "Usuario autenticado y no creado. Llamando a checkAndCreateUser."
+      );
+      checkAndCreateUser();
+    }
+  }, [isAuthenticated, userCreated, getAccessTokenSilently]);
 
   return {
     loginWithRedirect,

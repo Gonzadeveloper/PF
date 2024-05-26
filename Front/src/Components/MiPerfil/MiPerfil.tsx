@@ -1,12 +1,10 @@
-// MiPerfil.tsx
 import React, { useState } from "react";
-import useAuth from "./hooks/useAuth";
+import { useAuth } from "./hooks/useAuth";
 import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
 import ProfileInfo from "./components/ProfileInfo";
 import axios from "axios";
 
-// Define una interfaz para los datos del formulario
 interface FormData {
   password: string;
   typeuser: string;
@@ -18,13 +16,12 @@ interface FormData {
 }
 
 const MiPerfil: React.FC = () => {
-  // Hook de autenticación
   const {
     loginWithRedirect,
-    logout,
     isAuthenticated,
     user,
     getAccessTokenSilently,
+    logout,
   } = useAuth();
 
   const [formData, setFormData] = useState<FormData>({
@@ -37,6 +34,8 @@ const MiPerfil: React.FC = () => {
     postalcode: "",
   });
 
+  const [showForm, setShowForm] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setFormData((prevState: FormData) => ({
@@ -45,10 +44,6 @@ const MiPerfil: React.FC = () => {
     }));
   };
 
-  // Estado para controlar la visualización del formulario
-  const [showForm, setShowForm] = useState(false);
-
-  // Función para manejar la presentación del formulario
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -79,7 +74,6 @@ const MiPerfil: React.FC = () => {
     }
   };
 
-  // Renderizado del componente basado en si el usuario está autenticado o no
   if (isAuthenticated) {
     return (
       <div
@@ -106,7 +100,6 @@ const MiPerfil: React.FC = () => {
     );
   }
 
-  // Si el usuario no está autenticado, muestra la opción para iniciar sesión
   return (
     <div className="container mt-5">
       <div className="row">
