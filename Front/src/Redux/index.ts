@@ -5,9 +5,9 @@ import favoritesReducer from "./Slices/FavoritesSlice";
 
 const store = configureStore({
   reducer: {
-    user: userReducer,
     products: productsreducers,
     favorites: favoritesReducer,
+    user: userReducer,
   },
 });
 

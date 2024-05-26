@@ -1,6 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../Redux/Slices/UserSlice";
 
 export const useAuth = () => {
   const {
@@ -10,6 +12,7 @@ export const useAuth = () => {
     user,
     getAccessTokenSilently,
   } = useAuth0();
+  const dispatch = useDispatch();
 
   const [userCreated, setUserCreated] = useState(false);
 
@@ -51,6 +54,7 @@ export const useAuth = () => {
           }
         );
         console.log("Usuario creado:", createUserResponse.data);
+        dispatch(setUser(createUserResponse.data));
       }
 
       setUserCreated(true);
@@ -66,7 +70,7 @@ export const useAuth = () => {
       );
       checkAndCreateUser();
     }
-  }, [isAuthenticated, userCreated, getAccessTokenSilently]);
+  }, [isAuthenticated, userCreated, getAccessTokenSilently, user, dispatch]);
 
   return {
     loginWithRedirect,
