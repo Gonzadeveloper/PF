@@ -1,6 +1,6 @@
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import MiPerfil from "./Components/MiPerfil/MiPerfil";
+import MiPerfil from "./Components/MyProfile/MyProfile";
 import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";

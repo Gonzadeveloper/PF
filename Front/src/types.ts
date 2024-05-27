@@ -37,6 +37,7 @@ export interface Product {
   description: string;
   image: string;
   condition: string;
+  condition: string;
   reviews: Review[];
 }
 
