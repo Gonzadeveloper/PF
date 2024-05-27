@@ -1,50 +1,65 @@
+import { sequelize } from '../config/database';
+import { Product } from '../models/Product';
 import { Request, Response } from 'express';
-import { Product } from "../models/Product";
-import { formPutFood } from "../utils/formputFood";
-import { User } from "../models/User"; // Asegúrate de que la ruta al modelo User sea correcta
-import { Category } from "../models/Category"; // Asegúrate de que la ruta al modelo Category sea correcta
 
-// Función que actualiza el producto en la base de datos
-const updateProduct = async (id: number, updateData: formPutFood) => {
-    // Encontrar el producto por ID
-    const product = await Product.findByPk(id);
-    if (!product) {
-        throw new Error("Producto no encontrado");
+const putProduct = async (req: Request, res: Response): Promise<void> => {
+  const productId = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    // Validar la entrada
+    if (!productId || !updatedData) {
+      res.status(400).json({ message: 'ID del producto y datos de actualización son obligatorios' });
+      return;
     }
 
-    // Si hay un user ID, verificar que el usuario exista
-    if (updateData.userId) {
-        const user = await User.findByPk(updateData.userId);
-        if (!user) {
-            throw new Error("Usuario no encontrado");
-        }
-    }
+    // Conectar a la base de datos
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
 
-    // Si hay una category ID, verificar que la categoría exista
-    if (updateData.categoryId) {
-        const category = await Category.findByPk(updateData.categoryId);
-        if (!category) {
-            throw new Error("Categoría no encontrada");
-        }
-    }
+    // Iniciar una transacción
+    const transaction = await sequelize.transaction();
 
-    // Actualizar el producto con los nuevos datos
-    return await product.update(updateData);
-};
-
-// Controlador que maneja la solicitud PUT para actualizar un producto
-export const putProduct = async (req: Request, res: Response) => {
-    const { id } = req.params;
     try {
-        const updateData: formPutFood = req.body;
-        const updatedProduct = await updateProduct(Number(id), updateData);
-        res.json(updatedProduct);
+      // Buscar el producto por ID
+      const product = await Product.findByPk(productId);
+
+      if (!product) {
+        res.status(404).json({ message: 'Producto no encontrado' });
+        return;
+      }
+
+      // Actualizar el producto con los datos proporcionados
+      await product.update(updatedData, { transaction });
+
+      // Confirmar la transacción
+      await transaction.commit();
+
+      console.log('Producto actualizado exitosamente:', product);
+      res.status(200).json(product); // Responder con el producto actualizado
     } catch (error) {
-        if (error instanceof Error) {
-            res.status(400).json({ error: error.message });
-        } else {
-            // Manejo de errores no esperados
-            res.status(500).json({ error: 'Un error desconocido ocurrió' });
-        }
+      // Revertir la transacción en caso de error
+      await transaction.rollback();
+
+      // Manejo del error
+      if (error instanceof Error) {
+        console.error('Unable to perform CRUD operations:', error);
+        res.status(500).json({ message: 'Error al actualizar el producto', error: error.message });
+      } else {
+        console.error('Unknown error:', error);
+        res.status(500).json({ message: 'Error al actualizar el producto', error: 'Error desconocido' });
+      }
     }
+  } catch (error) {
+    // Manejo del error
+    if (error instanceof Error) {
+      console.error('Database connection error:', error);
+      res.status(500).json({ message: 'Error de conexión a la base de datos', error: error.message });
+    } else {
+      console.error('Unknown error:', error);
+      res.status(500).json({ message: 'Error de conexión a la base de datos', error: 'Error desconocido' });
+    }
+  }
 };
+
+export { putProduct };

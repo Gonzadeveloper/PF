@@ -14,6 +14,7 @@ const database_1 = require("../config/database");
 const Product_1 = require("../models/Product");
 const Category_1 = require("../models/Category");
 const sequelize_1 = require("sequelize");
+const User_1 = require("../models/User");
 const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Conectar a la base de datos
@@ -29,6 +30,10 @@ const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* (
             include: [{
                     model: Category_1.Category,
                     attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+                },
+                {
+                    model: User_1.User,
+                    attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de User
                 }],
             attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
         });

@@ -12,16 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Address = exports.User = exports.Category = exports.Product = void 0;
+exports.Payment = exports.ProductOrder = exports.Order = exports.Review = exports.Address = exports.User = exports.Category = exports.Product = void 0;
 const express_1 = __importDefault(require("express"));
-const getAllProducts_1 = __importDefault(require("./routes/getAllProducts"));
-const getProductByName_1 = __importDefault(require("./routes/getProductByName"));
-const getProductById_1 = __importDefault(require("./routes/getProductById"));
-const postProduct_1 = __importDefault(require("./routes/postProduct"));
-//import  {init } from "./db";
-const putProduct_1 = __importDefault(require("./routes/putProduct"));
-const { auth } = require('express-openid-connect');
-const { requiresAuth } = require('express-openid-connect');
+const cors_1 = __importDefault(require("cors"));
 const database_1 = require("./config/database");
 const Product_1 = require("./models/Product");
 Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
@@ -31,49 +24,31 @@ const User_1 = require("./models/User");
 Object.defineProperty(exports, "User", { enumerable: true, get: function () { return User_1.User; } });
 const Address_1 = require("./models/Address");
 Object.defineProperty(exports, "Address", { enumerable: true, get: function () { return Address_1.Address; } });
-const postUser_1 = __importDefault(require("./routes/postUser"));
+const index_1 = __importDefault(require("./routes/index"));
+const Review_1 = require("./models/Review");
+Object.defineProperty(exports, "Review", { enumerable: true, get: function () { return Review_1.Review; } });
+const Order_1 = require("./models/Order");
+Object.defineProperty(exports, "Order", { enumerable: true, get: function () { return Order_1.Order; } });
+const ProductOrder_1 = require("./models/ProductOrder");
+Object.defineProperty(exports, "ProductOrder", { enumerable: true, get: function () { return ProductOrder_1.ProductOrder; } });
+const Payment_1 = require("./models/Payment");
+Object.defineProperty(exports, "Payment", { enumerable: true, get: function () { return Payment_1.Payment; } });
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: 'auG6_Kf52jXOk8dSNcEtDifshjHgVDm4D7y8DH8wQqOvIjpNuzT1Vm8JpdnS4BhX',
-    baseURL: 'http://localhost:3000',
-    clientID: 'Xqv1NfgoqHqhwJjYdMASLNl4lPIjOawK',
-    issuerBaseURL: 'https://dev-pywymllismpo3klw.us.auth0.com'
-};
+app.use(express_1.default.urlencoded({ extended: true }));
+app.use((0, cors_1.default)());
+app.use("/", index_1.default);
 const PORT = 3000;
-app.get('/products', getAllProducts_1.default);
-app.get('/products/:name', getProductByName_1.default);
-app.get('/products/:id', getProductById_1.default);
-app.post('/products/product/', postProduct_1.default);
-app.post('/user/', postUser_1.default);
-app.put('/products/:id', putProduct_1.default);
-app.use(auth(config));
-app.get('/', (req, res) => {
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-});
-app.get('/profile', requiresAuth(), (req, res) => {
-    res.send(JSON.stringify(req.oidc.user));
-});
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield database_1.sequelize.sync({ force: false });
-        console.log('Database & tables created!');
+        console.log("Database & tables created!");
     }
     catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error("Unable to connect to the database:", error);
     }
 });
 init();
-//   const server = require('./src/app.js');
-// const { conn } = require('./src/db.js');
-// // Syncing all the models at once.
-// conn.sync({ force: false }).then(() => {
-//   server.listen(3001, () => {
-//     console.log('%s listening at 3001'); // eslint-disable-line no-console
-//   });
-// });

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { FaShoppingCart, FaBell, FaSearch } from "react-icons/fa";
-import { Link, Navigate } from "react-router-dom";
+import { FaBell, FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
-import { useDispatch, useSelector } from "react-redux";
-import { getProductByName } from "../../Redux/Slices/ProductsSlice";
-import { RootState } from "@reduxjs/toolkit/query";
+import { useDispatch } from "react-redux";
 import { getAllProds, getProdByName } from "../../Redux/Actions/productActions";
 
 const Navbar = () => {
@@ -44,9 +42,9 @@ const Navbar = () => {
                 
               />
                 <button type="submit">
-                  <Link to="Search">
+ 
                   <FaSearch />
-                  </Link>
+
                 </button>
             </div>
           </form>
@@ -84,11 +82,6 @@ const Navbar = () => {
             </button>
           </Link>
 
-          <Link to="CarritoDeCompras">
-            <button className="btn btn-outline-light">
-              <FaShoppingCart />
-            </button>
-          </Link>
         </div>
       </div>
     </nav>

@@ -43,10 +43,12 @@ const getProductByName1 = (name) => __awaiter(void 0, void 0, void 0, function* 
             return console.error(err);
         }
         const productName = name;
+        console.log(productName);
         try {
             const productss = JSON.parse(data);
             //console.log(productss);
             const filteredProducts = productss.filter((product) => product.name.toLowerCase().includes(productName.toLowerCase()));
+            console.log(filteredProducts);
             // const productFiltered = JSON.parse(filteredProducts);     
             //return JSON.parse(filteredProducts);  
             return filteredProducts;

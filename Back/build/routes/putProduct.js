@@ -6,5 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const putProduct_1 = require("../controllers/putProduct");
 const router = express_1.default.Router();
+// Ruta para eliminar un usuario
 router.put('/products/:id', putProduct_1.putProduct);
 exports.default = router;

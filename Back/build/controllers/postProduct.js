@@ -19,9 +19,19 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         // Conectar a la base de datos
         yield database_1.sequelize.authenticate();
-        console.log('Connection has been established successfully.');
-        // Crear una nueva categoría
-        // const newCategory = await Category.create({ name: 'Phone' } as any); 
+        console.log("Connection has been established successfully.");
+        // Validar la entrada
+        if (!product.name ||
+            !product.description ||
+            !product.price ||
+            !product.stock ||
+            !product.condition ||
+            !product.image ||
+            !product.userId ||
+            !product.categoryId) {
+            res.status(400).json({ message: "Todos los campos son obligatorios" });
+            return;
+        }
         // Crear un nuevo producto en la categoría creada
         const newProduct = yield Product_1.Product.create({
             name: product.name,
@@ -35,30 +45,11 @@ const postProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             //categoryId: newCategory.id,
         });
         console.log(newProduct);
-        // console.log(newCategory);
-        // Leer productos
-        // const products = await Product.findAll({
-        //   include: [Category],
-        // });
-        // console.log('All products:', JSON.stringify(products, null, 2));
-        //Actualizar un producto
-        // const [updatedCount] = await Product.update(
-        //   { price: 1999 },
-        //   { where: { id: newProduct.id } }
-        // );
-        // console.log(`Updated ${updatedCount} product(s)`);
-        // // Eliminar un producto
-        // const deletedProduct = await Product.destroy({ where: { id: newProduct.id } });
-        // console.log(`Deleted product with id: ${newProduct.id}`);
-        // // Eliminar una categoría
-        // const deletedCategory = await Category.destroy({ where: { id: newCategory.id } });
-        // console.log(`Deleted category with id: ${newCategory.id}`);
-        console.log('CRUD operations completed successfully.');
+        console.log("CRUD operations completed successfully.");
         res.status(200).json(product);
     }
     catch (error) {
-        console.error('Unable to perform CRUD operations:', error);
+        console.error("Unable to perform CRUD operations:", error);
     }
 });
 exports.postProduct = postProduct;
-//run();
