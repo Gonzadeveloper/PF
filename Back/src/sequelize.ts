@@ -44,3 +44,17 @@ async function main() {
 main();
 
 export default sequelize;
+
+// import { Sequelize } from 'sequelize-typescript';
+
+// const sequelize = new Sequelize({
+//   database: 'electroemporium',
+//   username: 'postgresql',
+//   password: '1234l',
+//   dialect: 'postgres',
+//   host: 'localhost',
+//   port: 5432,
+//   models: [__dirname + '/models'],
+// });
+
+// export default sequelize;

@@ -1,22 +1,52 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProductByName = void 0;
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const dataPath = path_1.default.resolve(__dirname, '../local/product.json');
-function getProductByName(name) {
+const database_1 = require("../config/database");
+const Product_1 = require("../models/Product");
+const Category_1 = require("../models/Category");
+const sequelize_1 = require("sequelize");
+const User_1 = require("../models/User");
+const getProductByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const jsonData = fs_1.default.readFileSync(dataPath, 'utf-8');
-        const products = JSON.parse(jsonData);
-        const product = products.find((p) => p.name.toLowerCase().includes(name.toLowerCase()));
-        return product || null;
+        // Conectar a la base de datos
+        yield database_1.sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+        // Leer productos
+        const product = yield Product_1.Product.findOne({
+            where: {
+                name: {
+                    [sequelize_1.Op.iLike]: `%${name}%` // Utiliza el operador iLike para búsqueda insensible a mayúsculas y minúsculas en PostgreSQL
+                }
+            },
+            include: [{
+                    model: Category_1.Category,
+                    attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+                },
+                {
+                    model: User_1.User,
+                    attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de User
+                }],
+            attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
+        });
+        if (!product) {
+            console.log(`Product with name ${name} not found.`);
+            return undefined;
+        }
+        console.log('CRUD operations completed successfully.');
+        return product;
     }
     catch (error) {
-        console.error('Error al buscar el producto por nombre:', error);
-        return null;
+        console.error('Unable to perform CRUD operations:', error);
     }
-}
+    return;
+});
 exports.getProductByName = getProductByName;

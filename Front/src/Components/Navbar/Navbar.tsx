@@ -1,20 +1,30 @@
-import React from "react";
-import { FaShoppingCart, FaBell, FaSearch } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaBell, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setFilters } from "../../Redux/Slices/ProductsSlice";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
+import { useDispatch } from "react-redux";
+import { getAllProds, getProdByName } from "../../Redux/Actions/productActions";
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const [searchString, setSearchString] = useState("")
 
-  const dispatch = useDispatch();
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    setSearchString(e.currentTarget.value)
+  }
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newName = event.target.value;
-    dispatch(setFilters({ name: newName }));
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    dispatch(getProdByName(searchString))
+  }
 
+  const handleCompraSubmit = (e: React.MouseEvent<HTMLButtonElement>)=>{
+    e.preventDefault()
+    dispatch(getAllProds())
+  }
+  
   return (
     <nav className="navbar navbar-dark bg-dark">
       <div className="container">
@@ -22,18 +32,22 @@ const Navbar = () => {
           <Link to="/">
             <img src={logo} alt="Logo" className="navbar-brand logo" />
           </Link>
-          <div className="d-flex">
-            <input
-              type="text"
-              className="form-control me-2"
-              placeholder="Buscar por nombre" 
-              aria-label="Buscar por nombre" 
-              onChange={handleNameChange}
-            />
-            <Link to="Search">
-              <FaSearch />
-            </Link>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="d-flex">
+              <input
+                type="text"
+                className="form-control me-2"
+                placeholder="Buscar..."
+                onChange={e=>handleChange(e)}
+                
+              />
+                <button type="submit">
+ 
+                  <FaSearch />
+
+                </button>
+            </div>
+          </form>
         </div>
       </div>
       <div className="container d-flex justify-content-end">
@@ -43,9 +57,8 @@ const Navbar = () => {
             <button className="btn btn-outline-light me-2">Vende</button>
           </Link>
 
-          <Link to="Search">
-            <button className="btn btn-outline-light me-2">Compra</button>
-          </Link>
+         
+            <button className="btn btn-outline-light me-2" onClick={handleCompraSubmit}><Link to="Search">Compra</Link></button>
 
           <Link to="Favoritos">
             <button className="btn btn-outline-light me-2">Favoritos</button>
@@ -58,7 +71,7 @@ const Navbar = () => {
           <Link to="MisCompras">
             <button className="btn btn-outline-light me-2">Mis compras</button>
           </Link>
-          
+
           <Link to="Help">
             <button className="btn btn-outline-light me-2">Help</button>
           </Link>
