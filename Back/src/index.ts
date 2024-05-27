@@ -10,8 +10,17 @@ import { Review } from "./models/Review";
 import { Order } from "./models/Order";
 import { ProductOrder } from "./models/ProductOrder";
 import { Payment } from "./models/Payment";
+const { Client } = require('pg');
 
+const client = new Client({
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT,
+});
 
+client.connect();
 
 const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
