@@ -1,3 +1,28 @@
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  typeuser: string;
+  address: string;
+  country: string;
+  city: string;
+  state: string;
+  postalcode: string;
+}
+
+export interface UserState {
+  user: User | null;
+}
+export interface FormData {
+  password: string;
+  typeuser: string;
+  address: string;
+  country: string;
+  city: string;
+  state: string;
+  postalcode: string;
+}
+
 export interface Review {
   rating: number;
   comment: string;
@@ -18,20 +43,26 @@ export interface Product {
 export interface ProductsState {
   products: Product[];
   filters: Filters;
+  selectedProduct: Product | null;
+}
+
+export interface FavoritesState {
+  favorites: Product[];
 }
 
 export type RootState = {
   products: ProductsState;
+  favorites: FavoritesState;
 };
 
-export type Category = {
+export interface Category {
   id: number;
   name: string;
-};
+}
 
-export type Filters = {
+export interface Filters {
   name: string;
-  maxPrice: number,
+  maxPrice: number;
   minPrice: number;
   category: Category;
   condition: string;
@@ -49,4 +80,7 @@ export interface CardProps {
   stock?: Product['stock'];
   category?: Product['category'];
   reviews?: Product['reviews'];
+  isFavorite?: boolean;
+  isSearchPage?: boolean,
+  onToggleFavorite?: () => void;
 }

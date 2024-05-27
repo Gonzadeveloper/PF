@@ -5,12 +5,21 @@ import { CardProps } from "../../types";
 import { FaShoppingCart } from "react-icons/fa";
 import { addToCart } from "../../Redux/Slices/CartSlice";
 
-const Card: React.FC<CardProps> = ({ id, image, name, price, description, condition, stock, category, reviews}) => {
+
+const Card: React.FC<CardProps> = ({ id, image, name, price, description, condition, stock, category, reviews, isFavorite, isSearchPage, onToggleFavorite}) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id, image, name, price, description, condition, stock, category, reviews }));
+    dispatch(addToCart({ id, image, name, price, description, condition, stock, category, reviews, isFavorite, isSearchPage, onToggleFavorite }));
   };
+
+  const handleToggleFavorite = () => {
+    if (onToggleFavorite) {
+      onToggleFavorite();
+    }
+  };
+
+
 
   return (
     <div className="col-2">
@@ -23,12 +32,23 @@ const Card: React.FC<CardProps> = ({ id, image, name, price, description, condit
           <p className="card-text">Price: {price}</p>
           <p className="card-text">Descripción: {description}</p>
         </div>
+
         <button onClick={handleAddToCart}>
           <FaShoppingCart />
         </button>
       </div>
+      <div className="card-footer">
+        <button
+          onClick={handleToggleFavorite}
+          className={`btn ${isFavorite ? 'btn-danger' : 'btn-primary'}`}
+        >
+          {isSearchPage ? (isFavorite ? "Quitar de favoritos" : "Agregar a favoritos") : (isFavorite ? "Quitar de favoritos" : "Quitar de favoritos")}
+
+        </button>
+      </div>
     </div>
   );
-};
+}
+;
 
 export default Card;

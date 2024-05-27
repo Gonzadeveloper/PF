@@ -1,5 +1,4 @@
-{
-  "compilerOptions": {
+{  "compilerOptions": {
     "target": "es6",       
     "module": "commonjs",  
     "outDir": "./build",  
@@ -18,6 +17,6 @@
         "@models/*": ["src/models/*"]
      }                              
     },
-    "include": ["src/**/*.ts" ],
+    "include": ["src/**/*.ts"],
     "exclude": ["node_modules"]
   }
