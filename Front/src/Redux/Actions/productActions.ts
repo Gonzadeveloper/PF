@@ -12,7 +12,7 @@ export const getAllProds = () => {
   return async (dispatch: AppDispatch) => {
     try {
       const res = await axios.get<Product[]>(
-        `${import.meta.env.VITE_ENDPOINT}/products`
+        `${import.meta.env.VITE_ENDPOINT}/product`
       );
       dispatch(setProducts(res.data));
     } catch (error) {
