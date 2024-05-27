@@ -1,5 +1,0 @@
-services:
-  - name: web
-    env: node
-    buildCommand: node_modules/.bin/vite build
-    startCommand: npm run start
