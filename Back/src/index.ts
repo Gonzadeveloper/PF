@@ -18,7 +18,7 @@ app.use(express.json()); // middleware que transforma la req.body a un json
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://pf-back-iota.vercel.app']
+    origin: ['https://pf-git-desarrollo-gonzadevelopers-projects.vercel.app']
   }));
 app.options('*', cors());
 
