@@ -3,7 +3,13 @@ import { CartProduct } from '../../models/CartProduct';
 
 const getAllCartProduct = async (_req: Request, res: Response): Promise<void> => {
   try {
-    const cartProducts = await CartProduct.findAll();
+    //const cartProducts = await CartProduct.findAll();
+    const cartProducts = await CartProduct.findAll({
+      include: [{ all: true }], // Incluye todas las asociaciones
+    });
+
+
+
     res.json(cartProducts);
   } catch (error) {
     console.error('Error fetching cart products:', error);
