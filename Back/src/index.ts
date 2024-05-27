@@ -17,7 +17,10 @@ const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000', 'https://pf-back-iota.vercel.app']
+  }));
+app.options('*', cors());
 
 app.use("/", routessRaiz);
 
