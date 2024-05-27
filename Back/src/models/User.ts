@@ -1,10 +1,11 @@
 //////////////////////////////////////////////
 
-import { Table, Column, Model, DataType, HasMany, DefaultScope } from 'sequelize-typescript'; //importar HasOne
+import { Table, Column, Model, DataType, HasMany, DefaultScope, HasOne} from 'sequelize-typescript'; //importar HasOne
 import { Address } from './Address';
 import { Product } from './Product';
 import { Review } from './Review';
 import { Order } from './Order';
+import { Cart } from './Cart';
 
 
 @DefaultScope(() => ({
@@ -71,6 +72,11 @@ export class User extends Model<User> {
   @HasMany(() => Order)
   order!: Order[];
 
+  @HasOne(() => Cart)
+  cart!: Cart[];
+
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
 }
+
+ // todo lo comentado es nuevo para relación con órden
