@@ -11,5 +11,11 @@
             "src":"/(.*)",
             "dest": "src/index.ts"
         }
-    ]
+    ],
+    "env": {
+        "DB_USER":"postgres",
+        "DB_PASSWORD":"tiburcio1",
+        "DB_HOST":"localhost",
+        "DB_NAME":"electroemporium"
+    }
 }
