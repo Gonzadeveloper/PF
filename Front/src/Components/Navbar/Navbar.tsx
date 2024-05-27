@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaShoppingCart, FaBell, FaSearch } from "react-icons/fa";
+import { FaBell, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
@@ -82,11 +82,6 @@ const Navbar = () => {
             </button>
           </Link>
 
-          <Link to="CarritoDeCompras">
-            <button className="btn btn-outline-light">
-              <FaShoppingCart />
-            </button>
-          </Link>
         </div>
       </div>
     </nav>

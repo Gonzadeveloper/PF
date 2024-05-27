@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
 import Notifications from "./Components/Notifications/Notifications";
-import ShoppingCart from "./Components/ShoppingCart/ShoppingCart";
+import { Cart } from "./Components/ShoppingCart/ShoppingCart"
 import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
@@ -26,6 +26,7 @@ function App() {
   return (
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
+      <Cart />
       <div className="flex-grow-1">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -33,7 +34,6 @@ function App() {
           <Route path="/MiPerfil" element={<MiPerfil />} />
           <Route path="/MisCompras" element={<MyShopping />} />
           <Route path="/Notificaciones" element={<Notifications />} />
-          <Route path="/CarritoDeCompras" element={<ShoppingCart />} />
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />

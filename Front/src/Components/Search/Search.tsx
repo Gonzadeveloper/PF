@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Card from "../Card/card";
+import Card from "../Card/Card";
 import NoResultsModal from "./NoResult/NoResult";
 import { RootState } from "../../Redux/index";
 import { setFilters } from "../../Redux/Slices/ProductsSlice";
@@ -175,15 +175,17 @@ function Search() {
             name="category"
             onChange={handleSelectChange}>
             <option value="Todos">Todos</option>
-            <option value="Laptop">Notebooks</option>
-            <option value="Phone">Celulares</option>
-            <option value="Headphones">Auriculares</option>
-            <option value="Keyboard">Teclados</option>
-            <option value="Mouse">Mouse</option>
-            <option value="Storage">Almacenamiento</option>
-            <option value="Connection">Redes</option>
-            <option value="Printer">Impresoras</option>
-            <option value="Monitor">Monitores</option>
+            <option value="Portatiles">Notebooks</option>
+            <option value="Celulares">Celulares</option>
+            <option value="Sonido">Sonido</option>
+            <option value="Accesorios PC">Accesorios PC</option>
+            <option value="Almacenamiento">Almacenamiento</option>
+            <option value="Redes">Redes</option>
+            <option value="Impresoras">Impresoras</option>
+            <option value="Tabletas">Tabletas</option>
+            <option value="Camaras">Camaras</option>
+            <option value="Monitores">Monitores</option>
+            <option value="consolas">consolas</option>
           </select>
         </div>
         <div className="col-md-10">
