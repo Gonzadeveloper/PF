@@ -17,10 +17,7 @@ const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({
-    origin: ['https://pf-git-desarrollo-gonzadevelopers-projects.vercel.app']
-  }));
-app.options('*', cors());
+app.use(cors());
 
 app.use("/", routessRaiz);
 
