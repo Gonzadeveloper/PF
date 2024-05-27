@@ -69,11 +69,6 @@ const Navbar = () => {
             </button>
           </Link>
 
-          <Link to="CarritoDeCompras">
-            <button className="btn btn-outline-light">
-              <FaShoppingCart />
-            </button>
-          </Link>
         </div>
       </div>
     </nav>
