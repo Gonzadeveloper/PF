@@ -9,6 +9,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     rewrite: (path: string) =>
-      path === "/" || path === "/404" ? "/index.html" : "/404",
+      path === "/" ,
   } as MyServerOptions,
 });
