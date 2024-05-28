@@ -15,15 +15,18 @@ export const getProduct = async ()  => {
      const products = await Product.findAll({
       include: [{
         model: Category,
-        attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de Category
+        attributes: ['id', 'name'],
+        required: false  // Especifica los atributos que deseas incluir de Category
       },
       {
         model: User,
-        attributes: ['id', 'name'] // Especifica los atributos que deseas incluir de User
+        attributes: ['id', 'name'],
+        required: false  // Especifica los atributos que deseas incluir de User
       },
       {
         model: Review,
-        attributes: ['rating', 'comment'] // Especifica los atributos que deseas incluir de Review
+        attributes: ['rating', 'comment'],
+        required: false  // Especifica los atributos que deseas incluir de Review
       } ],
       attributes: ['id', 'name', 'description', 'price', 'stock', 'condition', 'userId', 'categoryId', 'image'] // Especifica los atributos que deseas incluir de Product
     });
