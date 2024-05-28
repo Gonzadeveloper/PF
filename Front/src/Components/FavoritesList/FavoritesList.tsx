@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/index";
 import { Product } from "../../types";
-import Card from "../Card/card";
+import Card from "../Card/Card";
 import { removeFavorite } from "../../Redux/Slices/FavoritesSlice";
 
 const FavoritesList: React.FC = () => {

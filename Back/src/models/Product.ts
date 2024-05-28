@@ -1,17 +1,9 @@
-import {
-  Table,
-  Column,
-  Model,
-  HasMany,
-  ForeignKey,
-  BelongsTo,
-  DataType,
-  DefaultScope,
-} from "sequelize-typescript";
-import { Category } from "./Category";
-import { User } from "./User";
-import { Review } from "./Review";
-import { ProductOrder } from "./ProductOrder";
+import { Table, Column, Model, HasMany, ForeignKey, BelongsTo, DataType, DefaultScope } from 'sequelize-typescript';
+import { Category } from './Category';
+import { User } from './User';
+import { Review } from './Review';
+import { ProductOrder } from './ProductOrder';
+import { CartProduct } from './CartProduct';
 
 @DefaultScope(() => ({
   where: { deletedAt: null },
@@ -21,43 +13,43 @@ import { ProductOrder } from "./ProductOrder";
   timestamps: true, // Habilita createdAt y updatedAt
 })
 export class Product extends Model<Product> {
-  @Column({
+  @Column({ 
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
   name!: string;
 
-  @Column({
+  @Column({ 
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
   description!: string;
-
-  @Column({
+    
+  @Column({ 
     type: DataType.FLOAT, // Usamos FLOAT para representar precios
-    allowNull: false,
+    allowNull: false
   })
   price!: number;
-
-  @Column({
+    
+  @Column({ 
     type: DataType.INTEGER, // Usamos INTEGER para representar cantidades de stock
-    allowNull: false,
+    allowNull: false
   })
   stock!: number;
 
-  @Column({
+  @Column({         
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  condition!: string;
+  condition!: string;  
 
-  @Column({
+  @Column({         
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  image!: string;
+  image!: string; 
 
-  ////////////  Las Relaciones
+////////////  Las Relaciones
 
   @ForeignKey(() => User)
   @Column
@@ -65,7 +57,7 @@ export class Product extends Model<Product> {
 
   @BelongsTo(() => User)
   user!: User;
-
+    
   @ForeignKey(() => Category)
   @Column
   categoryId!: number;
@@ -78,6 +70,9 @@ export class Product extends Model<Product> {
 
   @HasMany(() => ProductOrder)
   productOrder!: ProductOrder[];
+
+  @HasMany(() => CartProduct)
+  cartProducts!: CartProduct[];
 
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico

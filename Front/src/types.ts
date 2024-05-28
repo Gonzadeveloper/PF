@@ -37,6 +37,7 @@ export interface Product {
   description: string;
   image: string;
   condition: string;
+  condition: string;
   reviews: Review[];
 }
 
@@ -68,4 +69,19 @@ export interface Filters {
   condition: string;
   minStock: number;
   maxStock: number;
+};
+
+export interface CardProps {
+  id?: Product['id'];
+  image?: Product['image'];
+  name?: Product['name'];
+  description?: Product['description'];
+  price?: Product['price'];
+  condition?: Product['condition'];
+  stock?: Product['stock'];
+  category?: Product['category'];
+  reviews?: Product['reviews'];
+  isFavorite?: boolean;
+  isSearchPage?: boolean,
+  onToggleFavorite?: () => void;
 }

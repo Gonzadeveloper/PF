@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+
 import { sequelize } from "./config/database";
 import { Product } from "./models/Product";
 import { Category } from "./models/Category";
@@ -10,16 +11,26 @@ import { Review } from "./models/Review";
 import { Order } from "./models/Order";
 import { ProductOrder } from "./models/ProductOrder";
 import { Payment } from "./models/Payment";
+import { Cart } from "./models/Cart";
+import { CartProduct } from "./models/CartProduct";
+//import { getUser } from "./services/getUser";
+// const session = require('./Auth/config/session');
+// import {passport} from './Auth/config/auth';
+// const authRoutes = require('./Auth/config/routeAuth');
 
 const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
-app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 
 app.use("/", routessRaiz);
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
+
+// app.use(session);
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use('/', authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
@@ -45,4 +56,6 @@ export {
   Order,
   ProductOrder,
   Payment,
+  Cart,
+  CartProduct,
 };
