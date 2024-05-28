@@ -1,23 +1,34 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Product } from "../../types";
+// Redux/Slices/CartSlice.js
+import { createSlice } from '@reduxjs/toolkit';
 
-interface CartItem extends Product {
-  quantity: number;
-}
+// Función para cargar el carrito desde localStorage
+export const loadCartFromLocalStorage = () => {
+  try {
+    const serializedCart = localStorage.getItem('cart');
+    return serializedCart ? JSON.parse(serializedCart) : [];
+  } catch (e) {
+    console.error('Could not load cart from localStorage', e);
+    return [];
+  }
+};
 
-interface CartState {
-  items: CartItem[];
-}
-
-const initialState: CartState = {
-  items: [],
+// Función para guardar el carrito en localStorage
+export const saveCartToLocalStorage = (cart) => {
+  try {
+    const serializedCart = JSON.stringify(cart);
+    localStorage.setItem('cart', serializedCart);
+  } catch (e) {
+    console.error('Could not save cart to localStorage', e);
+  }
 };
 
 const cartSlice = createSlice({
-  name: "cart",
-  initialState,
+  name: 'cart',
+  initialState: {
+    items: loadCartFromLocalStorage(), // Cargar el carrito desde localStorage
+  },
   reducers: {
-    addToCart(state, action: PayloadAction<Product>) {
+    addToCart: (state, action) => {
       const product = action.payload;
       const existingItem = state.items.find(item => item.id === product.id);
 
@@ -26,28 +37,30 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...product, quantity: 1 });
       }
+      saveCartToLocalStorage(state.items); // Guardar en localStorage
     },
-    removeFromCart(state, action: PayloadAction<number>) {
-      const productId = action.payload;
-      state.items = state.items.filter(item => item.id !== productId);
+    removeFromCart: (state, action) => {
+      const id = action.payload;
+      state.items = state.items.filter(item => item.id !== id);
+      saveCartToLocalStorage(state.items); // Guardar en localStorage
     },
-    decrementQuantity(state, action: PayloadAction<number>) {
-      const productId = action.payload;
-      const existingItem = state.items.find(item => item.id === productId);
-
+    decrementQuantity: (state, action) => {
+      const id = action.payload;
+      const existingItem = state.items.find(item => item.id === id);
       if (existingItem) {
-        existingItem.quantity -= 1;
-        if (existingItem.quantity === 0) {
-          state.items = state.items.filter(item => item.id !== productId);
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        } else {
+          state.items = state.items.filter(item => item.id !== id);
         }
       }
+      saveCartToLocalStorage(state.items); // Guardar en localStorage
     },
     clearCart(state) {
       state.items = [];
-    }
+    },
   },
 });
 
-export const { addToCart, removeFromCart, clearCart, decrementQuantity } = cartSlice.actions;
-
+export const { addToCart, removeFromCart, decrementQuantity, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

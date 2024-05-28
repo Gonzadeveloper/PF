@@ -8,11 +8,12 @@ import './Cart.css';
 export function Cart() {
   const cartCheckboxId = useId();
   const cartItems = useSelector(state => state.cart.items);
+  const products = useSelector(state => state.products.products);
   const dispatch = useDispatch(); 
   
-  const handleAddToCart = (id, image, name, price, description, condition, stock, category, reviews, quantity) => {
-    dispatch(addToCart({ id, image, name, price, description, condition, stock, category, reviews, quantity }));
-  };
+    const handleAddToCart = (id, quantity) => {
+      dispatch(addToCart({ id, quantity }));
+    };
 
   const handleRemoveToCart = (id) => {
     dispatch(removeFromCart( id ));
@@ -21,6 +22,9 @@ export function Cart() {
   const handleCartDecrement = (id) => {
     dispatch(decrementQuantity( id ));
   };
+
+  // Filtrar productos que están en el carrito
+  const cartProducts = products.filter(product => cartItems.some(item => item.id === product.id));
 
   return (
     <>
@@ -31,19 +35,22 @@ export function Cart() {
 
       <aside className='cart'>
         <ul>
-          {cartItems.map(item => (
-            <CartItem
-              key={item.id}
-              id={item.id}
-              image={item.image}
-              name={item.name}
-              price={item.price}
-              quantity={item.quantity}
-              updateQuantity={handleAddToCart} // Pasar la función como prop
-              removeItem={handleRemoveToCart} // Pasar la función como prop
-              decrementItem={handleCartDecrement}
-            />
-          ))}
+          {cartProducts.map(product => {
+            const cartItem = cartItems.find(item => item.id === product.id);
+            return (
+              <CartItem
+                key={product.id}
+                id={product.id}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+                quantity={cartItem.quantity}
+                updateQuantity={handleAddToCart} // Pasar la función como prop
+                removeItem={handleRemoveToCart} // Pasar la función como prop
+                decrementItem={handleCartDecrement}
+              />
+            );
+          })}
         </ul>
       </aside>
     </>

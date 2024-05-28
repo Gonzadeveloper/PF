@@ -4,7 +4,7 @@ import { Cart } from '../../models/Cart';
 const getAllCart = async (_req: Request, res: Response): Promise<void> => {
   try {
     const carts = await Cart.findAll({
-      include: [{ all: true }], // Incluye todas las asociaciones
+      // include: [{ all: true }], // Incluye todas las asociaciones
     });
     res.json(carts);
   } catch (error) {

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductsState, Product, Filters } from "../../types";
-import { ProductsState, Product, Filters } from "../../types";
 
 const initialState: ProductsState = {
   products: [],
@@ -47,6 +46,9 @@ export const {
   setFilters,
   setProductDetails,
   postProduct,
+
 } = productsSlice.actions;
+
+
 
 export default productsSlice.reducer;
