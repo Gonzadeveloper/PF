@@ -27,7 +27,7 @@ app.use(cors())
 
 app.use('/',routessRaiz)
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000;
 
 // app.use(session);
 // app.use(passport.initialize());
