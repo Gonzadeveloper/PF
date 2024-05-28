@@ -23,9 +23,9 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
       attributes: ['id', 'name', 'email', 'password', 'typeuser'],
       include: [
         {
-          model: Address,
-          as: 'address',
-          attributes: ['address', 'country']
+          model: Address
+          // as: 'address',
+          // attributes: ['address', 'country']
         }
       ]
     }); 
