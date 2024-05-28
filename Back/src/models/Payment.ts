@@ -44,7 +44,7 @@ export class Payment extends Model<Payment> {
 
   @Column({
     type: DataType.ENUM,
-    values: ['Tarjeta de crédito', 'PayPal', 'Transferencia bancaria'],
+    values: ['Tarjeta de crédito', 'Mercadopago', 'Transferencia bancaria'],
     allowNull: false,
   })
   paymentMethod!: string;
