@@ -11,8 +11,6 @@ import { Order } from "./models/Order";
 import { ProductOrder } from "./models/ProductOrder";
 import { Payment } from "./models/Payment";
 
-
-
 const app = express();
 app.use(express.json()); // middleware que transforma la req.body a un json
 app.use(express.urlencoded({ extended: true }));
@@ -21,8 +19,7 @@ app.use(cors());
 
 app.use("/", routessRaiz);
 
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
