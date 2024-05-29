@@ -15,7 +15,6 @@ const MiPerfil: React.FC = () => {
     logout,
     userData,
   } = useAuth();
-
   const [formData, setFormData] = useState<FormData>({
     password: "",
     typeuser: "USER",
@@ -26,39 +25,33 @@ const MiPerfil: React.FC = () => {
     state: "",
     postalcode: "",
   });
-
   const [showForm, setShowForm] = useState(false);
 
   const getUserData = async () => {
-    if (!userData) {
-      console.error("La variable userData es null");
-      return;
-    }
-    try {
-      const token = await getAccessTokenSilently();
-      const response = await axios.get(
-        `${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+    if (!userData) return console.error("La variable userData es null");
+
+    const token = await getAccessTokenSilently();
+    return axios
+      .get(`${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        const userDataFromServer = response.data.user;
+        setFormData({
+          password: userDataFromServer.password || "",
+          typeuser: userDataFromServer.typeuser || "USER",
+          picture: userDataFromServer.picture || "",
+          address: userDataFromServer.address[0]?.address || "",
+          country: userDataFromServer.address[0]?.country || "",
+          city: userDataFromServer.address[0]?.city || "",
+          state: userDataFromServer.address[0]?.state || "",
+          postalcode: userDataFromServer.address[0]?.postalcode || "",
+        });
+        console.log("Datos del usuario obtenidos:", userDataFromServer);
+      })
+      .catch((error) =>
+        console.error("Error al obtener los datos del usuario:", error)
       );
-      const userDataFromServer = response.data.user; // Ajuste aquí
-      setFormData({
-        password: userDataFromServer.password || "",
-        typeuser: userDataFromServer.typeuser || "USER",
-        picture: userDataFromServer.picture || "",
-        address: userDataFromServer.address[0]?.address || "",
-        country: userDataFromServer.address[0]?.country || "",
-        city: userDataFromServer.address[0]?.city || "",
-        state: userDataFromServer.address[0]?.state || "",
-        postalcode: userDataFromServer.address[0]?.postalcode || "",
-      });
-      console.log("Datos del usuario obtenidos:", userDataFromServer);
-    } catch (error) {
-      console.error("Error al obtener los datos del usuario:", error);
-    }
   };
 
   useEffect(() => {
@@ -69,10 +62,7 @@ const MiPerfil: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
-    setFormData((prevState: FormData) => ({
-      ...prevState,
-      [id]: value,
-    }));
+    setFormData((prevState) => ({ ...prevState, [id]: value }));
   };
 
   const handleProfileSubmit = async (e: React.FormEvent) => {
@@ -82,7 +72,7 @@ const MiPerfil: React.FC = () => {
 
       if (!userData?.id) {
         console.error("El ID del usuario es undefined");
-        return;
+        throw new Error("ID del usuario no definido");
       }
 
       const response = await axios.put(
@@ -108,51 +98,50 @@ const MiPerfil: React.FC = () => {
       console.log("Respuesta del servidor:", response.data);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
+      throw error; // Lanza el error para que sea capturado en ProfileForm
     }
   };
 
-  if (isAuthenticated) {
-    return (
-      <div
-        className={`${styles.container} mt-5 d-flex justify-content-center align-items-center`}>
-        <div className={styles.card}>
-          <div className={styles["card-body"]}>
-            <h2 className={styles["card-title"]}>Perfil de Usuario</h2>
-            <ProfileInfo
-              user={user}
-              showForm={showForm}
-              setShowForm={setShowForm}
-              handleLogout={logout}
+  const handleLoginClick = () => {
+    loginWithRedirect();
+  };
+
+  return isAuthenticated ? (
+    <div
+      className={`${styles.container} mt-5 d-flex justify-content-center align-items-center`}>
+      <div className={styles.card}>
+        <div className={styles["card-body"]}>
+          <h2 className={styles["card-title"]}>Perfil de Usuario</h2>
+          <ProfileInfo
+            user={user}
+            showForm={showForm}
+            setShowForm={setShowForm}
+            handleLogout={logout}
+          />
+          {showForm && (
+            <ProfileForm
+              formData={formData}
+              handleInputChange={handleInputChange}
+              handleProfileSubmit={handleProfileSubmit}
             />
-            {showForm && (
-              <ProfileForm
-                formData={formData}
-                handleInputChange={handleInputChange}
-                handleProfileSubmit={handleProfileSubmit}
-              />
-            )}
-          </div>
+          )}
         </div>
       </div>
-    );
-  } else {
-    return (
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-6">
-            <h2>Iniciar Sesión</h2>
-            <button
-              type="submit"
-              className={`btn btn-primary ${styles["btn-primary"]}`}
-              onClick={() => loginWithRedirect()}>
-              Iniciar Sesión
-            </button>
-          </div>
-          <div className="col-md-6"></div>
+    </div>
+  ) : (
+    <div className="container mt-5">
+      <div className="row">
+        <div className="col-md-6">
+          <h2>Iniciar Sesión</h2>
+          <button
+            className={`btn btn-primary ${styles["btn-primary"]}`}
+            onClick={handleLoginClick}>
+            Iniciar Sesión
+          </button>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default MiPerfil;

@@ -19,6 +19,8 @@ export const useAuth = () => {
   const userData = useSelector((state: RootState) => state.user.user);
 
   const checkAndCreateUser = async () => {
+    if (!isAuthenticated || userCreated) return;
+
     try {
       const token = await getAccessTokenSilently();
       console.log("Token obtenido:", token);
@@ -26,9 +28,7 @@ export const useAuth = () => {
       const response = await axios.get(
         `${import.meta.env.VITE_ENDPOINT}/user`,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
@@ -54,9 +54,7 @@ export const useAuth = () => {
           `${import.meta.env.VITE_ENDPOINT}/user`,
           userData,
           {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         console.log("Usuario creado:", createUserResponse.data);
