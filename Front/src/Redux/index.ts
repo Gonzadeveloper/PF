@@ -4,6 +4,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./Slices/UserSlice";
 import productsreducers from "./Slices/ProductsSlice";
 import favoritesReducer from "./Slices/FavoritesSlice";
+import categoryReducer from "./Slices/CategorySlice"
 
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
     cart: cartReducer,
     favorites: favoritesReducer,
     user: userReducer,
+    category: categoryReducer
   },
 });
 
