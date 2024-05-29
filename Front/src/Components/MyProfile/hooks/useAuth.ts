@@ -35,20 +35,24 @@ export const useAuth = () => {
       const existingUser = response.data.find(
         (u: any) => u.email === user?.email
       );
+
+      const userData = {
+        name: user?.name,
+        email: user?.email,
+        picture: user?.picture,
+        password: "default_password",
+        typeuser: "USER",
+        address: "default_address",
+        country: "default_country",
+        city: "default_city",
+        state: "default_state",
+        postalcode: "00000",
+      };
+
       if (!existingUser) {
         const createUserResponse = await axios.post(
           `${import.meta.env.VITE_ENDPOINT}/user`,
-          {
-            name: user?.name,
-            email: user?.email,
-            password: "default_password",
-            typeuser: "USER",
-            address: "default_address",
-            country: "default_country",
-            city: "default_city",
-            state: "default_state",
-            postalcode: "00000",
-          },
+          userData,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -56,33 +60,9 @@ export const useAuth = () => {
           }
         );
         console.log("Usuario creado:", createUserResponse.data);
-        dispatch(
-          setUser({
-            id: createUserResponse.data.user.id,
-            name: createUserResponse.data.user.name,
-            email: createUserResponse.data.user.email,
-            typeuser: createUserResponse.data.user.typeuser,
-            address: createUserResponse.data.user.address,
-            country: createUserResponse.data.user.country,
-            city: createUserResponse.data.user.city,
-            state: createUserResponse.data.user.state,
-            postalcode: createUserResponse.data.user.postalcode,
-          })
-        );
+        dispatch(setUser(createUserResponse.data));
       } else {
-        dispatch(
-          setUser({
-            id: existingUser.id,
-            name: existingUser.name,
-            email: existingUser.email,
-            typeuser: existingUser.typeuser,
-            address: existingUser.address,
-            country: existingUser.country,
-            city: existingUser.city,
-            state: existingUser.state,
-            postalcode: existingUser.postalcode,
-          })
-        );
+        dispatch(setUser(existingUser));
       }
 
       setUserCreated(true);

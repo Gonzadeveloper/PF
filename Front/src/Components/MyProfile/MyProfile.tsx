@@ -4,7 +4,7 @@ import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
 import ProfileInfo from "./components/ProfileInfo";
 import axios from "axios";
-import { FormData } from "../../types"; // Importamos la interfaz FormData desde types.ts
+import { FormData } from "../../types";
 
 const MiPerfil: React.FC = () => {
   const {
@@ -19,6 +19,7 @@ const MiPerfil: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     password: "",
     typeuser: "USER",
+    picture: "",
     address: "",
     country: "",
     city: "",
@@ -27,6 +28,44 @@ const MiPerfil: React.FC = () => {
   });
 
   const [showForm, setShowForm] = useState(false);
+
+  const getUserData = async () => {
+    if (!userData) {
+      console.error("La variable userData es null");
+      return;
+    }
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await axios.get(
+        `${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const userDataFromServer = response.data.user; // Ajuste aquí
+      setFormData({
+        password: userDataFromServer.password || "",
+        typeuser: userDataFromServer.typeuser || "USER",
+        picture: userDataFromServer.picture || "",
+        address: userDataFromServer.address[0]?.address || "",
+        country: userDataFromServer.address[0]?.country || "",
+        city: userDataFromServer.address[0]?.city || "",
+        state: userDataFromServer.address[0]?.state || "",
+        postalcode: userDataFromServer.address[0]?.postalcode || "",
+      });
+      console.log("Datos del usuario obtenidos:", userDataFromServer);
+    } catch (error) {
+      console.error("Error al obtener los datos del usuario:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (user && userData) {
+      getUserData();
+    }
+  }, [user, userData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -50,6 +89,7 @@ const MiPerfil: React.FC = () => {
         `${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`,
         {
           name: user?.name,
+          picture: user?.picture,
           email: user?.email,
           password: formData.password,
           typeuser: formData.typeuser,
@@ -66,17 +106,10 @@ const MiPerfil: React.FC = () => {
         }
       );
       console.log("Respuesta del servidor:", response.data);
-      console.log("Token enviado:", token);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      console.log("User:", user);
-    }
-  }, [user]);
 
   if (isAuthenticated) {
     return (

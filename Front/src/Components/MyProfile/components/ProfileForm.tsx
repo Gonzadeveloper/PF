@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../Miperfil.module.css";
+import { FormData } from "../../../types"; // Asegúrate de importar tu tipo FormData
 
 interface ProfileFormProps {
-  formData: any;
+  formData: FormData;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleProfileSubmit: (e: React.FormEvent) => void;
 }
@@ -12,19 +13,37 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
   handleInputChange,
   handleProfileSubmit,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <form onSubmit={handleProfileSubmit} className="mt-3">
       <div className="mb-3">
         <label htmlFor="password" className="form-label">
           Contraseña
         </label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
+        <div className="input-group">
+          <input
+            type={showPassword ? "text" : "password"}
+            className="form-control"
+            id="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+          <div className="input-group-append">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onMouseDown={togglePasswordVisibility}
+              onMouseUp={togglePasswordVisibility}
+              onMouseLeave={() => setShowPassword(false)}>
+              {showPassword ? "Ocultar" : "Mostrar"}
+            </button>
+          </div>
+        </div>
       </div>
       <div className="mb-3">
         <label htmlFor="address" className="form-label">

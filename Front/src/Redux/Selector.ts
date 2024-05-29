@@ -27,3 +27,9 @@ export const selectFilteredProducts = createSelector(
     });
   }
 );
+
+export const selectUser = (state: RootState) => state.user.user;
+export const selectAddresses = (state: RootState) => state.user.addresses;
+export const selectReviews = (state: RootState) => state.user.reviews;
+export const selectOrders = (state: RootState) => state.user.orders;
+export const selectCart = (state: RootState) => state.user.cart;

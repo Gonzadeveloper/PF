@@ -13,10 +13,18 @@
             "dest": "src/index.ts"
         }
     ],
-    "env": {
-        "DB_USER":"postgres",
-        "DB_PASSWORD":"tiburcio1",
-        "DB_HOST":"localhost",
-        "DB_NAME":"electroemporium"
-    }
+   "env": {
+  "DB_USER": "postuser",
+  "DB_PASSWORD": "oo3s0SfEKfGhvXY1eca7u5K9bBrxOH9p",
+  "DB_HOST": "dpg-cp6d7lgl6cac738j5660-a.oregon-postgres.render.com",
+  "DB_NAME": "electroemporium",
+  "URL": "postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME}",
+  "PG_URL": "postgres://postuser:oo3s0SfEKfGhvXY1eca7u5K9bBrxOH9p@dpg-cp6d7lgl6cac738j5660-a.oregon-postgres.render.com/electroemporium",
+  "AUTH0_DOMAIN": "dev-f74to22tivd5f6uk.us.auth0.com",
+  "AUTH0_CLIENT_ID": "ErZ5cjScQuXf5s6Tj5pNsBeyXkPwULW0",
+  "AUTH0_CLIENT_SECRET": "ZAM4Z6rdTgwMmj62vUrk8_58S4OSJS58UkEx5-YDB31-xwy_LteEdza7p5S77TXy",
+  "AUTH0_CALLBACK_URL": "https://pf-git-main-gonzadevelopers-projects.vercel.app",
+  "SESSION_SECRET": "12345678",
+  "AUTH0_AUDIENCE": "https://electroemporium"
+}
 }
