@@ -57,6 +57,7 @@ export interface CardProps {
 }
 export interface FormData {
   password: string;
+  picture: string;
   typeuser: string;
   address: string;
   country: string;
@@ -76,6 +77,7 @@ export interface UserState {
 export interface User {
   id: number;
   name: string;
+  picture: string;
   email: string;
   typeuser: string;
   address: string;

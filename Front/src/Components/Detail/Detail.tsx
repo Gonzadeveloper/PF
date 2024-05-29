@@ -75,6 +75,20 @@ const ProductDetail: React.FC<Props> = () => {
               <button className="btn btn-primary mr-2">Comprar</button>
               <hr />
               <h2 className="mt-4">Reseñas</h2>
+              {/*   {product?.review && product.review.length > 0 ? (
+                product.review.map((review) => (
+                  <div className="review">
+                    <p>
+                      <strong>Usuario:</strong>{" "}
+                      {review.user?.name ?? "Usuario desconocido"}
+                    </p>
+                    <p>{review.comment}</p>
+                    <p>Rating: {review.rating}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No hay reseñas para este producto.</p>
+              )} */}
             </div>
           </div>
         </div>
