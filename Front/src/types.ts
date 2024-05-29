@@ -31,6 +31,10 @@ export interface Category {
   name: string;
 }
 
+export type CategoryState = {
+  categorys: Category[]
+}
+
 export interface Filters {
   name: string;
   maxPrice: number;
