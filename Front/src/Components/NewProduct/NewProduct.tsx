@@ -1,12 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { uploadImage } from "./Cloudinary"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { newProduct } from "../../Redux/Actions/productActions"
+import { selectCategory, selectUser } from "../../Redux/Selector"
+import { useNavigate } from "react-router-dom"
+import { getCategorys } from "../../Redux/Actions/categotyActions"
+import { log } from "console"
 
 
 function NewProduct() {
 
+    useEffect(()=>{
+        dispatch(getCategorys())
+    }, [])
+
     const dispatch = useDispatch()
+    const user = useSelector(selectUser)
+    const navigate = useNavigate()
+    const category = useSelector(selectCategory)
 
     type ValidationMsg = {
         name?: string,
@@ -36,7 +47,7 @@ function NewProduct() {
         condition: "",
         image: "",
         categoryId: "",
-        userId: 3
+        userId: user?.id
     })
 
     const [error, setError] = useState<ValidationMsg>({
@@ -93,7 +104,12 @@ function NewProduct() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (!error.name && !error.price && !error.description && !error.condition && !error.stock && !error.image) {
+
+        if(user==null){
+            alert("Cree una cuenta para publicar un producto!")
+            navigate('/MiPerfil')}
+
+        else if (!error.name && !error.price && !error.description && !error.condition && !error.stock && !error.image) {
             //dispatch al back
 
             dispatch(newProduct({
@@ -111,7 +127,7 @@ function NewProduct() {
                 condition: "",
                 image: "",
                 categoryId: "",
-                userId: 3
+                userId: user?.id
             })
             setError({
                 name: "Por favor ingrese el nombre del producto"
@@ -135,10 +151,7 @@ function NewProduct() {
             image: "Please upload an image of the product"
         })
     }
-
-    console.log(product);
-
-
+    
     return (
         <div className="container mt-5">
             <h2>Publica un producto a vender!</h2>
@@ -210,18 +223,7 @@ function NewProduct() {
                         className={`form-select ${error.categoryId ? 'is-invalid' : ''}`}
                     >
                         <option value="">-</option>
-                        <option value="1">Celulares</option>
-                        <option value="2">Notebooks</option>
-                        <option value="3">Impresoras</option>
-                        <option value="4">Redes</option>
-                        <option value="5">Componentes PC</option>
-                        <option value="6">Tablets</option>
-                        <option value="7">Camaras</option>
-                        <option value="8">Sonido</option>
-                        <option value="9">Almacenamiento</option>
-                        <option value="10">Smartwatch</option>
-                        <option value="11">Monitores</option>
-                        <option value="12">Consolas</option>
+                        {category?.map(cat=><option value={cat.id} key={cat.id}>{cat.name}</option>)}
                     </select>
                     <div className="invalid-feedback">{error.categoryId}</div>
                 </div>
