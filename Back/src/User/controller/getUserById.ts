@@ -2,6 +2,7 @@ import { sequelize } from '../../config/database';
 import { User } from '../../models/User';
 import { Address } from '../../models/Address';
 import { Request, Response } from 'express';
+import { Product } from '../../models/Product';
 
 const getUserById = async (req: Request, res: Response): Promise<void> => {
   const userId = req.params.id;
@@ -23,9 +24,15 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
       attributes: ['id',"picture", 'name', 'email', 'password', 'typeuser'],
       include: [
         {
-          model: Address
+          model: Address,
+          required: false
           // as: 'address',
           // attributes: ['address', 'country']
+        },
+        {
+          model: Product,
+          required: false
+         // attributes: ['id', 'address', 'country'] // Ajusta las propiedades según tu modelo Address
         }
       ]
     }); 
