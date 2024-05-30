@@ -36,7 +36,6 @@ const Card: React.FC<CardProps> = ({ id, image, name, price, description, condit
         <button onClick={handleAddToCart}>
           <FaShoppingCart />
         </button>
-      </div>
       <div className="card-footer">
         <button
           onClick={handleToggleFavorite}
@@ -45,6 +44,7 @@ const Card: React.FC<CardProps> = ({ id, image, name, price, description, condit
           {isSearchPage ? (isFavorite ? "Quitar de favoritos" : "Agregar a favoritos") : (isFavorite ? "Quitar de favoritos" : "Quitar de favoritos")}
 
         </button>
+      </div>
       </div>
     </div>
   );

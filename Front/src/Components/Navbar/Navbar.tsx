@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
 import { useDispatch } from "react-redux";
-import { getAllProds, getProdByName } from "../../Redux/Actions/productActions";
+import { getProdByName } from "../../Redux/Actions/productActions";
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -20,10 +20,6 @@ const Navbar = () => {
     dispatch(getProdByName(searchString))
   }
 
-  const handleCompraSubmit = (e: React.MouseEvent<HTMLButtonElement>)=>{
-    e.preventDefault()
-    dispatch(getAllProds())
-  }
   
   return (
     <nav className="navbar navbar-dark bg-dark">
@@ -57,8 +53,9 @@ const Navbar = () => {
             <button className="btn btn-outline-light me-2">Vende</button>
           </Link>
 
-         
-            <button className="btn btn-outline-light me-2" onClick={handleCompraSubmit}><Link to="Search">Compra</Link></button>
+          <Link to="Search">
+            <button className="btn btn-outline-light me-2">Compra</button>
+          </Link>
 
           <Link to="Favoritos">
             <button className="btn btn-outline-light me-2">Favoritos</button>
