@@ -33,6 +33,15 @@ const ProductOrder_1 = require("./models/ProductOrder");
 Object.defineProperty(exports, "ProductOrder", { enumerable: true, get: function () { return ProductOrder_1.ProductOrder; } });
 const Payment_1 = require("./models/Payment");
 Object.defineProperty(exports, "Payment", { enumerable: true, get: function () { return Payment_1.Payment; } });
+// const { Client } = require('pg');
+// const client = new Client({
+//   user: process.env.PGUSER,
+//   password: process.env.PGPASSWORD,
+//   host: process.env.PGHOST,
+//   database: process.env.PGDATABASE,
+//   port: process.env.PGPORT,
+// });
+// client.connect();
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 app.use(express_1.default.urlencoded({ extended: true }));
