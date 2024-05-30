@@ -135,6 +135,7 @@ function NewProduct() {
 
 
             alert("Your product has been posted")
+            navigate("/MiPerfil")
         } else {
             alert("Please complete the form correctly")
         }
