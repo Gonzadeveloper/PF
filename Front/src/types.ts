@@ -60,6 +60,7 @@ export interface User {
   city: string;
   state: string;
   postalcode: string;
+  products: Product[];
 }
 
 export interface Address {

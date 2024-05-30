@@ -11,7 +11,7 @@ import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
 import { getProductById } from "../../Redux/Actions/productActions";
 import { setProductDetails } from "../../Redux/Slices/ProductsSlice";
-
+import ClipLoader from "react-spinners/ClipLoader";
 import { selectSelectedProduct } from "../../Redux/Selector";
 import { useParams } from "react-router-dom";
 
@@ -39,7 +39,11 @@ const ProductDetail: React.FC<Props> = () => {
   }, [dispatch, id]);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <ClipLoader size={150} />
+      </div>
+    );
   }
 
   return (
@@ -75,7 +79,7 @@ const ProductDetail: React.FC<Props> = () => {
               <button className="btn btn-primary mr-2">Comprar</button>
               <hr />
               <h2 className="mt-4">Reseñas</h2>
-              {/*   {product?.review && product.review.length > 0 ? (
+              {product?.review && product.review.length > 0 ? (
                 product.review.map((review) => (
                   <div className="review">
                     <p>
@@ -88,7 +92,7 @@ const ProductDetail: React.FC<Props> = () => {
                 ))
               ) : (
                 <p>No hay reseñas para este producto.</p>
-              )} */}
+              )}
             </div>
           </div>
         </div>
