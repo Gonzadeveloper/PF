@@ -83,6 +83,8 @@ const cartMiddleware = store => next => action => {
               
               console.log(`Productos de redux convertidos ${JSON.stringify(cartItemsConvertR, null, 2)}`)
               
+
+              
             
               // Enviar el objeto en una sola solicitud POST
               axios.post('http://localhost:3000/cartproduct/', productsToDB)
