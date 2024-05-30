@@ -48,3 +48,44 @@
   align-items: center;
   height: 100vh;
 }
+
+.review-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.star-rating {
+  color: #ffc107;
+}
+
+.star-container {
+  display: inline-block;
+}
+
+.star {
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.comment {
+  color: #495057;
+  margin-bottom: 0;
+}
+
+.no-reviews {
+  margin-top: 20px;
+  color: #6c757d;
+}

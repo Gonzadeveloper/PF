@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../../Redux/Slices/UserSlice";
 import { RootState } from "../../../Redux/index";
+import toast from "react-hot-toast";
 
 export const useAuth = () => {
   const {
@@ -65,7 +66,31 @@ export const useAuth = () => {
 
       setUserCreated(true);
     } catch (error) {
-      console.error("Error al verificar o crear el usuario:", error);
+      if (axios.isAxiosError(error)) {
+        if (
+          error.response?.status === 400 &&
+          error.response.data?.error === "Validation error"
+        ) {
+          const validationError = error.response.data.details.find(
+            (detail: any) =>
+              detail.path === "email" && detail.type === "unique violation"
+          );
+          if (validationError) {
+            console.error(
+              "Cuenta recientemente eliminada. Por favor contacte con soporte."
+            );
+            toast.error(
+              "Cuenta recientemente eliminada. Por favor contacte con soporte.",
+              {
+                duration: 5000,
+                position: "top-right",
+              }
+            );
+          }
+        }
+      } else {
+        console.error("Unexpected error:", error);
+      }
     }
   };
 

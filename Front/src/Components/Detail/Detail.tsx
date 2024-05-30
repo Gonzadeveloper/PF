@@ -14,6 +14,7 @@ import { setProductDetails } from "../../Redux/Slices/ProductsSlice";
 import ClipLoader from "react-spinners/ClipLoader";
 import { selectSelectedProduct } from "../../Redux/Selector";
 import { useParams } from "react-router-dom";
+import { Review } from "../../types";
 
 interface Props {
   productId: number;
@@ -78,20 +79,35 @@ const ProductDetail: React.FC<Props> = () => {
               </p>
               <button className="btn btn-primary mr-2">Comprar</button>
               <hr />
+
               <h2 className="mt-4">Reseñas</h2>
               {product?.review && product.review.length > 0 ? (
-                product.review.map((review) => (
-                  <div className="review">
-                    <p>
-                      <strong>Usuario:</strong>{" "}
-                      {review.user?.name ?? "Usuario desconocido"}
-                    </p>
-                    <p>{review.comment}</p>
-                    <p>Rating: {review.rating}</p>
-                  </div>
-                ))
+                <div className="reviews-container">
+                  {product.review.map((review: Review) => (
+                    <div className="review-item" key={review.id}>
+                      <div className="review-header">
+                        <span className="user-name">
+                          {review.userId ?? "Usuario desconocido"}
+                        </span>
+                        <div className="star-rating">
+                          {[...Array(review.rating)].map((_, index) => (
+                            <span key={index} className="star">
+                              &#9733;
+                            </span>
+                          ))}
+                          {[...Array(5 - review.rating)].map((_, index) => (
+                            <span key={index + review.rating} className="star">
+                              &#9734;
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <p className="comment">{review.comment}</p>
+                    </div>
+                  ))}
+                </div>
               ) : (
-                <p>No hay reseñas para este producto.</p>
+                <p className="no-reviews">No hay reseñas para este producto.</p>
               )}
             </div>
           </div>

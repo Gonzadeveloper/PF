@@ -14,8 +14,10 @@ export interface Filters {
 }
 
 export interface Review {
+  id: number;
   rating: number;
   comment: string;
+  userId: number;
 }
 
 export interface Product {
@@ -27,7 +29,7 @@ export interface Product {
   description: string;
   image: string;
   condition: string;
-  reviews: Review[];
+  review: Review[];
 }
 
 export interface ProductsState {

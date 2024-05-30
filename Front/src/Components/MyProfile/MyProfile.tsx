@@ -102,10 +102,30 @@ const MiPerfil: React.FC = () => {
       throw error;
     }
   };
+  const handleDeleteAccount = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      await axios.delete(
+        `${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      logout({ returnTo: window.location.origin });
+      console.log("Cuenta eliminada con éxito");
+    } catch (error) {
+      console.error("Error al eliminar la cuenta:", error);
+    }
+  };
 
   const handleLoginClick = () => {
     loginWithRedirect();
   };
+  useEffect(() => {
+    if (isAuthenticated && userData) {
+      getUserData();
+    }
+  }, [isAuthenticated, userData]);
 
   return isAuthenticated ? (
     <div className={`container ${styles.outerContainer} mt-5`}>
@@ -129,6 +149,11 @@ const MiPerfil: React.FC = () => {
                   handleProfileSubmit={handleProfileSubmit}
                 />
               )}
+              <button
+                className="btn btn-danger mt-3"
+                onClick={handleDeleteAccount}>
+                Eliminar Cuenta
+              </button>
             </div>
           </div>
         </div>
@@ -137,9 +162,7 @@ const MiPerfil: React.FC = () => {
             Articulos en venta
             <hr></hr>
           </h2>
-          {userData?.products && userData.products.length > 0 && (
-            <UserProducts products={userData.products} />
-          )}
+          <UserProducts products={userData?.products || []} />
         </div>
       </div>
     </div>
