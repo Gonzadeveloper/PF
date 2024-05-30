@@ -13,17 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.payment = void 0;
-const express_1 = __importDefault(require("express"));
-const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const mercadopago_1 = require("mercadopago");
-const mercadopago_2 = require("mercadopago");
 dotenv_1.default.config();
 const client = new mercadopago_1.MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN || '' });
-const app = (0, express_1.default)();
-// const port = process.env.PORT || 3000;
-app.use((0, cors_1.default)());
-app.use(express_1.default.json());
 const payment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const body = {
         items: [
@@ -32,7 +25,7 @@ const payment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 title: req.body.name,
                 description: req.body.description,
                 quantity: req.body.quantity,
-                unit_price: Number(req.body.price),
+                unit_price: req.body.price,
                 currency_id: "ARS",
                 image: req.body.image,
             },
@@ -45,21 +38,12 @@ const payment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         auto_return: "approved",
         binary_mode: true,
     };
-    res.json(body);
     try {
-        const preference = yield new mercadopago_2.Preference(client).create({ body });
-        res.json({ redirectUrl: preference.init_point });
+        const preference = yield new mercadopago_1.Preference(client).create({ body });
+        return res.json({ redirectUrl: preference.init_point });
     }
     catch (error) {
-        res.json(error);
+        return res.status(500).json(error);
     }
 });
 exports.payment = payment;
-// app.post("/create_preference", async (_req, res) => {
-//     const body = {
-//     //...
-//     };
-// });
-// app.listen(port, () => {
-//     console.log("Servidor corriendo en el puerto:", port);
-// });
