@@ -1,15 +1,28 @@
+.outerContainer {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
+  display: flex;
+  justify-content: flex-start; /* Alinea los contenedores al inicio */
+  gap: 20px; /* Espacio entre los contenedores */
+}
+
+.leftContainer {
+  max-width: 300px; /* Reduce el ancho máximo del contenedor izquierdo */
+}
+
+.rightContent {
+  width: 600px; /* Define un ancho fijo para el contenedor derecho */
+  flex-shrink: 0;
 }
 
 .card {
-  max-width: 400px;
-  margin: 0 auto;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .card-body {

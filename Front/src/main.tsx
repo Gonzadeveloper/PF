@@ -7,6 +7,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Provider } from "react-redux";
 import store from "./Redux/index.ts";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { Toaster } from "react-hot-toast";
 
 const domain = import.meta.env.VITE_AUTH0_DOMAIN;
 const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <BrowserRouter>
         <Auth0Provider {...auth0Config}>
           <App />
+          <Toaster />
         </Auth0Provider>
       </BrowserRouter>
     </React.StrictMode>

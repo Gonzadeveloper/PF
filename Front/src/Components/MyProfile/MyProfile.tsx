@@ -3,6 +3,7 @@ import { useAuth } from "./hooks/useAuth";
 import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
 import ProfileInfo from "./components/ProfileInfo";
+import UserProducts from "./components/UserProducts";
 import axios from "axios";
 import { FormData } from "../../types";
 
@@ -26,6 +27,12 @@ const MiPerfil: React.FC = () => {
     postalcode: "",
   });
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    if (user && userData) {
+      getUserData();
+    }
+  }, [user, userData]);
 
   const getUserData = async () => {
     if (!userData) return console.error("La variable userData es null");
@@ -53,12 +60,6 @@ const MiPerfil: React.FC = () => {
         console.error("Error al obtener los datos del usuario:", error)
       );
   };
-
-  useEffect(() => {
-    if (user && userData) {
-      getUserData();
-    }
-  }, [user, userData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -98,33 +99,70 @@ const MiPerfil: React.FC = () => {
       console.log("Respuesta del servidor:", response.data);
     } catch (error) {
       console.error("Error al enviar los datos:", error);
-      throw error; // Lanza el error para que sea capturado en ProfileForm
+      throw error;
+    }
+  };
+  const handleDeleteAccount = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      await axios.delete(
+        `${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      logout({ returnTo: window.location.origin });
+      console.log("Cuenta eliminada con éxito");
+    } catch (error) {
+      console.error("Error al eliminar la cuenta:", error);
     }
   };
 
   const handleLoginClick = () => {
     loginWithRedirect();
   };
+  useEffect(() => {
+    if (isAuthenticated && userData) {
+      getUserData();
+    }
+  }, [isAuthenticated, userData]);
 
   return isAuthenticated ? (
-    <div
-      className={`${styles.container} mt-5 d-flex justify-content-center align-items-center`}>
-      <div className={styles.card}>
-        <div className={styles["card-body"]}>
-          <h2 className={styles["card-title"]}>Perfil de Usuario</h2>
-          <ProfileInfo
-            user={user}
-            showForm={showForm}
-            setShowForm={setShowForm}
-            handleLogout={logout}
-          />
-          {showForm && (
-            <ProfileForm
-              formData={formData}
-              handleInputChange={handleInputChange}
-              handleProfileSubmit={handleProfileSubmit}
-            />
-          )}
+    <div className={`container ${styles.outerContainer} mt-5`}>
+      <div className={`row ${styles.container}`}>
+        <div className={`col-md-4 ${styles.leftContainer}`}>
+          <div className={`card ${styles.card}`}>
+            <div className={`card-body ${styles["card-body"]}`}>
+              <h2 className={`card-title ${styles["card-title"]}`}>
+                Perfil de Usuario
+              </h2>
+              <ProfileInfo
+                user={user}
+                showForm={showForm}
+                setShowForm={setShowForm}
+                handleLogout={logout}
+              />
+              {showForm && (
+                <ProfileForm
+                  formData={formData}
+                  handleInputChange={handleInputChange}
+                  handleProfileSubmit={handleProfileSubmit}
+                />
+              )}
+              <button
+                className="btn btn-danger mt-3"
+                onClick={handleDeleteAccount}>
+                Eliminar Cuenta
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className={`col-md-7 ml-4 ${styles.rightContent}`}>
+          <h2 className={`card-title ${styles["card-title"]}`}>
+            Articulos en venta
+            <hr></hr>
+          </h2>
+          <UserProducts products={userData?.products || []} />
         </div>
       </div>
     </div>
