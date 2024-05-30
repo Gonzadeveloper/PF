@@ -12,7 +12,6 @@ export interface User {
 
 export interface UserState {
   user: User | null;
-  isAuthenticated: boolean;
 }
 export interface FormData {
   password: string;
