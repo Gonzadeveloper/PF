@@ -6,6 +6,7 @@ import ProfileInfo from "./components/ProfileInfo";
 import UserProducts from "./components/UserProducts";
 import axios from "axios";
 import { FormData } from "../../types";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const MiPerfil: React.FC = () => {
   const {
@@ -27,6 +28,7 @@ const MiPerfil: React.FC = () => {
     postalcode: "",
   });
   const [showForm, setShowForm] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (user && userData) {
@@ -55,10 +57,12 @@ const MiPerfil: React.FC = () => {
           postalcode: userDataFromServer.address[0]?.postalcode || "",
         });
         console.log("Datos del usuario obtenidos:", userDataFromServer);
+        setIsLoading(false);
       })
-      .catch((error) =>
-        console.error("Error al obtener los datos del usuario:", error)
-      );
+      .catch((error) => {
+        console.error("Error al obtener los datos del usuario:", error);
+        setIsLoading(false);
+      });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,6 +106,7 @@ const MiPerfil: React.FC = () => {
       throw error;
     }
   };
+
   const handleDeleteAccount = async () => {
     try {
       const token = await getAccessTokenSilently();
@@ -121,6 +126,7 @@ const MiPerfil: React.FC = () => {
   const handleLoginClick = () => {
     loginWithRedirect();
   };
+
   useEffect(() => {
     if (isAuthenticated && userData) {
       getUserData();
@@ -129,54 +135,72 @@ const MiPerfil: React.FC = () => {
 
   return isAuthenticated ? (
     <div className={`container ${styles.outerContainer} mt-5`}>
-      <div className={`row ${styles.container}`}>
-        <div className={`col-md-4 ${styles.leftContainer}`}>
-          <div className={`card ${styles.card}`}>
-            <div className={`card-body ${styles["card-body"]}`}>
-              <h2 className={`card-title ${styles["card-title"]}`}>
-                Perfil de Usuario
-              </h2>
-              <ProfileInfo
-                user={user}
-                showForm={showForm}
-                setShowForm={setShowForm}
-                handleLogout={logout}
-              />
-              {showForm && (
-                <ProfileForm
-                  formData={formData}
-                  handleInputChange={handleInputChange}
-                  handleProfileSubmit={handleProfileSubmit}
+      {isLoading ? (
+        <div className="loading-container">
+          <ClipLoader size={150} />
+        </div>
+      ) : (
+        <div className={`row ${styles.container}`}>
+          <div className={`col-md-4 ${styles.leftContainer}`}>
+            <div className={`card ${styles.card}`}>
+              <div className={`card-body ${styles["card-body"]}`}>
+                <h2 className={`card-title ${styles["card-title"]}`}>
+                  Perfil de Usuario
+                </h2>
+                <ProfileInfo
+                  user={user}
+                  showForm={showForm}
+                  setShowForm={setShowForm}
+                  handleLogout={logout}
                 />
-              )}
-              <button
-                className="btn btn-danger mt-3"
-                onClick={handleDeleteAccount}>
-                Eliminar Cuenta
-              </button>
+                {showForm && (
+                  <ProfileForm
+                    formData={formData}
+                    handleInputChange={handleInputChange}
+                    handleProfileSubmit={handleProfileSubmit}
+                  />
+                )}
+                <button
+                  className="btn btn-danger mt-3"
+                  onClick={handleDeleteAccount}>
+                  Eliminar Cuenta
+                </button>
+              </div>
             </div>
           </div>
+          <div className={`col-md-7 ml-4 ${styles.rightContent}`}>
+            <h2 className={`card-title ${styles["card-title"]}`}>
+              Articulos en venta
+              <hr></hr>
+            </h2>
+            <UserProducts products={userData?.products || []} />
+          </div>
         </div>
-        <div className={`col-md-7 ml-4 ${styles.rightContent}`}>
-          <h2 className={`card-title ${styles["card-title"]}`}>
-            Articulos en venta
-            <hr></hr>
-          </h2>
-          <UserProducts products={userData?.products || []} />
-        </div>
-      </div>
+      )}
     </div>
   ) : (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-md-6">
-          <h2>Iniciar Sesión</h2>
-          <button
-            className={`btn btn-primary ${styles["btn-primary"]}`}
-            onClick={handleLoginClick}>
-            Iniciar Sesión
-          </button>
-        </div>
+    <div className={styles.loginContainer}>
+      <div className={styles.loginContent}>
+        <h2 className={styles.welcomeMessage}>
+          ¡Bienvenido a Electro Emporium!
+        </h2>
+        <p className={styles.loginMessage}>
+          ¡El mejor lugar para explorar y comprar una amplia gama de productos
+          electrónicos! Sumérgete en el emocionante mundo de la tecnología y
+          descubre las últimas novedades en dispositivos electrónicos, desde
+          smartphones y laptops hasta dispositivos inteligentes para el hogar.
+        </p>
+
+        <p className={styles.loginMessage}>
+          ¡Regístrate ahora para comenzar a explorar nuestro catálogo y
+          disfrutar de una experiencia de compra incomparable en Electro
+          Emporium!
+        </p>
+        <button
+          className={`btn btn-primary ${styles.loginButton}`}
+          onClick={handleLoginClick}>
+          Iniciar Sesión
+        </button>
       </div>
     </div>
   );
