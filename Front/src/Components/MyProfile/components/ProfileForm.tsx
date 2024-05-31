@@ -35,7 +35,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     setAlertVisible(true);
     setTimeout(() => {
       setAlertVisible(false);
-    }, 3000); // Ocultar la alerta después de 3 segundos
+    }, 3000); 
   };
 
   return (
