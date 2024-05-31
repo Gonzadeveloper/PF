@@ -80,11 +80,31 @@ const cartMiddleware = store => next => action => {
                 productId: id,
                 quantity: quantity,
               }));
-              
+               
               console.log(`Productos de redux convertidos ${JSON.stringify(cartItemsConvertR, null, 2)}`)
               
+              // Filtrar productos de API que no están en R
+              const sendToRedux = cartItemsConvertAPI.filter(apiItem =>
+                !cartItemsConvertR.some(rItem => rItem.productId === apiItem.productId)
+              );
 
+              // Filtrar productos de R que no están en API
+              const sendToDB = cartItemsConvertR.filter(rItem =>
+                !cartItemsConvertAPI.some(apiItem => apiItem.productId === rItem.productId)
+              );
+
+              console.log('Enviar a Redux:', JSON.stringify(sendToRedux, null, 2));
+              console.log('Enviar a DB:', JSON.stringify(sendToDB, null, 2));
               
+
+              //convertir al formato que acepta la DB
+              const productsToDB = {
+                products: sendToDB.map(item => ({
+                  cartId: cartId,
+                  productId: item.productId,
+                  quantity: item.quantity
+                }))
+              };
             
               // Enviar el objeto en una sola solicitud POST
               axios.post('http://localhost:3000/cartproduct/', productsToDB)
