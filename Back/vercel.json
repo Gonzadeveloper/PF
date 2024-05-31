@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src":"src/index.ts",
+            "use":"@vercel/node",
+            "framework": "other"
+        }
+    ],
+    "routes": [
+        {
+            "src":"/(.*)",
+            "dest": "src/index.ts"
+        }
+    ],
+    "env": {
+        "DB_USER":"postgres",
+        "DB_PASSWORD":"tiburcio1",
+        "DB_HOST":"localhost",
+        "DB_NAME":"electroemporium"
+    }
+}
