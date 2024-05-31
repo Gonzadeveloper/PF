@@ -64,8 +64,8 @@ const cartMiddleware = store => next => action => {
 
               store.dispatch(setCartSynced(true))
 
-          } else if (!isCartSynced) {
-            
+          } else if (!isCartSynced ) {
+
             axios.get(`http://localhost:3000/cart/${cartId}`)
             .then(response => {
               
@@ -150,6 +150,7 @@ const cartMiddleware = store => next => action => {
     }).catch(error => {
       console.error('Error fetching carts:', error);
     })
+    store.dispatch = next;
     }
     return next(action); 
   }

@@ -48,6 +48,7 @@ const cartSlice = createSlice({
           } else {
             state.items.push(product);
           }
+          saveCartToLocalStorage(state.items); // Guardar en localStorage
         });
       } else {
         // Si el payload es un solo producto
