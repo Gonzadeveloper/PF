@@ -13,6 +13,7 @@
             "dest": "src/index.ts"
         }
     ],
+<<<<<<< HEAD
    "env": {
   "DB_USER": "postuser",
   "DB_PASSWORD": "oo3s0SfEKfGhvXY1eca7u5K9bBrxOH9p",
@@ -27,4 +28,12 @@
   "SESSION_SECRET": "12345678",
   "AUTH0_AUDIENCE": "https://electroemporium"
 }
+=======
+    "env": {
+        "DB_USER":"postgres",
+        "DB_PASSWORD":"tiburcio1",
+        "DB_HOST":"localhost",
+        "DB_NAME":"electroemporium"
+    }
+>>>>>>> pasarela-de-pagos
 }
