@@ -1,26 +1,23 @@
 import axios from 'axios';
-import { clearCart, loadCartFromLocalStorage, clearCartFromLocalStorage} from './CartSlice';
+import { clearCart, addToCart, loadCartFromLocalStorage, setCartSynced, clearCartFromLocalStorage} from './CartSlice';
 
 
 const cartMiddleware = store => next => action => {
   // Obtener el estado actual de Redux
   const state = store.getState();
   const user = state.user.user; // Ajusta esto según la estructura de tu estado
-
+  const isCartSynced = state.cart.isCartSynced;
 
   // Ejecutar el middleware solo si el estado del usuario no es null y aún no ha sido autenticado
-  if (user !== null ) {
+  if (user !== null && !isCartSynced) {
     const userId = user.id; // Asegúrate de que el userId esté disponible en el estado del usuario
     const cartItems = loadCartFromLocalStorage();
-    console.log('User ID:', userId); // Depuración del userId
-    console.log(cartItems)
 
     axios.get(`http://localhost:3000/cart`)
     .then(response => {
       const carts = response.data;
       const userCart = carts.find(cart => cart.userId === userId);
 
-      console.log(userCart)
 
       if (userCart === undefined) {
         // Usuario no tiene carrito, crear uno nuevo
@@ -30,6 +27,9 @@ const cartMiddleware = store => next => action => {
         }).catch(error => {
           console.error('Error creating new cart:', error);
         }); 
+
+        store.dispatch(setCartSynced(true))
+
       } else {
 
         const cartId = userCart.id 
@@ -62,7 +62,9 @@ const cartMiddleware = store => next => action => {
                 console.error('Error adding products to cart:', error);
               });
 
-          } else {
+              store.dispatch(setCartSynced(true))
+
+          } else if (!isCartSynced) {
             
             axios.get(`http://localhost:3000/cart/${cartId}`)
             .then(response => {
@@ -73,15 +75,11 @@ const cartMiddleware = store => next => action => {
                 productId: productId,
                 quantity: quantity,
               }));
-
-              console.log(`Aquí están los productos de la API: ${JSON.stringify(cartItemsConvertAPI, null, 2)}`);
               
               const cartItemsConvertR = cartItems.map(({id, quantity}) => ({
                 productId: id,
                 quantity: quantity,
-              }));
-               
-              console.log(`Productos de redux convertidos ${JSON.stringify(cartItemsConvertR, null, 2)}`)
+              })); 
               
               // Filtrar productos de API que no están en R
               const sendToRedux = cartItemsConvertAPI.filter(apiItem =>
@@ -92,10 +90,30 @@ const cartMiddleware = store => next => action => {
               const sendToDB = cartItemsConvertR.filter(rItem =>
                 !cartItemsConvertAPI.some(apiItem => apiItem.productId === rItem.productId)
               );
-
-              console.log('Enviar a Redux:', JSON.stringify(sendToRedux, null, 2));
-              console.log('Enviar a DB:', JSON.stringify(sendToDB, null, 2));
+ 
               
+              //enviar los datos al estado de redux
+              const reduxProducts = store.getState().products.products;
+              
+
+              // Completar la información de sendToRedux con los detalles de reduxProducts
+              const completeSendToRedux = sendToRedux.map(item => {
+                const productDetails = reduxProducts.find(product => product.id === item.productId);
+                return {
+                  id: productDetails.id,
+                  image: productDetails.image,
+                  name: productDetails.name,
+                  price: productDetails.price,
+                  description: productDetails.description,
+                  isFavorite: productDetails.isFavorite,
+                  isSearchPage: productDetails.isSearchPage,
+                  quantity: item.quantity
+                };
+              });
+              
+
+              // Despachar la acción addToCart con todos los productos en completeSendToRedux
+              store.dispatch(addToCart(completeSendToRedux));
 
               //convertir al formato que acepta la DB
               const productsToDB = {
@@ -115,13 +133,8 @@ const cartMiddleware = store => next => action => {
                   console.error('Error adding products to new cart:', error);
                 });
             
-              // Ahora productsToSend contiene los productos para enviar a la API
-              // Y productsForRedux contiene los productos para el estado de Redux
-            
-              //Enviar los productos que estan en el local storage 
-            
-              console.log('Products to send:', productsToSend);
-              console.log('Products for Redux:', productsForRedux);
+              store.dispatch(setCartSynced(true))
+
             })
             .catch(error => {
               console.error('Error fetching cart:', error);
