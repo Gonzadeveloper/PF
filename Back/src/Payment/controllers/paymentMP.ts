@@ -2,10 +2,11 @@ import dotenv from 'dotenv';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { Request, Response } from 'express';
 import {Order} from '../../models/Order';
-//import {Payment} from '../../models/Payment';
+import {Payment} from '../../models/Payment';
 // import Product from '../models/Product';
 // import User from '../models/User';
 import {ProductOrder} from '../../models/ProductOrder';
+//import { constants } from 'buffer';
 // import sequelize from '../database';  // Asume que tienes una configuración de sequelize
 
 dotenv.config();
@@ -42,11 +43,12 @@ const payment = async (req: Request, res: Response) => {
         quantity: prod.quantity,
         unit_price: prod.unitPrice,
       })),
+     
       back_urls: {
-        success: "http://localhost:3000/success",
-        failure: "http://localhost:3000/failure",
-        pending: "http://localhost:3000/pending",
-      },
+        success: 'https://695c-186-169-78-25.ngrok-free.app/payment/success',
+        failure: 'https://695c-186-169-78-25.ngrok-free.app/payment/failure',
+        pending: 'https://695c-186-169-78-25.ngrok-free.app/payment/pending'
+    },
       auto_return: "approved",
       external_reference: `${nuevaOrden.id}`,
       notification_url: "https://695c-186-169-78-25.ngrok-free.app/payment/notifications"
@@ -66,27 +68,30 @@ const payment = async (req: Request, res: Response) => {
 const handlePaymentSuccess = async (req: Request, res: Response) => {
   //const external_reference = req.query.external_reference as string;
   //const {collection_status} = req.query;
+  const {external_reference} = req.query;
  console.log(req.query);
+ console.log('APROBADO');
+ 
   
 
   try {
     console.log(req.query);
     //Actualizar el estado de la orden a "Pagado"
-    // await Order.update({ orderStatus: 'Pagado' }, { where: { id: external_reference } });
+     //await Order.update({ orderStatus: 'Pagado' }, { where: { id: external_reference } });
 
     // // Registrar el pago
-    // const orden = await Order.findByPk(external_reference);
-    // if (orden) {
-    //   const productos = await ProductOrder.findAll({ where: { orderId: orden.id } });
-    //   const monto = productos.reduce((acc, prod) => acc + prod.unitPrice * prod.quantity, 0);
+    const orden = await Order.findByPk(Number(external_reference));
+    if (orden) {
+      const productos = await ProductOrder.findAll({ where: { orderId: orden.id } });
+      const monto = productos.reduce((acc, prod) => acc + prod.unitPrice * prod.quantity, 0);
 
-    //   await Payment.create({
-    //     orderId: orden.id,
-    //     paymentDate: new Date(),
-    //     amount: monto,
-    //     paymentMethod: 'MercadoPago',
-    //   } as any);
-    // }
+      await Payment.create({
+        orderId: orden.id,
+        paymentDate: new Date(),
+        amount: monto,
+        paymentMethod: 'Mercadopago',
+      } as any);
+    }
 
     res.send("Pago completado con éxito.");
   } catch (error) {
