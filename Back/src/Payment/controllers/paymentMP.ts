@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 import { Request, Response } from 'express';
 import {Order} from '../../models/Order';
-import {Payment} from '../../models/Payment';
+//import {Payment} from '../../models/Payment';
 // import Product from '../models/Product';
 // import User from '../models/User';
 import {ProductOrder} from '../../models/ProductOrder';
@@ -14,7 +14,8 @@ const client = new MercadoPagoConfig({ accessToken: process.env.ACCESS_TOKEN || 
 
 const payment = async (req: Request, res: Response) => {
   const { userId, products } = req.body;
-
+ console.log(products);
+ 
   try {
     // Crear la orden
     const nuevaOrden = await Order.create({
@@ -26,10 +27,12 @@ const payment = async (req: Request, res: Response) => {
     // Agregar productos a la orden
     const ordenProductos = products.map((prod: any) => ({
       orderId: nuevaOrden.id,
-      productId: prod.id,
+      productId: prod.productId,
       quantity: prod.quantity,
-      unitPrice: prod.unit_price,
+      unitPrice: prod.unitPrice,
     }));
+    //console.log(ordenProductos);
+    
     await ProductOrder.bulkCreate(ordenProductos);
 
     // Crear preferencia de pago en MercadoPago
@@ -37,7 +40,7 @@ const payment = async (req: Request, res: Response) => {
       items: products.map((prod: any) => ({
         title: prod.name,
         quantity: prod.quantity,
-        unit_price: prod.unit_price,
+        unit_price: prod.unitPrice,
       })),
       back_urls: {
         success: "http://localhost:3000/success",
@@ -46,12 +49,13 @@ const payment = async (req: Request, res: Response) => {
       },
       auto_return: "approved",
       external_reference: `${nuevaOrden.id}`,
-      notification_url: " https://f515-2800-810-4fd-11d2-44ee-568-2480-b43a.ngrok-free.app"
+      notification_url: "https://695c-186-169-78-25.ngrok-free.app/payment/notifications"
     };
 
     const preferenceResponse = await new Preference(client).create({ body: preferenceData });
     const preference = preferenceResponse;
-
+    //console.log(preferenceResponse);
+      
     return res.json({ redirectUrl: preference.init_point });
   } catch (error) {
     console.error(error);
@@ -60,25 +64,29 @@ const payment = async (req: Request, res: Response) => {
 };
 
 const handlePaymentSuccess = async (req: Request, res: Response) => {
-  const external_reference = req.query.external_reference as string;
+  //const external_reference = req.query.external_reference as string;
+  //const {collection_status} = req.query;
+ console.log(req.query);
+  
 
   try {
-    // Actualizar el estado de la orden a "Pagado"
-    await Order.update({ orderStatus: 'Pagado' }, { where: { id: external_reference } });
+    console.log(req.query);
+    //Actualizar el estado de la orden a "Pagado"
+    // await Order.update({ orderStatus: 'Pagado' }, { where: { id: external_reference } });
 
-    // Registrar el pago
-    const orden = await Order.findByPk(external_reference);
-    if (orden) {
-      const productos = await ProductOrder.findAll({ where: { orderId: orden.id } });
-      const monto = productos.reduce((acc, prod) => acc + prod.unitPrice * prod.quantity, 0);
+    // // Registrar el pago
+    // const orden = await Order.findByPk(external_reference);
+    // if (orden) {
+    //   const productos = await ProductOrder.findAll({ where: { orderId: orden.id } });
+    //   const monto = productos.reduce((acc, prod) => acc + prod.unitPrice * prod.quantity, 0);
 
-      await Payment.create({
-        orderId: orden.id,
-        paymentDate: new Date(),
-        amount: monto,
-        paymentMethod: 'MercadoPago',
-      } as any);
-    }
+    //   await Payment.create({
+    //     orderId: orden.id,
+    //     paymentDate: new Date(),
+    //     amount: monto,
+    //     paymentMethod: 'MercadoPago',
+    //   } as any);
+    // }
 
     res.send("Pago completado con éxito.");
   } catch (error) {
@@ -88,32 +96,34 @@ const handlePaymentSuccess = async (req: Request, res: Response) => {
 };
 
 const handleNotifications = async (req: Request, res: Response) => {
-  const payment = req.body;
+  const paymentt = req.query;
+  console.log(req.query);
+  
 
   try {
     // Maneja la notificación de pago según el tipo de evento
-    if (payment.type === 'payment' && payment.action === 'payment.created') {
-      const orderId = payment.data.id;
+    // if (paymentt.|ype === 'payment' ) {
+    //   const orderId = payment.data.id;
 
-      // Actualiza el estado de la orden a "Pagado"
-      await Order.update({ orderStatus: 'Pagado' }, { where: { id: orderId } });
+    //   // Actualiza el estado de la orden a "Pagado"
+    //   await Order.update({ orderStatus: 'Pagado' }, { where: { id: orderId } });
 
-      // Registrar el pago (similar a handlePaymentSuccess)
-      const orden = await Order.findByPk(orderId);
-      if (orden) {
-        const productos = await ProductOrder.findAll({ where: { orderId: orden.id } });
-        const monto = productos.reduce((acc, prod) => acc + prod.unitPrice * prod.quantity, 0);
+    //   // Registrar el pago (similar a handlePaymentSuccess)
+    //   const orden = await Order.findByPk(orderId);
+    //   if (orden) {
+    //     const productos = await ProductOrder.findAll({ where: { orderId: orden.id } });
+    //     const monto = productos.reduce((acc, prod) => acc + prod.unitPrice * prod.quantity, 0);
 
-        await Payment.create({
-          orderId: orden.id,
-          paymentDate: new Date(),
-          amount: monto,
-          paymentMethod: 'MercadoPago',
-        } as any);
-      }
-    }
+    //     await Payment.create({
+    //       orderId: orden.id,
+    //       paymentDate: new Date(),
+    //       amount: monto,
+    //       paymentMethod: 'MercadoPago',
+    //     } as any);
+    //   }
+    // }
 
-    res.sendStatus(200);
+    res.status(200).send(paymentt);
   } catch (error) {
     console.error(error);
     res.status(500).send('Error al procesar la notificación');
