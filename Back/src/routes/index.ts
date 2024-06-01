@@ -8,7 +8,7 @@ import routesPayment from '../Payment/routes/routesPayment'
 import routesCart from '../Cart/routes/routesCart'
 import routesCartProduct from '../Cart/routes/routesCartProduct'
 import routesReview from '../Review/routes/routesReview'
-import routesPasarela from './routesPasarela'
+import routesPasarela from '../Pasarela de Pagos/routes/routesPasarela'
 
 const router = express.Router()
 

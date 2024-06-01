@@ -1,5 +1,5 @@
 import express from "express"
-import {payment} from '../Pasarela de Pagos/MPConfig';
+import {payment} from '../controller/MPConfig'
 
 const router = express.Router();
 
