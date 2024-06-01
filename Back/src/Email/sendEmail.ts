@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import { transporter } from "../config/mailer";
 
-export const sendEmail = async (_req: Request, res: Response) => {
+export const sendEmail = async (req: Request, res: Response) => {
+  const {email} = req.query;
+  
   const mailOptions = {
     from: 'pf2024mp@gmail.com', // Manteniendo el remitente original
-    to: 'maugoretta@gmail.com', // Correo destino
+    to: `${email}`, // Correo destino
     subject: 'Electroemporium: compra exitosa.',
     html: `
     <div dir="ltr" style="font-family: Arial, sans-serif;">

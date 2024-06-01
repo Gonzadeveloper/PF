@@ -6,5 +6,8 @@ host: 'smtp.gmail.com',
  auth: {
  user: process.env.EMAIL_ELECTROEMPORIUM,
  pass: process.env.PASSWORD_ELECTROEMPORIUM
-    },
+},
+tls: {
+    rejectUnauthorized: false // Desactiva la verificación del certificado
+  }   
 });
