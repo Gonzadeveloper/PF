@@ -46,7 +46,7 @@ const payment = async (req: Request, res: Response) => {
       },
       auto_return: "approved",
       external_reference: `${nuevaOrden.id}`,
-      notification_url: "http://yourdomain.com/notifications"
+      notification_url: " https://f515-2800-810-4fd-11d2-44ee-568-2480-b43a.ngrok-free.app"
     };
 
     const preferenceResponse = await new Preference(client).create({ body: preferenceData });
