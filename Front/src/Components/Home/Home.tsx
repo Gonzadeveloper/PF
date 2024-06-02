@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/index";
 import { selectProducts } from "../../Redux/Selector";
 import { Link } from "react-router-dom";
-import "./Home.css";
+import styles from "./Home.module.css";
+
 function Home() {
   const allProducts = useSelector((state: RootState) => selectProducts(state));
   const [randomProducts, setRandomProducts] = useState<any[]>([]);
@@ -72,7 +73,7 @@ function Home() {
                   className={`carousel-item ${index === 0 ? "active" : ""}`}>
                   <Link
                     to={`/products/${product.id}`}
-                    className="d-block text-decoration-none">
+                    className={`d-block text-decoration-none ${styles.link}`}>
                     <div className="d-flex align-items-center justify-content-center">
                       <img
                         src={product.image}
@@ -110,20 +111,23 @@ function Home() {
               <span className="visually-hidden">Siguiente</span>
             </button>
           </div>
-
-          <h1> 🔥Encontra lo que buscas 🔥</h1>
+          <div className="textHome">
+            <h1> 🔥Encontra lo que buscas 🔥</h1>
+          </div>
           <div className="row">
             {categories.map((category) => (
               <div key={category.id} className="col-md-3 mb-3">
-                <div className="card">
-                  <div className="card-body">
+                <div className={`card ${styles.card}`}>
+                  <div className={styles.cardBody}>
                     <h5 className="card-title">{category.name}</h5>
                     {/* Mostrar los productos de la categoría */}
                     <ul>
                       {productsByCategory[category.name.toLowerCase()]?.map(
                         (product: any) => (
                           <li key={product.id}>
-                            <Link to={`/products/${product.id}`}>
+                            <Link
+                              to={`/products/${product.id}`}
+                              className={styles.link}>
                               {product.name}
                             </Link>
                           </li>
