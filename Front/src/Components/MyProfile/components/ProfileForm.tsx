@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../Miperfil.module.css";
-import { FormData } from "../../../types"; // Asegúrate de importar tu tipo FormData
+import { FormData } from "../../../types";
 
 interface ProfileFormProps {
   formData: FormData;
@@ -35,7 +35,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
     setAlertVisible(true);
     setTimeout(() => {
       setAlertVisible(false);
-    }, 3000); 
+    }, 3000);
   };
 
   return (
