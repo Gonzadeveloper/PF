@@ -1,6 +1,14 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo, DefaultScope } from 'sequelize-typescript';
-import { Cart } from './Cart';
-import { Product } from './Product';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  DefaultScope,
+} from "sequelize-typescript";
+import { Cart } from "./Cart";
+import { Product } from "./Product";
 
 @DefaultScope(() => ({
   where: { deletedAt: null },

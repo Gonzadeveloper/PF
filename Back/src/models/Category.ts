@@ -1,5 +1,12 @@
-import { Table, Column, Model, HasMany, DataType, DefaultScope } from 'sequelize-typescript';
-import { Product } from './Product';
+import {
+  Table,
+  Column,
+  Model,
+  HasMany,
+  DataType,
+  DefaultScope,
+} from "sequelize-typescript";
+import { Product } from "./Product";
 
 @DefaultScope(() => ({
   where: { deletedAt: null },
