@@ -1,5 +1,3 @@
-// En UserSlice.ts
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   UserState,
@@ -12,7 +10,7 @@ import {
 } from "../../types";
 
 const initialState: UserState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("user") || "null"),
   addresses: [],
   products: [],
   reviews: [],
@@ -42,7 +40,9 @@ const userSlice = createSlice({
     setCart: (state, action: PayloadAction<Cart | null>) => {
       state.cart = action.payload;
     },
-    // Agrega más reducers según sea necesario
+    clearUser: (state) => {
+      state.user = null;
+    },
   },
 });
 
@@ -53,5 +53,6 @@ export const {
   setReviews,
   setOrders,
   setCart,
+  clearUser,
 } = userSlice.actions;
 export default userSlice.reducer;

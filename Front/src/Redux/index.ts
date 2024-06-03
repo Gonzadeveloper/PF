@@ -1,11 +1,10 @@
-
-import cartReducer from './Slices/CartSlice'
+import cartReducer from "./Slices/CartSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./Slices/UserSlice";
 import productsreducers from "./Slices/ProductsSlice";
 import favoritesReducer from "./Slices/FavoritesSlice";
-import categoryReducer from "./Slices/CategorySlice"
-
+import categoryReducer from "./Slices/CategorySlice";
+import localStorageMiddleware from "./middleware/localStorageMiddleware";
 
 const store = configureStore({
   reducer: {
@@ -13,8 +12,10 @@ const store = configureStore({
     cart: cartReducer,
     favorites: favoritesReducer,
     user: userReducer,
-    category: categoryReducer
+    category: categoryReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(localStorageMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
