@@ -120,7 +120,6 @@ function Home() {
                 <div className={`card ${styles.card}`}>
                   <div className={styles.cardBody}>
                     <h5 className="card-title">{category.name}</h5>
-                    {/* Mostrar los productos de la categoría */}
                     <ul>
                       {productsByCategory[category.name.toLowerCase()]?.map(
                         (product: any) => (
