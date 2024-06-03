@@ -1,5 +1,8 @@
 import express from "express";
 import cors from 'cors';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import { sequelize } from './config/database';
 import { Product } from './models/Product';
@@ -13,17 +16,27 @@ import { ProductOrder } from './models/ProductOrder';
 import { Payment } from './models/Payment';
 import { Cart } from './models/Cart';
 import { CartProduct } from './models/CartProduct';
+
 //import { getUser } from "./services/getUser";
 // const session = require('./Auth/config/session');
 // import {passport} from './Auth/config/auth';
 // const authRoutes = require('./Auth/config/routeAuth');
+//const { Client } = require('pg');
 
+// const client = new Client({
+//   user: process.env.PGUSER,
+//   password: process.env.PGPASSWORD,
+//   host: process.env.PGHOST,
+//   database: process.env.PGDATABASE,
+//   port: process.env.PGPORT,
+// });
 
 
 const app = express()
 app.use(express.json()) // middleware que transforma la req.body a un json
 
 app.use(cors())
+app.use(morgan('dev'));
 
 app.use('/',routessRaiz)
 
