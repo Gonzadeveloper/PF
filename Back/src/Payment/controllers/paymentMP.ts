@@ -172,4 +172,24 @@ const handleNotifications = async (req: Request, res: Response) => {
   }
 };
 
-export { payment, handlePaymentSuccess, handleNotifications };
+// Nuevo controlador para verificar el estado de la orden
+const verifyOrder = async (req: Request, res: Response) => {
+  const { orderId } = req.params;
+
+  try {
+    const order = await Order.findByPk(orderId, {
+      include: [{ model: ProductOrder }, { model: Payment }],
+    });
+
+    if (!order) {
+      return res.status(404).json({ message: "Orden no encontrada" });
+    }
+
+    return res.json(order);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error al obtener la orden" });
+  }
+};
+
+export { payment, handlePaymentSuccess, handleNotifications, verifyOrder };
