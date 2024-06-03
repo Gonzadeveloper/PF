@@ -3,7 +3,9 @@ import { useAuth } from "./hooks/useAuth";
 import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
 import ProfileInfo from "./components/ProfileInfo";
-import UserProducts from "./components/UserProducts";
+import UserProducts from "./components/SoldIitems/UserProducts";
+/* import PurchaseHistory from "./components/ShoppingHistory/PurchaseHistory";
+import PurchaseReviews from "./components/Reviews/PurchaseReviews"; */
 import axios from "axios";
 import { FormData } from "../../types";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -101,6 +103,8 @@ const MiPerfil: React.FC = () => {
         }
       );
       console.log("Respuesta del servidor:", response.data);
+
+      localStorage.setItem("user", JSON.stringify(response.data));
     } catch (error) {
       console.error("Error al enviar los datos:", error);
       throw error;
@@ -118,6 +122,8 @@ const MiPerfil: React.FC = () => {
       );
       logout({ returnTo: window.location.origin });
       console.log("Cuenta eliminada con éxito");
+
+      localStorage.removeItem("user");
     } catch (error) {
       console.error("Error al eliminar la cuenta:", error);
     }
@@ -170,10 +176,25 @@ const MiPerfil: React.FC = () => {
           </div>
           <div className={`col-md-7 ml-4 ${styles.rightContent}`}>
             <h2 className={`card-title ${styles["card-title"]}`}>
-              Articulos en venta
-              <hr></hr>
+              Artículos en venta
+              <hr />
             </h2>
             <UserProducts products={userData?.products || []} />
+            {/* <h2 className={`card-title ${styles["card-title"]} mt-4`}>
+              Compras Realizadas
+              <hr />
+            </h2>
+            <PurchaseHistory purchases={userData?.purchases || []} />
+            <h2 className={`card-title ${styles["card-title"]} mt-4`}>
+              Historial de Compras
+              <hr />
+            </h2>
+            <PurchaseHistory purchases={userData?.purchaseHistory || []} />
+            <h2 className={`card-title ${styles["card-title"]} mt-4`}>
+              Reseñas
+              <hr />
+            </h2>
+            <PurchaseReviews reviews={userData?.reviews || []} /> */}
           </div>
         </div>
       )}

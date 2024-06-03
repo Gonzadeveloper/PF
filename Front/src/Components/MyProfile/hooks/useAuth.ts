@@ -2,7 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../../../Redux/Slices/UserSlice";
+import { setUser, clearUser } from "../../../Redux/Slices/UserSlice";
 import { RootState } from "../../../Redux/index";
 import toast from "react-hot-toast";
 
@@ -15,7 +15,6 @@ export const useAuth = () => {
     getAccessTokenSilently,
   } = useAuth0();
   const dispatch = useDispatch();
-
   const [userCreated, setUserCreated] = useState(false);
   const userData = useSelector((state: RootState) => state.user.user);
 
@@ -103,9 +102,21 @@ export const useAuth = () => {
     }
   }, [isAuthenticated, userCreated, getAccessTokenSilently, user, dispatch]);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      dispatch(setUser(JSON.parse(storedUser)));
+    }
+  }, [dispatch]);
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    logout({ returnTo: window.location.origin });
+  };
+
   return {
     loginWithRedirect,
-    logout,
+    logout: handleLogout,
     isAuthenticated,
     user,
     userCreated,
