@@ -150,6 +150,7 @@ const cartMiddleware = store => next => action => {
     }).catch(error => {
       console.error('Error fetching carts:', error);
     })
+    // Eliminar el middleware después de la primera ejecución
     store.dispatch = next;
     }
     return next(action); 

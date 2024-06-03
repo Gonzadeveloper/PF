@@ -1,119 +1,68 @@
+/* Cart.css */
 .cart {
-    background: #000;
-    display: none;
-    padding: 32px;
-    position: fixed;
-    right: 0px;
-    top: 0px;
-    width: 200px;
-    color: aliceblue;
-    overflow-y: auto; /* Habilita el scroll vertical */
-  }
-  
-  
-  .cart img {
-    aspect-ratio: 16/9;
-    width: 100%;
-  }
-  
-  .cart li {
-    border-bottom: 1px solid #444;
-    padding-bottom: 16px;
-  }
-  
-  .cart footer {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cart footer button {
-    padding: 8px;
-  }
-  
-  .cart-button {
-    align-items: center;
-    background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    border-radius: 9999px;
-    cursor: pointer;
-    display: flex;
-    height: 32px;
-    justify-content: center;
-    padding: 4px;
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-    color: white; /* Asegura que el color del texto sea visible */
-  }
+  padding: 20px;
+  list-style: none;
+  max-height: 100%;
+  overflow-y: auto;
+}
 
-  .cart-button2 {
-    align-items: center;
-    background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    color: white;
-    border-radius: 9999px;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    height: 25px;
-    justify-content: center;
-    padding: 4px;
-    position: absolute;
-    right: 0.1em;
-    width: 0.7em;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-  }
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: #fff; /* Fondo blanco para la tarjeta */
+  padding: 10px;
+  border: 1px solid #ddd; /* Borde para separar visualmente las tarjetas */
+  border-radius: 5px; /* Bordes redondeados */
+}
 
-  .cart-button4 {
-    align-items: center;
-    background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    color: white;
-    border-radius: 9999px;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    height: 25px;
-    justify-content: center;
-    width: 0.7em;
-    padding: 4px;
-    position: absolute;
-    right: 1.5em;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-  }
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
 
-  .cart-button3 {
-    align-items: center;
-    background: rgb(255, 0, 0); /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    color: white;
-    border-radius: 9999px;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    height: 32px;
-    width: 25px;
-    justify-content: center;
-    padding: 4px;
-    position: absolute;
-    right: 8.5em;
-    top: 8.5;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-  }
+.cart-item div {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Para ocupar el espacio disponible */
+}
 
-  
-  .cart-button:hover {
-    scale: 1.1;
-    background: #07d; /* Cambia el color de fondo al pasar el cursor para mejor visibilidad */
-  }
-  
-  .cart-button ~ input:checked ~ .cart {
-    height: 100%;
-    display: block;
-  }
+.cart-item h4 {
+  margin: 0 0 5px;
+}
+
+.cart-item p {
+  margin: 0 0 10px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; /* Margen inferior para separarlos del botón de eliminar */
+}
+
+.quantity-control button {
+  margin: 0 5px;
+}
+
+.cart-item button {
+  align-self: flex-start; /* Para alinear los botones al principio del contenedor */
+}
+
+.cart-button {
+  align-items: center;
+  background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  padding: 4px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  transition: all 0.3s ease;
+  z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
+  color: white; /* Asegura que el color del texto sea visible */
+}
