@@ -15,6 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CartProduct = exports.Cart = exports.Payment = exports.ProductOrder = exports.Order = exports.Review = exports.Address = exports.User = exports.Category = exports.Product = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const morgan_1 = __importDefault(require("morgan"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const database_1 = require("./config/database");
 const Product_1 = require("./models/Product");
 Object.defineProperty(exports, "Product", { enumerable: true, get: function () { return Product_1.Product; } });
@@ -41,10 +44,19 @@ Object.defineProperty(exports, "CartProduct", { enumerable: true, get: function 
 // const session = require('./Auth/config/session');
 // import {passport} from './Auth/config/auth';
 // const authRoutes = require('./Auth/config/routeAuth');
+//const { Client } = require('pg');
+// const client = new Client({
+//   user: process.env.PGUSER,
+//   password: process.env.PGPASSWORD,
+//   host: process.env.PGHOST,
+//   database: process.env.PGDATABASE,
+//   port: process.env.PGPORT,
+// });
 const app = (0, express_1.default)();
 app.use(express_1.default.json()); // middleware que transforma la req.body a un json
 app.use((0, cors_1.default)());
-app.use("/", index_1.default);
+app.use((0, morgan_1.default)('dev'));
+app.use('/', index_1.default);
 const PORT = 3000;
 // app.use(session);
 // app.use(passport.initialize());
@@ -56,10 +68,10 @@ app.listen(PORT, () => {
 const init = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield database_1.sequelize.sync({ force: false });
-        console.log("Database & tables created!");
+        console.log('Database & tables created!');
     }
     catch (error) {
-        console.error("Unable to connect to the database:", error);
+        console.error('Unable to connect to the database:', error);
     }
 });
 init();
