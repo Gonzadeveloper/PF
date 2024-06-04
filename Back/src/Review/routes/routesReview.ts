@@ -3,6 +3,7 @@ import express from "express"
 import { postReview } from "../controllers/postReview";
 import { deleteReview } from "../controllers/deleteReview";
  import { getAllReview } from "../controllers/getAllReview";
+ import { getProductReviewAverage, getUserReviewAverage } from '../controllers/reviewController'
 // import { putOReview } from "../controllers/putReview";
 
 
@@ -12,6 +13,8 @@ const router = express.Router()
  router.post ('/', postReview);
  router.get ('/', getAllReview);
  router.delete('/:id', deleteReview);
+ router.get('/product/:productId/average-rating', getProductReviewAverage);
+router.get('/user/:userId/average-rating', getUserReviewAverage);
 // router.put ('/:id', putOReview);
 
 
