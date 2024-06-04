@@ -52,3 +52,4 @@ export class Payment extends Model<Payment> {
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
 }
+

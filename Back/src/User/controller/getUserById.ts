@@ -21,7 +21,7 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
     console.log('Connection has been established successfully.');
     
     const user = await User.findByPk(userId, {
-      attributes: ['id',"picture", 'name', 'email', 'password', 'typeuser'],
+      attributes: ['id', 'name', 'email', 'password', 'typeuser'],
       include: [
         {
           model: Address,

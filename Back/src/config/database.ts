@@ -1,4 +1,5 @@
 import { Sequelize } from 'sequelize-typescript';
+import  pg  from "pg";
 import { Product } from '../models/Product';
 import { Category } from '../models/Category';
 import { User } from '../models/User';
@@ -17,6 +18,7 @@ const databaseUrl = `${PG_URL}`;
 
 const sequelize = new Sequelize(databaseUrl, {
   dialect: 'postgres',
+  dialectModule: pg, 
   models: [Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct],
   logging: false,
   pool: {

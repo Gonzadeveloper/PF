@@ -13,12 +13,12 @@ import { Payment } from './Payment';
      paranoid: true, // Habilita el borrado lógico
    })
    export class Order extends Model<Order> {
-       @Column({
-         type: DataType.INTEGER,
-         autoIncrement: true,
-         primaryKey: true,
-       })
-       id!: number;
+      //  @Column({
+      //    type: DataType.INTEGER,
+      //    autoIncrement: true,
+      //    primaryKey: true,
+      //  })
+      //  id!: number;
 
        @ForeignKey(() => User)
        @Column({
