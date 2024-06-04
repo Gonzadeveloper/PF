@@ -14,6 +14,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.1",
+    "@mercadopago/sdk-react": "^0.0.19",
     "@reduxjs/toolkit": "^2.2.5",
     "@types/axios": "^0.14.0",
     "antd": "^5.18.0",
