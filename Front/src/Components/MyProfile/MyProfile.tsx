@@ -122,10 +122,18 @@ const MiPerfil: React.FC = () => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      logout({ returnTo: window.location.origin });
       console.log("Cuenta eliminada con éxito");
 
-      localStorage.removeItem("user");
+      alert("Cuenta recientemente eliminada");
+
+      setTimeout(() => {
+        logout();
+        setTimeout(() => {
+          window.location.href = window.location.origin;
+        }, 1000);
+        console.log("Sesión cerrada");
+        localStorage.removeItem("user");
+      }, 1000);
     } catch (error) {
       console.error("Error al eliminar la cuenta:", error);
     }
