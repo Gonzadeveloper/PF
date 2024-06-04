@@ -1,55 +1,3 @@
-/* Cart.css */
-.cart {
-  padding: 20px;
-  list-style: none;
-  max-height: 100%;
-  overflow-y: auto;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  background-color: #fff; /* Fondo blanco para la tarjeta */
-  padding: 10px;
-  border: 1px solid #ddd; /* Borde para separar visualmente las tarjetas */
-  border-radius: 5px; /* Bordes redondeados */
-}
-
-.cart-item img {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-.cart-item div {
-  display: flex;
-  flex-direction: column;
-  flex: 1; /* Para ocupar el espacio disponible */
-}
-
-.cart-item h4 {
-  margin: 0 0 5px;
-}
-
-.cart-item p {
-  margin: 0 0 10px;
-}
-
-.quantity-control {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px; /* Margen inferior para separarlos del botón de eliminar */
-}
-
-.quantity-control button {
-  margin: 0 5px;
-}
-
-.cart-item button {
-  align-self: flex-start; /* Para alinear los botones al principio del contenedor */
-}
-
 .cart-button {
   align-items: center;
   background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
@@ -66,3 +14,23 @@
   z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
   color: white; /* Asegura que el color del texto sea visible */
 }
+
+.offcanvas-body {
+  /* Override default scrollbar styles */
+  scrollbar-width:thin; /* Enable customization */
+  scrollbar-color: rgba(0, 4, 255, 0.2) rgba(17, 0, 255, 0.1); /* Customize colors */
+}
+
+.custom-buy-button {
+  /* Your custom styles for the button */
+  background-color: #007bff; /* Example: Change background color */
+  border-color: #0056b3; /* Example: Change border color */
+  font-size: 18px; /* Example: Increase font size */
+  padding: 12px 20px; /* Example: Adjust padding */
+}
+
+.boton{
+  padding-left: 7em;
+  padding-bottom: 2em;
+}
+

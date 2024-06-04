@@ -31,6 +31,17 @@ const productsSlice = createSlice({
         ...action.payload,
       };
     },
+    resetFilters(state) {
+      state.filters = {
+        name: "",
+        category: { id: 0, name: "Todos" },
+        condition: "Todos",
+        minPrice: 0,
+        maxPrice: Infinity,
+        minStock: 0,
+        maxStock: Infinity,
+      };
+    },
     setProductDetails(state, action: PayloadAction<Product | null>) {
       state.selectedProduct = action.payload;
     },
@@ -46,6 +57,7 @@ export const {
   setFilters,
   setProductDetails,
   postProduct,
+  resetFilters,
 
 } = productsSlice.actions;
 

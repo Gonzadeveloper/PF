@@ -54,29 +54,39 @@ function OffCanvasExample({ name, ...props }) {
           <Offcanvas.Title>Carrito</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <ul>
-            {cartProducts.map(product => {
-              const cartItem = cartItems.find(item => item.id === product.id);
-              return (
-                <CartItem
-                  key={product.id}
-                  id={product.id}
-                  image={product.image}
-                  name={product.name}
-                  price={product.price}
-                  quantity={cartItem.quantity}
-                  updateQuantity={handleAddToCart} // Pasar la función como prop
-                  removeItem={handleRemoveFromCart} // Pasar la función como prop
-                  decrementItem={handleCartDecrement} // Pasar la función como prop
-                />
-              );
-            })}
-          </ul>
+          
+        {cartProducts.length === 0 ? (
+            <p>Aquí verás tus productos una vez los agregues al carrito</p>
+          ) : (
+            <ul>
+              {cartProducts.map(product => {
+                const cartItem = cartItems.find(item => item.id === product.id);
+                return (
+                  <CartItem
+                    key={product.id}
+                    id={product.id}
+                    image={product.image}
+                    name={product.name}
+                    price={product.price}
+                    quantity={cartItem.quantity}
+                    updateQuantity={handleAddToCart} // Pasar la función como prop
+                    removeItem={handleRemoveFromCart} // Pasar la función como prop
+                    decrementItem={handleCartDecrement} // Pasar la función como prop
+                  />
+                );
+              })}
+            </ul>
+          )}
+          
         </Offcanvas.Body>
+          
+          
           <h1>Total: ${total.toFixed(2)} </h1>
-        <Link to={"Buy"}>
-          <button>Comprar</button>
-        </Link>
+          <div className='boton'>
+            <Link to={"Buy"}>
+              <button type="button" className="btn btn-primary btn-lg">Comprar</button>
+            </Link>
+          </div>
       </Offcanvas>
     </>
   );
