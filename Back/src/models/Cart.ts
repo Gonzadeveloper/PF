@@ -1,7 +1,16 @@
-import { Table, Column, Model, DataType, ForeignKey, BelongsTo, HasMany, DefaultScope } from 'sequelize-typescript';
-import { User } from './User';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  ForeignKey,
+  BelongsTo,
+  HasMany,
+  DefaultScope,
+} from "sequelize-typescript";
+import { User } from "./User";
 //import { CartProduct } from './CartProduct';
-import { CartProduct } from './CartProduct';
+import { CartProduct } from "./CartProduct";
 
 @DefaultScope(() => ({
   where: { deletedAt: null },
@@ -28,8 +37,8 @@ export class Cart extends Model<Cart> {
   @BelongsTo(() => User)
   user!: User;
 
-   @HasMany(() => CartProduct)
-   cartProducts!: CartProduct[];
+  @HasMany(() => CartProduct)
+  cartProducts!: CartProduct[];
 
   @Column({ type: DataType.DATE })
   deletedAt!: Date | null; // Añade la columna deletedAt para el borrado lógico
