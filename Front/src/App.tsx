@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import Registrar from "./Components/Registrar/Registrar";
 import NewProduct from './Components/NewProduct/NewProduct'
 import { getAllProds } from "./Redux/Actions/productActions";
+import Admin from "./Components/Admin/Admin"
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +39,8 @@ function App() {
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/registrar" element={<Registrar />} />
-          <Route path='/newproduct' element={<NewProduct/>}/>
+          <Route path='/newproduct' element={<NewProduct />} />
+          <Route path="/admin/*" element={<Admin />} />
         </Routes>
       </div>
       <Footer />

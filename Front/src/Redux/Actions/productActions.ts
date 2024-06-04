@@ -52,3 +52,30 @@ export const newProduct =
       console.error("Error posting new product:", error);
     }
   };
+
+
+export const deleteProduct = (id: number) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      await axios.delete(`${import.meta.env.VITE_ENDPOINT}/product/${id}`);
+      dispatch(getAllProds());  // Refresca la lista de productos
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+};
+
+export const updateProduct = (id: number, updatedProduct: Partial<Product>) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const res = await axios.put<Product>(
+        `${import.meta.env.VITE_ENDPOINT}/product/${id}`,
+        updatedProduct
+      );
+      dispatch(setProductDetails(res.data));
+      dispatch(getAllProds());  // Refresca la lista de productos
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
+  };
+};

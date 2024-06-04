@@ -1,17 +1,18 @@
-// En UserSlice.ts
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  UserState,
-  User,
-  Address,
-  Product,
-  Review,
-  Order,
-  Cart,
-} from "../../types";
+import { User, Address, Product, Review, Order, Cart } from "../../types";
 
-const initialState: UserState = {
+interface UsersState {
+  users: User[];
+  user: User | null;
+  addresses: Address[];
+  products: Product[];
+  reviews: Review[];
+  orders: Order[];
+  cart: Cart | null;
+}
+
+const initialState: UsersState = {
+  users: [],
   user: null,
   addresses: [],
   products: [],
@@ -24,7 +25,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setUsers: (state, action: PayloadAction<User[]>) => {
+      console.log('Setting users:', action.payload); // Agregamos este console.log
+      state.users = action.payload;
+    },
     setUser: (state, action: PayloadAction<User>) => {
+      console.log('Setting user:', action.payload); // Agregamos este console.log
       state.user = action.payload;
     },
     setAddresses: (state, action: PayloadAction<Address[]>) => {
@@ -47,6 +53,7 @@ const userSlice = createSlice({
 });
 
 export const {
+  setUsers,
   setUser,
   setAddresses,
   setProducts,
