@@ -16,7 +16,6 @@ const store = configureStore({
     favorites: favoritesReducer,
     user: userReducer,
     order: orderReducer,
-    category: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),

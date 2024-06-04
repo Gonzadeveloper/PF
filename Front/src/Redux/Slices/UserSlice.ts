@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User, Address, Product, Review, Order, Cart } from "../../types";
+import { User, Address, Product, Review, Order, Cart, UserState } from "../../types";
 
-interface UsersState {
+interface UserState {
   users: User[];
   user: User | null;
   addresses: Address[];
@@ -14,6 +14,7 @@ interface UsersState {
 
 const initialState: UserState = {
   user: JSON.parse(localStorage.getItem("user") || "null"),
+  users: [],
   addresses: [],
   products: [],
   reviews: [],
