@@ -1,15 +1,20 @@
-.container {
-  max-width: 600px;
-  margin: auto;
+.outerContainer {
+  background-color: #f5f5f5;
   padding: 20px;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.leftContainer {
+  margin-bottom: 20px;
 }
 
 .card {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card-body {
@@ -17,59 +22,44 @@
 }
 
 .card-title {
-  text-align: center;
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+.rightContent {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.loginContent {
+  text-align: center;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.welcomeMessage {
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.card-text {
+.loginMessage {
   font-size: 1rem;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.btn-primary {
-  width: 100%;
-  margin-top: 15px;
-}
-
-.btn-secondary {
-  width: 100%;
-  background-color: #4285f4;
-  color: white;
-  margin-top: 15px;
-}
-
-.btn-google {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.btn-google::before {
-  content: url("https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg");
-  margin-right: 5px;
-}
-
-.btn-link {
-  width: 100%;
-  text-align: left;
-  color: #007bff;
-  text-decoration: none;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-.btn-link:hover {
-  text-decoration: underline;
+.loginButton {
+  padding: 10px 20px;
+  font-size: 1rem;
 }

@@ -4,6 +4,8 @@ import {
   setProducts,
   setProductDetails,
   postProduct,
+  updateProduct,
+  deleteProduct,
 } from "../Slices/ProductsSlice";
 import { AppDispatch } from "../index";
 import { Product } from "../../types";
@@ -52,3 +54,28 @@ export const newProduct =
       console.error("Error posting new product:", error);
     }
   };
+
+export const updateProd =
+  (product: Product) => async (dispatch: AppDispatch) => {
+    try {
+      const res = await axios.put<Product>(
+        `${import.meta.env.VITE_ENDPOINT}/product/${product.id}`,
+        product
+      );
+      dispatch(updateProduct(res.data));
+      return res.data; 
+    } catch (error) {
+      console.error("Error updating product:", error);
+    }
+  };
+
+export const deleteProd = (id: number) => async (dispatch: AppDispatch) => {
+  try {
+    await axios.delete(`${import.meta.env.VITE_ENDPOINT}/product/${id}`);
+    dispatch(deleteProduct(id));
+    return id; 
+  } catch (error) {
+    console.error("Error deleting product:", error);
+  }
+};
+

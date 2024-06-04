@@ -1,0 +1,12 @@
+.productCard {
+  max-width: 70%;
+  margin: auto;
+}
+
+.productImage {
+  object-fit: cover;
+}
+
+.btnSpace {
+  margin-right: 10px;
+}

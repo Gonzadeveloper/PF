@@ -1,67 +1,39 @@
-import express from "express";
-import cors from 'cors';
-import morgan from 'morgan';
+import 'reflect-metadata';
+import { sequelize } from './config/database';
 import dotenv from 'dotenv';
+import app from './app';
 dotenv.config();
 
-import { sequelize } from './config/database';
-import { Product } from './models/Product';
-import { Category } from './models/Category';
-import { User } from './models/User';
-import { Address } from './models/Address';
-import routessRaiz  from './routes/index';
-import { Review } from './models/Review';
-import { Order } from './models/Order';
-import { ProductOrder } from './models/ProductOrder';
-import { Payment } from './models/Payment';
-import { Cart } from './models/Cart';
-import { CartProduct } from './models/CartProduct';
 
-//import { getUser } from "./services/getUser";
-// const session = require('./Auth/config/session');
-// import {passport} from './Auth/config/auth';
-// const authRoutes = require('./Auth/config/routeAuth');
-//const { Client } = require('pg');
-
-// const client = new Client({
-//   user: process.env.PGUSER,
-//   password: process.env.PGPASSWORD,
-//   host: process.env.PGHOST,
-//   database: process.env.PGDATABASE,
-//   port: process.env.PGPORT,
-// });
+//const app = express();
+const port = process.env.PORT || 3000;
 
 
-const app = express()
-app.use(express.json()) // middleware que transforma la req.body a un json
 
-app.use(cors())
-app.use(morgan('dev'));
-
-app.use('/',routessRaiz)
-
-const PORT = 3000
-
-// app.use(session);
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use('/', authRoutes);
+sequelize.sync({ force: false }).then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}).catch((err) => {
+  console.error('Unable to connect to the database:', err);
+});
 
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
 
-const init = async () => {
-    try {
-      await sequelize.sync({ force: false });
-      console.log('Database & tables created!');
-    } catch (error) {
-      console.error('Unable to connect to the database:', error);
-    }
-  };
+
+
+
+// const init = async () => {
+//     try {
+//       await sequelize.sync({ force: false });
+//       console.log('Database & tables created!');
+//     } catch (error) {
+//       console.error('Unable to connect to the database:', error);
+//     }
+//   };
+
   
-  init();
+//   init();
   
-  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
+ // export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
 

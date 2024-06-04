@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../Miperfil.module.css";
+import { FormData } from "../../../types";
 
 interface ProfileFormProps {
-  formData: any;
+  formData: FormData;
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleProfileSubmit: (e: React.FormEvent) => void;
 }
@@ -12,19 +13,56 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
   handleInputChange,
   handleProfileSubmit,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState<"success" | "danger">("success");
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await handleProfileSubmit(e);
+      setAlertMessage("Información guardada con éxito");
+      setAlertType("success");
+    } catch (error) {
+      setAlertMessage("Error al guardar la información");
+      setAlertType("danger");
+    }
+    setAlertVisible(true);
+    setTimeout(() => {
+      setAlertVisible(false);
+    }, 3000);
+  };
+
   return (
-    <form onSubmit={handleProfileSubmit} className="mt-3">
+    <form onSubmit={onSubmit} className="mt-3">
       <div className="mb-3">
         <label htmlFor="password" className="form-label">
           Contraseña
         </label>
-        <input
-          type="password"
-          className="form-control"
-          id="password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
+        <div className="input-group">
+          <input
+            type={showPassword ? "text" : "password"}
+            className="form-control"
+            id="password"
+            value={formData.password}
+            onChange={handleInputChange}
+          />
+          <div className="input-group-append">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onMouseDown={togglePasswordVisibility}
+              onMouseUp={togglePasswordVisibility}
+              onMouseLeave={() => setShowPassword(false)}>
+              {showPassword ? "Ocultar" : "Mostrar"}
+            </button>
+          </div>
+        </div>
       </div>
       <div className="mb-3">
         <label htmlFor="address" className="form-label">
@@ -86,9 +124,14 @@ const ProfileForm: React.FC<ProfileFormProps> = ({
           onChange={handleInputChange}
         />
       </div>
+      {alertVisible && (
+        <div className={`alert alert-${alertType} mt-3`} role="alert">
+          {alertMessage}
+        </div>
+      )}
       <button
         type="submit"
-        className={`btn btn-primary ${styles["btn-primary"]}`}>
+        className={`btn btn-primary ${styles["btn-primary"]} mt-3`}>
         Guardar Información
       </button>
     </form>

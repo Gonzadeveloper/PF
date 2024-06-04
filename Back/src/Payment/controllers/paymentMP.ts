@@ -103,9 +103,11 @@ const payment = async (req: Request, res: Response) => {
 const handlePaymentSuccess = async (req: Request, res: Response) => {
   //const external_reference = req.query.external_reference as string;
   //const {collection_status} = req.query;
-  const { external_reference, status } = req.query;
+
+  const { external_reference, status} = req.query;
   console.log(req.query);
   console.log("APROBADO");
+  
 
   try {
     console.log(req.query);
@@ -129,8 +131,10 @@ const handlePaymentSuccess = async (req: Request, res: Response) => {
           paymentMethod: "Mercadopago",
         } as any);
       }
-
+      //res.redirect(`${URL}/success?payment_id=${payment_id}&status=${status}&order_id=${external_reference}`);
       res.send("Pago completado con éxito.");
+      
+      //res.redirect(`http://frontend-url/success?payment_id=${payment_id}&status=${status}&order_id=${external_reference}`);
     }
   } catch (error) {
     console.error(error);
@@ -172,4 +176,25 @@ const handleNotifications = async (req: Request, res: Response) => {
   }
 };
 
-export { payment, handlePaymentSuccess, handleNotifications };
+// Nuevo controlador para verificar el estado de la orden
+const verifyOrder = async (req: Request, res: Response) => {
+  const { orderId } = req.params;
+
+  try {
+    const order = await Order.findByPk(orderId, {
+      include: [{ model: ProductOrder }, { model: Payment }],
+    });
+
+    if (!order) {
+      return res.status(404).json({ message: "Orden no encontrada" });
+    }
+
+    return res.json(order);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error al obtener la orden" });
+  }
+};
+
+export { payment, handlePaymentSuccess, handleNotifications, verifyOrder };
+
