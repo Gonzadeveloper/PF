@@ -5,7 +5,7 @@ import {
   faCreditCard,
   faMoneyBillAlt,
   faHandHoldingUsd,
- } from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
 import { getProductById } from "../../Redux/Actions/productActions";
@@ -74,8 +74,20 @@ const ProductDetail: React.FC<Props> = () => {
                 <strong>Condicion:</strong> {product?.condition}
               </p>
               <button className="btn btn-primary mr-2">Comprar</button>
-              <hr />
-
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row mt-4">
+        <div className="col-md-6">
+          <div className="card-body">
+            <h2>Descripción</h2>
+            <p>{product?.description}</p>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="card">
+            <div className="card-body">
               <h2 className="mt-4">Reseñas</h2>
               {product?.review && product.review.length > 0 ? (
                 <div className="reviews-container">
@@ -105,20 +117,7 @@ const ProductDetail: React.FC<Props> = () => {
               ) : (
                 <p className="no-reviews">No hay reseñas para este producto.</p>
               )}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="row mt-4">
-        <div className="col-md-6">
-          <div className="card-body">
-            <h2>Descripción</h2>
-            <p>{product?.description}</p>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="card">
-            <div className="card-body">
+              <hr />
               <h2>Medios de Pago</h2>
               <div>
                 <FontAwesomeIcon icon={faCreditCard} /> Tarjetas de Crédito
