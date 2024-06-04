@@ -17,19 +17,6 @@ import { Payment } from './models/Payment';
 import { Cart } from './models/Cart';
 import { CartProduct } from './models/CartProduct';
 
-//import { getUser } from "./services/getUser";
-// const session = require('./Auth/config/session');
-// import {passport} from './Auth/config/auth';
-// const authRoutes = require('./Auth/config/routeAuth');
-//const { Client } = require('pg');
-
-// const client = new Client({
-//   user: process.env.PGUSER,
-//   password: process.env.PGPASSWORD,
-//   host: process.env.PGHOST,
-//   database: process.env.PGDATABASE,
-//   port: process.env.PGPORT,
-// });
 
 
 const app = express()
@@ -42,18 +29,13 @@ app.use('/',routessRaiz)
 
 const PORT = 3000
 
-// app.use(session);
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use('/', authRoutes);
 
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
-
-const init = async () => {
+export const init = async () => {
     try {
+
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`)
+      })
       await sequelize.sync({ force: false });
       console.log('Database & tables created!');
     } catch (error) {
@@ -63,5 +45,5 @@ const init = async () => {
   
   init();
   
-  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
+//  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
 
