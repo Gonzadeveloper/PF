@@ -80,7 +80,7 @@ function handleCreationError(error: any, res: Response): void {
 
 async function sendWelcomeEmail(email: string) { //y toda esta función se agregó, hasta el final del try catch
   const mailOptions = {
-    from: 'electroemporiumsrl@gmail.com',
+    from: 'pf2024mp@gmail.com',
     to: email,
     subject: 'Bienvenido a Electroemporium',
     html: `

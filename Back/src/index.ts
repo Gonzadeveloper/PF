@@ -1,70 +1,30 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import { sequelize } from './sequelize'; // Import the sequelize instance
-import routessRaiz  from './routes/index';// Import the root routes
+import 'reflect-metadata';
+import { sequelize } from './config/database';
+import dotenv from 'dotenv';
+import app from './app';
+dotenv.config();
 
-const app = express();
-app.use(express.json()); // middleware that transforms req.body to json
-app.use(cors());
-app.use(morgan('dev'));
-app.use('/', routessRaiz);
 
-const PORT = 3000;
-
-export const init = async () => {
-  try {
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-
-    await sequelize.sync({ force: false });
-    console.log('Database & tables created!');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-};
-
-init();
-
-// import express from "express";
-// import cors from 'cors';
-// import morgan from 'morgan';
-// import dotenv from 'dotenv';
-// dotenv.config();
-
-// import { sequelize } from './config/database';
-// import { Product } from './models/Product';
-// import { Category } from './models/Category';
-// import { User } from './models/User';
-// import { Address } from './models/Address';
-// import routessRaiz  from './routes/index';
-// import { Review } from './models/Review';
-// import { Order } from './models/Order';
-// import { ProductOrder } from './models/ProductOrder';
-// import { Payment } from './models/Payment';
-// import { Cart } from './models/Cart';
-// import { CartProduct } from './models/CartProduct';
+//const app = express();
+const port = process.env.PORT || 3000;
 
 
 
-// const app = express()
-// app.use(express.json()) // middleware que transforma la req.body a un json
-
-// app.use(cors())
-// app.use(morgan('dev'));
-
-// app.use('/',routessRaiz)
-
-// const PORT = 3000
+sequelize.sync({ force: false }).then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}).catch((err) => {
+  console.error('Unable to connect to the database:', err);
+});
 
 
-// export const init = async () => {
+
+
+
+
+// const init = async () => {
 //     try {
-
-//       app.listen(PORT, () => {
-//         console.log(`Server running on port ${PORT}`)
-//       })
 //       await sequelize.sync({ force: false });
 //       console.log('Database & tables created!');
 //     } catch (error) {
@@ -74,5 +34,5 @@ init();
   
 //   init();
   
-//  export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
+ // export { Product, Category, User, Address, Review, Order, ProductOrder, Payment, Cart, CartProduct };
 
