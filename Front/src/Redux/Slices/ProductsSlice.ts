@@ -1,6 +1,6 @@
-// src/Redux/Slices/ProductsSlice.ts
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductsState, Product, Filters } from '../../types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ProductsState, Product, Filters } from "../../types";
+
 
 const initialState: ProductsState = {
   products: [],
@@ -32,6 +32,17 @@ const productsSlice = createSlice({
         ...action.payload,
       };
     },
+    resetFilters(state) {
+      state.filters = {
+        name: "",
+        category: { id: 0, name: "Todos" },
+        condition: "Todos",
+        minPrice: 0,
+        maxPrice: Infinity,
+        minStock: 0,
+        maxStock: Infinity,
+      };
+    },
     setProductDetails(state, action: PayloadAction<Product | null>) {
       state.selectedProduct = action.payload;
     },
@@ -58,6 +69,7 @@ export const {
   setFilters,
   setProductDetails,
   postProduct,
+  resetFilters,
   updateProduct,
   deleteProduct,
 } = productsSlice.actions;
