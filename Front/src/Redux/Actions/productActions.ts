@@ -78,3 +78,4 @@ export const deleteProd = (id: number) => async (dispatch: AppDispatch) => {
     console.error("Error deleting product:", error);
   }
 };
+

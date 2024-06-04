@@ -14,6 +14,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
+import Admin from "./Components/Admin/Admin"
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/admin/*" element={<Admin />} />
           <Route path="/newproduct" element={<NewProduct />} />
         </Routes>
       </div>
