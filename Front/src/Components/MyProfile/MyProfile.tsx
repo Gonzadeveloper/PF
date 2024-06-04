@@ -31,14 +31,18 @@ const MiPerfil: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (user && userData) {
+    if (isAuthenticated && userData) {
       getUserData();
     }
-  }, [user, userData]);
+  }, [isAuthenticated, userData]);
+
+  useEffect(() => {
+    if (user && isAuthenticated && !userData) {
+      getUserData();
+    }
+  }, [user, isAuthenticated, userData]);
 
   const getUserData = async () => {
-    if (!userData) return console.error("La variable userData es null");
-
     const token = await getAccessTokenSilently();
     return axios
       .get(`${import.meta.env.VITE_ENDPOINT}/user/${userData.id}`, {
@@ -130,12 +134,6 @@ const MiPerfil: React.FC = () => {
   const handleLoginClick = () => {
     loginWithRedirect();
   };
-
-  useEffect(() => {
-    if (isAuthenticated && userData) {
-      getUserData();
-    }
-  }, [isAuthenticated, userData]);
 
   return isAuthenticated ? (
     <div className={`container ${styles.outerContainer} mt-5`}>
