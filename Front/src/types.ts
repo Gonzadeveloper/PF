@@ -29,7 +29,11 @@ export type RootState = {
 export interface Category {
   id: number;
   name: string;
+  deletedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
+
 
 export interface Filters {
   name: string;
