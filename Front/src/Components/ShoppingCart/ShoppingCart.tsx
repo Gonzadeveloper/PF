@@ -29,10 +29,16 @@ function OffCanvasExample({ name, ...props }) {
     dispatch(decrementQuantity(id));
   };
 
+  // Verificar si products y cartItems están disponibles
+  if (!products || !cartItems) {
+    return <div>Loading...</div>; // o cualquier indicador de carga que prefieras
+  }
+
     // Calcular el total
     const total = cartItems.reduce((acc, cartItem) => {
       const product = products.find(product => product.id === cartItem.id);
-      return acc + (product.price * cartItem.quantity);
+      if (!product) return acc; // Si el producto no está encontrado, continuar
+      return acc + (product.price * cartItem.quantity); // Sumar el precio del producto multiplicado por la cantidad
     }, 0);
 
   // Filtrar productos que están en el carrito
