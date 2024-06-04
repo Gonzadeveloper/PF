@@ -31,6 +31,7 @@ sequelize.sync({ force: false }).then(() => {
 //       console.error('Unable to connect to the database:', error);
 //     }
 //   };
+
   
 //   init();
   

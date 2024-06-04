@@ -4,6 +4,7 @@ import MiPerfil from "./Components/MyProfile/MyProfile";
 import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
+import ShoppingCart from './Components/ShoppingCart/ShoppingCartI'
 import Notifications from "./Components/Notifications/Notifications";
 import { Cart } from "./Components/ShoppingCart/ShoppingCart";
 import Home from "./Components/Home/Home";
@@ -14,7 +15,9 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
+import Buy from './Components/Buy/Buy'
 import Admin from "./Components/Admin/Admin"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -26,9 +29,10 @@ function App() {
   return (
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
-      <Cart />
+      <ShoppingCart/>
       <div className="flex-grow-1">
         <Routes>
+          <Route path="/Buy" element={<Buy />} />
           <Route path="/" element={<Home />} />
           <Route path="/Favoritos" element={<Favorites />} />
           <Route path="/MiPerfil" element={<MiPerfil />} />
