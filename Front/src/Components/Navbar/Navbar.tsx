@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { FaBell, FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaBell } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import "./Navbar.css";
 import { useDispatch } from "react-redux";
 import { getAllProds, getProdByName } from "../../Redux/Actions/productActions";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [searchString, setSearchString] = useState("")
 
@@ -17,35 +18,39 @@ const Navbar = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(getProdByName(searchString))
+    if (searchString != "") {
+      dispatch(getProdByName(searchString))
+    } else {
+      dispatch(getAllProds())
+    }
+    navigate('/Search')
   }
 
-  const handleCompraSubmit = (e: React.MouseEvent<HTMLButtonElement>)=>{
+  const handleCompraSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     dispatch(getAllProds())
+    navigate('/Search')
   }
-  
+
   return (
     <nav className="navbar navbar-dark bg-dark">
       <div className="container">
         <div className="d-flex justify-content-between align-items-center w-100">
-          <Link to="/">
-            <img src={logo} alt="Logo" className="navbar-brand logo" />
-          </Link>
+
+          <img src={logo} alt="Logo" className="navbar-brand logo" onClick={e => {e.preventDefault()
+            navigate('/')}} />
+
           <form onSubmit={handleSubmit}>
             <div className="d-flex">
               <input
                 type="text"
                 className="form-control me-2"
                 placeholder="Buscar..."
-                onChange={e=>handleChange(e)}
-                
+                onChange={e => handleChange(e)}
               />
-                <button type="submit">
- 
-                  <FaSearch />
-
-                </button>
+              <button type="submit">
+                🔎
+              </button>
             </div>
           </form>
         </div>
@@ -53,34 +58,28 @@ const Navbar = () => {
       <div className="container d-flex justify-content-end">
         <div className="d-flex align-items-center">
 
-          <Link to="newproduct">
-            <button className="btn btn-outline-light me-2">Vende</button>
-          </Link>
+          <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
+            navigate('/newproduct')}}>Vende</button>
 
-         
-            <button className="btn btn-outline-light me-2" onClick={handleCompraSubmit}><Link to="Search">Compra</Link></button>
+          <button className="btn btn-outline-light me-2" onClick={handleCompraSubmit}>Compra</button>
 
-          <Link to="Favoritos">
-            <button className="btn btn-outline-light me-2">Favoritos</button>
-          </Link>
+          <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
+            navigate('/Favoritos')}}>Favoritos</button>
 
-          <Link to="MiPerfil">
-            <button className="btn btn-outline-light me-2">Mi Perfil</button>
-          </Link>
+          <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
+            navigate('/MiPerfil')}}>Mi Perfil</button>
 
-          <Link to="MisCompras">
-            <button className="btn btn-outline-light me-2">Mis compras</button>
-          </Link>
+          <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
+            navigate('/MisCompras')}}>Mis compras</button>
 
-          <Link to="Help">
-            <button className="btn btn-outline-light me-2">Help</button>
-          </Link>
+          <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
+            navigate('/Help')}}>Help
+          </button>
 
-          <Link to="Notificaciones">
-            <button className="btn btn-outline-light">
-              <FaBell />
-            </button>
-          </Link>
+          <button className="btn btn-outline-light" onClick={(e)=>{e.preventDefault()
+            navigate('/Notificaciones')}}>
+            <FaBell />
+          </button>
 
         </div>
       </div>

@@ -5,15 +5,14 @@ import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
 import Notifications from "./Components/Notifications/Notifications";
-import { Cart } from "./Components/ShoppingCart/ShoppingCart"
+import { Cart } from "./Components/ShoppingCart/ShoppingCart";
 import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
 import ProductDetail from "./Components/Detail/Detail";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Registrar from "./Components/Registrar/Registrar";
-import NewProduct from './Components/NewProduct/NewProduct'
+import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
 import Admin from "./Components/Admin/Admin"
 
@@ -21,7 +20,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllProds())
+    dispatch(getAllProds());
   }, [dispatch]);
 
   return (
@@ -38,9 +37,8 @@ function App() {
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/registrar" element={<Registrar />} />
-          <Route path='/newproduct' element={<NewProduct />} />
           <Route path="/admin/*" element={<Admin />} />
+          <Route path="/newproduct" element={<NewProduct />} />
         </Routes>
       </div>
       <Footer />

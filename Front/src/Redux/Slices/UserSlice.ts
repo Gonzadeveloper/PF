@@ -11,9 +11,9 @@ interface UsersState {
   cart: Cart | null;
 }
 
-const initialState: UsersState = {
-  users: [],
-  user: null,
+
+const initialState: UserState = {
+  user: JSON.parse(localStorage.getItem("user") || "null"),
   addresses: [],
   products: [],
   reviews: [],
@@ -48,7 +48,9 @@ const userSlice = createSlice({
     setCart: (state, action: PayloadAction<Cart | null>) => {
       state.cart = action.payload;
     },
-    // Agrega más reducers según sea necesario
+    clearUser: (state) => {
+      state.user = null;
+    },
   },
 });
 
@@ -60,5 +62,6 @@ export const {
   setReviews,
   setOrders,
   setCart,
+  clearUser,
 } = userSlice.actions;
 export default userSlice.reducer;

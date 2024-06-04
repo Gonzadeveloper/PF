@@ -1,31 +1,3 @@
-export interface Product {
-  id: number;
-  name: string;
-  category: Category;
-  price: number;
-  stock: number;
-  description: string;
-  image: string;
-  condition: string;
-  reviews: Review[];
-}
-
-export interface ProductsState {
-  products: Product[];
-  filters: Filters;
-  selectedProduct: Product | null;
-}
-
-export interface FavoritesState {
-  favorites: Product[];
-}
-
-export type RootState = {
-  products: ProductsState;
-  favorites: FavoritesState;
-  users: UserState;
-};
-
 export interface Category {
   id: number;
   name: string;
@@ -45,50 +17,56 @@ export interface Filters {
   maxStock: number;
 }
 
-export interface CardProps {
-  id?: Product["id"];
-  image?: Product["image"];
-  name?: Product["name"];
-  description?: Product["description"];
-  price?: Product["price"];
-  condition?: Product["condition"];
-  stock?: Product["stock"];
-  category?: Product["category"];
-  reviews?: Product["reviews"];
-  isFavorite?: boolean;
-  isSearchPage?: boolean;
-  onToggleFavorite?: () => void;
+export interface Review {
+  id: number;
+  rating: number;
+  comment: string;
+  userId: number;
 }
-export interface FormData {
-  password: string;
-  picture: string;
-  typeuser: string;
-  address: string;
-  country: string;
-  city: string;
-  state: string;
-  postalcode: string;
+
+export interface Product {
+  id: number;
+  name: string;
+  category: Category;
+  price: number;
+  stock: number;
+  description: string;
+  image: string;
+  condition: string;
+  review: Review[];
+}
+
+export interface ProductsState {
+  products: Product[];
+  filters: Filters;
+  selectedProduct: Product | null;
+}
+
+export interface FavoritesState {
+  favorites: Product[];
 }
 
 export interface UserState {
   user: User | null;
-  addresses: Address[] | [];
-  products: Product[] | [];
-  reviews: Review[] | [];
-  orders: Order[] | [];
+  addresses: Address[];
+  products: Product[];
+  reviews: Review[];
+  orders: Order[];
   cart: Cart | null;
 }
+
 export interface User {
   id: number;
   name: string;
   picture: string;
   email: string;
   typeuser: string;
-  address: string;
+  address: Address[];
   country: string;
   city: string;
   state: string;
   postalcode: string;
+  products: Product[];
 }
 
 export interface Address {
@@ -130,13 +108,27 @@ export interface Payment {
   amount: number;
   paymentMethod: string;
 }
+
 export interface CartProduct {
   id: number;
   cartId: number;
   productId: number;
   quantity: number;
 }
-export interface Review {
-  rating: number;
-  comment: string;
+
+export interface FormData {
+  password: string;
+  picture: string;
+  typeuser: string;
+  address: string;
+  country: string;
+  city: string;
+  state: string;
+  postalcode: string;
 }
+
+export type RootState = {
+  products: ProductsState;
+  favorites: FavoritesState;
+  user: UserState;
+};

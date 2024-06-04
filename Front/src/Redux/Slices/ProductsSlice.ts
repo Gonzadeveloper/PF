@@ -38,9 +38,29 @@ const productsSlice = createSlice({
     postProduct(state, action: PayloadAction<Product>) {
       state.products = [...state.products, action.payload];
     },
+    updateProduct(state, action: PayloadAction<Product>) {
+      state.products = state.products.map((product) =>
+        product.id === action.payload.id ? action.payload : product
+      );
+    },
+    deleteProduct(state, action: PayloadAction<number>) {
+      state.products = state.products.filter(
+        (product) => product.id !== action.payload
+      );
+    },
   },
 });
 
-export const { setProducts, getProductByName, setFilters, setProductDetails, postProduct } = productsSlice.actions;
+
+export const {
+  setProducts,
+  getProductByName,
+  setFilters,
+  setProductDetails,
+  postProduct,
+  updateProduct,
+  deleteProduct,
+} = productsSlice.actions;
+
 
 export default productsSlice.reducer;

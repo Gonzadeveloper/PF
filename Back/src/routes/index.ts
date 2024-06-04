@@ -8,6 +8,7 @@ import routesPayment from '../Payment/routes/routesPayment'
 import routesCart from '../Cart/routes/routesCart'
 import routesCartProduct from '../Cart/routes/routesCartProduct'
 import routesReview from '../Review/routes/routesReview'
+import routesPasarela from './routesPasarela'
 
 const router = express.Router()
 
@@ -21,6 +22,7 @@ router.use('/payment', routesPayment)
 router.use('/cart', routesCart)
 router.use('/cartproduct', routesCartProduct)
 router.use('/review', routesReview)
+router.use('/payment', routesPasarela)
 
 
 export default router;
