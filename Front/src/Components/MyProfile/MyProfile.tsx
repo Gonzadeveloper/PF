@@ -4,8 +4,6 @@ import styles from "./Miperfil.module.css";
 import ProfileForm from "./components/ProfileForm";
 import ProfileInfo from "./components/ProfileInfo";
 import UserProducts from "./components/SoldIitems/UserProducts";
-/* import PurchaseHistory from "./components/ShoppingHistory/PurchaseHistory";
-import PurchaseReviews from "./components/Reviews/PurchaseReviews"; */
 import axios from "axios";
 import { FormData } from "../../types";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -180,21 +178,6 @@ const MiPerfil: React.FC = () => {
               <hr />
             </h2>
             <UserProducts products={userData?.products || []} />
-            {/* <h2 className={`card-title ${styles["card-title"]} mt-4`}>
-              Compras Realizadas
-              <hr />
-            </h2>
-            <PurchaseHistory purchases={userData?.purchases || []} />
-            <h2 className={`card-title ${styles["card-title"]} mt-4`}>
-              Historial de Compras
-              <hr />
-            </h2>
-            <PurchaseHistory purchases={userData?.purchaseHistory || []} />
-            <h2 className={`card-title ${styles["card-title"]} mt-4`}>
-              Reseñas
-              <hr />
-            </h2>
-            <PurchaseReviews reviews={userData?.reviews || []} /> */}
           </div>
         </div>
       )}
