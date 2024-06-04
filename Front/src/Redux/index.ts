@@ -6,7 +6,7 @@ import favoritesReducer from "./Slices/FavoritesSlice";
 import categoriesReducer from "./Slices/CategoriesSlice";
 import orderReducer from "./Slices/OrdersSlice";
 import localStorageMiddleware from "./middleware/localStorageMiddleware";
-
+import categoryReducer from "./Slices/CategorySlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +16,7 @@ const store = configureStore({
     favorites: favoritesReducer,
     user: userReducer,
     order: orderReducer,
+    category: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
