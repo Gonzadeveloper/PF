@@ -23,7 +23,9 @@ export interface Review {
   id: number;
   rating: number;
   comment: string;
-  userId: number;
+  user: {
+    name: string;
+  };
 }
 
 export interface Product {

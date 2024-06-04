@@ -5,8 +5,7 @@ import {
   faCreditCard,
   faMoneyBillAlt,
   faHandHoldingUsd,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
+ } from "@fortawesome/free-solid-svg-icons";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
 import { getProductById } from "../../Redux/Actions/productActions";
@@ -60,9 +59,6 @@ const ProductDetail: React.FC<Props> = () => {
         <div className="col-md-6">
           <div className="card card-detail">
             <div className="card-body">
-              <div className="heart-icon">
-                <FontAwesomeIcon icon={faHeart} />
-              </div>
               <h1 className="mb-3">{product?.name}</h1>
               <p>
                 <strong> Categoría:</strong>{" "}
@@ -87,7 +83,7 @@ const ProductDetail: React.FC<Props> = () => {
                     <div className="review-item" key={review.id}>
                       <div className="review-header">
                         <span className="user-name">
-                          {review.userId ?? "Usuario desconocido"}
+                          {review.user.name ?? "Usuario desconocido"}
                         </span>
                         <div className="star-rating">
                           {[...Array(review.rating)].map((_, index) => (

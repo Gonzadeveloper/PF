@@ -85,6 +85,12 @@ export const useAuth = () => {
                 position: "top-right",
               }
             );
+            dispatch(clearUser());
+            setTimeout(() => {
+              logout({ returnTo: window.location.origin } as any);
+              console.log("Sesión cerrada");
+              localStorage.removeItem("user");
+            }, 1000);
           }
         }
       } else {
@@ -111,7 +117,7 @@ export const useAuth = () => {
 
   const handleLogout = () => {
     dispatch(clearUser());
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: window.location.origin } as any);
   };
 
   return {
