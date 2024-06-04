@@ -1,6 +1,7 @@
 import { Address } from '../../models/Address';
 import { sequelize } from '../../config/database';
 import { User } from '../../models/User';
+import { Product } from '../../models/Product';
 
 export const getUser = async () => {  
   try {
@@ -14,7 +15,13 @@ export const getUser = async () => {
       include: [
         {
           model: Address,
-          attributes: ['id', 'address', 'country'] // Ajusta las propiedades según tu modelo Address
+          required: false
+         // attributes: ['id', 'address', 'country'] // Ajusta las propiedades según tu modelo Address
+        },
+        {
+          model: Product,
+          required: false
+         // attributes: ['id', 'address', 'country'] // Ajusta las propiedades según tu modelo Address
         }
       ] 
     });

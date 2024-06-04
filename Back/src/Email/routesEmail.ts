@@ -1,5 +1,5 @@
 import express from 'express';
-import { sendEmail } from '../utils/sendEmail';
+import { sendEmail } from './sendEmail';
 
 const router = express.Router();
 
