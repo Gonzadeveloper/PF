@@ -34,6 +34,9 @@ const userSlice = createSlice({
       console.log('Setting user:', action.payload); // Agregamos este console.log
       state.user = action.payload;
     },
+    removeUser: (state, action: PayloadAction<number>) => {
+      state.users = state.users.filter(user => user.id !== action.payload);
+    },
     setAddresses: (state, action: PayloadAction<Address[]>) => {
       state.addresses = action.payload;
     },
@@ -64,5 +67,6 @@ export const {
   setOrders,
   setCart,
   clearUser,
+  removeUser,
 } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Redux';
-import { getAllUsers } from '../../Redux/Actions/userActions';
+import { getAllUsers, deleteUser } from '../../Redux/Actions/userActions';
 import { AppDispatch } from '../../Redux/index'; // Asegúrate de importar el tipo AppDispatch
 
 const Users: React.FC = () => {
@@ -12,11 +12,14 @@ const Users: React.FC = () => {
         dispatch(getAllUsers());
     }, [dispatch]);
 
+    const handleDelete = (id: number) => {
+        dispatch(deleteUser(id));
+    };
+
     return (
         <div>
             <div className="header">
                 <h1>Users</h1>
-                <button>New</button>
             </div>
             <table>
                 <thead>
@@ -34,8 +37,7 @@ const Users: React.FC = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <button onClick={() => handleDelete(user.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
