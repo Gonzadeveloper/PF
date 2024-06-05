@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
 import ShoppingCart from './Components/ShoppingCart/ShoppingCartI'
-import Notifications from "./Components/Notifications/Notifications";
-import { Cart } from "./Components/ShoppingCart/ShoppingCart";
 import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
@@ -27,17 +25,16 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+    <div className=" d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
       <ShoppingCart/>
-      <div className="flex-grow-1">
+      <div className="container flex-grow-1">
         <Routes>
           <Route path="/Buy" element={<Buy />} />
           <Route path="/" element={<Home />} />
           <Route path="/Favoritos" element={<Favorites />} />
           <Route path="/MiPerfil" element={<MiPerfil />} />
           <Route path="/MisCompras" element={<MyShopping />} />
-          <Route path="/Notificaciones" element={<Notifications />} />
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />

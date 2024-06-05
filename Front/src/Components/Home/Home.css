@@ -13,7 +13,7 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-.card-img-top {
+.card-img-top-Home {
   object-fit: cover;
   height: 200px;
 }
@@ -32,4 +32,13 @@ ol {
 }
 h1 {
   padding: 50px 0px 50px 0px !important ;
+}
+
+.custom-card-Home{
+  height: 22em;
+}
+
+.card-title{
+  padding-top: 0.5em;
+  padding-left: 0.5em;
 }
