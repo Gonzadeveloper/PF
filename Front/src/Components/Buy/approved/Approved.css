@@ -1,4 +1,4 @@
-h1 {
+.h1A {
     font-weight: bold;
     color: #28a745;
 }
@@ -8,11 +8,11 @@ p.lead {
     color: #555;
 }
 
-button {
+.BA {
     margin-top: 20px;
 }
 
-h4 {
+.h4A {
     font-size: 1.2rem;
     margin-top: 20px;
     margin-bottom: 20px;

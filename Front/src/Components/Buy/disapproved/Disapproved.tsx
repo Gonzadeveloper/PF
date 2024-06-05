@@ -12,7 +12,7 @@ function Disapproved() {
                     <h1 className='h1D'>Compra Rechazada</h1>
                     <p className="lead mt-3">Lamentablemente, tu compra no pudo ser procesada.</p>
                     <h4 className='h4D'>Para más información, por favor, contáctanos.</h4>
-                    <Button variant="danger" href="/Help">
+                    <Button className='BD' variant="danger" href="/Help">
                         Contacto
                     </Button>
                 </Col>
