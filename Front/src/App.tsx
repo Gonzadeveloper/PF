@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProds());
- //   dispatch(getAllOrders())
+    dispatch(getAllOrders())
   }, [dispatch]);
 
   // useEffect(() => {
