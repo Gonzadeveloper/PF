@@ -40,7 +40,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/newproduct" element={<NewProduct />} />
-          <Route path="/review" element={<Review />} />
+          <Route path="/review/:productId" element={<Review />} />
         </Routes>
       </div>
       <Footer />

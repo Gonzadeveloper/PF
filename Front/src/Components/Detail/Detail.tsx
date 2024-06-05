@@ -5,6 +5,7 @@ import {
   faCreditCard,
   faMoneyBillAlt,
   faHandHoldingUsd,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
@@ -45,6 +46,14 @@ const ProductDetail: React.FC<Props> = () => {
       </div>
     );
   }
+
+  const averageRating: number | null =
+    product?.review && product.review.length > 0
+      ? product.review.reduce(
+          (acc: number, curr: Review) => acc + curr.rating,
+          0
+        ) / product.review.length
+      : null;
 
   return (
     <div className="container mt-5">
@@ -89,16 +98,15 @@ const ProductDetail: React.FC<Props> = () => {
           <div className="card">
             <div className="card-body">
               <h2 className="mt-4">Reseñas</h2>
+              <div>
+                <FontAwesomeIcon icon={faStar} /> Valoración Promedio:{" "}
+                {averageRating !== null ? averageRating.toFixed(1) : "N/A"}
+              </div>
               {product?.review && product.review.length > 0 ? (
                 <div className="reviews-container">
                   {product.review.map((review: Review) => (
                     <div className="review-item" key={review.id}>
                       <div className="review-header">
-                        <span className="user-name">
-                          {review.user
-                            ? review.user.name ?? "Usuario desconocido"
-                            : "Usuario desconocido"}
-                        </span>
                         <div className="star-rating">
                           {[...Array(review.rating)].map((_, index) => (
                             <span key={index} className="star">
