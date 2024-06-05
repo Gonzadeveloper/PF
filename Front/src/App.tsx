@@ -27,15 +27,15 @@ function App() {
     dispatch(getAllProds());
   }, [dispatch]);
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectPath = urlParams.get("redirect");
-    if (redirectPath === "Buy/Approved") {
-      navigate("/Buy/Approved");
-    } else if (redirectPath === "Buy/Disapproved") {
-      navigate("/Buy/Disapproved");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const redirectPath = urlParams.get("redirect");
+  //   if (redirectPath === "Buy/Approved") {
+  //     navigate("/Buy/Approved");
+  //   } else if (redirectPath === "Buy/Disapproved") {
+  //     navigate("/Buy/Disapproved");
+  //   }
+  // }, [navigate]);
 
   return (
     <div className=" d-flex flex-column" style={{ minHeight: "100vh" }}>
