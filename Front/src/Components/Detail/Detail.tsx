@@ -95,7 +95,9 @@ const ProductDetail: React.FC<Props> = () => {
                     <div className="review-item" key={review.id}>
                       <div className="review-header">
                         <span className="user-name">
-                          {review.user.name ?? "Usuario desconocido"}
+                          {review.user
+                            ? review.user.name ?? "Usuario desconocido"
+                            : "Usuario desconocido"}
                         </span>
                         <div className="star-rating">
                           {[...Array(review.rating)].map((_, index) => (

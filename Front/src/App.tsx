@@ -4,7 +4,7 @@ import MiPerfil from "./Components/MyProfile/MyProfile";
 import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
-import ShoppingCart from './Components/ShoppingCart/ShoppingCartI'
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCartI";
 import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
@@ -13,9 +13,9 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
-import Buy from './Components/Buy/Buy'
-import Admin from "./Components/Admin/Admin"
-
+import Buy from "./Components/Buy/Buy";
+import Admin from "./Components/Admin/Admin";
+import Review from "./Components/Review/Review";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ function App() {
   return (
     <div className=" d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
-      <ShoppingCart/>
+      <ShoppingCart />
       <div className="container flex-grow-1">
         <Routes>
           <Route path="/Buy" element={<Buy />} />
@@ -40,6 +40,7 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/review" element={<Review />} />
         </Routes>
       </div>
       <Footer />
