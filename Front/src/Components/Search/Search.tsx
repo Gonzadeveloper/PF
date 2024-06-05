@@ -268,6 +268,7 @@ import { addFavorite, removeFavorite } from "../../Redux/Slices/FavoritesSlice";
 import { selectFilteredProducts } from "../../Redux/Selector";
 import { Product } from "../../types";
 import axios from "axios";
+import './Search.css'
 
 function Search() {
 
@@ -346,7 +347,7 @@ function Search() {
   };
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 8;
 
   // Calcula los productos que se mostrarán en la página actual
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -375,7 +376,7 @@ function Search() {
   };
 
   return (
-    <div className="container">
+    <div className="container contenedor">
       <div className="row">
         <div className="col-md-2">
           <h4>Filtros</h4>

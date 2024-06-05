@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { FaBell } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import "./Navbar.css";
 import { useDispatch } from "react-redux";
 import { getProdByName } from "../../Redux/Actions/productActions";
+import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -43,9 +42,12 @@ const Navbar = () => {
                 placeholder="Buscar..."
                 onChange={e => handleChange(e)}
               />
-              <button type="submit">
-                🔎
+              <button 
+              className="btn btn-primary"
+              type="submit"
+              >🔎
               </button>
+              
             </div>
           </form>
         </div>
@@ -73,11 +75,6 @@ const Navbar = () => {
 
           <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
             navigate('/Help')}}>Help
-          </button>
-
-          <button className="btn btn-outline-light" onClick={(e)=>{e.preventDefault()
-            navigate('/Notificaciones')}}>
-            <FaBell />
           </button>
 
         </div>

@@ -1,0 +1,67 @@
+.card.custom-card {
+    position: relative;
+    width: 15rem;
+    height: 33rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .favorite-btn svg {
+    stroke: black;
+    stroke-width: 14;
+  }
+  
+  .favorite-btn.favorite svg {
+    fill: black;
+  }
+  
+  .favorite-btn:not(.favorite) svg {
+    fill: transparent;
+  }
+  
+  .cart-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    color: #007bff;
+  }
+  
+  .cart-btn:hover {
+    transform: scale(1.2);
+    color: #0056b3;
+  }
+  
+  .cart-btn:focus {
+    outline: none;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+  }
+
+  .card-img-top {
+    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto; /* Mantén la proporción de la imagen */
+    border-radius: 8px; /* Agrega bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra ligera */
+    transition: transform 0.3s ease-in-out; /* Agrega una transición al hacer hover */
+  }
