@@ -2,19 +2,22 @@ import React, { useState, useEffect } from "react";
 import { Product } from "../../../../types";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   updateProd,
   deleteProd,
 } from "../../../../Redux/Actions/productActions";
 import UpdateProductForm from "./UpdateProductForm";
 import styles from "./UserProducts.module.css";
+import { setStatus } from "../../../../Redux/Slices/OrdersSlice";
+import { selectAllOrders } from "../../../../Redux/Selector";
 interface UserProductsProps {
   products: Product[];
 }
 
 const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
   const dispatch = useDispatch();
+  const glOrders = useSelector(selectAllOrders)
   const [editProductId, setEditProductId] = useState<number | null>(null);
   const [localProducts, setLocalProducts] = useState<Product[]>(products);
 
@@ -49,6 +52,20 @@ const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
     });
   };
 
+  const handleStatus = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    localProducts.forEach((produ)=>{glOrders.forEach((ord)=>ord.productOrder.forEach((prod)=>{
+      if(prod.productId==produ.id){
+        dispatch(setStatus({
+          ...ord,
+          orderStatus:"Enviado"
+        }))
+      }
+    }))}
+  )
+    
+  }
+
   return (
     <div className="row row-cols-1 row-cols-md-1 g-4">
       {localProducts.length > 0 ? (
@@ -61,12 +78,19 @@ const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
                 onUpdate={handleUpdate}
               />
             ) : (
-              <Card className={styles.productCard}>
+              <Card className={`position-relative ${styles.productCard}`}>
                 <Card.Img
                   variant="top"
                   src={product?.image}
                   className={styles.productImage}
                 />
+                <button
+                  className="btn btn-secondary position-absolute"
+                  style={{ top: '10px', right: '10px' }}
+                  onClick={e=>handleStatus(e, product)}
+                >
+                  🚚
+                </button>
                 <Card.Body>
                   <Card.Title>
                     <h3 className="mb-3">{product?.name}</h3>
@@ -88,17 +112,20 @@ const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
                   </Card.Text>
                   <Link
                     to={`/products/${product.id}`}
-                    className={`btn btn-primary ${styles.btnSpace}`}>
+                    className={`btn btn-primary ${styles.btnSpace}`}
+                  >
                     Ver Detalles
                   </Link>
                   <button
                     className={`btn btn-warning ${styles.btnSpace}`}
-                    onClick={() => handleEdit(product.id)}>
+                    onClick={() => handleEdit(product.id)}
+                  >
                     Modificar
                   </button>
                   <button
                     className={`btn btn-danger ${styles.btnSpace}`}
-                    onClick={() => handleDelete(product.id)}>
+                    onClick={() => handleDelete(product.id)}
+                  >
                     Eliminar
                   </button>
                 </Card.Body>

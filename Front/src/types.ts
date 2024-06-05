@@ -1,9 +1,9 @@
 export interface Category {
   id: number;
   name: string;
-  deletedAt: string | null;
-  createdAt: string;
-  updatedAt: string;
+  // deletedAt: string | null;
+  // createdAt: string;
+  // updatedAt: string;
 }
 export interface CategoryState {
   categorys: Category[];
@@ -36,6 +36,7 @@ export interface Product {
   image: string;
   condition: string;
   review: Review[];
+  status?: string
 }
 
 export interface ProductsState {
