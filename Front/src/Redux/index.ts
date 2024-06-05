@@ -22,9 +22,9 @@ const store = configureStore({
     category: categoryReducer,
   },
 
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(cartMiddleware),
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware),
+    getDefaultMiddleware().concat(cartMiddleware, localStorageMiddleware),
+
 });
 
 export type RootState = ReturnType<typeof store.getState>;

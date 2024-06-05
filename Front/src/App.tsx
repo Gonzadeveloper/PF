@@ -9,7 +9,7 @@ import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
 import ProductDetail from "./Components/Detail/Detail";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
@@ -21,10 +21,21 @@ import Disapproved from "./Components/Buy/disapproved/Disapproved";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProds());
   }, [dispatch]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectPath = urlParams.get("redirect");
+    if (redirectPath === "Buy/Approved") {
+      navigate("/Buy/Approved");
+    } else if (redirectPath === "Buy/Disapproved") {
+      navigate("/Buy/Disapproved");
+    }
+  }, [navigate]);
 
   return (
     <div className=" d-flex flex-column" style={{ minHeight: "100vh" }}>
