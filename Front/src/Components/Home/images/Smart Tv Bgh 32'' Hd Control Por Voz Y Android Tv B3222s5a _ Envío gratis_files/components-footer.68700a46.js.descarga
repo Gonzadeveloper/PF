@@ -1,2 +1,0 @@
-(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[213],{51601:(e,t,i)=>{var r=i(16270);i(96540);const{shape:s,string:_}=i(5556),{Button:a}=i(79204);e.exports=e=>{let{size:t,hierarchy:i,action:s}=e;return r("div",{className:"ui-seller-data-footer__container"},void 0,r(a,{size:t,hierarchy:i,href:s.target,srLabel:s.accessibility_text,fullWidth:!0},void 0,s.label.text))}}}]);
-//# sourceMappingURL=components-footer.68700a46.js.map

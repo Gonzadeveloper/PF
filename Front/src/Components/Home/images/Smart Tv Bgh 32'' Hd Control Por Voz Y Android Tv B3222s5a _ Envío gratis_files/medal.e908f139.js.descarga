@@ -1,2 +1,0 @@
-(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[48596],{34056:(s,e,l)=>{var _,a=l(16270);l(96540);const{string:d}=l(5556),p=l(46942),r=l(50162),t=s=>{let{className:e}=s;return a("div",{className:p("ui-pdp-icon ui-pdp-icon--medal",e)},void 0,_||(_=a(r,{src:"medal.svg",alt:""})))};t.defaultProps={className:null},s.exports=t,s.exports.ICON_ID="medal"}}]);
-//# sourceMappingURL=medal.e908f139.js.map

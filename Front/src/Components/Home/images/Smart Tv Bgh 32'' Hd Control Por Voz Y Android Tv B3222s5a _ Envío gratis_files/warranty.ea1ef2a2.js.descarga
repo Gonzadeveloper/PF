@@ -1,2 +1,0 @@
-(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[96711],{74911:(s,e,t)=>{var _,r=t(16270);const o=t(96540),{string:a}=t(5556),l=t(46942),p="warranty",i=s=>{let{className:e}=s;return r("svg",{className:l("ui-pdp-icon ui-pdp-icon--protected",e),xmlns:"http://www.w3.org/2000/svg",width:"12",height:"14",viewBox:"0 0 12 14"},void 0,_||(_=r("use",{href:`#${p}`})))};i.defaultProps={className:null},s.exports=o.memo(i),s.exports.ICON_ID=p}}]);
-//# sourceMappingURL=warranty.ea1ef2a2.js.map

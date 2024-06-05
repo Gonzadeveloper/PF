@@ -1,2 +1,0 @@
-(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[4636],{10548:(s,e,r)=>{var t,_=r(16270);const l=r(96540),{string:o}=r(5556),i=r(46942),n="returns",p=s=>{let{className:e}=s;return _("svg",{className:i("ui-pdp-icon ui-pdp-icon--return",e),xmlns:"http://www.w3.org/2000/svg",width:"14",height:"12",viewBox:"0 0 14 12"},void 0,t||(t=_("use",{href:`#${n}`})))};p.defaultProps={className:null},s.exports=l.memo(p),s.exports.ICON_ID=n}}]);
-//# sourceMappingURL=returns.4db048f8.js.map

@@ -1,2 +1,0 @@
-(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[33698],{88288:(s,e,_)=>{var o,t=_(16270);const a=_(96540),{string:i}=_(5556),l=_(46942),p=_(50162),r=s=>{let{className:e}=s;return t("div",{className:l("ui-pdp-icon ui-pdp-icon--message-positive",e)},void 0,o||(o=t(p,{src:"message-positive-v2.svg",alt:""})))};r.defaultProps={className:null},s.exports=a.memo(r),s.exports.ICON_ID="rep_seller_attention_good_v2"}}]);
-//# sourceMappingURL=rep_seller_attention_good_v2.5cff2b17.js.map
