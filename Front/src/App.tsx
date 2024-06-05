@@ -15,6 +15,7 @@ import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
 import Buy from './Components/Buy/Buy'
 import Admin from "./Components/Admin/Admin"
+import { getAllOrders } from "./Redux/Actions/orderActions";
 import Approved from "./Components/Buy/approved/Approved";
 import Disapproved from "./Components/Buy/disapproved/Disapproved";
 
@@ -25,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProds());
+    dispatch(getAllOrders())
   }, [dispatch]);
 
   // useEffect(() => {

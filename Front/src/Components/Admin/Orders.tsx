@@ -4,14 +4,11 @@ import { RootState } from '../../Redux';
 import { getAllOrders } from '../../Redux/Actions/orderActions';
 import { AppDispatch } from '../../Redux/index'; // Asegúrate de importar el tipo AppDispatch
 import { Order } from '../../types';
+import { selectAllOrders } from '../../Redux/Selector';
 
 const OrderComponent: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>(); // Tipo dispatch como AppDispatch
-    const { orders } = useSelector((state: RootState) => state.order); // Cambia 'orders' a 'order'
-
-    useEffect(() => {
-        dispatch(getAllOrders());
-    }, [dispatch]);
+    const orders = useSelector(selectAllOrders) // Cambia 'orders' a 'order'
 
     return (
         <div>

@@ -16,9 +16,14 @@ const ordersSlice = createSlice({
         setOrders(state, action: PayloadAction<Order[]>) {
             state.orders = action.payload;
         },
+        setStatus(state, action: PayloadAction<Order>){
+            state.orders = state.orders.map(
+              (prod)=> prod.id===action.payload.id ? action.payload : prod
+            )
+          }
     },
 });
 
-export const { setOrders } = ordersSlice.actions;
+export const { setOrders, setStatus } = ordersSlice.actions;
 
 export default ordersSlice.reducer;
