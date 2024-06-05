@@ -22,8 +22,8 @@ const store = configureStore({
     category: categoryReducer,
   },
 
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(cartMiddleware, localStorageMiddleware),
+  //middleware: (getDefaultMiddleware) =>
+    //getDefaultMiddleware().concat(cartMiddleware, localStorageMiddleware),
 
 });
 
