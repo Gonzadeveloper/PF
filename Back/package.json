@@ -6,7 +6,7 @@
   "scripts": {
     "dev": " nodemon src/index.ts",
     "start": "node build/index.js",
-    "tsc": "tsc",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -50,6 +50,7 @@
     "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.2.2",
     "sequelize": "^6.37.3",
-    "sequelize-typescript": "^2.1.6"
+    "sequelize-typescript": "^2.1.6",
+    "vercel": "^34.2.5"
   }
 }

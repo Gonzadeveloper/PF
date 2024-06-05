@@ -10,13 +10,25 @@ import { ProductOrder } from "../../models/ProductOrder";
 // import sequelize from '../database';  // Asume que tienes una configuración de sequelize
 
 dotenv.config();
-const URL = process.env.URL_TUNEL;
 
+const { ACCESS_TOKEN, URL_TUNEL } = process.env;
+
+if (!ACCESS_TOKEN || !URL_TUNEL) {
+  throw new Error("Faltan variables de entorno");
+}
+const URL = `${URL_TUNEL}`;
+//const ACCESS = `${ACCESS_TOKEN}`;
+//const ACCESS = "APP_USR-2515718633195465-060221-f2d99fa217fb7d7d2501f99e89392de0-1841454940";
+//const URL = process.env.URL_TUNEL;
+
+
+//const ACCESS = process.env.ACCESS_TOKEN;
 const client = new MercadoPagoConfig({
-  accessToken: process.env.ACCESS_TOKEN || "",
+  accessToken: ACCESS_TOKEN || "",
 });
 
 const payment = async (req: Request, res: Response) => {
+ 
   const { userId, products } = req.body;
   console.log(products);
 
@@ -103,12 +115,10 @@ const payment = async (req: Request, res: Response) => {
 const handlePaymentSuccess = async (req: Request, res: Response) => {
   //const external_reference = req.query.external_reference as string;
   //const {collection_status} = req.query;
-
   const { external_reference, status} = req.query;
   console.log(req.query);
   console.log("APROBADO");
   
-
   try {
     console.log(req.query);
 
@@ -132,8 +142,9 @@ const handlePaymentSuccess = async (req: Request, res: Response) => {
         } as any);
       }
       //res.redirect(`${URL}/success?payment_id=${payment_id}&status=${status}&order_id=${external_reference}`);
-      res.send("Pago completado con éxito.");
+      //res.send("Pago completado con éxito.");
       
+      res.redirect("http://localhost:3000/Buy/Approved");
       //res.redirect(`http://frontend-url/success?payment_id=${payment_id}&status=${status}&order_id=${external_reference}`);
     }
   } catch (error) {
@@ -197,4 +208,3 @@ const verifyOrder = async (req: Request, res: Response) => {
 };
 
 export { payment, handlePaymentSuccess, handleNotifications, verifyOrder };
-
