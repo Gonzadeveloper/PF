@@ -10,6 +10,8 @@ const OrderComponent: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>(); // Tipo dispatch como AppDispatch
     const orders = useSelector(selectAllOrders) // Cambia 'orders' a 'order'
 
+    console.log(orders);
+    
     return (
         <div>
             <div className="header">

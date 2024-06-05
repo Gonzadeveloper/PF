@@ -9,6 +9,7 @@ import {
 } from "../../../../Redux/Actions/productActions";
 import UpdateProductForm from "./UpdateProductForm";
 import styles from "./UserProducts.module.css";
+import { setStatus } from "../../../../Redux/Slices/OrdersSlice";
 import { selectAllOrders } from "../../../../Redux/Selector";
 import { newStatus } from "../../../../Redux/Actions/orderActions";
 import { AppDispatch } from "../../../../Redux";
@@ -18,6 +19,7 @@ interface UserProductsProps {
 }
 
 const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
+
   const dispatch = useDispatch<AppDispatch>();
   const glOrders = useSelector(selectAllOrders);
   const [editProductId, setEditProductId] = useState<number | null>(null);
@@ -79,7 +81,6 @@ const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
     <div className="row row-cols-1 row-cols-md-1 g-4">
       {localProducts.length > 0 ? (
         localProducts.map((product) => {
-
           return (
             <div className="col mb-4" key={product.id}>
               {editProductId === product.id ? (

@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllOrders, selectProducts, selectUser } from "../../Redux/Selector";
+import { setStatus } from "../../Redux/Slices/OrdersSlice";
 import { useEffect, useState } from "react";
 import { getAllOrders, newStatus } from "../../Redux/Actions/orderActions";
 import { AppDispatch } from "../../Redux";
 import { Order, Product } from "../../types";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function MyShopping() {
     const dispatch = useDispatch<AppDispatch>()
@@ -12,6 +14,7 @@ function MyShopping() {
     const user = useSelector(selectUser)
     const orders = useSelector(selectAllOrders)
     let products: Product[] = []
+
 
     const [showModal, setShowModal] = useState(false);
     const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
@@ -31,6 +34,7 @@ function MyShopping() {
                     ...products,
                     {
                         ...prod,
+
                         status: status,
                         soldDate: date
                     }
@@ -38,6 +42,7 @@ function MyShopping() {
             }
         })
     }
+
 
     ordersUser.forEach((ord: Order) => {
         ord.productOrder?.forEach((prod: ProductOrder) => addProd(prod.productId, ord.orderStatus, ord.orderDate))
@@ -57,7 +62,6 @@ function MyShopping() {
         }));
         setShowModal(false);
     }
-
     return (
         <div className="container mt-5">
             <h1 className="mb-4">Mis compras</h1>
@@ -79,12 +83,12 @@ function MyShopping() {
                                 {prod.status === "Enviado" && (
                                     <button type="button" className="btn btn-primary" onClick={handleReceived} value={prod.id}>📬</button>
                                 )}
+
                             </div>
                         </div>
                     </div>
                 );
             })}
-
             {/* Modal */}
             <div className={`modal fade ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }} tabIndex={-1}>
                 <div className="modal-dialog">
