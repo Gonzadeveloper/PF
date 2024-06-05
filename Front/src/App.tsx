@@ -4,43 +4,59 @@ import MiPerfil from "./Components/MyProfile/MyProfile";
 import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
-import Notifications from "./Components/Notifications/Notifications";
-import { Cart } from "./Components/ShoppingCart/ShoppingCart";
+import ShoppingCart from './Components/ShoppingCart/ShoppingCartI'
 import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
 import ProductDetail from "./Components/Detail/Detail";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
+import Buy from './Components/Buy/Buy'
 import Admin from "./Components/Admin/Admin"
 import { getAllOrders } from "./Redux/Actions/orderActions";
+import Approved from "./Components/Buy/approved/Approved";
+import Disapproved from "./Components/Buy/disapproved/Disapproved";
+
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProds());
     dispatch(getAllOrders())
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   const redirectPath = urlParams.get("redirect");
+  //   if (redirectPath === "Buy/Approved") {
+  //     navigate("/Buy/Approved");
+  //   } else if (redirectPath === "Buy/Disapproved") {
+  //     navigate("/Buy/Disapproved");
+  //   }
+  // }, [navigate]);
+
   return (
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+    <div className=" d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
-      <Cart />
-      <div className="flex-grow-1">
+      <ShoppingCart/>
+      <div className="container flex-grow-1">
         <Routes>
+          <Route path="/Buy" element={<Buy />} />
           <Route path="/" element={<Home />} />
           <Route path="/Favoritos" element={<Favorites />} />
           <Route path="/MiPerfil" element={<MiPerfil />} />
           <Route path="/MisCompras" element={<MyShopping />} />
-          <Route path="/Notificaciones" element={<Notifications />} />
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path='Buy/Approved' element={<Approved />} />
+          <Route path='Buy/Disapproved' element={<Disapproved />} />
         </Routes>
       </div>
       <Footer />
