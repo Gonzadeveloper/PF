@@ -9,6 +9,7 @@ import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
 import ProductDetail from "./Components/Detail/Detail";
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -23,12 +24,14 @@ import Admin from "./Components/Admin/Admin";
 import Approved from "./Components/Buy/approved/Approved";
 import Disapproved from "./Components/Buy/disapproved/Disapproved";
 import Review from "./Components/Review/Review";
+
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllProds());
+    dispatch(getAllOrders())
   }, [dispatch]);
 
   // useEffect(() => {
@@ -60,6 +63,7 @@ function App() {
           <Route path="Buy/Approved" element={<Approved />} />
           <Route path="Buy/Disapproved" element={<Disapproved />} />
           <Route path="/review/:productId" element={<Review />} />
+
         </Routes>
       </div>
       <Footer />
