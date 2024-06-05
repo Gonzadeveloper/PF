@@ -1,119 +1,47 @@
-.cart {
-    background: #000;
-    display: none;
-    padding: 32px;
-    position: fixed;
-    right: 0px;
-    top: 0px;
-    width: 200px;
-    color: aliceblue;
-    overflow-y: auto; /* Habilita el scroll vertical */
-  }
-  
-  
-  .cart img {
-    aspect-ratio: 16/9;
-    width: 100%;
-  }
-  
-  .cart li {
-    border-bottom: 1px solid #444;
-    padding-bottom: 16px;
-  }
-  
-  .cart footer {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .cart footer button {
-    padding: 8px;
-  }
-  
-  .cart-button {
-    align-items: center;
-    background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    border-radius: 9999px;
-    cursor: pointer;
-    display: flex;
-    height: 32px;
-    justify-content: center;
-    padding: 4px;
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-    color: white; /* Asegura que el color del texto sea visible */
-  }
+.cart-button {
+  align-items: center;
+  background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  padding: 4px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  transition: all 0.3s ease;
+  z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
+  color: white; /* Asegura que el color del texto sea visible */
+}
 
-  .cart-button2 {
-    align-items: center;
-    background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    color: white;
-    border-radius: 9999px;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    height: 25px;
-    justify-content: center;
-    padding: 4px;
-    position: absolute;
-    right: 0.1em;
-    width: 0.7em;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-  }
+.offcanvas-body {
+  /* Override default scrollbar styles */
+  scrollbar-width:thin; /* Enable customization */
+  scrollbar-color: rgba(0, 4, 255, 0.2) rgba(17, 0, 255, 0.1); /* Customize colors */
+}
 
-  .cart-button4 {
-    align-items: center;
-    background: #09f; /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    color: white;
-    border-radius: 9999px;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    height: 25px;
-    justify-content: center;
-    width: 0.7em;
-    padding: 4px;
-    position: absolute;
-    right: 1.5em;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-  }
+.custom-buy-button {
+  /* Your custom styles for the button */
+  background-color: #007bff; /* Example: Change background color */
+  border-color: #0056b3; /* Example: Change border color */
+  font-size: 18px; /* Example: Increase font size */
+  padding: 12px 20px; /* Example: Adjust padding */
+}
 
-  .cart-button3 {
-    align-items: center;
-    background: rgb(255, 0, 0); /* Asegúrate de que este color se vea bien con el fondo de tu página */
-    color: white;
-    border-radius: 9999px;
-    border: none;
-    font-weight: 400;
-    cursor: pointer;
-    display: flex;
-    height: 32px;
-    width: 25px;
-    justify-content: center;
-    padding: 4px;
-    position: absolute;
-    right: 8.5em;
-    top: 8.5;
-    transition: all 0.3s ease;
-    z-index: 9999; /* Asegúrate de que este valor sea más alto que otros elementos */
-  }
+.boton{
+  padding-left: 7em;
+  padding-bottom: 2em;
+}
 
-  
-  .cart-button:hover {
-    scale: 1.1;
-    background: #07d; /* Cambia el color de fondo al pasar el cursor para mejor visibilidad */
-  }
-  
-  .cart-button ~ input:checked ~ .cart {
-    height: 100%;
-    display: block;
-  }
+.small1{
+margin-left: 1em;
+}
+
+.button2{
+  margin-left: 2.7em;
+}
+
+.button3{
+  margin-left: 0.5em;
+}

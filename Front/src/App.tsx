@@ -4,8 +4,7 @@ import MiPerfil from "./Components/MyProfile/MyProfile";
 import { useEffect } from "react";
 import Favorites from "./Components/Favorites/Favorites";
 import MyShopping from "./Components/MyShopping/My shopping";
-import Notifications from "./Components/Notifications/Notifications";
-import { Cart } from "./Components/ShoppingCart/ShoppingCart";
+import ShoppingCart from "./Components/ShoppingCart/ShoppingCartI";
 import Home from "./Components/Home/Home";
 import Search from "./Components/Search/Search";
 import Help from "./Components/Help/Help";
@@ -14,7 +13,9 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
-import Admin from "./Components/Admin/Admin"
+import Buy from "./Components/Buy/Buy";
+import Admin from "./Components/Admin/Admin";
+import Review from "./Components/Review/Review";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,21 +25,22 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
+    <div className=" d-flex flex-column" style={{ minHeight: "100vh" }}>
       <Navbar />
-      <Cart />
-      <div className="flex-grow-1">
+      <ShoppingCart />
+      <div className="container flex-grow-1">
         <Routes>
+          <Route path="/Buy" element={<Buy />} />
           <Route path="/" element={<Home />} />
           <Route path="/Favoritos" element={<Favorites />} />
           <Route path="/MiPerfil" element={<MiPerfil />} />
           <Route path="/MisCompras" element={<MyShopping />} />
-          <Route path="/Notificaciones" element={<Notifications />} />
           <Route path="/Help" element={<Help />} />
           <Route path="/Search" element={<Search />} />
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path="/review" element={<Review />} />
         </Routes>
       </div>
       <Footer />
