@@ -11,8 +11,9 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    await product.restore(); // Esto hará un borrado lógico
-    res.status(200).json({ message: 'User deleted successfully' });
+    await product.destroy();
+    res.status(200).json({ message: "User deleted successfully" });
+
   } catch (error) {
     console.error('Error deleting user:', error);
     res.status(500).json({ error: 'Internal server error' });
