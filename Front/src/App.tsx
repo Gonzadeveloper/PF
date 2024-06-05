@@ -15,6 +15,8 @@ import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
 import Buy from './Components/Buy/Buy'
 import Admin from "./Components/Admin/Admin"
+import Approved from "./Components/Buy/approved/Approved";
+import Disapproved from "./Components/Buy/disapproved/Disapproved";
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/newproduct" element={<NewProduct />} />
+          <Route path='Buy/Approved' element={<Approved />} />
+          <Route path='Buy/Disapproved' element={<Disapproved />} />
         </Routes>
       </div>
       <Footer />

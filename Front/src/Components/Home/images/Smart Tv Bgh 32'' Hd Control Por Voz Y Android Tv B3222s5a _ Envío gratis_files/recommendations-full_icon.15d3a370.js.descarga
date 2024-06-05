@@ -1,0 +1,2 @@
+(self.__LOADABLE_LOADED_CHUNKS__=self.__LOADABLE_LOADED_CHUNKS__||[]).push([[89739],{5409:(s,e,l)=>{var _,o=l(16270);const t=l(96540),{string:n}=l(5556),r=s=>{let{className:e}=s;return o("svg",{className:e,width:"41",height:"13",viewBox:"0 0 41 13",xmlns:"http://www.w3.org/2000/svg",fill:"none"},void 0,_||(_=o("use",{href:"#poly_full"})))};r.defaultProps={className:null},s.exports=t.memo(r),s.exports.ICON_ID="recommendations-full_icon"}}]);
+//# sourceMappingURL=recommendations-full_icon.15d3a370.js.map
