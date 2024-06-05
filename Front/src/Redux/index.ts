@@ -1,5 +1,5 @@
 import cartReducer from "./Slices/CartSlice";
-import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./Slices/UserSlice";
 import productsreducers from "./Slices/ProductsSlice";
 import favoritesReducer from "./Slices/FavoritesSlice";
@@ -9,7 +9,7 @@ import orderReducer from "./Slices/OrdersSlice";
 import localStorageMiddleware from "./middleware/localStorageMiddleware";
 import categoryReducer from "./Slices/CategorySlice";
 
-const store: EnhancedStore = configureStore({
+const store = configureStore({
   reducer: {
     categories: categoriesReducer,
     products: productsreducers,
@@ -21,9 +21,7 @@ const store: EnhancedStore = configureStore({
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(cartMiddleware)
-      .concat(localStorageMiddleware),
+    getDefaultMiddleware().concat(cartMiddleware, localStorageMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
