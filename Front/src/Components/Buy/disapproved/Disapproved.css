@@ -1,0 +1,20 @@
+.h1D {
+    font-weight: bold;
+    color: #dc3545; /* Color rojo */
+}
+
+p.lead {
+    font-size: 1.25rem;
+    color: #555;
+}
+
+.h4D {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #dc3545; /* Color rojo */
+}
+
+button {
+    margin-top: 20px;
+}

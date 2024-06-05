@@ -105,7 +105,6 @@ export const sendEmail = async (req: Request, res: Response) => {
               </td>
             </tr>
             <tr>
-
               <td align="center" style="padding: 40px 20px; background-color: #ffffff;">
                 <h1 style="color: #172211; line-height: 1.5; margin-bottom: 20px;">¡Tu compra fue realizada con éxito!</h1>
                 <h3 style="color: #172211; line-height: 1.5; margin-bottom: 20px;">Gracias por elegirnos, esperamos que disfrutes tu compra.</h3>
@@ -130,18 +129,15 @@ export const sendEmail = async (req: Request, res: Response) => {
           </tbody>
         </table>
       </div>
-
       `,
     };
 
     await transporter.sendMail(mailOptions);
     res.status(200).send({ message: "Correo enviado exitosamente" });
     return
-
   } catch (error) {
     console.error("Error al enviar el correo:", error);
     res.status(500).send(error);
   }
-
   return
 };
