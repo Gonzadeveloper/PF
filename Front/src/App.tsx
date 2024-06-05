@@ -15,12 +15,14 @@ import { useDispatch } from "react-redux";
 import NewProduct from "./Components/NewProduct/NewProduct";
 import { getAllProds } from "./Redux/Actions/productActions";
 import Admin from "./Components/Admin/Admin"
+import { getAllOrders } from "./Redux/Actions/orderActions";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProds());
+    dispatch(getAllOrders())
   }, [dispatch]);
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setOrders } from '../../Redux/Slices/OrdersSlice';
+import { setOrders, setStatus } from '../../Redux/Slices/OrdersSlice';
 import { AppDispatch } from '../index';
 import { Order } from '../../types';
 
@@ -10,6 +10,20 @@ export const getAllOrders = () => {
                 `${import.meta.env.VITE_ENDPOINT}/order`
             );
             dispatch(setOrders(res.data));
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+        }
+    };
+};
+
+export const newStatus = (newstat:object, orderId:number) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const res = await axios.put(
+                `${import.meta.env.VITE_ENDPOINT}/order/${orderId}`,
+                newstat
+            );
+            dispatch(setStatus(res.data));
         } catch (error) {
             console.error('Error fetching orders:', error);
         }
