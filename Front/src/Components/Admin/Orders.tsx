@@ -13,6 +13,8 @@ const OrderComponent: React.FC = () => {
         dispatch(getAllOrders());
     }, [dispatch]);
 
+    console.log(orders);
+    
     return (
         <div>
             <div className="header">
