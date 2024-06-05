@@ -60,9 +60,6 @@ function Buy() {
     return <div>Loading...</div>; // o cualquier indicador de carga que prefieras
   }
 
-  // Depuración: Verifica los datos de cartItems y products
-  console.log("Cart Items:", cartItems);
-  console.log("Products:", products);
 
   // Calcular el total
   const total = cartItems.reduce((acc, cartItem) => {

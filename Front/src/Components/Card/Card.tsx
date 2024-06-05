@@ -22,14 +22,14 @@ const Card: React.FC<CardProps> = ({
   };
 
   return (
-    <div className="col-2">
+    <div className="col-3">
       <div className="card custom-card">
         <Link to={`/products/${id}`} className="card-link">
           <img src={image} className="card-img-top" alt="avatar" />
         </Link>
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text">Price: {price}</p>
+          <p className="card-text">Precio: {price}</p>
           <p className="card-text">Descripción: {description}</p>
         </div>
         <div className="card-icons">

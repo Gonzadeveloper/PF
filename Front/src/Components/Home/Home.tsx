@@ -3,7 +3,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/index";
 import { selectProducts } from "../../Redux/Selector";
 import { Link } from "react-router-dom";
-import styles from "./Home.module.css";
+import AccesoriosPCImage from './images/Accesorios PC.jpg'
+import AlmacenamientoImage from './images/Almacenamiento.jpg'
+import CamarasImage from './images/Camaras.jpg'
+import CelularesImage from "./images/Celulares.jpg";
+import ConsolasImage from './images/consolas.jpg'
+import ImpresorasImage from "./images/Impresoras.jpg";
+import MonitoresImage from './images/Monitores.jpg'
+import PortatilesImage from "./images/Portatiles.jpg";
+import RedesImage from './images/Redes.jpg'
+import RelojesImage from './images/Relojes.jpg'
+import TabletasImage from './images/Tabletas.jpg'
+import SonidoImage from './images/Sonido.jpg'
+import './Home.css'
 
 function Home() {
   const allProducts = useSelector((state: RootState) => selectProducts(state));
@@ -73,7 +85,7 @@ function Home() {
                   className={`carousel-item ${index === 0 ? "active" : ""}`}>
                   <Link
                     to={`/products/${product.id}`}
-                    className={`d-block text-decoration-none ${styles.link}`}>
+                    className={`d-block text-decoration-none link`}>
                     <div className="d-flex align-items-center justify-content-center">
                       <img
                         src={product.image}
@@ -115,28 +127,43 @@ function Home() {
             <h1> 🔥Encontra lo que buscas 🔥</h1>
           </div>
           <div className="row">
-            {categories.map((category) => (
-              <div key={category.id} className="col-md-3 mb-3">
-                <div className={`card ${styles.card}`}>
-                  <div className={styles.cardBody}>
-                    <h5 className="card-title">{category.name}</h5>
-                    <ul>
-                      {productsByCategory[category.name.toLowerCase()]?.map(
-                        (product: any) => (
-                          <li key={product.id}>
-                            <Link
-                              to={`/products/${product.id}`}
-                              className={styles.link}>
-                              {product.name}
-                            </Link>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
+          {categories.map((category) => (
+            <div key={category.id} className="col-md-3 mb-3">
+                <div className={`card custom-card-Home`}>
+                    <img
+                        src={
+                            category.name === 'Celulares' ? CelularesImage :
+                            category.name === 'Portatiles' ? PortatilesImage :
+                            category.name === 'Impresoras' ? ImpresorasImage :
+                            category.name === 'Redes' ? RedesImage :
+                            category.name === 'Accesorios PC' ? AccesoriosPCImage :
+                            category.name === 'Tabletas' ? TabletasImage :
+                            category.name === 'Camaras' ? CamarasImage :
+                            category.name === 'Sonido' ? SonidoImage :
+                            category.name === 'Almacenamiento' ? AlmacenamientoImage :
+                            category.name === 'Relojes Inteligentes' ? RelojesImage :
+                            category.name === 'Monitores' ? MonitoresImage :
+                            category.name === 'Consolas' ? ConsolasImage :
+                            ''
+                        }
+                        className="card-img-top-Home"
+                        alt={category.name}
+                    />
+                    <div className='cardBody'>
+                        <h5 className="card-title">{category.name}</h5>
+                        <ul>
+                            {productsByCategory[category.name.toLowerCase()]?.map((product: any) => (
+                                <li key={product.id}>
+                                    <Link to={`/products/${product.id}`} className='link'>
+                                        {product.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-              </div>
-            ))}
+            </div>
+        ))}
           </div>
         </>
       ) : (

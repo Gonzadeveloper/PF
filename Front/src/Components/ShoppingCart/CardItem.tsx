@@ -10,11 +10,11 @@ function CartItem({ id, image, name, price, quantity, updateQuantity, removeItem
           <p className="card-text">Precio - ${price*quantity}</p>
           <button type="button" className="btn btn-outline-danger" onClick={() => removeItem(id)}>x</button>
   
-        <small>Cantidad: {quantity}</small>
+        <small className='small1'>Cantidad: {quantity}</small>
 
-        <button type="button" className="btn btn-outline-primary" onClick={() => decrementItem(id)}>-</button>
+        <button type="button" className="btn btn-outline-primary button2" onClick={() => decrementItem(id)}>-</button>
 
-        <button type="button" className="btn btn-outline-primary" onClick={() => updateQuantity(id, quantity + 1)}>+</button>
+        <button type="button" className="btn btn-outline-primary button3" onClick={() => updateQuantity(id, quantity + 1)}>+</button>
 
         </div>
       </div>
