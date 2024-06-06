@@ -29,3 +29,12 @@ export const getUserById = (id: number) => async (dispatch: AppDispatch) => {
         console.error("Error fetching user by ID:", error);
     }
 };
+
+export const deleteUser = (id: number) => async (dispatch: AppDispatch) => {
+    try {
+        await axios.delete(`${import.meta.env.VITE_ENDPOINT}/user/${id}`);
+        dispatch(getAllUsers()); // Refresca la lista de usuarios después de eliminar
+    } catch (error) {
+        console.error("Error deleting user:", error);
+    }
+};

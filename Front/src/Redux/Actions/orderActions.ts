@@ -16,7 +16,7 @@ export const getAllOrders = () => {
     };
 };
 
-export const newStatus = (newstat:object, orderId:number) => {
+export const newStatus = (newstat: object, orderId: number) => {
     return async (dispatch: AppDispatch) => {
         try {
             const res = await axios.put(
