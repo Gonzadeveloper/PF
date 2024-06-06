@@ -5,7 +5,7 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
   const ProductId = req.params.id;
 
   try {
-    const product = await Product.findByPk(ProductId, {paranoid: false});
+    const product = await Product.findByPk(ProductId, { paranoid: false });
     if (!product) {
       res.status(404).json({ error: 'User not found' });
       return;
