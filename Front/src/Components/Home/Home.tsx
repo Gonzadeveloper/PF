@@ -40,7 +40,7 @@ function Home() {
 
       const productsGroupedByCategory = allProducts.reduce(
         (acc: any, product: any) => {
-          const normalizedCategoryName = product.category.name
+          const normalizedCategoryName = product?.category?.name
             .toLowerCase()
             .trim();
           if (!acc[normalizedCategoryName]) {

@@ -25,14 +25,21 @@ const FavoritesList: React.FC = () => {
 
   return (
     <div className="row">
-      {favoriteProducts.map((product: Product) => (
-        <Card
-          key={product.id}
-          {...product}
-          onToggleFavorite={() => handleToggleFavorite(product)}
-          isSearchPage={false} // Pasamos isSearchPage como false en la página de favoritos
-        />
-      ))}
+      {favoriteProducts.length > 0 ? (
+        favoriteProducts.map((product: Product) => (
+          <Card
+            key={product.id}
+            {...product}
+            onToggleFavorite={() => handleToggleFavorite(product)}
+            isSearchPage={false}
+          />
+        ))
+      ) : (
+        <div>
+          <h4>No hay productos marcados como favoritos</h4>
+          <h6>Recuerda agregar tus productos al carrito para comprar </h6>
+        </div>
+      )}
     </div>
   );
 };

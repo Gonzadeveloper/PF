@@ -4,6 +4,7 @@
     height: 34rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* Asegura que el contenido no se desborde */
   }
   
   .favorite-btn {
@@ -64,4 +65,10 @@
     border-radius: 8px; /* Agrega bordes redondeados */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Agrega una sombra ligera */
     transition: transform 0.3s ease-in-out; /* Agrega una transición al hacer hover */
+  }
+
+  .card-text {
+    max-height: 70%; /* Limita la altura máxima al 30% de la tarjeta */
+    overflow: hidden; /* Oculta el texto que se desborde */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos al texto desbordado */
   }

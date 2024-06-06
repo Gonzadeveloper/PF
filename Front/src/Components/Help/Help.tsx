@@ -46,7 +46,7 @@ const Help = () => {
                 <Col lg={4}>
                     <h2>Información de Contacto</h2>
                     <ListGroup>
-                        <ListGroup.Item>Correo electrónico de Soporte: support@tudominio.com</ListGroup.Item>
+                        <ListGroup.Item>Correo electrónico de Soporte: electroemporiumsrl@gmail.com</ListGroup.Item>
                         <ListGroup.Item>Teléfono de Atención al Cliente: +1234567890</ListGroup.Item>
                         <ListGroup.Item>Horario de Atención: Lunes a Viernes de 9:00 a 18:00 (UTC-5)</ListGroup.Item>
                     </ListGroup>
