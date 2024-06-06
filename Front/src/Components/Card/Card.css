@@ -1,7 +1,7 @@
 .card.custom-card {
     position: relative;
     width: 15rem;
-    height: 33rem;
+    height: 34rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
   }
@@ -58,7 +58,7 @@
     width: 100%;
   }
 
-  .card-img-top {
+  .imagenCardHome {
     width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
     height: auto; /* Mantén la proporción de la imagen */
     border-radius: 8px; /* Agrega bordes redondeados */
