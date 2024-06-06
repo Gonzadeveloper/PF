@@ -17,7 +17,7 @@ export default defineConfig({
   } as MyServerOptions,
   define: {
     // Definir las variables de entorno
-    "process.env.VITE_DOMAIN": JSON.stringify(process.env.VITE_DOMAIN),
-    "process.env.VITE_CLIENT_ID": JSON.stringify(process.env.VITE_CLIENT_ID),
+    "process.env.VITE_DOMAIN": JSON.stringify(process.env.VITE_AUTH0_DOMAIN),
+    "process.env.VITE_CLIENT_ID": JSON.stringify(process.env.VITE_AUTH0_CLIENT_ID),
   },
 });
