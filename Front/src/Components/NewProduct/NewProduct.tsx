@@ -5,7 +5,6 @@ import { newProduct } from "../../Redux/Actions/productActions"
 import { selectCategory, selectUser } from "../../Redux/Selector"
 import { useNavigate } from "react-router-dom"
 import { getCategorys } from "../../Redux/Actions/categotyActions"
-import { log } from "console"
 
 
 function NewProduct() {

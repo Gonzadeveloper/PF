@@ -176,11 +176,13 @@ const UserProducts: React.FC<UserProductsProps> = ({ products }) => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">Confirmar Cambio de Estado</h5>
+              <h5 className="modal-title">Confirmar despacho del producto</h5>
               <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
             </div>
             <div className="modal-body">
-              <p>¿Estás seguro de que deseas cambiar el estado a "Enviado"?</p>
+              <p>😊Este botón indica que alguien esta esperando tu producto
+                <br />
+                ¿Estás seguro de que deseas indicar que despachaste el producto?</p>
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancelar</button>

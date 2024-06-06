@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useDispatch } from "react-redux";
-import { getProdByName } from "../../Redux/Actions/productActions";
+import { getAllProds, getProdByName } from "../../Redux/Actions/productActions";
 import "./Navbar.css";
+import { AppDispatch } from "../../Redux";
 
 const Navbar = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [searchString, setSearchString] = useState("")
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -59,9 +60,11 @@ const Navbar = () => {
             navigate('/newproduct')}}>Vende</button>
 
 
-          <Link to="Search">
-            <button className="btn btn-outline-light me-2">Compra</button>
-          </Link>
+          
+            <button className="btn btn-outline-light me-2" onClick={e=>{e.preventDefault
+              dispatch(getAllProds())
+              navigate('/Search')}}>Compra</button>
+          
 
 
           <button className="btn btn-outline-light me-2" onClick={e => {e.preventDefault()
