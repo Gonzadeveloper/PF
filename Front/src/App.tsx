@@ -36,10 +36,13 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const redirectPath = urlParams.get("redirect");
+
     if (redirectPath === "Buy/Approved") {
       navigate("/Buy/Approved");
     } else if (redirectPath === "Buy/Disapproved") {
       navigate("/Buy/Disapproved");
+    } else if (redirectPath === "MiPerfil") {
+      navigate("/MiPerfil");
     }
   }, [navigate]);
 
