@@ -7,8 +7,12 @@ import UserProducts from "./components/SoldIitems/UserProducts";
 import axios from "axios";
 import { FormData } from "../../types";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useNavigate } from "react-router-dom";
 
 const MiPerfil: React.FC = () => {
+
+  const navigate = useNavigate();
+
   const {
     loginWithRedirect,
     isAuthenticated,
@@ -210,6 +214,15 @@ const MiPerfil: React.FC = () => {
           className={`btn btn-primary ${styles.loginButton}`}
           onClick={handleLoginClick}>
           Iniciar Sesión
+        </button>
+
+        <br></br>
+        <br></br>
+        <button
+          className="btn btn-success mr-2" // Agregar clases de Bootstrap para color verde y margen a la derecha
+          onClick={() => navigate("/Admin")} // Navegar a la ruta "/Admin" al hacer clic en el botón
+        >
+          Logearse como Administrador
         </button>
       </div>
     </div>

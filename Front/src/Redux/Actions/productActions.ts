@@ -63,7 +63,7 @@ export const updateProd =
         product
       );
       dispatch(updateProduct(res.data));
-      return res.data; 
+      return res.data;
     } catch (error) {
       console.error("Error updating product:", error);
     }
@@ -73,9 +73,8 @@ export const deleteProd = (id: number) => async (dispatch: AppDispatch) => {
   try {
     await axios.delete(`${import.meta.env.VITE_ENDPOINT}/product/${id}`);
     dispatch(deleteProduct(id));
-    return id; 
+    return id;
   } catch (error) {
     console.error("Error deleting product:", error);
   }
 };
-
