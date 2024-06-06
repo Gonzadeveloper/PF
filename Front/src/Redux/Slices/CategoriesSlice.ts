@@ -1,4 +1,3 @@
-// En el archivo categoriesSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Category } from '../../types'; // Asegúrate de importar el tipo Category
 
@@ -17,9 +16,15 @@ const categoriesSlice = createSlice({
         setCategories(state, action: PayloadAction<Category[]>) {
             state.categories = action.payload;
         },
+        addCategory(state, action: PayloadAction<Category>) {
+            state.categories.push(action.payload);
+        },
+        removeCategory(state, action: PayloadAction<number>) {
+            state.categories = state.categories.filter(category => category.id !== action.payload);
+        }
     },
 });
 
-export const { setCategories } = categoriesSlice.actions;
+export const { setCategories, addCategory, removeCategory } = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

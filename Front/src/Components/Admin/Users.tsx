@@ -22,7 +22,6 @@ const Users: React.FC = () => {
         <div>
             <div className="header">
                 <h1>Users</h1>
-                <button>New</button>
             </div>
             <table>
                 <thead>
@@ -40,7 +39,6 @@ const Users: React.FC = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>
-                                <button>Edit</button>
                                 <button onClick={() => handleDelete(user.id)}>Delete</button>
                             </td>
                         </tr>
