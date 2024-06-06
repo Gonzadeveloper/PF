@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllOrders, selectProducts, selectUser } from "../../Redux/Selector";
-import { setStatus } from "../../Redux/Slices/OrdersSlice";
 import { useEffect, useState } from "react";
 import { getAllOrders, newStatus } from "../../Redux/Actions/orderActions";
 import { AppDispatch } from "../../Redux";
@@ -85,8 +84,8 @@ function MyShopping() {
 
     if (products.length === 0) {
         return (
-            <div className="container mt-5">
-                <h1 className="mb-4">Mis compras</h1>
+            <div className="container mt-2">
+                <h1 className="mb-5">Mis compras</h1>
                 <div className="row g-0 align-items-center">
                     <h3>No tienes compras registradas.</h3>
                     <br />
