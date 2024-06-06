@@ -1,8 +1,11 @@
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllOrders, selectProducts, selectUser } from "../../Redux/Selector";
-import { setStatus } from "../../Redux/Slices/OrdersSlice";
-import { useEffect, useState } from "react";
-import { getAllOrders, newStatus } from "../../Redux/Actions/orderActions";
+import {
+  selectAllOrders,
+  selectProducts,
+  selectUser,
+} from "../../Redux/Selector";
+import { getAllOrders } from "../../Redux/Actions/orderActions";
 import { AppDispatch } from "../../Redux";
 import { Order, Product } from "../../types";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -45,16 +48,28 @@ function MyShopping() {
         })
     }
 
+  const ordersUser = orders.filter((ord: Order) => ord.userId === 11);
 
-    ordersUser.forEach((ord: Order) => {
-        ord.productOrder?.forEach((prod: ProductOrder) => addProd(prod.productId, ord.orderStatus, ord.orderDate))
+  function addProd(id: number, status: string, date: Date) {
+    allProds.forEach((prod: Product) => {
+      if (prod.id === id) {
+        products = [
+          ...products,
+          {
+            ...prod,
+            status: status,
+            soldDate: date,
+          },
+        ];
+      }
     });
+  }
 
-    const handleReceived = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        setSelectedProductId(Number(e.currentTarget.value));
-        setShowModal(true);
-    }
+  ordersUser.forEach((ord: Order) => {
+    ord.productOrder?.forEach((prod: any) =>
+      addProd(prod.productId, ord.orderStatus, ord.orderDate)
+    );
+  });
 
     const confirmReceived = () => {
         ordersUser.forEach((ord) => ord.productOrder.forEach(prod => {
@@ -144,9 +159,27 @@ function MyShopping() {
                         </div>
                     </div>
                 </div>
+              </div>
+              <div className="col-md-3">
+                <img
+                  src={prod.image}
+                  alt="product"
+                  className="img-fluid"
+                  style={{ height: "150px", objectFit: "cover", width: "100%" }}
+                />
+              </div>
+              <div className="col-md-1 d-flex justify-content-center align-items-center">
+                {/* Utiliza el componente Link de react-router para redirigir a la ventana de revisión con el productId */}
+                <Link to={`/review/${prod.id}`} className="btn btn-primary">
+                  Dejar reseña
+                </Link>
+              </div>
             </div>
-        </div>
-    );
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default MyShopping;

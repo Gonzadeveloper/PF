@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,15 +6,18 @@ import {
   faMoneyBillAlt,
   faHandHoldingUsd,
   faStar,
+  faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
-import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
 import "./Detail.css";
 import { getProductById } from "../../Redux/Actions/productActions";
 import { setProductDetails } from "../../Redux/Slices/ProductsSlice";
+import { addToCart } from "../../Redux/Slices/CartSlice";
 import ClipLoader from "react-spinners/ClipLoader";
 import { selectSelectedProduct } from "../../Redux/Selector";
 import { useParams } from "react-router-dom";
 import { Review } from "../../types";
+import { faCcVisa, faCcMastercard } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 interface Props {
   productId: number;
@@ -24,6 +27,7 @@ const ProductDetail: React.FC<Props> = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const product = useSelector(selectSelectedProduct);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const productId = Number(id);
@@ -38,6 +42,14 @@ const ProductDetail: React.FC<Props> = () => {
       dispatch(setProductDetails(null));
     };
   }, [dispatch, id]);
+
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addToCart(product));
+      setClicked(true);
+      setTimeout(() => setClicked(false), 200);
+    }
+  };
 
   if (!product) {
     return (
@@ -82,7 +94,20 @@ const ProductDetail: React.FC<Props> = () => {
               <p>
                 <strong>Condicion:</strong> {product?.condition}
               </p>
-              <button className="btn btn-primary mr-2">Comprar</button>
+              <div>
+                <FontAwesomeIcon
+                  icon={faShoppingCart}
+                  className={`cart-icon ${clicked ? "clicked" : ""}`}
+                  onClick={handleAddToCart}
+                />
+                <Link to="/Buy">
+                  <button
+                    className="btn btn-primary mr-3"
+                    onClick={handleAddToCart}>
+                    Comprar
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -102,7 +127,7 @@ const ProductDetail: React.FC<Props> = () => {
                 <FontAwesomeIcon icon={faStar} /> Valoración Promedio:{" "}
                 {averageRating !== null ? averageRating.toFixed(1) : "N/A"}
               </div>
-              {product?.review && product.review.length > 0 ? (
+              {product?.review && product?.review?.length > 0 ? (
                 <div className="reviews-container">
                   {product.review.map((review: Review) => (
                     <div className="review-item" key={review.id}>
