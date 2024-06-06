@@ -16,11 +16,11 @@ const ordersSlice = createSlice({
         setOrders(state, action: PayloadAction<Order[]>) {
             state.orders = action.payload;
         },
-        setStatus(state, action: PayloadAction<Order>){
+        setStatus(state, action: PayloadAction<Order>) {
             state.orders = state.orders.map(
-              (prod)=> prod.id===action.payload.id ? action.payload : prod
+                (prod) => prod.id === action.payload.id ? action.payload : prod
             )
-          }
+        }
     },
 });
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Redux';
-import { getAllProds, updateProd } from '../../Redux/Actions/productActions';
+import { getAllProds, updateProd, deleteProd } from '../../Redux/Actions/productActions';
 import { AppDispatch } from '../../Redux/index';
-import { deleteProduct } from '../../Redux/Slices/ProductsSlice';
 import UpdateProductForm from '../MyProfile/components/SoldIitems/UpdateProductForm'; // Importar el componente UpdateProductForm
 import { Row, Col } from 'react-bootstrap'; // Importar Row y Col de react-bootstrap
 
@@ -19,7 +18,9 @@ const Products: React.FC = () => {
 
     // Función para manejar el clic en el botón Delete
     const handleDelete = (id: number) => {
-        dispatch(deleteProduct(id));
+        if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+            dispatch(deleteProd(id));
+        }
     };
 
     // Función para manejar el clic en el botón Edit
