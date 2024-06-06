@@ -6,10 +6,12 @@ import { getAllOrders, newStatus } from "../../Redux/Actions/orderActions";
 import { AppDispatch } from "../../Redux";
 import { Order, Product } from "../../types";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
 
 
 function MyShopping() {
     const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
     const allProds = useSelector(selectProducts)
     const user = useSelector(selectUser)
     const orders = useSelector(selectAllOrders)
@@ -24,7 +26,7 @@ function MyShopping() {
     }, [dispatch]);
 
     const ordersUser = orders.filter((ord: Order) => {
-        if (ord.userId == 365) return ord
+        if (user) { if (ord.userId == user.id) return ord }
     });
 
     function addProd(id: number, status: string, date: Date) {
@@ -58,10 +60,46 @@ function MyShopping() {
         ordersUser.forEach((ord) => ord.productOrder.forEach(prod => {
             if (prod.productId === selectedProductId) {
                 dispatch(newStatus({ orderStatus: "Entregado" }, ord.id));
+                navigate(`/review/${prod.productId}`)
             }
         }));
         setShowModal(false);
     }
+
+    if (!user || user.length == 0) {
+        return (
+            <div className="container mt-5">
+                <h1 className="mb-4">Mis compras</h1>
+                <div className="row g-0 align-items-center">
+                    <h3>No estas registrado</h3>
+                    <br />
+                    <h6>Inicia sesión o registrate o  para ver tus compras!</h6>
+                </div>
+                    <button type="button" className="btn btn-primary" onClick={e => {
+                        e.preventDefault()
+                        navigate('/MiPerfil')
+                    }}>Iniciar sesión</button>
+            </div>
+        );
+    }
+
+    if (products.length === 0) {
+        return (
+            <div className="container mt-5">
+                <h1 className="mb-4">Mis compras</h1>
+                <div className="row g-0 align-items-center">
+                    <h3>No tienes compras registradas.</h3>
+                    <br />
+                    <h6>Te invitamos a comprar!</h6>
+                </div>
+                    <button type="button" className="btn btn-primary" onClick={e => {
+                        e.preventDefault()
+                        navigate('/Search')
+                    }}>Ir a comprar</button>
+            </div>
+        );
+    }
+
     return (
         <div className="container mt-5">
             <h1 className="mb-4">Mis compras</h1>
@@ -83,7 +121,6 @@ function MyShopping() {
                                 {prod.status === "Enviado" && (
                                     <button type="button" className="btn btn-primary" onClick={handleReceived} value={prod.id}>📬</button>
                                 )}
-
                             </div>
                         </div>
                     </div>

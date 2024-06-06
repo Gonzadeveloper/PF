@@ -24,9 +24,11 @@ import Admin from "./Components/Admin/Admin";
 import Approved from "./Components/Buy/approved/Approved";
 import Disapproved from "./Components/Buy/disapproved/Disapproved";
 import Review from "./Components/Review/Review";
+import { AppDispatch } from "./Redux";
+import { getAllOrders } from "./Redux/Actions/orderActions";
 
 function App() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   useEffect(() => {

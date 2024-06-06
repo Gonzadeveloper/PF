@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa";
@@ -12,6 +12,7 @@ const Review: React.FC<ReviewProps> = () => {
   const [rating, setRating] = useState<number>(0);
   const [comment, setComment] = useState<string>("");
   const userId = useSelector((state: any) => state.user.user.id);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -146,7 +147,10 @@ const Review: React.FC<ReviewProps> = () => {
                 onChange={handleCommentChange}
                 rows={4}></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" onClick={e=>{
+              e.preventDefault()
+              navigate('/MisCompras')
+            }}>
               Enviar reseña
             </button>
           </form>
