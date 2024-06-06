@@ -29,3 +29,17 @@ export const newStatus = (newstat: object, orderId: number) => {
         }
     };
 };
+
+export const deleteOrder = (orderId: number) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            await axios.delete(
+                `${import.meta.env.VITE_ENDPOINT}/order/${orderId}`
+            );
+            // Después de borrar, actualizamos la lista de órdenes
+            dispatch(getAllOrders());
+        } catch (error) {
+            console.error('Error deleting order:', error);
+        }
+    };
+};

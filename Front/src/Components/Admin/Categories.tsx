@@ -20,14 +20,16 @@ const Categories: React.FC = () => {
     };
 
     const handleDelete = (id: number) => {
-        dispatch(deleteCategory(id));
+        if (window.confirm('¿Estás seguro de que quieres eliminar esta categoria?')) {
+            dispatch(deleteCategory(id))
+        }
     };
 
     return (
-        <div className="container">
+        <div className="container my-4">
             <div className="row">
                 <div className="col-md-8">
-                    <div className="header">
+                    <div className="header mb-4">
                         <h1>Categories</h1>
                     </div>
                     <div className="input-group mb-3">
@@ -46,8 +48,8 @@ const Categories: React.FC = () => {
                             Add
                         </button>
                     </div>
-                    <table className="table">
-                        <thead>
+                    <table className="table table-striped table-hover">
+                        <thead className="thead-dark">
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
@@ -60,7 +62,12 @@ const Categories: React.FC = () => {
                                     <td>{category.id}</td>
                                     <td>{category.name}</td>
                                     <td>
-                                        <button onClick={() => handleDelete(category.id)} className="btn btn-danger">Delete</button>
+                                        <button
+                                            onClick={() => handleDelete(category.id)}
+                                            className="btn btn-danger"
+                                        >
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
                             ))}

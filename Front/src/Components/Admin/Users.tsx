@@ -13,18 +13,18 @@ const Users: React.FC = () => {
     }, [dispatch]);
 
     const handleDelete = (id: number) => {
-        if (window.confirm("Are you sure you want to delete this user?")) {
+        if (window.confirm("¿Estás seguro de que quieres eliminar este Usuario?")) {
             dispatch(deleteUser(id));
         }
     };
 
     return (
-        <div>
-            <div className="header">
+        <div className="container my-4">
+            <div className="header mb-4">
                 <h1>Users</h1>
             </div>
-            <table>
-                <thead>
+            <table className="table table-striped table-hover">
+                <thead className="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -39,7 +39,12 @@ const Users: React.FC = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>
-                                <button onClick={() => handleDelete(user.id)}>Delete</button>
+                                <button
+                                    onClick={() => handleDelete(user.id)}
+                                    className="btn btn-danger"
+                                >
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     ))}
