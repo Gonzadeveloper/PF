@@ -1,25 +1,20 @@
-const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
-require('dotenv').config();
+// import { initAuth0 } from '@auth0/nextjs-auth0';
 
 
-passport.use(new Auth0Strategy({
-  domain: process.env.AUTH0_DOMAIN,
-  clientID: process.env.AUTH0_CLIENT_ID,
-  clientSecret: process.env.AUTH0_CLIENT_SECRET,
-  callbackURL: process.env.AUTH0_CALLBACK_URL,
-}, (accessToken:any, refreshToken:any, _extraParams:any, profile:any, done:any) => {
-  profile.accessToken = accessToken;
-  profile.refreshToken = refreshToken;
-  return done(null, profile);
-}));
 
-passport.serializeUser((user:any, done:any) => {
-  done(null, user);
-});
 
-passport.deserializeUser((user:any, done:any) => {
-  done(null, user);
-});
-
-export  {passport};
+// export default initAuth0({
+//   domain: process.env.AUTH0_DOMAIN,
+//   clientId: process.env.AUTH0_CLIENT_ID,
+//   clientSecret: process.env.AUTH0_CLIENT_SECRET,
+//   issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}`,
+//   redirectUri: process.env.AUTH0_REDIRECT_URI,
+//   postLogoutRedirectUri: process.env.AUTH0_POST_LOGOUT_REDIRECT_URI,
+//   session: {
+//     cookieSecret: process.env.SESSION_COOKIE_SECRET,
+//     cookieLifetime: 7200, // 2 hours
+//     storeIdToken: false,
+//     storeAccessToken: true,
+//     storeRefreshToken: true,
+//   },
+// } as any);
