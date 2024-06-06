@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User, Address, Product, Review, Order, Cart, UserState } from "../../types";
+import { User, Address, Product, Review, Order, Cart } from "../../types";
 
-interface UserState {
+interface UsersState {
   users: User[];
   user: User | null;
   addresses: Address[];
@@ -11,10 +11,9 @@ interface UserState {
   cart: Cart | null;
 }
 
-
-const initialState: UserState = {
-  user: JSON.parse(localStorage.getItem("user") || "null"),
+const initialState: UsersState = {
   users: [],
+  user: JSON.parse(localStorage.getItem("user") || "null"),
   addresses: [],
   products: [],
   reviews: [],
@@ -27,11 +26,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action: PayloadAction<User[]>) => {
-      console.log('Setting users:', action.payload); // Agregamos este console.log
+      console.log('Setting users:', action.payload);
       state.users = action.payload;
     },
     setUser: (state, action: PayloadAction<User>) => {
-      console.log('Setting user:', action.payload); // Agregamos este console.log
+      console.log('Setting user:', action.payload);
       state.user = action.payload;
     },
     setAddresses: (state, action: PayloadAction<Address[]>) => {
