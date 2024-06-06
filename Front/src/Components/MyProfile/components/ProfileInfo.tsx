@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../Miperfil.module.css";
-
+import "./ProfileInfo.css";
 interface ProfileInfoProps {
   user: any;
   showForm: boolean;
@@ -17,7 +17,7 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({
   return (
     <div className="text-center">
       {user && user.picture && (
-        <img src={user.picture} className={styles.avatar} alt="Avatar" />
+        <img src={user.picture} className="imagenprofile" alt="Avatar" />
       )}
       <p className={styles["card-text"]}>Bienvenido, {user?.name}</p>
       <p className={styles["card-text"]}>Email: {user?.email}</p>

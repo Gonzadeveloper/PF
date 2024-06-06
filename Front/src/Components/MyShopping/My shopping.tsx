@@ -74,10 +74,10 @@ function MyShopping() {
                     <br />
                     <h6>Inicia sesión o registrate o  para ver tus compras!</h6>
                 </div>
-                    <button type="button" className="btn btn-primary" onClick={e => {
-                        e.preventDefault()
-                        navigate('/MiPerfil')
-                    }}>Iniciar sesión</button>
+                <button type="button" className="btn btn-primary" onClick={e => {
+                    e.preventDefault()
+                    navigate('/MiPerfil')
+                }}>Iniciar sesión</button>
             </div>
         );
     }
@@ -91,10 +91,10 @@ function MyShopping() {
                     <br />
                     <h6>Te invitamos a comprar!</h6>
                 </div>
-                    <button type="button" className="btn btn-primary" onClick={e => {
-                        e.preventDefault()
-                        navigate('/Search')
-                    }}>Ir a comprar</button>
+                <button type="button" className="btn btn-primary" onClick={e => {
+                    e.preventDefault()
+                    navigate('/Search')
+                }}>Ir a comprar</button>
             </div>
         );
     }

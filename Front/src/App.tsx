@@ -31,7 +31,6 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllProds());
-
   }, [dispatch]);
 
   useEffect(() => {
@@ -63,7 +62,6 @@ function App() {
           <Route path="Buy/Approved" element={<Approved />} />
           <Route path="Buy/Disapproved" element={<Disapproved />} />
           <Route path="/review/:productId" element={<Review />} />
-
         </Routes>
       </div>
       <Footer />
