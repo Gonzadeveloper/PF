@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllOrders } from '../../Redux/Actions/orderActions';
+import { getAllOrders, deleteOrder } from '../../Redux/Actions/orderActions';
 import { AppDispatch } from '../../Redux/index';
 import { Order } from '../../types';
 import { selectAllOrders } from '../../Redux/Selector';
@@ -13,13 +13,19 @@ const OrderComponent: React.FC = () => {
         dispatch(getAllOrders());
     }, [dispatch]);
 
+    const handleDeleteOrder = (orderId: number) => {
+        if (window.confirm('¿Estás seguro de que quieres eliminar esta orden?')) {
+            dispatch(deleteOrder(orderId));
+        }
+    };
+
     return (
-        <div>
-            <div className="header">
+        <div className="container my-4">
+            <div className="header mb-4">
                 <h1>Orders</h1>
             </div>
-            <table>
-                <thead>
+            <table className="table table-striped table-hover">
+                <thead className="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>User ID</th>
@@ -36,8 +42,7 @@ const OrderComponent: React.FC = () => {
                             <td>{new Date(order.orderDate).toLocaleDateString()}</td>
                             <td>{order.orderStatus}</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <button className="btn btn-danger" onClick={() => handleDeleteOrder(order.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
